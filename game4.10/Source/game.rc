@@ -104,13 +104,13 @@ IDB_HELP                BITMAP                  "..\\res\\help.bmp"
 
 IDB_LOADING             BITMAP                  "..\\res\\loading.bmp"
 
-IDB_MAPBACKGROUND       BITMAP                  "C:\\Users\\a9897\\Desktop\\game4.10\\RES\\map_background.bmp"
+IDB_MAPBACKGROUND       BITMAP                  "..\\RES\\map_background.bmp"
 
-IDB_SWORD1              BITMAP                  "C:\\Users\\a9897\\Desktop\\game4.10\\RES\\BIG_SWORD.bmp"
+IDB_SWORD1              BITMAP                  "..\\RES\\BIG_SWORD.bmp"
 
 IDB_BITMAP3             BITMAP                  "..\\res\\bitmap3.bmp"
 
-IDB_GREATSWORDLOGO      BITMAP                  "C:\\Users\\a9897\\Desktop\\game4.10\\RES\\great_sword_logo.bmp"
+IDB_GREATSWORDLOGO      BITMAP                  "..\\RES\\great_sword_logo.bmp"
 
 
 /////////////////////////////////////////////////////////////////////////////
