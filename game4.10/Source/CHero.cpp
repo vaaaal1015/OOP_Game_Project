@@ -55,16 +55,24 @@ namespace game_framework {
 
 	void CHero::OnMove()
 	{
-		const int STEP_SIZE = 2;
+		const int STEP_SIZE = 1;
 		animation.OnMove();
 		if (isMovingLeft)
+		{
 			x -= STEP_SIZE;
+		}
 		if (isMovingRight)
+		{
 			x += STEP_SIZE;
+		}
 		if (isMovingUp)
+		{
 			y -= STEP_SIZE;
+		}
 		if (isMovingDown)
+		{
 			y += STEP_SIZE;
+		}
 	}
 
 	void CHero::SetMovingDown(bool flag)

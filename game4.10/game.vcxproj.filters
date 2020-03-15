@@ -129,9 +129,6 @@
     <ClCompile Include="Source\CHero.cpp">
       <Filter>MyGame</Filter>
     </ClCompile>
-    <ClCompile Include="gameMap.cpp">
-      <Filter>MyGame</Filter>
-    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\audio.h">
@@ -170,9 +167,6 @@
     <ClInclude Include="Source\CHero.h">
       <Filter>MyGame</Filter>
     </ClInclude>
-    <ClInclude Include="gameMap.h">
-      <Filter>MyGame</Filter>
-    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Source\game.rc">
@@ -194,6 +188,15 @@
       <Filter>Resource Files</Filter>
     </Image>
     <Image Include="RES\great_sword_logo.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\mapground.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\longGround.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\mapground1.bmp">
       <Filter>Resource Files</Filter>
     </Image>
   </ItemGroup>

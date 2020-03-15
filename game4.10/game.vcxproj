@@ -257,7 +257,6 @@
     <None Include="res\Toolbar.bmp" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="gameMap.cpp" />
     <ClCompile Include="Source\audio.cpp" />
     <ClCompile Include="Source\CBall.cpp" />
     <ClCompile Include="Source\CBouncingBall.cpp" />
@@ -304,7 +303,6 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="gameMap.h" />
     <ClInclude Include="Source\audio.h" />
     <ClInclude Include="Source\CBall.h" />
     <ClInclude Include="Source\CBouncingBall.h" />
@@ -331,6 +329,9 @@
     <Image Include="RES\great_sword_logo.bmp" />
     <Image Include="RES\Item_Sword_29.bmp" />
     <Image Include="RES\Item_Sword_29.png" />
+    <Image Include="RES\longGround.bmp" />
+    <Image Include="RES\mapground.bmp" />
+    <Image Include="RES\mapground1.bmp" />
     <Image Include="RES\map_background.bmp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
