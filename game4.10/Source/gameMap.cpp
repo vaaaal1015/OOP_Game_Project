@@ -11,7 +11,7 @@ namespace game_framework {
 	gameMap::gameMap()
 		:X(0), Y(0), MW(32), MH(32), sx(0), sy(475)  //圖片為32*32 初始螢幕畫面位於0,475
 	{
-		for (int i = 0; i < 48; i++)
+		for (int i = 0; i < 48; i++)//48格
 		{
 			for (int j = 0; j < 64; j++)
 			{
