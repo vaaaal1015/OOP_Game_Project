@@ -14,7 +14,7 @@ namespace game_framework {
 		int  GetY2();					// 擦子右下角 y 座標
 		void Initialize();				// 設定擦子為初始值
 		void LoadBitmap();				// 載入圖形
-		void OnMove();					// 移動擦子
+		void OnMove(gameMap *mymap);					// 移動擦子
 		void OnShow();					// 將擦子圖形貼到畫面
 		void SetMovingDown(bool flag);	// 設定是否正在往下移動
 		void SetMovingLeft(bool flag);	// 設定是否正在往左移動
