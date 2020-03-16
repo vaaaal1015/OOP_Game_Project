@@ -4,7 +4,9 @@
 #include <ddraw.h>
 #include "audio.h"
 #include "gamelib.h"
+#include "gameMap.h"
 #include "CHero.h"
+
 
 namespace game_framework {
 	/////////////////////////////////////////////////////////////////////////////
@@ -53,9 +55,9 @@ namespace game_framework {
 		animation.AddBitmap(IDB_ERASER2, RGB(255, 255, 255));
 	}
 
-	void CHero::OnMove()
+	void CHero::OnMove(gameMap *mymap)
 	{
-		const int STEP_SIZE = 1;
+		const int STEP_SIZE = 3;
 		animation.OnMove();
 		if (isMovingLeft)
 		{
@@ -73,6 +75,7 @@ namespace game_framework {
 		{
 			y += STEP_SIZE;
 		}
+		mymap->SetSXSY(x, y);
 	}
 
 	void CHero::SetMovingDown(bool flag)

@@ -228,7 +228,7 @@ void CGameStateRun::OnMove()							// 移動遊戲元素
 	//
 	// 移動擦子
 	//
-	hero.OnMove();
+	hero.OnMove(&gamemap);
 	//
 	// 判斷擦子是否碰到球
 	//
