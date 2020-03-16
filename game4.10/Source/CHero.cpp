@@ -41,15 +41,15 @@ namespace game_framework {
 	void CHero::Initialize()
 	{
 		const int X_POS = 280;
-		const int Y_POS = 400;
+		const int Y_POS = 320;
 		x = X_POS;
 		y = Y_POS;
 		isMovingLeft = isMovingRight = isMovingUp = isMovingDown = false;
 
 		const int INITIAL_VELOCITY = 20;	// 初始上升速度
-		const int FLOOR = 400;				// 地板座標
+		const int FLOOR = 320;				// 地板座標
 		floor = FLOOR;
-		x = 95; y = FLOOR - 1;				// y座標比地板高1點(站在地板上)
+		y = FLOOR - 1;				// y座標比地板高1點(站在地板上)
 		rising = false;
 		initial_velocity = INITIAL_VELOCITY;
 		velocity = initial_velocity;
@@ -65,7 +65,7 @@ namespace game_framework {
 
 	void CHero::OnMove(gameMap *mymap)
 	{
-		const int STEP_SIZE = 5;
+		const int STEP_SIZE = 20;
 		animation.OnMove();
 
 		if (isMovingLeft)
@@ -76,13 +76,15 @@ namespace game_framework {
 		{
 			x += STEP_SIZE;
 		}
-		if (isMovingUp && y == (floor-1))
+		//if (isMovingUp && y == (floor - 1))
+		if (isMovingUp)
 		{
-			rising = true;
+			//rising = true;
+			y -= STEP_SIZE;
 		}
 		if (isMovingDown)
 		{
-			//y += STEP_SIZE;
+			y += STEP_SIZE;
 		}
 		/*
 		if (rising) {			// 上升狀態
@@ -107,7 +109,8 @@ namespace game_framework {
 			}
 		}
 		*/
-		mymap->SetSXSY(x, y);
+
+		mymap->SetSXSY(x-320, y-240);
 	}
 
 	void CHero::SetMovingDown(bool flag)

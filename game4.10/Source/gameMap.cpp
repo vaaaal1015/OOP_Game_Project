@@ -15,11 +15,11 @@ namespace game_framework {
 		{
 			for (int j = 0; j < 64; j++)
 			{
-				if (j == 48)          //地表
+				if (i == 32)          //地表
 				{
 					map[i][j] = 1;    //草地
 				}
-				else if (j > 48)
+				else if (i > 32)
 				{
 					map[i][j] = 2;    //土
 				}
@@ -37,8 +37,8 @@ namespace game_framework {
 	}
 	bool gameMap::isSpace(int x, int y)   // (x, y) 為地圖的點座標
 	{
-		int gx = x / 16; // 轉換為格座標(整數除法)
-		int gy = y / 16;  // 轉換為格座標(整數除法) 
+		int gx = x / 32; // 轉換為格座標(整數除法)
+		int gy = y / 32;  // 轉換為格座標(整數除法) 
 		return map[gx][gy] == 0;
 	}
 	void gameMap::LoadBitmap()
@@ -50,8 +50,8 @@ namespace game_framework {
 	{
 		for (int i = 0; i < 48; i++) {
 			for (int j = 0; j < 64; j++) {
-				int x = i * 16 - sx; // 算出第(i, j)這一格的 x 螢幕座標
-				int y = j * 16 - sy; // 算出第(i, j)這一格的 y 螢幕座標
+				int x = j * 32 - sx; // 算出第(i, j)這一格的 x 螢幕座標
+				int y = i * 32 - sy; // 算出第(i, j)這一格的 y 螢幕座標
 				switch (map[i][j])
 				{
 				case 2:
