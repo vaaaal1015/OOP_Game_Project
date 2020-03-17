@@ -9,7 +9,7 @@
 
 namespace game_framework {
 	gameMap::gameMap()
-		:X(0), Y(0), MW(32), MH(32), sx(0), sy(0)  //圖片為32*32 初始螢幕畫面位於0,475
+		:X(0), Y(0), MW(MIN_MAP_SIZE), MH(MIN_MAP_SIZE), sx(0), sy(0)  //圖片為10*10 初始螢幕畫面位於0,475
 	{
 		for (int i = 0; i < 48; i++)//48格
 		{
@@ -34,11 +34,12 @@ namespace game_framework {
 	{
 		sx = x;
 		sy = y;
+
 	}
 	bool gameMap::isSpace(int x, int y)   // (x, y) 為地圖的點座標
 	{
-		int gx = x / 32; // 轉換為格座標(整數除法)
-		int gy = y / 32;  // 轉換為格座標(整數除法) 
+		int gx = x / MIN_MAP_SIZE; // 轉換為格座標(整數除法)
+		int gy = y / MIN_MAP_SIZE;  // 轉換為格座標(整數除法) 
 		return map[gx][gy] == 0;
 	}
 	void gameMap::LoadBitmap()
@@ -50,8 +51,8 @@ namespace game_framework {
 	{
 		for (int i = 0; i < 48; i++) {
 			for (int j = 0; j < 64; j++) {
-				int x = j * 32 - sx; // 算出第(i, j)這一格的 x 螢幕座標
-				int y = i * 32 - sy; // 算出第(i, j)這一格的 y 螢幕座標
+				int x = j * MW - sx; // 算出第(i, j)這一格的 x 螢幕座標
+				int y = i * MH - sy; // 算出第(i, j)這一格的 y 螢幕座標
 				switch (map[i][j])
 				{
 				case 2:
@@ -68,5 +69,14 @@ namespace game_framework {
 				}
 			}
 		}
+	}
+
+	int gameMap::ScreenX(int x) // x 為地圖的點座標
+	{
+		return x - sx; // 回傳螢幕的 x 點座標
+	}
+	int gameMap::ScreenY(int y) // y 為地圖的 y 點座標
+	{
+		return y - sy; // 回傳螢幕的點座標
 	}
 }

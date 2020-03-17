@@ -338,7 +338,7 @@ void CGameStateRun::OnShow()
 	gamemap.OnShow();
 	help.ShowBitmap();					// 貼上說明圖
 	hits_left.ShowBitmap();
-	hero.OnShow();					// 貼上擦子
+	hero.OnShow(&gamemap);					// 貼上擦子
 	//
 	//  貼上左上及右下角落的圖
 	//
