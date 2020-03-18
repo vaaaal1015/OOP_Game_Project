@@ -5,13 +5,17 @@
 #include "audio.h"
 #include "gamelib.h"
 #include "gameMap.h"
+#include <fstream>
+#include <string>
+#include <iostream>
 
+using namespace std;
 
 namespace game_framework {
 	gameMap::gameMap()
 		:X(0), Y(0), MW(MIN_MAP_SIZE), MH(MIN_MAP_SIZE), sx(0), sy(0)  //圖片為10*10 初始螢幕畫面位於0,475
 	{
-		for (int i = 0; i < 48; i++)//48格
+		/*for (int i = 0; i < 48; i++)//48格
 		{
 			for (int j = 0; j < 64; j++)
 			{
@@ -28,7 +32,33 @@ namespace game_framework {
 					map[i][j] = 0;    //空氣
 				}
 			}
+		}*/
+		fstream mapFile;
+		mapFile.open("MapFile.txt", ios::in);
+		if (!mapFile) cout << "error";
+		int i = 0;
+		while (!mapFile.eof())
+		{
+			string buffer;
+			getline(mapFile, buffer);
+			int j = 0;
+			int count = 0;
+			while (buffer[j] != '\0')
+			{
+				if (buffer[j] == ',')
+				{
+					j++;
+				}
+				else
+				{
+					map[i][count] = (int)buffer[j] - (int)48;
+					count++;
+					j++;
+				}
+			}
+			i += 1;
 		}
+
 	}
 	void gameMap::SetSXSY(int x, int y)   //設定
 	{
