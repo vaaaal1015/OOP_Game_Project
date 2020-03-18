@@ -205,5 +205,11 @@
     <Image Include="RES\mapground1.bmp">
       <Filter>Resource Files</Filter>
     </Image>
+    <Image Include="RES\mapSlideleftButtom.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\mapSlideleftButtom2.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
   </ItemGroup>
 </Project>

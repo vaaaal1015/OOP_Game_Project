@@ -76,6 +76,8 @@ namespace game_framework {
 	{
 		ground.LoadBitmap(IDB_MAPGROUND, RGB(255, 255, 255));//載入草地圖案
 		ground1.LoadBitmap(IDB_MAPGROUND1);//載入泥土圖案
+		ground2.LoadBitmap(IDB_MAPSLIDE1, RGB(255, 255, 255));//載入斜坡1圖案
+		ground3.LoadBitmap(IDB_MAPSLIDE2);//載入斜坡2圖案
 	}
 	void gameMap::OnShow()
 	{
@@ -85,6 +87,14 @@ namespace game_framework {
 				int y = i * MH - sy; // 算出第(i, j)這一格的 y 螢幕座標
 				switch (map[i][j])
 				{
+				case 4:
+					ground3.SetTopLeft(x, y); // 指定第(i, j)這一格的座標
+					ground3.ShowBitmap();   //顯示斜坡2圖案
+					break;
+				case 3:
+					ground2.SetTopLeft(x, y); // 指定第(i, j)這一格的座標
+					ground2.ShowBitmap();   //顯示斜坡1圖案
+					break;
 				case 2:
 					ground1.SetTopLeft(x, y); // 指定第(i, j)這一格的座標
 					ground1.ShowBitmap();   //顯示土地圖案

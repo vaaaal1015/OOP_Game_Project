@@ -11,6 +11,8 @@ namespace game_framework {
 	protected:
 		CMovingBitmap ground; //建立草地圖案
 		CMovingBitmap ground1; //建立土地圖案
+		CMovingBitmap ground2; //建立斜坡1圖案
+		CMovingBitmap ground3; //建立斜坡2圖案
 		int map[48][64];    //建立一個地圖矩陣的index;
 		const int X, Y;		  //大地圖左上角x,y座標
 		const int MW, MH;	  //每張小地圖的寬高度

@@ -334,6 +334,8 @@
     <Image Include="RES\longGround.bmp" />
     <Image Include="RES\mapground.bmp" />
     <Image Include="RES\mapground1.bmp" />
+    <Image Include="RES\mapSlideleftButtom.bmp" />
+    <Image Include="RES\mapSlideleftButtom2.bmp" />
     <Image Include="RES\map_background.bmp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

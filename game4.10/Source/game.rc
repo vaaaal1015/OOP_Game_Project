@@ -118,6 +118,10 @@ IDB_LONGGROUND          BITMAP                  "..\\RES\\longGround.bmp"
 
 IDB_MAPGROUND1          BITMAP                  "..\\RES\\mapground1.bmp"
 
+IDB_MAPSLIDE1           BITMAP                  "..\\RES\\mapSlideleftButtom.bmp"
+
+IDB_MAPSLIDE2           BITMAP                  "..\\RES\\mapSlideleftButtom2.bmp"
+
 
 /////////////////////////////////////////////////////////////////////////////
 //
