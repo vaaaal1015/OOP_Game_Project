@@ -7,6 +7,8 @@
 #include "gameMap.h"
 #include "CHero.h"
 
+#include <fstream>
+
 
 namespace game_framework {
 	/////////////////////////////////////////////////////////////////////////////
@@ -40,8 +42,8 @@ namespace game_framework {
 
 	void CHero::Initialize()
 	{
-		//const int X_POS = 280;
-		//const int Y_POS = 320;
+		//const int X_POS = -320;
+		//const int Y_POS = 400;
 		const int X_POS = 0;
 		const int Y_POS = 0;
 		x = X_POS;
@@ -50,7 +52,7 @@ namespace game_framework {
 
 		/*
 		const int INITIAL_VELOCITY = 20;	// 初始上升速度
-		const int FLOOR = 320;				// 地板座標
+		const int FLOOR = 480;				// 地板座標
 		floor = FLOOR;
 		y = FLOOR - 1;				// y座標比地板高1點(站在地板上)
 		rising = false;
@@ -71,29 +73,36 @@ namespace game_framework {
 	{
 		const int STEP_SIZE = 10;
 		animation.OnMove();
-		mymap->SetSXSY(x, y);
 		if (isMovingLeft)
 		{
 			x -= STEP_SIZE;
-			mymap->SetSXSY(x, y);
 		}
 		if (isMovingRight)
 		{
 			x += STEP_SIZE;
-			mymap->SetSXSY(x, y);
 		}
 		//if (isMovingUp && y == (floor - 1))
 		if (isMovingUp)
 		{
+			/*
+			int flag = 0;
+			for (int i = 0; i < 480; i+=10)
+				for (int j = 0; j < 640; j+=10)
+					if (!mymap->isSpace(i, j)) flag = 1;
+			*/
 			//rising = true;
+			/*
+			if (!mymap->isSpace(x, GetY2() + 1))
+				floor = GetY2()-1;
+			*/
+			CreatTxt(mymap);
 			y -= STEP_SIZE;
-			mymap->SetSXSY(x, y);
 		}
 		if (isMovingDown)
 		{
 			y += STEP_SIZE;
-			mymap->SetSXSY(x, y);
 		}
+		
 		/*
 		if (rising) {			// 上升狀態
 			if (velocity > 0) {
@@ -117,8 +126,9 @@ namespace game_framework {
 			}
 		}
 		*/
-
-		//mymap->SetSXSY(x, y);
+		
+		//if (!mymap->isSpace(x, y)) {};
+		mymap->SetSXSY(x, y);
 	}
 
 	void CHero::SetMovingDown(bool flag)
@@ -148,7 +158,31 @@ namespace game_framework {
 
 	void CHero::OnShow(gameMap *mymap)
 	{
+		//animation.SetTopLeft(mymap->ScreenX(GetX1() - (GetX2() - GetX1()) / 2), mymap->ScreenY(GetY1() - (GetY2() - GetY1()) / 2));
 		animation.SetTopLeft(mymap->ScreenX(x), mymap->ScreenY(y));
 		animation.OnShow();
+	}
+
+	void CHero::CreatTxt(gameMap *mymap)//建立txt檔案
+	{
+		//fstream file;      //宣告fstream物件
+		fstream file2;
+		//file.open("testMap.txt", ios::out | ios::trunc);
+		file2.open("testBool.txt", ios::out | ios::trunc);
+
+		//開啟檔案為輸出狀態，若檔案已存在則清除檔案內容重新寫入
+
+		for (int i = 0; i < 480; i++) {
+			for (int j = 0; j < 640; j++) {
+				//file << map[i][j];		//將str寫入檔案
+				if (mymap->isSpace(j, i)) file2 << '0';
+				else file2 << 'X';
+			}
+			//file << endl;
+			file2 << endl;
+		}
+
+		//file.close();       //關閉檔案
+		file2.close();
 	}
 }

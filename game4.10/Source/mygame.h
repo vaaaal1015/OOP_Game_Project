@@ -49,7 +49,8 @@ namespace game_framework {
 	enum AUDIO_ID {				// 定義各種音效的編號
 		AUDIO_DING,				// 0
 		AUDIO_LAKE,				// 1
-		AUDIO_NTUT				// 2
+		AUDIO_NTUT,				// 2
+		AUDIO_LOAD
 	};
 	
 	/////////////////////////////////////////////////////////////////////////////
@@ -95,7 +96,7 @@ namespace game_framework {
 		CMovingBitmap	background;	// 背景圖
 		CMovingBitmap	help;		// 說明圖
 		CMovingBitmap	corner;		// 角落圖
-		CHero			hero;		// 拍子
+		CHero			hero;		// 英雄
 		CInteger		hits_left;	// 剩下的撞擊數
 		gameMap			gamemap;	// 地圖
 	};
