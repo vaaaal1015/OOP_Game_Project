@@ -58,7 +58,7 @@ namespace game_framework {
 			}
 			i += 1;
 		}
-		CreatTxt();
+		//CreatTxt();
 	}
 	void gameMap::SetSXSY(int x, int y)   //³]©w
 	{

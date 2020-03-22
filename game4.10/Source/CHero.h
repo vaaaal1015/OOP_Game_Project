@@ -12,6 +12,10 @@ namespace game_framework {
 		int  GetY1();					// 璣动オà y 畒夹
 		int  GetX2();					// 璣动à x 畒夹
 		int  GetY2();					// 璣动à y 畒夹
+		int  GetWidth();				// 璣动糴
+		int  GetHeight();				// 璣动蔼
+		int	 GetCenterX();				// 璣动タいァ x 畒夹
+		int	 GetCenterY();				// 璣动タいァ y 畒夹
 		void Initialize();				// 砞﹚璣动﹍
 		void LoadBitmap();				// 更瓜
 		void OnMove(gameMap *mymap);					// 簿笆璣动

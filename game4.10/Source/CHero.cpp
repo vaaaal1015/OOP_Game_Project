@@ -40,25 +40,43 @@ namespace game_framework {
 		return y + animation.Height();
 	}
 
+	int CHero::GetWidth()
+	{
+		return animation.Width();
+	}
+
+	int CHero::GetHeight()
+	{
+		return animation.Height();
+	}
+
+	int CHero::GetCenterX()
+	{
+		return x + animation.Width() / 2;
+	}
+
+	int CHero::GetCenterY()
+	{
+		return y + animation.Height() / 2;
+	}
+
 	void CHero::Initialize()
 	{
-		//const int X_POS = -320;
-		//const int Y_POS = 400;
 		const int X_POS = 0;
 		const int Y_POS = 0;
 		x = X_POS;
 		y = Y_POS;
 		isMovingLeft = isMovingRight = isMovingUp = isMovingDown = false;
 
-		/*
-		const int INITIAL_VELOCITY = 20;	// 初始上升速度
-		const int FLOOR = 480;				// 地板座標
+		
+		const int INITIAL_VELOCITY = 15;	// 初始上升速度
+		const int FLOOR = 100;				// 地板座標
 		floor = FLOOR;
-		y = FLOOR - 1;				// y座標比地板高1點(站在地板上)
+		//y = FLOOR - 1;				// y座標比地板高1點(站在地板上)
 		rising = false;
 		initial_velocity = INITIAL_VELOCITY;
 		velocity = initial_velocity;
-		*/
+		
 	}
 
 	void CHero::LoadBitmap()
@@ -75,14 +93,16 @@ namespace game_framework {
 		animation.OnMove();
 		if (isMovingLeft)
 		{
-			x -= STEP_SIZE;
+			if (mymap->isSpace(GetX1(), GetY1()) && mymap->isSpace(GetX1(), GetY2() - 10))
+				x -= STEP_SIZE;
 		}
 		if (isMovingRight)
 		{
-			x += STEP_SIZE;
+			if (mymap->isSpace(GetX2(), GetY1()) && mymap->isSpace(GetX2(), GetY2() - 10))
+				x += STEP_SIZE;
 		}
-		//if (isMovingUp && y == (floor - 1))
 		if (isMovingUp)
+		if (isMovingUp && y == (floor - 1))
 		{
 			/*
 			int flag = 0;
@@ -90,20 +110,22 @@ namespace game_framework {
 				for (int j = 0; j < 640; j+=10)
 					if (!mymap->isSpace(i, j)) flag = 1;
 			*/
-			//rising = true;
+			//if (mymap->isSpace(GetX1(), GetY1()) && mymap->isSpace(GetX1(), GetY2()) && mymap->isSpace(GetX2(), GetY1()) && mymap->isSpace(GetX2(), GetY2()))
+			rising = true;	//改為上升狀態
 			/*
 			if (!mymap->isSpace(x, GetY2() + 1))
 				floor = GetY2()-1;
 			*/
-			CreatTxt(mymap);
-			y -= STEP_SIZE;
+			//CreatTxt(mymap);
+			//y -= STEP_SIZE;
 		}
 		if (isMovingDown)
 		{
-			y += STEP_SIZE;
+			//if (mymap->isSpace(GetX1(), GetY1()) && mymap->isSpace(GetX1(), GetY2()) && mymap->isSpace(GetX2(), GetY1()) && mymap->isSpace(GetX2(), GetY2()))
+				y += STEP_SIZE;
 		}
 		
-		/*
+		
 		if (rising) {			// 上升狀態
 			if (velocity > 0) {
 				y -= velocity;	// 當速度 > 0時，y軸上升(移動velocity個點，velocity的單位為 點/次)
@@ -115,9 +137,12 @@ namespace game_framework {
 			}
 		}
 		else {				// 下降狀態
-			if (y < floor - 1) {  // 當y座標還沒碰到地板
+			//if (y < floor - 1)
+			//if (mymap->isSpace(x, y - 1))
+			if (mymap->isSpace(x, GetY2() - 1)) {  // 當y座標還沒碰到地板
 				y += velocity;	// y軸下降(移動velocity個點，velocity的單位為 點/次)
 				velocity++;		// 受重力影響，下次的下降速度增加
+				floor = GetY2() - GetHeight();		//設定y座標為地板
 			}
 			else {
 				y = floor - 1;  // 當y座標低於地板，更正為地板上
@@ -125,10 +150,8 @@ namespace game_framework {
 				velocity = initial_velocity; // 重設上升初始速度
 			}
 		}
-		*/
 		
-		//if (!mymap->isSpace(x, y)) {};
-		mymap->SetSXSY(x, y);
+		mymap->SetSXSY(GetCenterX() - SIZE_X / 2, GetCenterY() - SIZE_Y / 2);
 	}
 
 	void CHero::SetMovingDown(bool flag)
@@ -158,7 +181,7 @@ namespace game_framework {
 
 	void CHero::OnShow(gameMap *mymap)
 	{
-		//animation.SetTopLeft(mymap->ScreenX(GetX1() - (GetX2() - GetX1()) / 2), mymap->ScreenY(GetY1() - (GetY2() - GetY1()) / 2));
+		//animation.SetTopLeft(mymap->ScreenX(x - GetWidth() / 2), mymap->ScreenY(y - GetHeight() / 2));
 		animation.SetTopLeft(mymap->ScreenX(x), mymap->ScreenY(y));
 		animation.OnShow();
 	}
@@ -172,8 +195,8 @@ namespace game_framework {
 
 		//開啟檔案為輸出狀態，若檔案已存在則清除檔案內容重新寫入
 
-		for (int i = 0; i < 480; i++) {
-			for (int j = 0; j < 640; j++) {
+		for (int i = 0; i < 960; i++) {
+			for (int j = 0; j < 1280; j++) {
 				//file << map[i][j];		//將str寫入檔案
 				if (mymap->isSpace(j, i)) file2 << '0';
 				else file2 << 'X';
