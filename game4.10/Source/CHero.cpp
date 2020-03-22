@@ -39,6 +39,15 @@ namespace game_framework {
 	{
 		return y + animation.Height();
 	}
+	
+	bool CHero::isHit(int objectX, int objectY)
+	{
+		if ((x <= objectX <= x + animation.Width()) && (y <= objectY <= y + animation.Height()))
+		{
+			return true;
+		}
+		return false;
+	}
 
 	void CHero::Initialize()
 	{
