@@ -211,5 +211,35 @@
     <Image Include="RES\mapSlideleftButtom2.bmp">
       <Filter>Resource Files</Filter>
     </Image>
+    <Image Include="RES\charactor\moveRight\HeroMoveRight_0.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\charactor\moveRight\HeroMoveRight_1.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\charactor\moveRight\HeroMoveRight_2.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\charactor\moveRight\HeroMoveRight_3.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\charactor\moveRight\HeroMoveRight_4.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\charactor\noMove\noMove_0.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\charactor\noMove\noMove_1.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\charactor\noMove\noMove_2.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\charactor\noMove\noMove_3.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\charactor\noMove\noMove_4.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
   </ItemGroup>
 </Project>
