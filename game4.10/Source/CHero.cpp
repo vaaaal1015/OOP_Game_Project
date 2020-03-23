@@ -90,10 +90,12 @@ namespace game_framework {
 
 	void CHero::LoadBitmap()
 	{
-		animation.AddBitmap(IDB_ERASER1, RGB(255, 255, 255));
-		animation.AddBitmap(IDB_ERASER2, RGB(255, 255, 255));
-		animation.AddBitmap(IDB_ERASER3, RGB(255, 255, 255));
-		animation.AddBitmap(IDB_ERASER2, RGB(255, 255, 255));
+		animation.AddBitmap(IDB_HeroNoMove_1, RGB(255, 255, 255));
+		animation.AddBitmap(IDB_HeroNoMove_2, RGB(255, 255, 255));
+		animation.AddBitmap(IDB_HeroNoMove_3, RGB(255, 255, 255));
+		animation.AddBitmap(IDB_HeroNoMove_4, RGB(255, 255, 255));
+		animation.AddBitmap(IDB_HeroNoMove_5, RGB(255, 255, 255));
+
 	}
 
 	void CHero::OnMove(gameMap *mymap)
