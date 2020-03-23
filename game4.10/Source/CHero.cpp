@@ -78,6 +78,8 @@ namespace game_framework {
 		isMovingLeft = isMovingRight = isMovingUp = isMovingDown = false;
 		animation.SetDelayCount(3);
 		moveRightAnimation.SetDelayCount(3);
+		jumpAnimation.SetDelayCount(3);
+		moveLeftAnimation.SetDelayCount(3);
 		const int INITIAL_VELOCITY = 15;	// 初始上升速度
 		const int FLOOR = 100;				// 地板座標
 		floor = FLOOR;
@@ -100,6 +102,19 @@ namespace game_framework {
 		moveRightAnimation.AddBitmap(IDB_HEROMOVERIGHT_3, RGB(255, 255, 255));
 		moveRightAnimation.AddBitmap(IDB_HEROMOVERIGHT_4, RGB(255, 255, 255));
 		moveRightAnimation.AddBitmap(IDB_HEROMOVERIGHT_5, RGB(255, 255, 255));
+		moveLeftAnimation.AddBitmap(IDB_HEROMOVELEFT_1, RGB(255, 255, 255));
+		moveLeftAnimation.AddBitmap(IDB_HEROMOVELEFT_2, RGB(255, 255, 255));
+		moveLeftAnimation.AddBitmap(IDB_HEROMOVELEFT_3, RGB(255, 255, 255));
+		moveLeftAnimation.AddBitmap(IDB_HEROMOVELEFT_4, RGB(255, 255, 255));
+		moveLeftAnimation.AddBitmap(IDB_HEROMOVELEFT_5, RGB(255, 255, 255));
+		jumpAnimation.AddBitmap(IDB_HEROJUMP_1, RGB(255, 255, 255));
+		jumpAnimation.AddBitmap(IDB_HEROJUMP_2, RGB(255, 255, 255));
+		jumpAnimation.AddBitmap(IDB_HEROJUMP_3, RGB(255, 255, 255));
+		jumpAnimation.AddBitmap(IDB_HEROJUMP_4, RGB(255, 255, 255));
+		jumpAnimation.AddBitmap(IDB_HEROJUMP_5, RGB(255, 255, 255));
+		jumpAnimation.AddBitmap(IDB_HEROJUMP_6, RGB(255, 255, 255));
+		jumpAnimation.AddBitmap(IDB_HEROJUMP_7, RGB(255, 255, 255));
+		jumpAnimation.AddBitmap(IDB_HEROJUMP_8, RGB(255, 255, 255));
 
 	}
 
@@ -108,6 +123,8 @@ namespace game_framework {
 		const int STEP_SIZE = 10;
 		animation.OnMove();
 		moveRightAnimation.OnMove();
+		moveLeftAnimation.OnMove();
+		jumpAnimation.OnMove();
 		if (isMovingLeft)
 		{
 			if (mymap->isSpace(GetX1(), GetY1()) && mymap->isSpace(GetX1(), GetY2() - 20)) // 當x座標還沒碰到牆
@@ -202,6 +219,16 @@ namespace game_framework {
 		{
 			moveRightAnimation.SetTopLeft(mymap->ScreenX(x), mymap->ScreenY(y));
 			moveRightAnimation.OnShow();
+		}
+		else if (isMovingLeft)
+		{
+			moveLeftAnimation.SetTopLeft(mymap->ScreenX(x), mymap->ScreenY(y));
+			moveLeftAnimation.OnShow();
+		}
+		else if (isMovingUp)
+		{
+			jumpAnimation.SetTopLeft(mymap->ScreenX(x), mymap->ScreenY(y));
+			jumpAnimation.OnShow();
 		}
 		else
 		{

@@ -62,6 +62,21 @@
 #define IDB_HEROMOVERIGHT_4             177
 #define IDB_BITMAP15                    178
 #define IDB_HEROMOVERIGHT_5             178
+#define IDB_HEROMOVELEFT_1              179
+#define IDB_HEROMOVELEFT_2              180
+#define IDB_HEROMOVELEFT_3              181
+#define IDB_HEROMOVELEFT_4              182
+#define IDB_BITMAP16                    183
+#define IDB_HEROMOVELEFT_5              183
+#define IDB_HEROJUMP_1                  184
+#define IDB_HEROJUMP_2                  185
+#define IDB_HEROJUMP_3                  186
+#define IDB_HEROJUMP_4                  187
+#define IDB_HEROJUMP_5                  188
+#define IDB_HEROJUMP_6                  189
+#define IDB_HEROJUMP_7                  190
+#define IDB_BITMAP20                    191
+#define IDB_HEROJUMP_8                  191
 #define IDC_README                      1001
 #define ID_FILE_PAUSE                   32771
 #define ID_TOGGLE_FULLSCREEN            32772
@@ -74,7 +89,7 @@
 #ifdef APSTUDIO_INVOKED
 #ifndef APSTUDIO_READONLY_SYMBOLS
 #define _APS_3D_CONTROLS                     1
-#define _APS_NEXT_RESOURCE_VALUE        179
+#define _APS_NEXT_RESOURCE_VALUE        192
 #define _APS_NEXT_COMMAND_VALUE         32776
 #define _APS_NEXT_CONTROL_VALUE         1003
 #define _APS_NEXT_SYMED_VALUE           101
