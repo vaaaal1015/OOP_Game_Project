@@ -76,8 +76,8 @@ namespace game_framework {
 		x = X_POS;
 		y = Y_POS;
 		isMovingLeft = isMovingRight = isMovingUp = isMovingDown = false;
-
-		
+		animation.SetDelayCount(3);
+		moveRightAnimation.SetDelayCount(3);
 		const int INITIAL_VELOCITY = 15;	// 初始上升速度
 		const int FLOOR = 100;				// 地板座標
 		floor = FLOOR;
@@ -107,6 +107,7 @@ namespace game_framework {
 	{
 		const int STEP_SIZE = 10;
 		animation.OnMove();
+		moveRightAnimation.OnMove();
 		if (isMovingLeft)
 		{
 			if (mymap->isSpace(GetX1(), GetY1()) && mymap->isSpace(GetX1(), GetY2() - 10))
@@ -198,8 +199,16 @@ namespace game_framework {
 	void CHero::OnShow(gameMap *mymap)
 	{
 		//animation.SetTopLeft(mymap->ScreenX(x - GetWidth() / 2), mymap->ScreenY(y - GetHeight() / 2));
-		animation.SetTopLeft(mymap->ScreenX(x), mymap->ScreenY(y));
-		animation.OnShow();
+		if (isMovingRight)
+		{
+			moveRightAnimation.SetTopLeft(mymap->ScreenX(x), mymap->ScreenY(y));
+			moveRightAnimation.OnShow();
+		}
+		else
+		{
+			animation.SetTopLeft(mymap->ScreenX(x), mymap->ScreenY(y));
+			animation.OnShow();
+		}
 	}
 
 	void CHero::CreatTxt(gameMap *mymap)//建立txt檔案
