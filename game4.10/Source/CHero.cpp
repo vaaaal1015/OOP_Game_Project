@@ -78,7 +78,7 @@ namespace game_framework {
 		isMovingLeft = isMovingRight = isMovingUp = isMovingDown = false;
 		animation.SetDelayCount(3);
 		moveRightAnimation.SetDelayCount(3);
-		jumpAnimation.SetDelayCount(3);
+		jumpAnimation.SetDelayCount(5);
 		moveLeftAnimation.SetDelayCount(3);
 		const int INITIAL_VELOCITY = 15;	// 初始上升速度
 		const int FLOOR = 100;				// 地板座標
@@ -107,15 +107,15 @@ namespace game_framework {
 		moveLeftAnimation.AddBitmap(IDB_HEROMOVELEFT_3, RGB(255, 255, 255));
 		moveLeftAnimation.AddBitmap(IDB_HEROMOVELEFT_4, RGB(255, 255, 255));
 		moveLeftAnimation.AddBitmap(IDB_HEROMOVELEFT_5, RGB(255, 255, 255));
-		jumpAnimation.AddBitmap(IDB_HEROJUMP_1, RGB(255, 255, 255));
-		jumpAnimation.AddBitmap(IDB_HEROJUMP_2, RGB(255, 255, 255));
-		jumpAnimation.AddBitmap(IDB_HEROJUMP_3, RGB(255, 255, 255));
 		jumpAnimation.AddBitmap(IDB_HEROJUMP_4, RGB(255, 255, 255));
-		jumpAnimation.AddBitmap(IDB_HEROJUMP_5, RGB(255, 255, 255));
+		jumpAnimation.AddBitmap(IDB_HEROJUMP_3, RGB(255, 255, 255));
+		jumpAnimation.AddBitmap(IDB_HEROJUMP_2, RGB(255, 255, 255));
+		jumpAnimation.AddBitmap(IDB_HEROJUMP_1, RGB(255, 255, 255));
+		/*jumpAnimation.AddBitmap(IDB_HEROJUMP_5, RGB(255, 255, 255));
 		jumpAnimation.AddBitmap(IDB_HEROJUMP_6, RGB(255, 255, 255));
 		jumpAnimation.AddBitmap(IDB_HEROJUMP_7, RGB(255, 255, 255));
 		jumpAnimation.AddBitmap(IDB_HEROJUMP_8, RGB(255, 255, 255));
-
+		*/
 	}
 
 	void CHero::OnMove(gameMap *mymap)
@@ -221,6 +221,7 @@ namespace game_framework {
 		{
 			moveRightAnimation.SetTopLeft(mymap->ScreenX(x), mymap->ScreenY(y));
 			moveRightAnimation.OnShow();
+			
 		}
 		else if (isMovingLeft)
 		{
