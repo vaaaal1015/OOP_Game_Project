@@ -328,6 +328,16 @@
   <ItemGroup>
     <Image Include="RES\BIG_SWORD.bmp" />
     <Image Include="res\bitmap3.bmp" />
+    <Image Include="RES\charactor\moveRight\HeroMoveRight_0.bmp" />
+    <Image Include="RES\charactor\moveRight\HeroMoveRight_1.bmp" />
+    <Image Include="RES\charactor\moveRight\HeroMoveRight_2.bmp" />
+    <Image Include="RES\charactor\moveRight\HeroMoveRight_3.bmp" />
+    <Image Include="RES\charactor\moveRight\HeroMoveRight_4.bmp" />
+    <Image Include="RES\charactor\noMove\noMove_0.bmp" />
+    <Image Include="RES\charactor\noMove\noMove_1.bmp" />
+    <Image Include="RES\charactor\noMove\noMove_2.bmp" />
+    <Image Include="RES\charactor\noMove\noMove_3.bmp" />
+    <Image Include="RES\charactor\noMove\noMove_4.bmp" />
     <Image Include="RES\great_sword_logo.bmp" />
     <Image Include="RES\Item_Sword_29.bmp" />
     <Image Include="RES\Item_Sword_29.png" />

@@ -95,6 +95,11 @@ namespace game_framework {
 		animation.AddBitmap(IDB_HeroNoMove_3, RGB(255, 255, 255));
 		animation.AddBitmap(IDB_HeroNoMove_4, RGB(255, 255, 255));
 		animation.AddBitmap(IDB_HeroNoMove_5, RGB(255, 255, 255));
+		moveRightAnimation.AddBitmap(IDB_HEROMOVERIGHT_1, RGB(255, 255, 255));
+		moveRightAnimation.AddBitmap(IDB_HEROMOVERIGHT_2, RGB(255, 255, 255));
+		moveRightAnimation.AddBitmap(IDB_HEROMOVERIGHT_3, RGB(255, 255, 255));
+		moveRightAnimation.AddBitmap(IDB_HEROMOVERIGHT_4, RGB(255, 255, 255));
+		moveRightAnimation.AddBitmap(IDB_HEROMOVERIGHT_5, RGB(255, 255, 255));
 
 	}
 
