@@ -104,15 +104,14 @@ namespace game_framework {
 		animation.OnMove();
 		if (isMovingLeft)
 		{
-			if (mymap->isSpace(GetX1(), GetY1()) && mymap->isSpace(GetX1(), GetY2() - 10))
+			if (mymap->isSpace(GetX1(), GetY1()) && mymap->isSpace(GetX1(), GetY2() - 20)) // 當x座標還沒碰到牆
 				x -= STEP_SIZE;
 		}
 		if (isMovingRight)
 		{
-			if (mymap->isSpace(GetX2(), GetY1()) && mymap->isSpace(GetX2(), GetY2() - 10))
+			if (mymap->isSpace(GetX2(), GetY1()) && mymap->isSpace(GetX2(), GetY2() - 20)) // 當y座標還沒碰到牆
 				x += STEP_SIZE;
 		}
-		if (isMovingUp)
 		if (isMovingUp && y == (floor - 1))
 		{
 			/*
@@ -150,7 +149,7 @@ namespace game_framework {
 		else {				// 下降狀態
 			//if (y < floor - 1)
 			//if (mymap->isSpace(x, y - 1))
-			if (mymap->isSpace(x, GetY2() - 1)) {  // 當y座標還沒碰到地板
+			if (mymap->isSpace(GetX1(), GetY2() + 1) && mymap->isSpace(GetX2(), GetY2() + 1)) {  // 當y座標還沒碰到地板
 				y += velocity;	// y軸下降(移動velocity個點，velocity的單位為 點/次)
 				velocity++;		// 受重力影響，下次的下降速度增加
 				floor = GetY2() - GetHeight();		//設定y座標為地板
