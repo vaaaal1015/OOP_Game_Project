@@ -42,7 +42,7 @@ namespace game_framework {
 	
 	bool CHero::isHit(int objectX, int objectY)
 	{
-		if ((x <= objectX <= x + animation.Width()) && (y <= objectY <= y + animation.Height()))
+		if (((x <= objectX)) && (objectX <= x + animation.Width()) && ((y <= objectY) && (y + animation.Height())))
 		{
 			return true;
 		}
