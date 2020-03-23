@@ -138,7 +138,7 @@ namespace game_framework {
 		if (isMovingDown)
 		{
 			//if (mymap->isSpace(GetX1(), GetY1()) && mymap->isSpace(GetX1(), GetY2()) && mymap->isSpace(GetX2(), GetY1()) && mymap->isSpace(GetX2(), GetY2()))
-				y += STEP_SIZE;
+			//y += STEP_SIZE;
 		}
 		
 		
@@ -146,6 +146,8 @@ namespace game_framework {
 			if (velocity > 0) {
 				y -= velocity;	// 當速度 > 0時，y軸上升(移動velocity個點，velocity的單位為 點/次)
 				velocity--;		// 受重力影響，下次的上升速度降低
+				if (!mymap->isSpace(GetX1() + 10, GetY1() - 1) || !mymap->isSpace(GetX2() - 10, GetY1() - 1))  // 當x座標碰到天花板
+					velocity = -1;
 			}
 			else {
 				rising = false; // 當速度 <= 0，上升終止，下次改為下降
@@ -155,7 +157,7 @@ namespace game_framework {
 		else {				// 下降狀態
 			//if (y < floor - 1)
 			//if (mymap->isSpace(x, y - 1))
-			if (mymap->isSpace(GetX1(), GetY2() + 1) && mymap->isSpace(GetX2(), GetY2() + 1)) {  // 當y座標還沒碰到地板
+			if (mymap->isSpace(GetX1() + 10, GetY2() + 1) && mymap->isSpace(GetX2() - 10, GetY2() + 1)) {  // 當y座標還沒碰到地板
 				y += velocity;	// y軸下降(移動velocity個點，velocity的單位為 點/次)
 				velocity++;		// 受重力影響，下次的下降速度增加
 				floor = GetY2() - GetHeight();		//設定y座標為地板
