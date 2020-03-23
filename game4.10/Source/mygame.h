@@ -50,7 +50,8 @@ namespace game_framework {
 		AUDIO_DING,				// 0
 		AUDIO_LAKE,				// 1
 		AUDIO_NTUT,				// 2
-		AUDIO_LOAD
+		AUDIO_LOAD,   		    // 3
+		AUDIO_SUPERCAR			// 4
 	};
 	
 	/////////////////////////////////////////////////////////////////////////////
