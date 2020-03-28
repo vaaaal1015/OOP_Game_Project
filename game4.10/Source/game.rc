@@ -168,6 +168,16 @@ IDB_HEROJUMP_7          BITMAP                  "..\\RES\\charactor\\jump\\HeroJ
 
 IDB_HEROJUMP_8          BITMAP                  "..\\RES\\charactor\\jump\\HeroJump_7.bmp"
 
+IDB_HERONOMOVELEFT_1    BITMAP                  "..\\RES\\charactor\\noMove\\noMove_0_1.bmp"
+
+IDB_HERONOMOVELEFT_2    BITMAP                  "..\\RES\\charactor\\noMove\\noMove_1_1.bmp"
+
+IDB_HERONOMOVELEFT_3    BITMAP                  "..\\RES\\charactor\\noMove\\noMove_2_1.bmp"
+
+IDB_HERONOMOVELEFT_4    BITMAP                  "..\\RES\\charactor\\noMove\\noMove_3_1.bmp"
+
+IDB_HERONOMOVELEFT_5    BITMAP                  "..\\RES\\charactor\\noMove\\noMove_4_1.bmp"
+
 
 /////////////////////////////////////////////////////////////////////////////
 //

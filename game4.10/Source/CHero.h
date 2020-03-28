@@ -30,6 +30,7 @@ namespace game_framework {
 		bool isHit(int objectX, int objectY);  //判定物體擊中
 	protected:
 		CAnimation animation;		// 英雄的動畫
+		CAnimation animation1;		// 英雄的動畫
 		CAnimation moveRightAnimation;  //向右移動動畫
 		CAnimation moveLeftAnimation;   //向左移動動畫
 		CAnimation jumpAnimation;		//跳躍動畫

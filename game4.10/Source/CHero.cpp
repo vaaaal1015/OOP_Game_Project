@@ -97,6 +97,11 @@ namespace game_framework {
 		animation.AddBitmap(IDB_HeroNoMove_3, RGB(255, 255, 255));
 		animation.AddBitmap(IDB_HeroNoMove_4, RGB(255, 255, 255));
 		animation.AddBitmap(IDB_HeroNoMove_5, RGB(255, 255, 255));
+		animation1.AddBitmap(IDB_HERONOMOVELEFT_1, RGB(255, 255, 255));
+		animation1.AddBitmap(IDB_HERONOMOVELEFT_2, RGB(255, 255, 255));
+		animation1.AddBitmap(IDB_HERONOMOVELEFT_3, RGB(255, 255, 255));
+		animation1.AddBitmap(IDB_HERONOMOVELEFT_4, RGB(255, 255, 255));
+		animation1.AddBitmap(IDB_HERONOMOVELEFT_5, RGB(255, 255, 255));
 		moveRightAnimation.AddBitmap(IDB_HEROMOVERIGHT_1, RGB(255, 255, 255));
 		moveRightAnimation.AddBitmap(IDB_HEROMOVERIGHT_2, RGB(255, 255, 255));
 		moveRightAnimation.AddBitmap(IDB_HEROMOVERIGHT_3, RGB(255, 255, 255));
@@ -122,6 +127,7 @@ namespace game_framework {
 	{
 		const int STEP_SIZE = 10;
 		animation.OnMove();
+		animation1.OnMove();
 		moveRightAnimation.OnMove();
 		moveLeftAnimation.OnMove();
 		jumpAnimation.OnMove();
@@ -242,8 +248,17 @@ namespace game_framework {
 		}
 		else
 		{
-			animation.SetTopLeft(mymap->ScreenX(x), mymap->ScreenY(y));
-			animation.OnShow();
+			if (faceDirection == "right")
+			{
+				animation.SetTopLeft(mymap->ScreenX(x), mymap->ScreenY(y));
+				animation.OnShow();
+			}
+			else
+			{
+				animation1.SetTopLeft(mymap->ScreenX(x), mymap->ScreenY(y));
+				animation1.OnShow();
+			}
+			
 		}
 	}
 
