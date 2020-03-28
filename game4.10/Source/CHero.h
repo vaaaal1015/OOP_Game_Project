@@ -18,6 +18,7 @@ namespace game_framework {
 		int	 GetCenterY();				// 英雄正中央的 y 座標
 		void Initialize();				// 設定英雄為初始值
 		void LoadBitmap();				// 載入圖形
+		void setHeroDirection(string direction);  //設定人物面對的方向		
 		void OnMove(gameMap *mymap);					// 移動英雄
 		void OnShow(gameMap *mymap);					// 將英雄圖形貼到畫面
 		void SetMovingDown(bool flag);	// 設定是否正在往下移動
@@ -38,6 +39,7 @@ namespace game_framework {
 		bool isMovingLeft;			// 是否正在往左移動
 		bool isMovingRight;			// 是否正在往右移動
 		bool isMovingUp;			// 是否正在往上移動
+		string faceDirection;		//人物面對的方向
 		int floor;				// 地板的Y座標
 		bool rising;				// true表上升、false表下降
 		int initial_velocity;		// 初始速度
