@@ -104,11 +104,13 @@ namespace game_framework {
 		animation.OnMove();
 		if (isMovingLeft)
 		{
+			setHeroDirection("left");
 			if (mymap->isSpace(GetX1(), GetY1()) && mymap->isSpace(GetX1(), GetY2() - 10))
 				x -= STEP_SIZE;
 		}
 		if (isMovingRight)
 		{
+			setHeroDirection("right");
 			if (mymap->isSpace(GetX2(), GetY1()) && mymap->isSpace(GetX2(), GetY2() - 10))
 				x += STEP_SIZE;
 		}
@@ -188,6 +190,11 @@ namespace game_framework {
 	void CHero::SetXY(int nx, int ny)
 	{
 		x = nx; y = ny;
+	}
+
+	void CHero::setHeroDirection(string direction)
+	{
+		faceDirection = direction;
 	}
 
 	void CHero::OnShow(gameMap *mymap)
