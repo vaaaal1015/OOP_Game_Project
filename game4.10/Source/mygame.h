@@ -40,6 +40,7 @@
 
 #include "gameMap.h"
 #include "CHero.h"
+#include "CEnemy.h"
 
 namespace game_framework {
 	/////////////////////////////////////////////////////////////////////////////
@@ -50,7 +51,8 @@ namespace game_framework {
 		AUDIO_DING,				// 0
 		AUDIO_LAKE,				// 1
 		AUDIO_NTUT,				// 2
-		AUDIO_LOAD
+		AUDIO_LOAD,   		    // 3
+		AUDIO_SUPERCAR			// 4
 	};
 	
 	/////////////////////////////////////////////////////////////////////////////
@@ -97,6 +99,7 @@ namespace game_framework {
 		CMovingBitmap	help;		// 說明圖
 		CMovingBitmap	corner;		// 角落圖
 		CHero			hero;		// 英雄
+		CEnemy          enemy;      // 敵人
 		CInteger		hits_left;	// 剩下的撞擊數
 		gameMap			gamemap;	// 地圖
 	};

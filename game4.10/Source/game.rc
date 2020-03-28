@@ -132,6 +132,42 @@ IDB_HeroNoMove_4        BITMAP                  "..\\RES\\charactor\\noMove\\noM
 
 IDB_HeroNoMove_5        BITMAP                  "..\\RES\\charactor\\noMove\\noMove_4.bmp"
 
+IDB_HEROMOVERIGHT_1     BITMAP                  "..\\RES\\charactor\\moveRight\\HeroMoveRight_0.bmp"
+
+IDB_HEROMOVERIGHT_2     BITMAP                  "..\\RES\\charactor\\moveRight\\HeroMoveRight_1.bmp"
+
+IDB_HEROMOVERIGHT_3     BITMAP                  "..\\RES\\charactor\\moveRight\\HeroMoveRight_2.bmp"
+
+IDB_HEROMOVERIGHT_4     BITMAP                  "..\\RES\\charactor\\moveRight\\HeroMoveRight_3.bmp"
+
+IDB_HEROMOVERIGHT_5     BITMAP                  "..\\RES\\charactor\\moveRight\\HeroMoveRight_4.bmp"
+
+IDB_HEROMOVELEFT_1      BITMAP                  "..\\RES\\charactor\\moveLeft\\HeroMoveLeft_0.bmp"
+
+IDB_HEROMOVELEFT_2      BITMAP                  "..\\RES\\charactor\\moveLeft\\HeroMoveLeft_1.bmp"
+
+IDB_HEROMOVELEFT_3      BITMAP                  "..\\RES\\charactor\\moveLeft\\HeroMoveLeft_2.bmp"
+
+IDB_HEROMOVELEFT_4      BITMAP                  "..\\RES\\charactor\\moveLeft\\HeroMoveLeft_3.bmp"
+
+IDB_HEROMOVELEFT_5      BITMAP                  "..\\RES\\charactor\\moveLeft\\HeroMoveLeft_4.bmp"
+
+IDB_HEROJUMP_1          BITMAP                  "..\\RES\\charactor\\jump\\HeroJump_0.bmp"
+
+IDB_HEROJUMP_2          BITMAP                  "..\\RES\\charactor\\jump\\HeroJump_1.bmp"
+
+IDB_HEROJUMP_3          BITMAP                  "..\\RES\\charactor\\jump\\HeroJump_2.bmp"
+
+IDB_HEROJUMP_4          BITMAP                  "..\\RES\\charactor\\jump\\HeroJump_3.bmp"
+
+IDB_HEROJUMP_5          BITMAP                  "..\\RES\\charactor\\jump\\HeroJump_4.bmp"
+
+IDB_HEROJUMP_6          BITMAP                  "..\\RES\\charactor\\jump\\HeroJump_5.bmp"
+
+IDB_HEROJUMP_7          BITMAP                  "..\\RES\\charactor\\jump\\HeroJump_6.bmp"
+
+IDB_HEROJUMP_8          BITMAP                  "..\\RES\\charactor\\jump\\HeroJump_7.bmp"
+
 
 /////////////////////////////////////////////////////////////////////////////
 //

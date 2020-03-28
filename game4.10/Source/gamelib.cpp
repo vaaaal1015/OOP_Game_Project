@@ -137,6 +137,7 @@ namespace game_framework {
 
 CAnimation::CAnimation(int count)
 {
+	//count = 5;
 	delay_count = count;
 	delay_counter = delay_count;
 	x = y = bmp_counter = 0;
