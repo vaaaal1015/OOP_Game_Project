@@ -127,22 +127,14 @@ namespace game_framework {
 		jumpAnimation.OnMove();
 		if (isMovingLeft)
 		{
-<<<<<<< HEAD
 			setHeroDirection("left");
-			if (mymap->isSpace(GetX1(), GetY1()) && mymap->isSpace(GetX1(), GetY2() - 10))
-=======
 			if (mymap->isSpace(GetX1(), GetY1()) && mymap->isSpace(GetX1(), GetY2() - 20)) // 當x座標還沒碰到牆
->>>>>>> 380f086ddf980886e869060210c54eba89840a3e
 				x -= STEP_SIZE;
 		}
 		if (isMovingRight)
 		{
-<<<<<<< HEAD
 			setHeroDirection("right");
-			if (mymap->isSpace(GetX2(), GetY1()) && mymap->isSpace(GetX2(), GetY2() - 10))
-=======
 			if (mymap->isSpace(GetX2(), GetY1()) && mymap->isSpace(GetX2(), GetY2() - 20)) // 當y座標還沒碰到牆
->>>>>>> 380f086ddf980886e869060210c54eba89840a3e
 				x += STEP_SIZE;
 		}
 		if (isMovingUp && y == (floor - 1))
