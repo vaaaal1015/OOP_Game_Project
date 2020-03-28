@@ -286,5 +286,56 @@
     <Image Include="RES\charactor\jump\HeroJump_7.bmp">
       <Filter>Resource Files</Filter>
     </Image>
+    <Image Include="RES\Enemy\SmileSunFlower\noMove\Smile SunFlower_0.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\Enemy\SmileSunFlower\noMove\Smile SunFlower_1.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\Enemy\SmileSunFlower\noMove\Smile SunFlower_2.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\charactor\noMove\noMove_0_1.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\charactor\noMove\noMove_1_1.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\charactor\noMove\noMove_2_1.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\charactor\noMove\noMove_3_1.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\charactor\noMove\noMove_4_1.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\Enemy\SmileSunFlower\rightWalk\Smile SunFlower_8.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\Enemy\SmileSunFlower\rightWalk\Smile SunFlower_9.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\Enemy\SmileSunFlower\rightWalk\Smile SunFlower_10.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\Enemy\SmileSunFlower\rightWalk\Smile SunFlower_11.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\Enemy\SmileSunFlower\rightWalk\Smile SunFlower_12.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\Enemy\SmileSunFlower\rightWalk\Smile SunFlower_13.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\Enemy\SmileSunFlower\rightWalk\Smile SunFlower_14.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\Enemy\SmileSunFlower\rightWalk\Smile SunFlower_15.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\Enemy\SmileSunFlower\rightWalk\Smile SunFlower_16.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
   </ItemGroup>
 </Project>

@@ -77,6 +77,7 @@ namespace game_framework {
 		y = Y_POS;
 		isMovingLeft = isMovingRight = isMovingUp = isMovingDown = false;
 		animation.SetDelayCount(3);
+		animation1.SetDelayCount(3);
 		moveRightAnimation.SetDelayCount(3);
 		jumpAnimation.SetDelayCount(5);
 		moveLeftAnimation.SetDelayCount(3);

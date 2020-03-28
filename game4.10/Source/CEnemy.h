@@ -18,8 +18,8 @@ namespace game_framework {
 		int	 GetCenterY();				// 敵人正中央的 y 座標
 		void Initialize();				// 設定敵人為初始值
 		void LoadBitmap();				// 載入圖形
-		void OnMove(gameMap *mymap);	// 移動敵人
-		void OnShow(gameMap *mymap);	// 將敵人圖形貼到畫面
+		void OnMove(/*gameMap *mymap*/);	// 移動敵人
+		void OnShow();	// 將敵人圖形貼到畫面
 		void SetMovingDown(bool flag);	// 設定是否正在往下移動
 		void SetMovingLeft(bool flag);	// 設定是否正在往左移動
 		void SetMovingRight(bool flag); // 設定是否正在往右移動

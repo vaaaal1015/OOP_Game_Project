@@ -213,7 +213,7 @@ void CGameStateRun::OnBeginState()
 	const int BACKGROUND_X = 0;
 	const int ANIMATION_SPEED = 15;
 	hero.Initialize();
-	//enemy.Initialize();
+	enemy.Initialize();
 	background.SetTopLeft(BACKGROUND_X,0);				// 設定背景的起始座標
 	help.SetTopLeft(0, SIZE_Y - help.Height());			// 設定說明圖的起始座標
 	hits_left.SetInteger(HITS_LEFT);					// 指定剩下的撞擊數
@@ -251,6 +251,7 @@ void CGameStateRun::OnInit()  								// 遊戲的初值及圖形設定
 	//
 	// 開始載入資料
 	//
+	//enemy.LoadBitmap();
 	gamemap.LoadBitmap();
 	hero.LoadBitmap();
 	//enemy.LoadBitmap();
@@ -345,6 +346,7 @@ void CGameStateRun::OnShow()
 	//
 	background.ShowBitmap();// 貼上背景圖
 	gamemap.OnShow();
+	//enemy.OnShow();
 	help.ShowBitmap();					// 貼上說明圖
 	hits_left.ShowBitmap();
 	hero.OnShow(&gamemap);			// 貼上英雄

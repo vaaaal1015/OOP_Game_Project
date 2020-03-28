@@ -71,8 +71,8 @@ namespace game_framework {
 
 	void CEnemy::Initialize()
 	{
-		const int X_POS = 0;
-		const int Y_POS = 0;
+		const int X_POS = 300;
+		const int Y_POS = 300;
 		x = X_POS;
 		y = Y_POS;
 		isMovingLeft = isMovingRight = isMovingUp = isMovingDown = false;
@@ -92,18 +92,34 @@ namespace game_framework {
 
 	void CEnemy::LoadBitmap()
 	{
-
+		animation.AddBitmap(IDB_SUNFLOWERNOMOVE_1, RGB(255, 255, 255));
+		animation.AddBitmap(IDB_SUNFLOWERNOMOVE_2, RGB(255, 255, 255));
+		animation.AddBitmap(IDB_SUNFLOWERNOMOVE_3, RGB(255, 255, 255));
+		moveRightAnimation.AddBitmap(IDB_SUNFLOWERRIGHTWALK_1, RGB(255, 255, 255));
+		moveRightAnimation.AddBitmap(IDB_SUNFLOWERRIGHTWALK_2, RGB(255, 255, 255));
+		moveRightAnimation.AddBitmap(IDB_SUNFLOWERRIGHTWALK_3, RGB(255, 255, 255));
+		moveRightAnimation.AddBitmap(IDB_SUNFLOWERRIGHTWALK_4, RGB(255, 255, 255));
+		moveRightAnimation.AddBitmap(IDB_SUNFLOWERRIGHTWALK_5, RGB(255, 255, 255));
+		moveRightAnimation.AddBitmap(IDB_SUNFLOWERRIGHTWALK_6, RGB(255, 255, 255));
+		moveRightAnimation.AddBitmap(IDB_SUNFLOWERRIGHTWALK_7, RGB(255, 255, 255));
+		moveRightAnimation.AddBitmap(IDB_SUNFLOWERRIGHTWALK_8, RGB(255, 255, 255));
+		moveRightAnimation.AddBitmap(IDB_SUNFLOWERRIGHTWALK_9, RGB(255, 255, 255));
 	}
 
-	/*
-	void CEnemy::OnMove(gameMap *mymap)
+	
+	void CEnemy::OnMove(/*gameMap *mymap*/)
 	{
 		const int STEP_SIZE = 10;
 		animation.OnMove();
 		moveRightAnimation.OnMove();
 		moveLeftAnimation.OnMove();
 		jumpAnimation.OnMove();
-		if (isMovingLeft)
+		while (x < 350)
+		{
+			x += STEP_SIZE;
+			Sleep(1);
+		}
+		/*if (isMovingLeft)
 		{
 			if (mymap->isSpace(GetX1(), GetY1()) && mymap->isSpace(GetX1(), GetY2() - 20)) // 當x座標還沒碰到牆
 				x -= STEP_SIZE;
@@ -121,10 +137,10 @@ namespace game_framework {
 		if (isMovingDown)
 		{
 
-		}
+		}*/
 
 
-		if (rising) {			// 上升狀態
+		/*if (rising) {			// 上升狀態
 			if (velocity > 0) {
 				y -= velocity;	// 當速度 > 0時，y軸上升(移動velocity個點，velocity的單位為 點/次)
 				velocity--;		// 受重力影響，下次的上升速度降低
@@ -149,11 +165,10 @@ namespace game_framework {
 				//rising = true;	// 探底反彈，下次改為上升
 				velocity = initial_velocity; // 重設上升初始速度
 			}
-		}
+		}*/
 
-		mymap->SetSXSY(GetCenterX() - SIZE_X / 2, GetCenterY() - SIZE_Y / 2);
+		//mymap->SetSXSY(GetCenterX() - SIZE_X / 2, GetCenterY() - SIZE_Y / 2);
 	}
-	*/
 	void CEnemy::SetMovingDown(bool flag)
 	{
 		isMovingDown = flag;
@@ -179,10 +194,10 @@ namespace game_framework {
 		x = nx; y = ny;
 	}
 
-	void CEnemy::OnShow(gameMap *mymap)
+	void CEnemy::OnShow()
 	{
 		//animation.SetTopLeft(mymap->ScreenX(x - GetWidth() / 2), mymap->ScreenY(y - GetHeight() / 2));
-		if (isMovingRight)
+		/*if (isMovingRight)
 		{
 			moveRightAnimation.SetTopLeft(mymap->ScreenX(x), mymap->ScreenY(y));
 			moveRightAnimation.OnShow();
@@ -199,9 +214,9 @@ namespace game_framework {
 			jumpAnimation.OnShow();
 		}
 		else
-		{
-			animation.SetTopLeft(mymap->ScreenX(x), mymap->ScreenY(y));
+		{*/
+			animation.SetTopLeft(x, y);
 			animation.OnShow();
-		}
+		//}
 	}
 }
