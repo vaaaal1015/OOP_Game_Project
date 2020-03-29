@@ -379,5 +379,38 @@
     <Image Include="RES\sword\noMove1\sword_6_1.bmp">
       <Filter>Resource Files</Filter>
     </Image>
+    <Image Include="RES\charactor\attack\hero_attack_0.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\charactor\attack\hero_attack_1.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\charactor\attack\hero_attack_2.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\charactor\attack\hero_attack_3.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\sword\attackMode_1\swordAttackMode_0.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\sword\attackMode_1\swordAttackMode_1.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\sword\attackMode_1\swordAttackMode_2.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\sword\attackMode_1\swordAttackMode_3.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\sword\attackMode_1\swordAttackMode_4.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\sword\attackMode_1\swordAttackMode_5.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\sword\attackMode_1\swordAttackMode_6.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
   </ItemGroup>
 </Project>

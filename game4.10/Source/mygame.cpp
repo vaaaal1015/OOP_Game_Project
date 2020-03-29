@@ -286,6 +286,7 @@ void CGameStateRun::OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags)
 	const char KEY_UP    = 0x26; // keyboard上箭頭
 	const char KEY_RIGHT = 0x27; // keyboard右箭頭
 	const char KEY_DOWN  = 0x28; // keyboard下箭頭
+	const char KEY_X = 0x58;	 // keyboard X
 	if (nChar == KEY_LEFT)
 		hero.SetMovingLeft(true);
 	if (nChar == KEY_RIGHT)
@@ -294,6 +295,8 @@ void CGameStateRun::OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags)
 		hero.SetMovingUp(true);
 	if (nChar == KEY_DOWN)
 		hero.SetMovingDown(true);
+	if (nChar == KEY_X)
+		hero.SetHeroAttack(true);
 }
 
 void CGameStateRun::OnKeyUp(UINT nChar, UINT nRepCnt, UINT nFlags)
@@ -302,6 +305,7 @@ void CGameStateRun::OnKeyUp(UINT nChar, UINT nRepCnt, UINT nFlags)
 	const char KEY_UP    = 0x26; // keyboard上箭頭
 	const char KEY_RIGHT = 0x27; // keyboard右箭頭
 	const char KEY_DOWN  = 0x28; // keyboard下箭頭
+	const char KEY_X = 0x58;	 // keyboard X
 	if (nChar == KEY_LEFT)
 		hero.SetMovingLeft(false);
 	if (nChar == KEY_RIGHT)
@@ -310,6 +314,9 @@ void CGameStateRun::OnKeyUp(UINT nChar, UINT nRepCnt, UINT nFlags)
 		hero.SetMovingUp(false);
 	if (nChar == KEY_DOWN)
 		hero.SetMovingDown(false);
+	if (nChar == KEY_X)
+		hero.SetHeroAttack(false);
+
 }
 
 void CGameStateRun::OnLButtonDown(UINT nFlags, CPoint point)  // 處理滑鼠的動作

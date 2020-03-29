@@ -40,13 +40,13 @@ namespace game_framework {
 		return y + animation.Height();
 	}
 	
-	bool CHero::isHit(int objectX, int objectY)
+	void CHero::beHit(int objectX, int objectY, int objectDamage)
 	{
 		if (((x <= objectX)) && (objectX <= x + animation.Width()) && ((y <= objectY) && (y + animation.Height())))
 		{
-			return true;
+			heroHP -= objectDamage;
 		}
-		return false;
+
 	}
 
 	int CHero::GetWidth()
@@ -75,14 +75,17 @@ namespace game_framework {
 		const int Y_POS = 0;
 		x = X_POS;
 		y = Y_POS;
-		isMovingLeft = isMovingRight = isMovingUp = isMovingDown = false;
+		isMovingLeft = isMovingRight = isMovingUp = isMovingDown = isAttacking = false;
 		animation.SetDelayCount(3);
 		animation1.SetDelayCount(3);
 		sword.SetDelayCount(1);
+		swordAttack.SetDelayCount(1);
+		HeroAttackMovement.SetDelayCount(3);
 		sword1.SetDelayCount(1);
 		moveRightAnimation.SetDelayCount(3);
 		jumpAnimation.SetDelayCount(5);
 		moveLeftAnimation.SetDelayCount(3);
+		heroHP = 100;			//主角預設血量為100
 		const int INITIAL_VELOCITY = 15;	// 初始上升速度
 		const int FLOOR = 100;				// 地板座標
 		floor = FLOOR;
@@ -132,12 +135,19 @@ namespace game_framework {
 		sword1.AddBitmap(IDB_SWORD_4_1, RGB(255, 255, 255));
 		sword1.AddBitmap(IDB_SWORD_5_1, RGB(255, 255, 255));
 		sword1.AddBitmap(IDB_SWORD_7_1, RGB(255, 255, 255));
-
-		/*jumpAnimation.AddBitmap(IDB_HEROJUMP_5, RGB(255, 255, 255));
-		jumpAnimation.AddBitmap(IDB_HEROJUMP_6, RGB(255, 255, 255));
-		jumpAnimation.AddBitmap(IDB_HEROJUMP_7, RGB(255, 255, 255));
-		jumpAnimation.AddBitmap(IDB_HEROJUMP_8, RGB(255, 255, 255));
-		*/
+		
+		HeroAttackMovement.AddBitmap(IDB_HEROATTACK_1, RGB(255, 255, 255));
+		HeroAttackMovement.AddBitmap(IDB_HEROATTACK_2, RGB(255, 255, 255));
+		HeroAttackMovement.AddBitmap(IDB_HEROATTACK_3, RGB(255, 255, 255));
+		HeroAttackMovement.AddBitmap(IDB_HEROATTACK_4, RGB(255, 255, 255));
+		
+		swordAttack.AddBitmap(IDB_SWORDATTACK_1,RGB(255, 255, 255));
+		swordAttack.AddBitmap(IDB_SWORDATTACK_2,RGB(255, 255, 255));
+		swordAttack.AddBitmap(IDB_SWORDATTACK_3,RGB(255, 255, 255));
+		swordAttack.AddBitmap(IDB_SWORDATTACK_4,RGB(255, 255, 255));
+		swordAttack.AddBitmap(IDB_SWORDATTACK_5,RGB(255, 255, 255));
+		swordAttack.AddBitmap(IDB_SWORDATTACK_6,RGB(255, 255, 255));
+		swordAttack.AddBitmap(IDB_SWORDATTACK_7,RGB(255, 255, 255));
 	}
 
 	void CHero::OnMove(gameMap *mymap)
@@ -147,18 +157,20 @@ namespace game_framework {
 		animation1.OnMove();
 		sword.OnMove();
 		sword1.OnMove();
+		HeroAttackMovement.OnMove();
+		swordAttack.OnMove();
 		moveRightAnimation.OnMove();
 		moveLeftAnimation.OnMove();
 		jumpAnimation.OnMove();
 		if (isMovingLeft)
 		{
-			setHeroDirection("left");
+			setHeroDirection("left");   //角色向左看
 			if (mymap->isSpace(GetX1(), GetY1()) && mymap->isSpace(GetX1(), GetY2() - 20)) // 當x座標還沒碰到牆
 				x -= STEP_SIZE;
 		}
 		if (isMovingRight)
 		{
-			setHeroDirection("right");
+			setHeroDirection("right");   //角色向右看
 			if (mymap->isSpace(GetX2(), GetY1()) && mymap->isSpace(GetX2(), GetY2() - 20)) // 當y座標還沒碰到牆
 				x += STEP_SIZE;
 		}
@@ -184,8 +196,6 @@ namespace game_framework {
 			//if (mymap->isSpace(GetX1(), GetY1()) && mymap->isSpace(GetX1(), GetY2()) && mymap->isSpace(GetX2(), GetY1()) && mymap->isSpace(GetX2(), GetY2()))
 			//y += STEP_SIZE;
 		}
-		
-		
 		if (rising) {			// 上升狀態
 			if (velocity > 0) {
 				y -= velocity;	// 當速度 > 0時，y軸上升(移動velocity個點，velocity的單位為 點/次)
@@ -236,6 +246,11 @@ namespace game_framework {
 		isMovingUp = flag;
 	}
 
+	void CHero::SetHeroAttack(bool flag)
+	{
+		isAttacking = flag;
+	}
+
 	void CHero::SetXY(int nx, int ny)
 	{
 		x = nx; y = ny;
@@ -249,41 +264,56 @@ namespace game_framework {
 	void CHero::OnShow(gameMap *mymap)
 	{
 		//animation.SetTopLeft(mymap->ScreenX(x - GetWidth() / 2), mymap->ScreenY(y - GetHeight() / 2));
-		if (isMovingRight)
+		if (isMovingRight)   //向右走
 		{
 			moveRightAnimation.SetTopLeft(mymap->ScreenX(x), mymap->ScreenY(y));
 			moveRightAnimation.OnShow();
 		}
-		else if (isMovingLeft)
+		else if (isMovingLeft)  //向左走
 		{
 			moveLeftAnimation.SetTopLeft(mymap->ScreenX(x), mymap->ScreenY(y));
 			moveLeftAnimation.OnShow();
 		}
-		else if (isMovingUp)
+		else if (isMovingUp)   //跳躍
 		{
 			jumpAnimation.SetTopLeft(mymap->ScreenX(x), mymap->ScreenY(y));
 			jumpAnimation.OnShow();
 		}
+		else if (isAttacking)
+		{
+			HeroAttackMovement.SetTopLeft(mymap->ScreenX(x), mymap->ScreenY(y));
+			HeroAttackMovement.OnShow();
+		}
 		else
 		{
-			if (faceDirection == "right")
+			if (faceDirection == "right")   //靜止向右看
 			{
 				animation.SetTopLeft(mymap->ScreenX(x), mymap->ScreenY(y));
 				animation.OnShow();
 			}
-			else
+			else							//靜止向左看
 			{
 				animation1.SetTopLeft(mymap->ScreenX(x), mymap->ScreenY(y));
 				animation1.OnShow();
 			}
 			
 		}
-		if (faceDirection == "right")
+		//處理sword顯示位置
+		if (faceDirection == "right")		//向右看
 		{
-			sword.SetTopLeft(mymap->ScreenX(x - 75), mymap->ScreenY(y + 10));
-			sword.OnShow();
+			if (isAttacking)
+			{
+				swordAttack.SetTopLeft(mymap->ScreenX(x - 55), mymap->ScreenY(y + 10));
+				swordAttack.OnShow();
+			}
+			else
+			{
+				sword.SetTopLeft(mymap->ScreenX(x - 75), mymap->ScreenY(y + 10));
+				sword.OnShow();
+			}
+			
 		}
-		else
+		else								//向左看
 		{
 			sword1.SetTopLeft(mymap->ScreenX(x + 37), mymap->ScreenY(y + 10));
 			sword1.OnShow();
@@ -314,8 +344,10 @@ namespace game_framework {
 		file2.close();
 	}
 
-	void CHero::HeroAttack(gameMap *mymap)
-	{
 
+
+	void CHero::SetHeroHP(int inputHP)
+	{
+		heroHP = inputHP;
 	}
 }

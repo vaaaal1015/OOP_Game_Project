@@ -25,24 +25,30 @@ namespace game_framework {
 		void SetMovingLeft(bool flag);	// 設定是否正在往左移動
 		void SetMovingRight(bool flag); // 設定是否正在往右移動
 		void SetMovingUp(bool flag);	// 設定是否正在往上移動
+		void SetHeroAttack(bool flag);	// 設定是否正在往上移動
 		void SetXY(int nx, int ny);		// 設定英雄左上角座標
 		void CreatTxt(gameMap*);
 		void HeroAttack(gameMap* mymap);  // 攻擊
-		bool isHit(int objectX, int objectY);  //判定物體擊中
+		void beHit(int objectX, int objectY, int objectDamage);  //判定物體擊中
+		void SetHeroHP(int inputHP);	//設定主角HP值
+
 	protected:
 		CAnimation animation;		// 英雄的動畫(向右)
 		CAnimation animation1;		// 英雄的動畫(向左)
 		CAnimation moveRightAnimation;  //向右移動動畫
 		CAnimation moveLeftAnimation;   //向左移動動畫
 		CAnimation jumpAnimation;		//跳躍動畫
+		CAnimation HeroAttackMovement;
 		CAnimation sword;				//載入劍的動畫(向右)
 		CAnimation sword1;				//載入劍的動畫(向左)
+		CAnimation swordAttack;			
 		int x, y;					// 英雄左上角座標
 		int heroHP;						//英雄生命值
 		bool isMovingDown;			// 是否正在往下移動
 		bool isMovingLeft;			// 是否正在往左移動
 		bool isMovingRight;			// 是否正在往右移動
 		bool isMovingUp;			// 是否正在往上移動
+		bool isAttacking;			// 正在攻擊
 		string faceDirection;		//人物面對的方向
 		int floor;				// 地板的Y座標
 		bool rising;				// true表上升、false表下降

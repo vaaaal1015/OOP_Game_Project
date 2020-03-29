@@ -230,6 +230,28 @@ IDB_SWORD_6_1           BITMAP                  "..\\RES\\sword\\noMove1\\sword_
 
 IDB_SWORD_7_1           BITMAP                  "..\\RES\\sword\\noMove1\\sword_6_1.bmp"
 
+IDB_HEROATTACK_1        BITMAP                  "..\\RES\\charactor\\attack\\hero_attack_0.bmp"
+
+IDB_HEROATTACK_2        BITMAP                  "..\\RES\\charactor\\attack\\hero_attack_1.bmp"
+
+IDB_HEROATTACK_3        BITMAP                  "..\\RES\\charactor\\attack\\hero_attack_2.bmp"
+
+IDB_HEROATTACK_4        BITMAP                  "..\\RES\\charactor\\attack\\hero_attack_3.bmp"
+
+IDB_SWORDATTACK_1       BITMAP                  "..\\RES\\sword\\attackMode_1\\swordAttackMode_0.bmp"
+
+IDB_SWORDATTACK_2       BITMAP                  "..\\RES\\sword\\attackMode_1\\swordAttackMode_1.bmp"
+
+IDB_SWORDATTACK_3       BITMAP                  "..\\RES\\sword\\attackMode_1\\swordAttackMode_2.bmp"
+
+IDB_SWORDATTACK_4       BITMAP                  "..\\RES\\sword\\attackMode_1\\swordAttackMode_3.bmp"
+
+IDB_SWORDATTACK_5       BITMAP                  "..\\RES\\sword\\attackMode_1\\swordAttackMode_4.bmp"
+
+IDB_SWORDATTACK_6       BITMAP                  "..\\RES\\sword\\attackMode_1\\swordAttackMode_5.bmp"
+
+IDB_SWORDATTACK_7       BITMAP                  "..\\RES\\sword\\attackMode_1\\swordAttackMode_6.bmp"
+
 
 /////////////////////////////////////////////////////////////////////////////
 //
