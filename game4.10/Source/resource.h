@@ -97,6 +97,22 @@
 #define IDB_SUNFLOWERRIGHTWALK_8        207
 #define IDB_BITMAP24                    208
 #define IDB_SUNFLOWERRIGHTWALK_9        208
+#define IDB_sword_1                     209
+#define IDB_sword_2                     210
+#define IDB_sword_3                     211
+#define IDB_sword_4                     212
+#define IDB_sword_5                     213
+#define IDB_sword_6                     214
+#define IDB_BITMAP22                    215
+#define IDB_sword_7                     215
+#define IDB_SWORD_1_1                   216
+#define IDB_SWORD_2_1                   217
+#define IDB_SWORD_3_1                   218
+#define IDB_SWORD_4_1                   219
+#define IDB_SWORD_5_1                   220
+#define IDB_SWORD_6_1                   221
+#define IDB_BITMAP23                    222
+#define IDB_SWORD_7_1                   222
 #define IDC_README                      1001
 #define ID_FILE_PAUSE                   32771
 #define ID_TOGGLE_FULLSCREEN            32772
@@ -109,7 +125,7 @@
 #ifdef APSTUDIO_INVOKED
 #ifndef APSTUDIO_READONLY_SYMBOLS
 #define _APS_3D_CONTROLS                     1
-#define _APS_NEXT_RESOURCE_VALUE        209
+#define _APS_NEXT_RESOURCE_VALUE        223
 #define _APS_NEXT_COMMAND_VALUE         32776
 #define _APS_NEXT_CONTROL_VALUE         1003
 #define _APS_NEXT_SYMED_VALUE           101

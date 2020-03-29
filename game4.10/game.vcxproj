@@ -379,6 +379,20 @@
     <Image Include="RES\mapSlideleftButtom.bmp" />
     <Image Include="RES\mapSlideleftButtom2.bmp" />
     <Image Include="RES\map_background.bmp" />
+    <Image Include="RES\sword\noMove1\sword_0_1.bmp" />
+    <Image Include="RES\sword\noMove1\sword_1_1.bmp" />
+    <Image Include="RES\sword\noMove1\sword_2_1.bmp" />
+    <Image Include="RES\sword\noMove1\sword_3_1.bmp" />
+    <Image Include="RES\sword\noMove1\sword_4_1.bmp" />
+    <Image Include="RES\sword\noMove1\sword_5_1.bmp" />
+    <Image Include="RES\sword\noMove1\sword_6_1.bmp" />
+    <Image Include="RES\sword\noMove\sword_0.bmp" />
+    <Image Include="RES\sword\noMove\sword_1.bmp" />
+    <Image Include="RES\sword\noMove\sword_2.bmp" />
+    <Image Include="RES\sword\noMove\sword_3.bmp" />
+    <Image Include="RES\sword\noMove\sword_4.bmp" />
+    <Image Include="RES\sword\noMove\sword_5.bmp" />
+    <Image Include="RES\sword\noMove\sword_6.bmp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

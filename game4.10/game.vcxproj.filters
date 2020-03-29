@@ -337,5 +337,47 @@
     <Image Include="RES\Enemy\SmileSunFlower\rightWalk\Smile SunFlower_16.bmp">
       <Filter>Resource Files</Filter>
     </Image>
+    <Image Include="RES\sword\noMove\sword_0.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\sword\noMove\sword_1.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\sword\noMove\sword_2.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\sword\noMove\sword_3.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\sword\noMove\sword_4.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\sword\noMove\sword_5.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\sword\noMove\sword_6.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\sword\noMove1\sword_0_1.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\sword\noMove1\sword_1_1.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\sword\noMove1\sword_2_1.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\sword\noMove1\sword_3_1.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\sword\noMove1\sword_4_1.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\sword\noMove1\sword_5_1.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\sword\noMove1\sword_6_1.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
   </ItemGroup>
 </Project>

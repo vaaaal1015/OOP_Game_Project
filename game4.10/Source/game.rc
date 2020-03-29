@@ -202,6 +202,34 @@ IDB_SUNFLOWERRIGHTWALK_8 BITMAP                  "..\\RES\\Enemy\\SmileSunFlower
 
 IDB_SUNFLOWERRIGHTWALK_9 BITMAP                  "..\\RES\\Enemy\\SmileSunFlower\\rightWalk\\Smile SunFlower_16.bmp"
 
+IDB_sword_1             BITMAP                  "..\\RES\\sword\\noMove\\sword_0.bmp"
+
+IDB_sword_2             BITMAP                  "..\\RES\\sword\\noMove\\sword_1.bmp"
+
+IDB_sword_3             BITMAP                  "..\\RES\\sword\\noMove\\sword_2.bmp"
+
+IDB_sword_4             BITMAP                  "..\\RES\\sword\\noMove\\sword_3.bmp"
+
+IDB_sword_5             BITMAP                  "..\\RES\\sword\\noMove\\sword_4.bmp"
+
+IDB_sword_6             BITMAP                  "..\\RES\\sword\\noMove\\sword_5.bmp"
+
+IDB_sword_7             BITMAP                  "..\\RES\\sword\\noMove\\sword_6.bmp"
+
+IDB_SWORD_1_1           BITMAP                  "..\\RES\\sword\\noMove1\\sword_0_1.bmp"
+
+IDB_SWORD_2_1           BITMAP                  "..\\RES\\sword\\noMove1\\sword_1_1.bmp"
+
+IDB_SWORD_3_1           BITMAP                  "..\\RES\\sword\\noMove1\\sword_2_1.bmp"
+
+IDB_SWORD_4_1           BITMAP                  "..\\RES\\sword\\noMove1\\sword_3_1.bmp"
+
+IDB_SWORD_5_1           BITMAP                  "..\\RES\\sword\\noMove1\\sword_4_1.bmp"
+
+IDB_SWORD_6_1           BITMAP                  "..\\RES\\sword\\noMove1\\sword_5_1.bmp"
+
+IDB_SWORD_7_1           BITMAP                  "..\\RES\\sword\\noMove1\\sword_6_1.bmp"
+
 
 /////////////////////////////////////////////////////////////////////////////
 //
