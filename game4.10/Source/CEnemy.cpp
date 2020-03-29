@@ -71,15 +71,13 @@ namespace game_framework {
 
 	void CEnemy::Initialize()
 	{
-		const int X_POS = 300;
-		const int Y_POS = 300;
+		const int X_POS = 600;
+		const int Y_POS = 600;
 		x = X_POS;
 		y = Y_POS;
-		isMovingLeft = isMovingRight = isMovingUp = isMovingDown = false;
+		isMovingRight = true;
 		animation.SetDelayCount(3);
 		moveRightAnimation.SetDelayCount(3);
-		jumpAnimation.SetDelayCount(5);
-		moveLeftAnimation.SetDelayCount(3);
 		const int INITIAL_VELOCITY = 15;	// 初始上升速度
 		const int FLOOR = 100;				// 地板座標
 		floor = FLOOR;
@@ -107,28 +105,23 @@ namespace game_framework {
 	}
 
 	
-	void CEnemy::OnMove(/*gameMap *mymap*/)
+	void CEnemy::OnMove(gameMap *mymap)
 	{
 		const int STEP_SIZE = 10;
 		animation.OnMove();
 		moveRightAnimation.OnMove();
-		moveLeftAnimation.OnMove();
-		jumpAnimation.OnMove();
-		while (x < 350)
-		{
-			x += STEP_SIZE;
-			Sleep(1);
-		}
 		/*if (isMovingLeft)
 		{
 			if (mymap->isSpace(GetX1(), GetY1()) && mymap->isSpace(GetX1(), GetY2() - 20)) // 當x座標還沒碰到牆
 				x -= STEP_SIZE;
 		}
+		*/
 		if (isMovingRight)
 		{
 			if (mymap->isSpace(GetX2(), GetY1()) && mymap->isSpace(GetX2(), GetY2() - 20)) // 當y座標還沒碰到牆
 				x += STEP_SIZE;
 		}
+		/*
 		if (isMovingUp && y == (floor - 1))
 		{
 			//if (mymap->isSpace(GetX1(), GetY1()) && mymap->isSpace(GetX1(), GetY2()) && mymap->isSpace(GetX2(), GetY1()) && mymap->isSpace(GetX2(), GetY2()))
@@ -194,15 +187,16 @@ namespace game_framework {
 		x = nx; y = ny;
 	}
 
-	void CEnemy::OnShow()
+	void CEnemy::OnShow(gameMap *mymap)
 	{
 		//animation.SetTopLeft(mymap->ScreenX(x - GetWidth() / 2), mymap->ScreenY(y - GetHeight() / 2));
-		/*if (isMovingRight)
+		if (isMovingRight)
 		{
 			moveRightAnimation.SetTopLeft(mymap->ScreenX(x), mymap->ScreenY(y));
 			moveRightAnimation.OnShow();
 
 		}
+		/*
 		else if (isMovingLeft)
 		{
 			moveLeftAnimation.SetTopLeft(mymap->ScreenX(x), mymap->ScreenY(y));
@@ -213,10 +207,11 @@ namespace game_framework {
 			jumpAnimation.SetTopLeft(mymap->ScreenX(x), mymap->ScreenY(y));
 			jumpAnimation.OnShow();
 		}
+		*/
 		else
-		{*/
-			animation.SetTopLeft(x, y);
+		{
+			animation.SetTopLeft(mymap->ScreenX(x), mymap->ScreenY(y));
 			animation.OnShow();
-		//}
+		}
 	}
 }
