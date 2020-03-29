@@ -313,4 +313,9 @@ namespace game_framework {
 		//file.close();       //Ãö³¬ÀÉ®×
 		file2.close();
 	}
+
+	void CHero::HeroAttack(gameMap *mymap)
+	{
+
+	}
 }

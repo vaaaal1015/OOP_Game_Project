@@ -27,6 +27,7 @@ namespace game_framework {
 		void SetMovingUp(bool flag);	// 設定是否正在往上移動
 		void SetXY(int nx, int ny);		// 設定英雄左上角座標
 		void CreatTxt(gameMap*);
+		void HeroAttack(gameMap* mymap);  // 攻擊
 		bool isHit(int objectX, int objectY);  //判定物體擊中
 	protected:
 		CAnimation animation;		// 英雄的動畫(向右)
