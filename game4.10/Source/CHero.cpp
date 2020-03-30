@@ -40,6 +40,15 @@ namespace game_framework {
 		return y + animation.Height();
 	}
 	
+	int CHero::HitEnemyAndReternDamage(int x1, int x2, int y1, int y2)
+	{
+		if ((x + animation.Width() >= x2) && (x <= x2) && (y + animation.Height() >= y1) && (y <= y2))//A.x+A.W >= B.x ： Sprite-A 的右邊界大於等於 Sprite-B 的左邊界。
+		{																							  //A.x <= B.x+B.W ： Sprite-A 的左邊界小於等於 Sprite-B 的右邊界。
+			return heroAttackDamage;																  //A.y+A.H >= B.y ： Sprite-A 的下邊界大於等於 Sprite-B 的上邊界。
+		}																							  //A.y <= B.y+B.H ： Sprite-A 的上邊界小於等於 Sprite-B 的下邊界。
+		return 0;
+	}
+
 	void CHero::beHit(int objectX, int objectY, int objectDamage)
 	{
 		if (((x <= objectX)) && (objectX <= x + animation.Width()) && ((y <= objectY) && (y + animation.Height())))
@@ -345,10 +354,11 @@ namespace game_framework {
 		file2.close();
 	}
 
-
-
 	void CHero::SetHeroHP(int inputHP)
 	{
 		heroHP = inputHP;
 	}
+
+
+
 }
