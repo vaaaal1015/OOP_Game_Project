@@ -79,6 +79,7 @@ namespace game_framework {
 		animation.SetDelayCount(3);
 		moveRightAnimation.SetDelayCount(3);
 		enemyHP = 100;			//敵人預設生命值
+		enemyAttackDamage = 10;	//敵人預設攻擊力
 		const int INITIAL_VELOCITY = 15;	// 初始上升速度
 		const int FLOOR = 100;				// 地板座標
 		floor = FLOOR;

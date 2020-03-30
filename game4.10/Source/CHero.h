@@ -44,6 +44,7 @@ namespace game_framework {
 		CAnimation swordAttack;			
 		int x, y;					// 英雄左上角座標
 		int heroHP;						//英雄生命值
+		int heroAttackDamage;		//英雄攻擊力
 		bool isMovingDown;			// 是否正在往下移動
 		bool isMovingLeft;			// 是否正在往左移動
 		bool isMovingRight;			// 是否正在往右移動

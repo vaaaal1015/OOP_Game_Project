@@ -33,6 +33,7 @@ namespace game_framework {
 		CAnimation jumpAnimation;		//跳躍動畫
 		int x, y;					// 敵人左上角座標
 		int enemyHP;				//敵人生命值
+		int enemyAttackDamage;		//敵人攻擊力
 		bool isMovingDown;			// 是否正在往下移動
 		bool isMovingLeft;			// 是否正在往左移動
 		bool isMovingRight;			// 是否正在往右移動

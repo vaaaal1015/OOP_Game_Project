@@ -86,6 +86,7 @@ namespace game_framework {
 		jumpAnimation.SetDelayCount(5);
 		moveLeftAnimation.SetDelayCount(3);
 		heroHP = 100;			//主角預設血量為100
+		heroAttackDamage = 5;	//主角預設攻擊力為5
 		const int INITIAL_VELOCITY = 15;	// 初始上升速度
 		const int FLOOR = 100;				// 地板座標
 		floor = FLOOR;
@@ -303,7 +304,7 @@ namespace game_framework {
 		{
 			if (isAttacking)
 			{
-				swordAttack.SetTopLeft(mymap->ScreenX(x - 55), mymap->ScreenY(y + 10));
+				swordAttack.SetTopLeft(mymap->ScreenX(x - 40), mymap->ScreenY(y));
 				swordAttack.OnShow();
 			}
 			else
