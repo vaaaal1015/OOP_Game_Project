@@ -7,8 +7,6 @@
 #include "gameMap.h"
 #include "CHero.h"
 
-#include <fstream>
-
 
 namespace game_framework {
 	/////////////////////////////////////////////////////////////////////////////
@@ -329,29 +327,6 @@ namespace game_framework {
 			sword1.OnShow();
 		}
 		
-	}
-
-	void CHero::CreatTxt(gameMap *mymap)//建立txt檔案
-	{
-		//fstream file;      //宣告fstream物件
-		fstream file2;
-		//file.open("testMap.txt", ios::out | ios::trunc);
-		file2.open("testBool.txt", ios::out | ios::trunc);
-
-		//開啟檔案為輸出狀態，若檔案已存在則清除檔案內容重新寫入
-
-		for (int i = 0; i < 960; i++) {
-			for (int j = 0; j < 1280; j++) {
-				//file << map[i][j];		//將str寫入檔案
-				if (mymap->isSpace(j, i)) file2 << '0';
-				else file2 << 'X';
-			}
-			//file << endl;
-			file2 << endl;
-		}
-
-		//file.close();       //關閉檔案
-		file2.close();
 	}
 
 	void CHero::SetHeroHP(int inputHP)

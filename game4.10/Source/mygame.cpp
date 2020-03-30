@@ -235,9 +235,8 @@ void CGameStateRun::OnMove()							// 移動遊戲元素
 	//
 	// 移動擦子
 	//
-	enemy.OnMove(&gamemap);
+	enemy.OnMove(&gamemap, &hero);
 	hero.OnMove(&gamemap);
-	//enemy.OnMove();
 	//
 	// 判斷擦子是否碰到球
 	//
@@ -360,7 +359,6 @@ void CGameStateRun::OnShow()
 	help.ShowBitmap();					// 貼上說明圖
 	hits_left.ShowBitmap();
 	hero.OnShow(&gamemap);			// 貼上英雄
-	//enemy.OnShow(&gamemap);			// 貼上敵人
 	//
 	//  貼上左上及右下角落的圖
 	//

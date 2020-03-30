@@ -27,7 +27,6 @@ namespace game_framework {
 		void SetMovingUp(bool flag);	// 設定是否正在往上移動
 		void SetHeroAttack(bool flag);	// 設定是否正在往上移動
 		void SetXY(int nx, int ny);		// 設定英雄左上角座標
-		void CreatTxt(gameMap*);
 		int HitEnemyAndReternDamage(int x1, int x2, int y1, int y2);  // 判斷有無敵人 x1(敵人左邊x座標),x2(敵人右邊座標),y1(敵人上方y座標),y2(敵人下方y座標)
 		void beHit(int objectX, int objectY, int objectDamage);  //判定物體擊中
 		void SetHeroHP(int inputHP);	//設定主角HP值

@@ -5,9 +5,8 @@
 #include "audio.h"
 #include "gamelib.h"
 #include "gameMap.h"
+#include "CHero.h"
 #include "CEnemy.h"
-
-#include <fstream>
 
 
 namespace game_framework {
@@ -69,6 +68,17 @@ namespace game_framework {
 		return y + animation.Height() / 2;
 	}
 
+
+	void CEnemy::isHitByHero(CHero *hero)
+	{
+		int damage = hero->HitEnemyAndReternDamage(GetX1(), GetX2(), GetY1(), GetY2());
+		if (damage > 0)
+		{
+			enemyHP -= damage;
+		}
+
+	}
+
 	void CEnemy::Initialize()
 	{
 		const int X_POS = 600;
@@ -107,7 +117,7 @@ namespace game_framework {
 	}
 
 	
-	void CEnemy::OnMove(gameMap *mymap)
+	void CEnemy::OnMove(gameMap *mymap, CHero *hero)
 	{
 		const int STEP_SIZE = 10;
 		animation.OnMove();
@@ -163,6 +173,8 @@ namespace game_framework {
 		}*/
 
 		//mymap->SetSXSY(GetCenterX() - SIZE_X / 2, GetCenterY() - SIZE_Y / 2);
+
+		isHitByHero(hero);
 	}
 	void CEnemy::SetMovingDown(bool flag)
 	{
@@ -215,5 +227,6 @@ namespace game_framework {
 			animation.SetTopLeft(mymap->ScreenX(x), mymap->ScreenY(y));
 			animation.OnShow();
 		}
+
 	}
 }

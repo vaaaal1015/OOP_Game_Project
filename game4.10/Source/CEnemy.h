@@ -18,7 +18,7 @@ namespace game_framework {
 		int	 GetCenterY();				// 敵人正中央的 y 座標
 		void Initialize();				// 設定敵人為初始值
 		void LoadBitmap();				// 載入圖形
-		void OnMove(gameMap *mymap);	// 移動敵人
+		void OnMove(gameMap *mymap, CHero *hero);	// 移動敵人
 		void OnShow(gameMap *mymap);	// 將敵人圖形貼到畫面
 		void SetMovingDown(bool flag);	// 設定是否正在往下移動
 		void SetMovingLeft(bool flag);	// 設定是否正在往左移動
@@ -26,6 +26,8 @@ namespace game_framework {
 		void SetMovingUp(bool flag);	// 設定是否正在往上移動
 		void SetXY(int nx, int ny);		// 設定敵人左上角座標
 		bool isHit(int objectX, int objectY);  //判定物體擊中
+		void isHitByHero(CHero *hero);
+
 	protected:
 		CAnimation animation;		// 敵人的動畫
 		CAnimation moveRightAnimation;  //向右移動動畫

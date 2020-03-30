@@ -41,7 +41,7 @@
 #include "gameMap.h"
 #include "CHero.h"
 #include "CEnemy.h"
-#include "sword.h"
+
 
 namespace game_framework {
 	/////////////////////////////////////////////////////////////////////////////
