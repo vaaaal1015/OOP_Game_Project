@@ -37,12 +37,15 @@ namespace game_framework {
 		CAnimation moveRightAnimation;  //向右移動動畫
 		CAnimation moveLeftAnimation;   //向左移動動畫
 		CAnimation jumpAnimation;		//跳躍動畫
-		CAnimation HeroAttackMovement;
+		CAnimation HeroAttackMovement;  //英雄攻擊動畫<向右)
+		CAnimation HeroAttackMovement1;	//英雄攻擊動畫<向左)
 		CAnimation sword;				//載入劍的動畫(向右)
 		CAnimation sword1;				//載入劍的動畫(向左)
-		CAnimation swordAttack;			
+		CAnimation swordAttack;			//劍的攻擊動畫(向右)
+		CAnimation swordAttack1;		//劍的攻擊動畫(向左)
 		int x, y;					// 英雄左上角座標
 		int heroHP;						//英雄生命值
+		int AttackRange;				//英雄攻擊範圍
 		int heroAttackDamage;		//英雄攻擊力
 		bool isMovingDown;			// 是否正在往下移動
 		bool isMovingLeft;			// 是否正在往左移動

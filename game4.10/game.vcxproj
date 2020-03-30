@@ -330,6 +330,10 @@
   <ItemGroup>
     <Image Include="RES\BIG_SWORD.bmp" />
     <Image Include="res\bitmap3.bmp" />
+    <Image Include="RES\charactor\attack1\hero_attack_0_1.bmp" />
+    <Image Include="RES\charactor\attack1\hero_attack_1_1.bmp" />
+    <Image Include="RES\charactor\attack1\hero_attack_2_1.bmp" />
+    <Image Include="RES\charactor\attack1\hero_attack_3_1.bmp" />
     <Image Include="RES\charactor\attack\hero_attack_0.bmp" />
     <Image Include="RES\charactor\attack\hero_attack_1.bmp" />
     <Image Include="RES\charactor\attack\hero_attack_2.bmp" />
@@ -390,6 +394,13 @@
     <Image Include="RES\sword\attackMode_1\swordAttackMode_4.bmp" />
     <Image Include="RES\sword\attackMode_1\swordAttackMode_5.bmp" />
     <Image Include="RES\sword\attackMode_1\swordAttackMode_6.bmp" />
+    <Image Include="RES\sword\attackMode_1_1\swordAttackMode_0_1.bmp" />
+    <Image Include="RES\sword\attackMode_1_1\swordAttackMode_1_1.bmp" />
+    <Image Include="RES\sword\attackMode_1_1\swordAttackMode_2_1.bmp" />
+    <Image Include="RES\sword\attackMode_1_1\swordAttackMode_3_1.bmp" />
+    <Image Include="RES\sword\attackMode_1_1\swordAttackMode_4_1.bmp" />
+    <Image Include="RES\sword\attackMode_1_1\swordAttackMode_5_1.bmp" />
+    <Image Include="RES\sword\attackMode_1_1\swordAttackMode_6_1.bmp" />
     <Image Include="RES\sword\noMove1\sword_0_1.bmp" />
     <Image Include="RES\sword\noMove1\sword_1_1.bmp" />
     <Image Include="RES\sword\noMove1\sword_2_1.bmp" />
