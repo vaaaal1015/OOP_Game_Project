@@ -126,6 +126,19 @@
 #define IDB_SWORDATTACK_6               232
 #define IDB_BITMAP26                    233
 #define IDB_SWORDATTACK_7               233
+#define IDB_HEROATTACK_1_1              234
+#define IDB_HEROATTACK_2_1              235
+#define IDB_HEROATTACK_3_1              236
+#define IDB_BITMAP19                    237
+#define IDB_HEROATTACK_4_1              237
+#define IDB_SWORDATTACK_1_1             238
+#define IDB_SWORDATTACK_2_1             239
+#define IDB_SWORDATTACK_3_1             240
+#define IDB_SWORDATTACK_4_1             241
+#define IDB_SWORDATTACK_5_1             242
+#define IDB_SWORDATTACK_6_1             243
+#define IDB_BITMAP28                    244
+#define IDB_SWORDATTACK_7_1             244
 #define IDC_README                      1001
 #define ID_FILE_PAUSE                   32771
 #define ID_TOGGLE_FULLSCREEN            32772
@@ -138,7 +151,7 @@
 #ifdef APSTUDIO_INVOKED
 #ifndef APSTUDIO_READONLY_SYMBOLS
 #define _APS_3D_CONTROLS                     1
-#define _APS_NEXT_RESOURCE_VALUE        234
+#define _APS_NEXT_RESOURCE_VALUE        245
 #define _APS_NEXT_COMMAND_VALUE         32776
 #define _APS_NEXT_CONTROL_VALUE         1003
 #define _APS_NEXT_SYMED_VALUE           101

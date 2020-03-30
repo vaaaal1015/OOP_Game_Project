@@ -42,10 +42,10 @@ namespace game_framework {
 	
 	int CHero::HitEnemyAndReternDamage(int x1, int x2, int y1, int y2)
 	{
-		if ((x + animation.Width() >= x2) && (x <= x2) && (y + animation.Height() >= y1) && (y <= y2))//A.x+A.W >= B.x ： Sprite-A 的右邊界大於等於 Sprite-B 的左邊界。
-		{																							  //A.x <= B.x+B.W ： Sprite-A 的左邊界小於等於 Sprite-B 的右邊界。
-			return heroAttackDamage;																  //A.y+A.H >= B.y ： Sprite-A 的下邊界大於等於 Sprite-B 的上邊界。
-		}																							  //A.y <= B.y+B.H ： Sprite-A 的上邊界小於等於 Sprite-B 的下邊界。
+		if (!((GetX2()<x1) || (GetX1() > x2) || (GetY1() < y2) || (GetY2() > y1)))
+		{
+			return heroAttackDamage;
+		}
 		return 0;
 	}
 
@@ -89,13 +89,16 @@ namespace game_framework {
 		animation1.SetDelayCount(3);
 		sword.SetDelayCount(1);
 		swordAttack.SetDelayCount(1);
+		swordAttack1.SetDelayCount(1);
 		HeroAttackMovement.SetDelayCount(3);
+		HeroAttackMovement1.SetDelayCount(3);
 		sword1.SetDelayCount(1);
 		moveRightAnimation.SetDelayCount(3);
 		jumpAnimation.SetDelayCount(5);
 		moveLeftAnimation.SetDelayCount(3);
 		heroHP = 100;			//主角預設血量為100
 		heroAttackDamage = 5;	//主角預設攻擊力為5
+		AttackRange = 100;		//主角攻擊範圍
 		const int INITIAL_VELOCITY = 15;	// 初始上升速度
 		const int FLOOR = 100;				// 地板座標
 		floor = FLOOR;
@@ -151,13 +154,27 @@ namespace game_framework {
 		HeroAttackMovement.AddBitmap(IDB_HEROATTACK_3, RGB(255, 255, 255));
 		HeroAttackMovement.AddBitmap(IDB_HEROATTACK_4, RGB(255, 255, 255));
 		
-		swordAttack.AddBitmap(IDB_SWORDATTACK_1,RGB(255, 255, 255));
+		HeroAttackMovement1.AddBitmap(IDB_HEROATTACK_1_1, RGB(255, 255, 255));
+		HeroAttackMovement1.AddBitmap(IDB_HEROATTACK_2_1, RGB(255, 255, 255));
+		HeroAttackMovement1.AddBitmap(IDB_HEROATTACK_3_1, RGB(255, 255, 255));
+		HeroAttackMovement1.AddBitmap(IDB_HEROATTACK_4_1, RGB(255, 255, 255));
+
+		
+		//swordAttack.AddBitmap(IDB_SWORDATTACK_1,RGB(255, 255, 255));
 		swordAttack.AddBitmap(IDB_SWORDATTACK_2,RGB(255, 255, 255));
 		swordAttack.AddBitmap(IDB_SWORDATTACK_3,RGB(255, 255, 255));
 		swordAttack.AddBitmap(IDB_SWORDATTACK_4,RGB(255, 255, 255));
 		swordAttack.AddBitmap(IDB_SWORDATTACK_5,RGB(255, 255, 255));
 		swordAttack.AddBitmap(IDB_SWORDATTACK_6,RGB(255, 255, 255));
 		swordAttack.AddBitmap(IDB_SWORDATTACK_7,RGB(255, 255, 255));
+
+		//swordAttack1.AddBitmap(IDB_SWORDATTACK_1_1, RGB(255, 255, 255));
+		//swordAttack1.AddBitmap(IDB_SWORDATTACK_2_1, RGB(255, 255, 255));
+		swordAttack1.AddBitmap(IDB_SWORDATTACK_3_1, RGB(255, 255, 255));
+		swordAttack1.AddBitmap(IDB_SWORDATTACK_4_1, RGB(255, 255, 255));
+		swordAttack1.AddBitmap(IDB_SWORDATTACK_5_1, RGB(255, 255, 255));
+		swordAttack1.AddBitmap(IDB_SWORDATTACK_6_1, RGB(255, 255, 255));
+		swordAttack1.AddBitmap(IDB_SWORDATTACK_7_1, RGB(255, 255, 255));
 	}
 
 	void CHero::OnMove(gameMap *mymap)
@@ -168,7 +185,9 @@ namespace game_framework {
 		sword.OnMove();
 		sword1.OnMove();
 		HeroAttackMovement.OnMove();
+		HeroAttackMovement1.OnMove();
 		swordAttack.OnMove();
+		swordAttack1.OnMove();
 		moveRightAnimation.OnMove();
 		moveLeftAnimation.OnMove();
 		jumpAnimation.OnMove();
@@ -291,8 +310,16 @@ namespace game_framework {
 		}
 		else if (isAttacking)
 		{
-			HeroAttackMovement.SetTopLeft(mymap->ScreenX(x), mymap->ScreenY(y));
-			HeroAttackMovement.OnShow();
+			if (faceDirection == "right")
+			{
+				HeroAttackMovement.SetTopLeft(mymap->ScreenX(x), mymap->ScreenY(y));
+				HeroAttackMovement.OnShow();
+			}
+			else
+			{
+				HeroAttackMovement1.SetTopLeft(mymap->ScreenX(x), mymap->ScreenY(y));
+				HeroAttackMovement1.OnShow();
+			}
 		}
 		else
 		{
@@ -325,8 +352,16 @@ namespace game_framework {
 		}
 		else								//向左看
 		{
-			sword1.SetTopLeft(mymap->ScreenX(x + 37), mymap->ScreenY(y + 10));
-			sword1.OnShow();
+			if (isAttacking)
+			{
+				swordAttack1.SetTopLeft(mymap->ScreenX(x - 75), mymap->ScreenY(y));
+				swordAttack1.OnShow();
+			}
+			else
+			{
+				sword1.SetTopLeft(mymap->ScreenX(x + 37), mymap->ScreenY(y + 10));
+				sword1.OnShow();
+			}
 		}
 		
 	}
