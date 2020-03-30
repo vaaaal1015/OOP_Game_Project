@@ -30,6 +30,7 @@ namespace game_framework {
 		int HitEnemyAndReternDamage(int x1, int x2, int y1, int y2);  // 判斷有無敵人 x1(敵人左邊x座標),x2(敵人右邊座標),y1(敵人上方y座標),y2(敵人下方y座標)
 		void beHit(int objectX, int objectY, int objectDamage);  //判定物體擊中
 		void SetHeroHP(int inputHP);	//設定主角HP值
+		bool isAttacking;			// 正在攻擊
 
 	protected:
 		CAnimation animation;		// 英雄的動畫(向右)
@@ -51,7 +52,6 @@ namespace game_framework {
 		bool isMovingLeft;			// 是否正在往左移動
 		bool isMovingRight;			// 是否正在往右移動
 		bool isMovingUp;			// 是否正在往上移動
-		bool isAttacking;			// 正在攻擊
 		string faceDirection;		//人物面對的方向
 		int floor;				// 地板的Y座標
 		bool rising;				// true表上升、false表下降

@@ -76,7 +76,6 @@ namespace game_framework {
 		{
 			enemyHP -= damage;
 		}
-
 	}
 
 	void CEnemy::Initialize()
@@ -174,7 +173,8 @@ namespace game_framework {
 
 		//mymap->SetSXSY(GetCenterX() - SIZE_X / 2, GetCenterY() - SIZE_Y / 2);
 
-		isHitByHero(hero);
+		if(hero->isAttacking) isHitByHero(hero);
+
 	}
 	void CEnemy::SetMovingDown(bool flag)
 	{

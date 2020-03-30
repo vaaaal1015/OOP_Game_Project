@@ -40,10 +40,11 @@ namespace game_framework {
 	
 	int CHero::HitEnemyAndReternDamage(int x1, int x2, int y1, int y2)
 	{
-		if (!((GetX2()<x1) || (GetX1() > x2) || (GetY1() < y2) || (GetY2() > y1)))
+		if (!((GetX2() < x1) || (GetX1() > x2) || (GetY1() < y2) || (GetY2() > y1)))
 		{
 			return heroAttackDamage;
 		}
+		
 		return 0;
 	}
 
