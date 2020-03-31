@@ -16,6 +16,7 @@ namespace game_framework {
 		int  GetHeight();				// 敵人的高
 		int	 GetCenterX();				// 敵人正中央的 x 座標
 		int	 GetCenterY();				// 敵人正中央的 y 座標
+		int  GetHP();
 		void Initialize();				// 設定敵人為初始值
 		void LoadBitmap();				// 載入圖形
 		void OnMove(gameMap *mymap, CHero *hero);	// 移動敵人

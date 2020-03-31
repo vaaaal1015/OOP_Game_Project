@@ -68,6 +68,10 @@ namespace game_framework {
 		return y + animation.Height() / 2;
 	}
 
+	int CEnemy::GetHP()
+	{
+		return enemyHP;
+	}
 
 	void CEnemy::isHitByHero(CHero *hero)
 	{

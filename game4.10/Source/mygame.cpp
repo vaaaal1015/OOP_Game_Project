@@ -216,8 +216,9 @@ void CGameStateRun::OnBeginState()
 	enemy.Initialize();
 	background.SetTopLeft(BACKGROUND_X,0);				// 設定背景的起始座標
 	help.SetTopLeft(0, SIZE_Y - help.Height());			// 設定說明圖的起始座標
-	hits_left.SetInteger(HITS_LEFT);					// 指定剩下的撞擊數
-	hits_left.SetTopLeft(HITS_LEFT_X,HITS_LEFT_Y);		// 指定剩下撞擊數的座標
+	//hits_left.SetInteger(HITS_LEFT);					// 指定剩下的撞擊數
+	//hits_left.SetTopLeft(HITS_LEFT_X,HITS_LEFT_Y);		// 指定剩下撞擊數的座標
+	enemy_hp.SetTopLeft(HITS_LEFT_X, HITS_LEFT_Y);
 	CAudio::Instance()->Play(AUDIO_LAKE, true);			// 撥放 WAVE
 	CAudio::Instance()->Play(AUDIO_DING, false);		// 撥放 WAVE
 	//CAudio::Instance()->Play(AUDIO_NTUT, true);			// 撥放 MIDI
@@ -235,6 +236,7 @@ void CGameStateRun::OnMove()							// 移動遊戲元素
 	//
 	// 移動擦子
 	//
+	enemy_hp.SetInteger(enemy.GetHP());
 	enemy.OnMove(&gamemap, &hero);
 	hero.OnMove(&gamemap);
 	//
@@ -269,7 +271,8 @@ void CGameStateRun::OnInit()  								// 遊戲的初值及圖形設定
 	help.LoadBitmap(IDB_HELP,RGB(255,255,255));				// 載入說明的圖形
 	corner.LoadBitmap(IDB_CORNER);							// 載入角落圖形
 	corner.ShowBitmap(background);							// 將corner貼到background								// 載入圖形
-	hits_left.LoadBitmap();									
+	//hits_left.LoadBitmap();	
+	enemy_hp.LoadBitmap();
 	CAudio::Instance()->Load(AUDIO_DING,  "sounds\\ding.wav");	// 載入編號0的聲音ding.wav
 	CAudio::Instance()->Load(AUDIO_LAKE,  "sounds\\lake.mp3");	// 載入編號1的聲音lake.mp3
 	//CAudio::Instance()->Load(AUDIO_NTUT,  "sounds\\ntut.mid");	// 載入編號2的聲音ntut.mid
@@ -357,7 +360,8 @@ void CGameStateRun::OnShow()
 	gamemap.OnShow();
 	enemy.OnShow(&gamemap);
 	help.ShowBitmap();					// 貼上說明圖
-	hits_left.ShowBitmap();
+	//hits_left.ShowBitmap();
+	enemy_hp.ShowBitmap();
 	hero.OnShow(&gamemap);			// 貼上英雄
 	//
 	//  貼上左上及右下角落的圖
