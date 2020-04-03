@@ -274,6 +274,16 @@ IDB_SWORDATTACK_6_1     BITMAP                  "..\\RES\\sword\\attackMode_1_1\
 
 IDB_SWORDATTACK_7_1     BITMAP                  "..\\RES\\sword\\attackMode_1_1\\swordAttackMode_6_1.bmp"
 
+IDB_SUNFLOWER_DEAD_0    BITMAP                  "..\\RES\\Enemy\\SmileSunFlower\\dead\\SunFlower_dead_1.bmp"
+
+IDB_SUNFLOWER_DEAD_1    BITMAP                  "..\\RES\\Enemy\\SmileSunFlower\\dead\\SunFlower_dead_2.bmp"
+
+IDB_SUNFLOWER_DEAD_2    BITMAP                  "..\\RES\\Enemy\\SmileSunFlower\\dead\\SunFlower_dead_3.bmp"
+
+IDB_SUNFLOWER_DEAD_3    BITMAP                  "..\\RES\\Enemy\\SmileSunFlower\\dead\\SunFlower_dead_4.bmp"
+
+IDB_SUNFLOWER_DEAD_4    BITMAP                  "..\\RES\\Enemy\\SmileSunFlower\\dead\\SunFlower_dead_5.bmp"
+
 
 /////////////////////////////////////////////////////////////////////////////
 //

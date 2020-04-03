@@ -445,5 +445,20 @@
     <Image Include="RES\sword\attackMode_1_1\swordAttackMode_6_1.bmp">
       <Filter>Resource Files</Filter>
     </Image>
+    <Image Include="RES\Enemy\SmileSunFlower\dead\SunFlower_dead_1.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\Enemy\SmileSunFlower\dead\SunFlower_dead_2.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\Enemy\SmileSunFlower\dead\SunFlower_dead_3.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\Enemy\SmileSunFlower\dead\SunFlower_dead_4.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\Enemy\SmileSunFlower\dead\SunFlower_dead_5.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
   </ItemGroup>
 </Project>

@@ -91,6 +91,7 @@ namespace game_framework {
 		isMovingRight = true;
 		animation.SetDelayCount(3);
 		moveRightAnimation.SetDelayCount(3);
+		DeadAnimation.SetDelayCount(1);
 		enemyHP = 100;			//敵人預設生命值
 		enemyAttackDamage = 10;	//敵人預設攻擊力
 		const int INITIAL_VELOCITY = 15;	// 初始上升速度
@@ -117,6 +118,11 @@ namespace game_framework {
 		moveRightAnimation.AddBitmap(IDB_SUNFLOWERRIGHTWALK_7, RGB(255, 255, 255));
 		moveRightAnimation.AddBitmap(IDB_SUNFLOWERRIGHTWALK_8, RGB(255, 255, 255));
 		moveRightAnimation.AddBitmap(IDB_SUNFLOWERRIGHTWALK_9, RGB(255, 255, 255));
+		DeadAnimation.AddBitmap(IDB_SUNFLOWER_DEAD_0, RGB(255, 255, 255));
+		DeadAnimation.AddBitmap(IDB_SUNFLOWER_DEAD_1, RGB(255, 255, 255));
+		DeadAnimation.AddBitmap(IDB_SUNFLOWER_DEAD_2, RGB(255, 255, 255));
+		DeadAnimation.AddBitmap(IDB_SUNFLOWER_DEAD_3, RGB(255, 255, 255));
+		DeadAnimation.AddBitmap(IDB_SUNFLOWER_DEAD_4, RGB(255, 255, 255));
 	}
 
 	
@@ -125,6 +131,7 @@ namespace game_framework {
 		const int STEP_SIZE = 10;
 		animation.OnMove();
 		moveRightAnimation.OnMove();
+		DeadAnimation.OnMove();
 		/*if (isMovingLeft)
 		{
 			if (mymap->isSpace(GetX1(), GetY1()) && mymap->isSpace(GetX1(), GetY2() - 20)) // 當x座標還沒碰到牆
@@ -208,12 +215,26 @@ namespace game_framework {
 	void CEnemy::OnShow(gameMap *mymap)
 	{
 		//animation.SetTopLeft(mymap->ScreenX(x - GetWidth() / 2), mymap->ScreenY(y - GetHeight() / 2));
-		if (isMovingRight)
+		if (enemyHP <= 0)
 		{
-			moveRightAnimation.SetTopLeft(mymap->ScreenX(x), mymap->ScreenY(y));
-			moveRightAnimation.OnShow();
-
+			DeadAnimation.SetTopLeft(mymap->ScreenX(x), mymap->ScreenY(y));
+			DeadAnimation.OnShow();
 		}
+		else
+		{
+			if (isMovingRight)
+			{
+				moveRightAnimation.SetTopLeft(mymap->ScreenX(x), mymap->ScreenY(y));
+				moveRightAnimation.OnShow();
+
+			}
+			else
+			{
+				animation.SetTopLeft(mymap->ScreenX(x), mymap->ScreenY(y));
+				animation.OnShow();
+			}
+		}
+		
 		/*
 		else if (isMovingLeft)
 		{
@@ -226,11 +247,7 @@ namespace game_framework {
 			jumpAnimation.OnShow();
 		}
 		*/
-		else
-		{
-			animation.SetTopLeft(mymap->ScreenX(x), mymap->ScreenY(y));
-			animation.OnShow();
-		}
-
+	
 	}
+
 }
