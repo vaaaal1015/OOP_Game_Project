@@ -358,7 +358,10 @@ void CGameStateRun::OnShow()
 	//
 	background.ShowBitmap();// 貼上背景圖
 	gamemap.OnShow();
-	enemy.OnShow(&gamemap);
+	if (enemy.GetHP() > 0)     //敵人還沒死亡，動畫持續
+	{
+		enemy.OnShow(&gamemap);
+	}
 	help.ShowBitmap();					// 貼上說明圖
 	//hits_left.ShowBitmap();
 	enemy_hp.ShowBitmap();
