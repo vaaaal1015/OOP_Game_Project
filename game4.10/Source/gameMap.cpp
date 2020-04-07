@@ -12,29 +12,13 @@
 using namespace std;
 
 namespace game_framework {
-	gameMap::gameMap()
+	gameMap::gameMap(string fileName)
 		:X(0), Y(0), MW(MIN_MAP_SIZE), MH(MIN_MAP_SIZE), sx(0), sy(0)  //圖片為10*10 初始螢幕畫面位於0,475
 	{
-		/*for (int i = 0; i < 48; i++)//48格
-		{
-			for (int j = 0; j < 64; j++)
-			{
-				if (i == 32)          //地表
-				{
-					map[i][j] = 1;    //草地
-				}
-				else if (i > 32)
-				{
-					map[i][j] = 2;    //土
-				}
-				else
-				{
-					map[i][j] = 0;    //空氣
-				}
-			}
-		}*/
+
 		fstream mapFile;
-		mapFile.open("MapFile.txt", ios::in);
+		string mapLocation = "Map\\" + fileName;
+		mapFile.open(mapLocation, ios::in);
 		if (!mapFile) cout << "error";
 		int i = 0;
 		while (!mapFile.eof())
@@ -58,22 +42,20 @@ namespace game_framework {
 			}
 			i += 1;
 		}
-		//CreatTxt();
 	}
-	void gameMap::SetSXSY(int x, int y)   //設定
+	void gameMap::SetSXSY(int x, int y)   // 設定
 	{
 		sx = x;
 		sy = y;
 
 	}
-	bool gameMap::isSpace(int x, int y)   // (x, y) 為地圖的點座標
+	bool gameMap::isSpace(int x, int y)   // (x, y)為地圖的點座標
 	{
 		int gx = x / MIN_MAP_SIZE; // 轉換為格座標(整數除法)
 		int gy = y / MIN_MAP_SIZE;  // 轉換為格座標(整數除法) 
-		//CreatTxt();
+
 		if (map[gy][gx] == 0) return true;
 		else return false;
-		//return map[gx][gy] == 0;
 	}
 	void gameMap::LoadBitmap()
 	{
@@ -117,44 +99,9 @@ namespace game_framework {
 	int gameMap::ScreenX(int x) // x 為地圖的點座標
 	{
 		return x - sx; // 回傳螢幕的 x 點座標
-		//return x - sx + SIZE_X / 2; // 回傳螢幕的 x 點座標
 	}
 	int gameMap::ScreenY(int y) // y 為地圖的 y 點座標
 	{
 		return y - sy; // 回傳螢幕的點座標
-		//return y - sy + SIZE_Y / 2; // 回傳螢幕的點座標
-	}
-
-	void gameMap::CreatTxt()//建立txt檔案
-	{
-		fstream file;      //宣告fstream物件
-		fstream file2;
-		fstream file3;
-		file.open("testMap.txt", ios::out | ios::trunc);
-		file2.open("testMapBool.txt", ios::out | ios::trunc);
-		file3.open("testMapAll.txt", ios::out | ios::trunc);
-
-		//開啟檔案為輸出狀態，若檔案已存在則清除檔案內容重新寫入
-
-		for (int i = 0; i < 48; i++) {
-			for (int j = 0; j < 64; j++) {
-				file << map[i][j];		//將str寫入檔案
-				if (map[i][j] == 0) file2 << ' ';
-				else file2 << 'X';
-			}
-			file << endl;
-			file2 << endl;
-		}
-
-		file.close();       //關閉檔案
-		file2.close();
-
-		for (int i = 0; i < 480; i++) {
-			for (int j = 0; j < 640; j++) {
-				file3 << isSpace(j, i);		//將str寫入檔案
-			}
-			file3 << endl;
-		}
-		file3.close();
 	}
 }

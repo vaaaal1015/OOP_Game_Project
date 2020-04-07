@@ -1,7 +1,7 @@
 namespace game_framework {
 	class gameMap {
 	public:
-		gameMap();
+		gameMap(string fileName);
 		void LoadBitmap();    //載入地圖
 		void OnShow();		  //顯示地圖
 		bool isSpace(int x, int y);  //判斷是否為空氣，是就回傳True
@@ -17,6 +17,5 @@ namespace game_framework {
 		const int X, Y;		  //大地圖左上角x,y座標
 		const int MW, MH;	  //每張小地圖的寬高度
 		int sx, sy;			  //(sx, sy)為螢幕(的左上角)在地圖上的點座標
-		void CreatTxt();//testMap
 	};
 }

@@ -237,8 +237,8 @@ void CGameStateRun::OnMove()							// 移動遊戲元素
 	// 移動擦子
 	//
 	enemy_hp.SetInteger(enemy.GetHP());
-	enemy.OnMove(&gamemap, &hero);
-	hero.OnMove(&gamemap);
+	enemy.OnMove(gamemap, &hero);
+	hero.OnMove(gamemap);
 	//
 	// 判斷擦子是否碰到球
 	//
@@ -254,7 +254,8 @@ void CGameStateRun::OnInit()  								// 遊戲的初值及圖形設定
 	//
 	// 開始載入資料
 	//
-	gamemap.LoadBitmap();
+	gamemap = new gameMap("level_1.txt");
+	gamemap->LoadBitmap();
 	enemy.LoadBitmap();
 	hero.LoadBitmap();
 	background.LoadBitmap(IDB_MAPBACKGROUND);					// 載入背景的圖形
@@ -357,15 +358,15 @@ void CGameStateRun::OnShow()
 	//  貼上背景圖、撞擊數、球、擦子、彈跳的球
 	//
 	background.ShowBitmap();// 貼上背景圖
-	gamemap.OnShow();
+	gamemap->OnShow();
 	if (enemy.GetHP() > 0)     //敵人還沒死亡，動畫持續
 	{
-		enemy.OnShow(&gamemap);
+		enemy.OnShow(gamemap);
 	}
 	help.ShowBitmap();					// 貼上說明圖
 	//hits_left.ShowBitmap();
 	enemy_hp.ShowBitmap();
-	hero.OnShow(&gamemap);			// 貼上英雄
+	hero.OnShow(gamemap);			// 貼上英雄
 	//
 	//  貼上左上及右下角落的圖
 	//

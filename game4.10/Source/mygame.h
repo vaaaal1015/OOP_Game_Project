@@ -102,7 +102,7 @@ namespace game_framework {
 		CEnemy          enemy;      // 敵人
 		CInteger		hits_left;	// 剩下的撞擊數
 		CInteger		enemy_hp;	// 敵人血量
-		gameMap			gamemap;	// 地圖
+		gameMap*			gamemap;	// 地圖
 	};
 
 	/////////////////////////////////////////////////////////////////////////////
