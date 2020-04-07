@@ -213,7 +213,6 @@ void CGameStateRun::OnBeginState()
 	const int BACKGROUND_X = 0;
 	const int ANIMATION_SPEED = 15;
 	hero.Initialize();
-	enemy.Initialize();
 	background.SetTopLeft(BACKGROUND_X,0);				// 設定背景的起始座標
 	help.SetTopLeft(0, SIZE_Y - help.Height());			// 設定說明圖的起始座標
 	//hits_left.SetInteger(HITS_LEFT);					// 指定剩下的撞擊數
@@ -236,9 +235,9 @@ void CGameStateRun::OnMove()							// 移動遊戲元素
 	//
 	// 移動擦子
 	//
-	enemy_hp.SetInteger(enemy.GetHP());
-	enemy.OnMove(gamemap, &hero);
-	hero.OnMove(gamemap);
+	//enemy_hp.SetInteger(enemy.GetHP());
+
+	hero.OnMove();
 	//
 	// 判斷擦子是否碰到球
 	//
@@ -256,7 +255,6 @@ void CGameStateRun::OnInit()  								// 遊戲的初值及圖形設定
 	//
 	gamemap = new gameMap("level_1.txt");
 	gamemap->LoadBitmap();
-	enemy.LoadBitmap();
 	hero.LoadBitmap();
 	background.LoadBitmap(IDB_MAPBACKGROUND);					// 載入背景的圖形
 	//
@@ -290,6 +288,8 @@ void CGameStateRun::OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags)
 	const char KEY_RIGHT = 0x27; // keyboard右箭頭
 	const char KEY_DOWN  = 0x28; // keyboard下箭頭
 	const char KEY_X = 0x58;	 // keyboard X
+	const char KEY_F1 = 0x70;	 // keyboard F1
+	const char KEY_F2 = 0x71;	 // keyboard F2
 	if (nChar == KEY_LEFT)
 		hero.SetMovingLeft(true);
 	if (nChar == KEY_RIGHT)
@@ -300,6 +300,10 @@ void CGameStateRun::OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags)
 		hero.SetMovingDown(true);
 	if (nChar == KEY_X)
 		hero.SetHeroAttack(true);
+	if (nChar == KEY_F1)
+		hero.SetMap(0);
+	if (nChar == KEY_F2)
+		hero.SetMap(1);
 }
 
 void CGameStateRun::OnKeyUp(UINT nChar, UINT nRepCnt, UINT nFlags)
@@ -359,14 +363,10 @@ void CGameStateRun::OnShow()
 	//
 	background.ShowBitmap();// 貼上背景圖
 	gamemap->OnShow();
-	if (enemy.GetHP() > 0)     //敵人還沒死亡，動畫持續
-	{
-		enemy.OnShow(gamemap);
-	}
 	help.ShowBitmap();					// 貼上說明圖
 	//hits_left.ShowBitmap();
 	enemy_hp.ShowBitmap();
-	hero.OnShow(gamemap);			// 貼上英雄
+	hero.OnShow();			// 貼上英雄
 	//
 	//  貼上左上及右下角落的圖
 	//

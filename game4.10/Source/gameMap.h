@@ -8,6 +8,8 @@ namespace game_framework {
 		void SetSXSY(int x, int y);   //設定(sx, sy)為螢幕(的左上角)在地圖上的點座標
 		int ScreenX(int x);
 		int ScreenY(int y);
+		int GetBlockY(int y);
+
 	protected:
 		CMovingBitmap ground; //建立草地圖案
 		CMovingBitmap ground1; //建立土地圖案

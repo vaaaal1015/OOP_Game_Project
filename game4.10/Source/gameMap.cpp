@@ -57,6 +57,12 @@ namespace game_framework {
 		if (map[gy][gx] == 0) return true;
 		else return false;
 	}
+	int gameMap::GetBlockY(int y)
+	{
+		int gy = y / MIN_MAP_SIZE;  // 轉換為格座標(整數除法)
+		return gy * MH;
+	}
+
 	void gameMap::LoadBitmap()
 	{
 		ground.LoadBitmap(IDB_MAPGROUND, RGB(255, 255, 255));//載入草地圖案

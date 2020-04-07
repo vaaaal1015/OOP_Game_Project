@@ -75,7 +75,7 @@
 #define SHOW_GAME_CYCLE_TIME false		// 是否在debug mode顯示cycle time
 #define ENABLE_GAME_PAUSE	 true		// 是否允許以 Ctrl-Q 暫停遊戲
 #define ENABLE_AUDIO		 true		// 啟動音效介面
-#define MIN_MAP_SIZE		 30			// 小地圖大小 越大地圖被放越大 鋸齒越明顯
+#define MIN_MAP_SIZE		 32			// 小地圖大小 越大地圖被放越大 鋸齒越明顯
 
 /////////////////////////////////////////////////////////////////////////////
 // 定義CGame及CGameState所使用的三個狀態常數

@@ -19,18 +19,19 @@ namespace game_framework {
 		void Initialize();				// 設定英雄為初始值
 		void LoadBitmap();				// 載入圖形
 		void setHeroDirection(string direction);	// 設定人物面對的方向		
-		void OnMove(gameMap *mymap);				// 移動英雄
-		void OnShow(gameMap *mymap);				// 將英雄圖形貼到畫面
+		void OnMove();					// 移動英雄
+		void OnShow();					// 將英雄圖形貼到畫面
 		void SetMovingDown(bool flag);	// 設定是否正在往下移動
 		void SetMovingLeft(bool flag);	// 設定是否正在往左移動
 		void SetMovingRight(bool flag); // 設定是否正在往右移動
 		void SetMovingUp(bool flag);	// 設定是否正在往上移動
 		void SetHeroAttack(bool flag);	// 設定是否正在往上移動
 		void SetXY(int nx, int ny);		// 設定英雄左上角座標
-		int HitEnemyAndReternDamage(int x1, int x2, int y1, int y2);  // 判斷有無敵人 x1(敵人左邊x座標),x2(敵人右邊座標),y1(敵人上方y座標),y2(敵人下方y座標)
-		void beHit(int objectX, int objectY, int objectDamage);  //判定物體擊中
+		int HitEnemyAndReternDamage(int x1, int x2, int y1, int y2);	// 判斷有無敵人 x1(敵人左邊x座標),x2(敵人右邊座標),y1(敵人上方y座標),y2(敵人下方y座標)
+		void beHit(int objectX, int objectY, int objectDamage);			//判定物體擊中
 		void SetHeroHP(int inputHP);	// 設定主角HP值
 		bool isAttacking;				// 正在攻擊
+		void SetMap(int index);			// 
 
 	protected:
 		CAnimation animation;			// 英雄的動畫(向右)
@@ -57,5 +58,9 @@ namespace game_framework {
 		bool rising;					// true表上升、false表下降
 		int initial_velocity;			// 初始速度
 		int velocity;					// 目前的速度(點/次)
+
+	private:
+		vector<gameMap*> maps;
+		gameMap* currentMap;
 	};
 }
