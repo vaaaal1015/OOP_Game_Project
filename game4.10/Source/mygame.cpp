@@ -321,9 +321,10 @@ void CGameStateRun::OnKeyUp(UINT nChar, UINT nRepCnt, UINT nFlags)
 		hero.SetMovingUp(false);
 	if (nChar == KEY_DOWN)
 		hero.SetMovingDown(false);
+	/*
 	if (nChar == KEY_X)
 		hero.SetHeroAttack(false);
-
+	*/
 }
 
 void CGameStateRun::OnLButtonDown(UINT nFlags, CPoint point)  // 處理滑鼠的動作

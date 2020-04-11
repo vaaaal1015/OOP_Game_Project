@@ -18,6 +18,11 @@ namespace game_framework {
 		Initialize();
 	}
 
+	CHero::~CHero()
+	{
+		maps.clear();
+	}
+
 	int CHero::GetX1()
 	{
 		return x;
@@ -96,15 +101,16 @@ namespace game_framework {
 
 		animation.SetDelayCount(3);
 		animation1.SetDelayCount(3);
-		sword.SetDelayCount(1);
-		swordAttack.SetDelayCount(1);
-		swordAttack1.SetDelayCount(1);
-		HeroAttackMovement.SetDelayCount(3);
-		HeroAttackMovement1.SetDelayCount(3);
-		sword1.SetDelayCount(1);
+		sword.SetDelayCount(3);
+		swordAttack.SetDelayCount(5);
+		swordAttack1.SetDelayCount(5);
+		HeroAttackMovement.SetDelayCount(5);
+		HeroAttackMovement1.SetDelayCount(5);
+		sword1.SetDelayCount(3);
 		moveRightAnimation.SetDelayCount(3);
 		jumpAnimation.SetDelayCount(5);
 		moveLeftAnimation.SetDelayCount(3);
+		SetAttackDelayCount = AttackDelayCount = 30;
 
 		heroHP = 100;						// 主角預設血量為100
 		heroAttackDamage = 5;				// 主角預設攻擊力為5
@@ -200,6 +206,9 @@ namespace game_framework {
 		moveRightAnimation.OnMove();
 		moveLeftAnimation.OnMove();
 		jumpAnimation.OnMove();
+
+		if(AttackDelayCount !=0) AttackDelayCount--;
+
 		if (isMovingLeft)
 		{
 			setHeroDirection("left");   //角色向左看
@@ -268,7 +277,14 @@ namespace game_framework {
 
 	void CHero::SetHeroAttack(bool flag)
 	{
-		isAttacking = flag;
+		if (AttackDelayCount == 0 && flag == true) {
+			swordAttack1.Reset();
+			swordAttack.Reset();
+			HeroAttackMovement.Reset();
+			HeroAttackMovement1.Reset();
+			isAttacking = true;
+			AttackDelayCount = SetAttackDelayCount;
+		}
 	}
 
 	void CHero::SetXY(int nx, int ny)
@@ -283,13 +299,13 @@ namespace game_framework {
 
 	void CHero::OnShow()
 	{
+		TRACE("delay : %d\n", AttackDelayCount);
 		currentMap->OnShow();
 
 		if (isMovingRight)		// 向右走
 		{
 			moveRightAnimation.SetTopLeft(currentMap->ScreenX(x), currentMap->ScreenY(y));
 			moveRightAnimation.OnShow();
-
 		}
 		else if (isMovingLeft)	// 向左走
 		{
@@ -307,11 +323,15 @@ namespace game_framework {
 			{
 				HeroAttackMovement.SetTopLeft(currentMap->ScreenX(x), currentMap->ScreenY(y));
 				HeroAttackMovement.OnShow();
+				swordAttack.SetTopLeft(currentMap->ScreenX(x - 40), currentMap->ScreenY(y));
+				swordAttack.OnShow();
 			}
 			else
 			{
 				HeroAttackMovement1.SetTopLeft(currentMap->ScreenX(x), currentMap->ScreenY(y));
 				HeroAttackMovement1.OnShow();
+				swordAttack1.SetTopLeft(currentMap->ScreenX(x - 75), currentMap->ScreenY(y));
+				swordAttack1.OnShow();
 			}
 		}
 		else
@@ -334,13 +354,16 @@ namespace game_framework {
 			{
 				swordAttack.SetTopLeft(currentMap->ScreenX(x - 40), currentMap->ScreenY(y));
 				swordAttack.OnShow();
-				if (swordAttack.IsFinalBitmap()) SetHeroAttack(false);
 			}
 			else
 			{
 				swordAttack1.SetTopLeft(currentMap->ScreenX(x - 75), currentMap->ScreenY(y));
 				swordAttack1.OnShow();
-				if (swordAttack1.IsFinalBitmap()) SetHeroAttack(false);
+			}
+
+			if (swordAttack.IsFinalBitmap() || swordAttack1.IsFinalBitmap())
+			{
+				isAttacking = false;
 			}
 		}
 		else

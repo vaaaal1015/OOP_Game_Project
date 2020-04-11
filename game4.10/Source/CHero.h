@@ -8,6 +8,7 @@ namespace game_framework {
 	{
 	public:
 		CHero();
+		~CHero();
 		int  GetX1();					// 英雄左上角 x 座標
 		int  GetY1();					// 英雄左上角 y 座標
 		int  GetX2();					// 英雄右下角 x 座標
@@ -58,6 +59,8 @@ namespace game_framework {
 		bool rising;					// true表上升、false表下降
 		int initial_velocity;			// 初始速度
 		int velocity;					// 目前的速度(點/次)
+		int SetAttackDelayCount;		// 設定攻擊延遲時間
+		int AttackDelayCount;			// 攻擊延遲時間
 
 	private:
 		vector<gameMap*> maps;
