@@ -317,8 +317,10 @@ void CGameStateRun::OnKeyUp(UINT nChar, UINT nRepCnt, UINT nFlags)
 		hero.SetMovingLeft(false);
 	if (nChar == KEY_RIGHT)
 		hero.SetMovingRight(false);
+	/*
 	if (nChar == KEY_UP)
 		hero.SetMovingUp(false);
+	*/
 	if (nChar == KEY_DOWN)
 		hero.SetMovingDown(false);
 	/*

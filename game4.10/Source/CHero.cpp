@@ -102,13 +102,13 @@ namespace game_framework {
 		animation.SetDelayCount(3);
 		animation1.SetDelayCount(3);
 		sword.SetDelayCount(3);
-		swordAttack.SetDelayCount(5);
-		swordAttack1.SetDelayCount(5);
-		HeroAttackMovement.SetDelayCount(5);
-		HeroAttackMovement1.SetDelayCount(5);
+		swordAttack.SetDelayCount(3);
+		swordAttack1.SetDelayCount(3);
+		HeroAttackMovement.SetDelayCount(3);
+		HeroAttackMovement1.SetDelayCount(3);
 		sword1.SetDelayCount(3);
 		moveRightAnimation.SetDelayCount(3);
-		jumpAnimation.SetDelayCount(5);
+		jumpAnimation.SetDelayCount(3);
 		moveLeftAnimation.SetDelayCount(3);
 		SetAttackDelayCount = AttackDelayCount = 30;
 
@@ -272,6 +272,7 @@ namespace game_framework {
 
 	void CHero::SetMovingUp(bool flag)
 	{
+		if (isMovingUp == false) jumpAnimation.Reset();
 		isMovingUp = flag;
 	}
 
@@ -299,10 +300,19 @@ namespace game_framework {
 
 	void CHero::OnShow()
 	{
-		TRACE("delay : %d\n", AttackDelayCount);
 		currentMap->OnShow();
 
-		if (isMovingRight)		// 向右走
+		if (isMovingUp)	//跳躍
+		{
+			jumpAnimation.SetTopLeft(currentMap->ScreenX(x), currentMap->ScreenY(y));
+			jumpAnimation.OnShow();
+			if (jumpAnimation.IsFinalBitmap())
+			{
+				isMovingUp = false;
+				jumpAnimation.Reset();
+			}
+		}
+		else if (isMovingRight)		// 向右走
 		{
 			moveRightAnimation.SetTopLeft(currentMap->ScreenX(x), currentMap->ScreenY(y));
 			moveRightAnimation.OnShow();
@@ -311,11 +321,6 @@ namespace game_framework {
 		{
 			moveLeftAnimation.SetTopLeft(currentMap->ScreenX(x), currentMap->ScreenY(y));
 			moveLeftAnimation.OnShow();
-		}
-		else if (isMovingUp)	//跳躍
-		{
-			jumpAnimation.SetTopLeft(currentMap->ScreenX(x), currentMap->ScreenY(y));
-			jumpAnimation.OnShow();
 		}
 		else if (isAttacking)
 		{
