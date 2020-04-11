@@ -7,10 +7,6 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "game", "game.vcxproj", "{DD
 EndProject
 Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "Setup", "gameSetup.vdproj", "{984E2E2A-0DB0-4F9D-9E5C-A3C536609A39}"
 EndProject
-Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "Great_Sword_setup", "..\Great_Sword_setup\Great_Sword_setup.vdproj", "{296DD79E-2FE0-46EF-9359-D5159F36A19A}"
-EndProject
-Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "GreatSword_Setup_1", "GreatSword_Setup_1\GreatSword_Setup_1.vdproj", "{D2962C8D-1CC3-4ECC-8F84-43C898BB4EC4}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Win32 = Debug|Win32
@@ -24,10 +20,6 @@ Global
 		{984E2E2A-0DB0-4F9D-9E5C-A3C536609A39}.Debug|Win32.ActiveCfg = Debug
 		{984E2E2A-0DB0-4F9D-9E5C-A3C536609A39}.Release|Win32.ActiveCfg = Release
 		{984E2E2A-0DB0-4F9D-9E5C-A3C536609A39}.Release|Win32.Build.0 = Release
-		{296DD79E-2FE0-46EF-9359-D5159F36A19A}.Debug|Win32.ActiveCfg = Debug
-		{296DD79E-2FE0-46EF-9359-D5159F36A19A}.Release|Win32.ActiveCfg = Release
-		{D2962C8D-1CC3-4ECC-8F84-43C898BB4EC4}.Debug|Win32.ActiveCfg = Debug
-		{D2962C8D-1CC3-4ECC-8F84-43C898BB4EC4}.Release|Win32.ActiveCfg = Release
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
