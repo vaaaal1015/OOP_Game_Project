@@ -39,7 +39,8 @@ namespace game_framework {
 		CAnimation animation1;			// 英雄的動畫(向左)
 		CAnimation moveRightAnimation;  // 向右移動動畫
 		CAnimation moveLeftAnimation;   // 向左移動動畫
-		CAnimation jumpAnimation;		// 跳躍動畫
+		CAnimation jumpAnimation;		// 跳躍動畫(向右)
+		CAnimation jumpAnimation1;		// 跳躍動畫(向左)
 		CAnimation HeroAttackMovement;  // 英雄攻擊動畫<向右)
 		CAnimation HeroAttackMovement1;	// 英雄攻擊動畫<向左)
 		CAnimation sword;				// 載入劍的動畫(向右)

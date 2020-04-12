@@ -460,5 +460,20 @@
     <Image Include="RES\Enemy\SmileSunFlower\dead\SunFlower_dead_5.bmp">
       <Filter>Resource Files</Filter>
     </Image>
+    <Image Include="RES\charactor\jump1\HeroJump_3_1.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\charactor\jump1\HeroJump_4_1.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\charactor\jump1\HeroJump_5_1.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\charactor\jump1\HeroJump_6_1.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\charactor\jump1\HeroJump_7_1.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
   </ItemGroup>
 </Project>

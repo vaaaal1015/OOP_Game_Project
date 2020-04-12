@@ -109,8 +109,9 @@ namespace game_framework {
 		sword1.SetDelayCount(3);
 		moveRightAnimation.SetDelayCount(3);
 		jumpAnimation.SetDelayCount(3);
+		jumpAnimation1.SetDelayCount(3);
 		moveLeftAnimation.SetDelayCount(3);
-		SetAttackDelayCount = AttackDelayCount = 30;
+		SetAttackDelayCount = AttackDelayCount = 15;
 
 		heroHP = 100;						// 主角預設血量為100
 		heroAttackDamage = 5;				// 主角預設攻擊力為5
@@ -151,6 +152,12 @@ namespace game_framework {
 		jumpAnimation.AddBitmap(IDB_HEROJUMP_3, RGB(255, 255, 255));
 		jumpAnimation.AddBitmap(IDB_HEROJUMP_2, RGB(255, 255, 255));
 		jumpAnimation.AddBitmap(IDB_HEROJUMP_1, RGB(255, 255, 255));
+
+		jumpAnimation1.AddBitmap(IDB_HEROJUMP_0_1, RGB(255, 255, 255));
+		jumpAnimation1.AddBitmap(IDB_HEROJUMP_1_1, RGB(255, 255, 255));
+		jumpAnimation1.AddBitmap(IDB_HEROJUMP_2_1, RGB(255, 255, 255));
+		jumpAnimation1.AddBitmap(IDB_HEROJUMP_3_1, RGB(255, 255, 255));
+		jumpAnimation1.AddBitmap(IDB_HEROJUMP_4_1, RGB(255, 255, 255));
 
 		sword.AddBitmap(IDB_sword_1, RGB(255, 255, 255));
 		sword.AddBitmap(IDB_sword_2, RGB(255, 255, 255));
@@ -206,6 +213,7 @@ namespace game_framework {
 		moveRightAnimation.OnMove();
 		moveLeftAnimation.OnMove();
 		jumpAnimation.OnMove();
+		jumpAnimation1.OnMove();
 
 		if(AttackDelayCount !=0) AttackDelayCount--;
 
@@ -285,6 +293,7 @@ namespace game_framework {
 			HeroAttackMovement1.Reset();
 			isAttacking = true;
 			AttackDelayCount = SetAttackDelayCount;
+			isMovingLeft = isMovingRight = isMovingUp = isMovingDown = false;   //角色不能邊走邊攻擊
 		}
 	}
 
@@ -304,13 +313,27 @@ namespace game_framework {
 
 		if (isMovingUp)	//跳躍
 		{
-			jumpAnimation.SetTopLeft(currentMap->ScreenX(x), currentMap->ScreenY(y));
-			jumpAnimation.OnShow();
-			if (jumpAnimation.IsFinalBitmap())
+			if (faceDirection == "right")
 			{
-				isMovingUp = false;
-				jumpAnimation.Reset();
+				jumpAnimation.SetTopLeft(currentMap->ScreenX(x), currentMap->ScreenY(y));
+				jumpAnimation.OnShow();
+				if (jumpAnimation.IsFinalBitmap())
+				{
+					isMovingUp = false;
+					jumpAnimation.Reset();
+				}
 			}
+			else
+			{
+				jumpAnimation1.SetTopLeft(currentMap->ScreenX(x), currentMap->ScreenY(y));
+				jumpAnimation1.OnShow();
+				if (jumpAnimation1.IsFinalBitmap())
+				{
+					isMovingUp = false;
+					jumpAnimation1.Reset();
+				}
+			}
+			
 		}
 		else if (isMovingRight)		// 向右走
 		{

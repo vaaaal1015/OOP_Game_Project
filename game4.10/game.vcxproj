@@ -339,6 +339,11 @@
     <Image Include="RES\charactor\attack\hero_attack_1.bmp" />
     <Image Include="RES\charactor\attack\hero_attack_2.bmp" />
     <Image Include="RES\charactor\attack\hero_attack_3.bmp" />
+    <Image Include="RES\charactor\jump1\HeroJump_3_1.bmp" />
+    <Image Include="RES\charactor\jump1\HeroJump_4_1.bmp" />
+    <Image Include="RES\charactor\jump1\HeroJump_5_1.bmp" />
+    <Image Include="RES\charactor\jump1\HeroJump_6_1.bmp" />
+    <Image Include="RES\charactor\jump1\HeroJump_7_1.bmp" />
     <Image Include="RES\charactor\jump\HeroJump_0.bmp" />
     <Image Include="RES\charactor\jump\HeroJump_1.bmp" />
     <Image Include="RES\charactor\jump\HeroJump_2.bmp" />

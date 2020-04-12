@@ -145,6 +145,12 @@
 #define IDB_SUNFLOWER_DEAD_3            248
 #define IDB_BITMAP25                    249
 #define IDB_SUNFLOWER_DEAD_4            249
+#define IDB_HEROJUMP_0_1                250
+#define IDB_HEROJUMP_1_1                251
+#define IDB_HEROJUMP_2_1                252
+#define IDB_HEROJUMP_3_1                253
+#define IDB_BITMAP27                    254
+#define IDB_HEROJUMP_4_1                254
 #define IDC_README                      1001
 #define ID_FILE_PAUSE                   32771
 #define ID_TOGGLE_FULLSCREEN            32772
@@ -157,7 +163,7 @@
 #ifdef APSTUDIO_INVOKED
 #ifndef APSTUDIO_READONLY_SYMBOLS
 #define _APS_3D_CONTROLS                     1
-#define _APS_NEXT_RESOURCE_VALUE        250
+#define _APS_NEXT_RESOURCE_VALUE        255
 #define _APS_NEXT_COMMAND_VALUE         32776
 #define _APS_NEXT_CONTROL_VALUE         1003
 #define _APS_NEXT_SYMED_VALUE           101

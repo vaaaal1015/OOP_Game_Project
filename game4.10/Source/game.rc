@@ -284,6 +284,16 @@ IDB_SUNFLOWER_DEAD_3    BITMAP                  "..\\RES\\Enemy\\SmileSunFlower\
 
 IDB_SUNFLOWER_DEAD_4    BITMAP                  "..\\RES\\Enemy\\SmileSunFlower\\dead\\SunFlower_dead_5.bmp"
 
+IDB_HEROJUMP_0_1        BITMAP                  "..\\RES\\charactor\\jump1\\HeroJump_3_1.bmp"
+
+IDB_HEROJUMP_1_1        BITMAP                  "..\\RES\\charactor\\jump1\\HeroJump_4_1.bmp"
+
+IDB_HEROJUMP_2_1        BITMAP                  "..\\RES\\charactor\\jump1\\HeroJump_5_1.bmp"
+
+IDB_HEROJUMP_3_1        BITMAP                  "..\\RES\\charactor\\jump1\\HeroJump_6_1.bmp"
+
+IDB_HEROJUMP_4_1        BITMAP                  "..\\RES\\charactor\\jump1\\HeroJump_7_1.bmp"
+
 
 /////////////////////////////////////////////////////////////////////////////
 //
