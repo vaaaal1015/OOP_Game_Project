@@ -123,6 +123,9 @@
 #include <string.h>
 #include "audio.h"
 #include "gamelib.h"
+#include "CEnemy.h"
+#include "gameMap.h"
+#include "CHero.h"
 #include "mygame.h"
 
 namespace game_framework {

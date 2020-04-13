@@ -1,4 +1,5 @@
 #include "stdafx.h"
+/*
 #include "Resource.h"
 #include <mmsystem.h>
 #include <ddraw.h>
@@ -88,3 +89,4 @@ namespace game_framework {
 		}
 	}
 }
+*/

@@ -4,11 +4,10 @@ namespace game_framework {
 	// 看懂就可以改寫成自己的程式了
 	/////////////////////////////////////////////////////////////////////////////
 
-	class gameMap;
 	class CEnemy
 	{
 	public:
-		CEnemy(gameMap* pointer);
+		CEnemy();
 		int  GetX1();					// 敵人左上角 x 座標
 		int  GetY1();					// 敵人左上角 y 座標
 		int  GetX2();					// 敵人右下角 x 座標
@@ -17,15 +16,18 @@ namespace game_framework {
 		int  GetHeight();				// 敵人的高
 		int	 GetCenterX();				// 敵人正中央的 x 座標
 		int	 GetCenterY();				// 敵人正中央的 y 座標
+		int  GetHP();					// 取得敵人的目前生命
 		void Initialize();				// 設定敵人為初始值
 		void LoadBitmap();				// 載入圖形
-		void OnMove();	// 移動敵人
-		void OnShow();	// 將敵人圖形貼到畫面
+		void OnMove(gameMap *mymap, CHero *hero);	// 移動敵人
+		void OnShow(gameMap *mymap);	// 將敵人圖形貼到畫面
 		void SetMovingDown(bool flag);	// 設定是否正在往下移動
 		void SetMovingLeft(bool flag);	// 設定是否正在往左移動
 		void SetMovingRight(bool flag); // 設定是否正在往右移動
 		void SetMovingUp(bool flag);	// 設定是否正在往上移動
 		void SetXY(int nx, int ny);		// 設定敵人左上角座標
+		bool isHit(int objectX, int objectY);  //判定物體擊中
+		void isHitByHero(CHero *hero);
 
 	protected:
 		CAnimation animation;		// 敵人的動畫
@@ -44,7 +46,5 @@ namespace game_framework {
 		bool rising;				// true表上升、false表下降
 		int initial_velocity;		// 初始速度
 		int velocity;				// 目前的速度(點/次)
-	private:
-		gameMap* currentMap;
 	};
 }

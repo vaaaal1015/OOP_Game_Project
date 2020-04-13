@@ -35,6 +35,9 @@
 #include <direct.h>
 #include <string.h>
 #include "gamelib.h"
+#include "CEnemy.h"
+#include "gameMap.h"
+#include "CHero.h"
 #include "mygame.h"
 #include "gameView.h"
 

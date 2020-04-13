@@ -38,8 +38,7 @@
  *      3. Use ShowInitProgress(percent) to display loading progress.
 */
 
-#include "gameMap.h"
-#include "CHero.h"
+//#include "CHero.h"
 
 namespace game_framework {
 	/////////////////////////////////////////////////////////////////////////////
@@ -100,7 +99,6 @@ namespace game_framework {
 		CHero			hero;		// 英雄
 		CInteger		hits_left;	// 剩下的撞擊數
 		CInteger		enemy_hp;	// 敵人血量
-		gameMap*			gamemap;	// 地圖
 	};
 
 	/////////////////////////////////////////////////////////////////////////////

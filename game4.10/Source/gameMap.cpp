@@ -4,6 +4,7 @@
 #include <ddraw.h>
 #include "audio.h"
 #include "gamelib.h"
+#include "CEnemy.h"
 #include "gameMap.h"
 #include <fstream>
 #include <string>
@@ -42,6 +43,9 @@ namespace game_framework {
 			}
 			i += 1;
 		}
+
+		allEnemy.push_back(new CEnemy(this));
+
 	}
 	void gameMap::SetSXSY(int x, int y)   // 設定
 	{
@@ -69,6 +73,8 @@ namespace game_framework {
 		ground1.LoadBitmap(IDB_MAPGROUND1);//載入泥土圖案
 		ground2.LoadBitmap(IDB_MAPSLIDE1, RGB(255, 255, 255));//載入斜坡1圖案
 		ground3.LoadBitmap(IDB_MAPSLIDE2);//載入斜坡2圖案
+
+		for (vector<CEnemy*>::iterator i = allEnemy.begin(); i != allEnemy.end(); i++) (*i)->LoadBitmap();
 	}
 	void gameMap::OnShow()
 	{
@@ -100,6 +106,11 @@ namespace game_framework {
 				}
 			}
 		}
+		for (vector<CEnemy*>::iterator i = allEnemy.begin(); i != allEnemy.end(); i++) (*i)->OnShow();
+	}
+
+	void gameMap::OnMove() {
+		for (vector<CEnemy*>::iterator i = allEnemy.begin(); i != allEnemy.end(); i++) (*i)->OnMove();
 	}
 
 	int gameMap::ScreenX(int x) // x 為地圖的點座標
