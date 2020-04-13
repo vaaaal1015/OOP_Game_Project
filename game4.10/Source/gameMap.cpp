@@ -47,6 +47,12 @@ namespace game_framework {
 		allEnemy.push_back(new CEnemy(this));
 
 	}
+
+	gameMap::~gameMap()
+	{
+		for (vector<CEnemy*>::iterator i = allEnemy.begin(); i != allEnemy.end(); i++) delete (*i);
+	}
+
 	void gameMap::SetSXSY(int x, int y)   // ³]©w
 	{
 		sx = x;

@@ -46,5 +46,7 @@ namespace game_framework {
 		int velocity;				// 目前的速度(點/次)
 	private:
 		gameMap* currentMap;
+		int moveingStepCount;
+		int moveingStep;
 	};
 }

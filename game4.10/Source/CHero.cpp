@@ -21,7 +21,7 @@ namespace game_framework {
 
 	CHero::~CHero()
 	{
-		maps.clear();
+		for (vector<gameMap*>::iterator i = maps.begin(); i != maps.end(); i++) delete (*i);
 	}
 
 	int CHero::GetX1()

@@ -2,6 +2,7 @@ namespace game_framework {
 	class gameMap {
 	public:
 		gameMap(string fileName);
+		~gameMap();
 		void LoadBitmap();    //載入地圖
 		void OnShow();		  //顯示地圖
 		bool isSpace(int x, int y);  //判斷是否為空氣，是就回傳True
@@ -10,6 +11,7 @@ namespace game_framework {
 		int ScreenY(int y);
 		int GetBlockY(int y);
 		void OnMove();
+
 
 	protected:
 		CMovingBitmap ground; //建立草地圖案
