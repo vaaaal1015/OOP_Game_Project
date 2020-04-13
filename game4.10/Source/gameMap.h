@@ -9,6 +9,7 @@ namespace game_framework {
 		int ScreenX(int x);
 		int ScreenY(int y);
 		int GetBlockY(int y);
+		void OnMove();
 
 	protected:
 		CMovingBitmap ground; //建立草地圖案
@@ -19,5 +20,7 @@ namespace game_framework {
 		const int X, Y;		  //大地圖左上角x,y座標
 		const int MW, MH;	  //每張小地圖的寬高度
 		int sx, sy;			  //(sx, sy)為螢幕(的左上角)在地圖上的點座標
+	private:
+		vector<CEnemy*> allEnemy;
 	};
 }

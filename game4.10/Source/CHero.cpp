@@ -4,6 +4,7 @@
 #include <ddraw.h>
 #include "audio.h"
 #include "gamelib.h"
+#include "CEnemy.h"
 #include "gameMap.h"
 #include "CHero.h"
 
@@ -279,6 +280,7 @@ namespace game_framework {
 		}
 		
 		currentMap->SetSXSY(GetCenterX() - SIZE_X / 2, GetCenterY() - SIZE_Y / 2);
+		currentMap->OnMove();
 	}
 
 	void CHero::SetMovingDown(bool flag)

@@ -57,6 +57,9 @@
 #include <ddraw.h>
 #include "audio.h"
 #include "gamelib.h"
+#include "CEnemy.h"
+#include "gameMap.h"
+#include "CHero.h"
 #include "mygame.h"
 
 namespace game_framework {
@@ -253,8 +256,6 @@ void CGameStateRun::OnInit()  								// 遊戲的初值及圖形設定
 	//
 	// 開始載入資料
 	//
-	gamemap = new gameMap("level_1.txt");
-	gamemap->LoadBitmap();
 	hero.LoadBitmap();
 	background.LoadBitmap(IDB_MAPBACKGROUND);					// 載入背景的圖形
 	//
@@ -365,7 +366,6 @@ void CGameStateRun::OnShow()
 	//  貼上背景圖、撞擊數、球、擦子、彈跳的球
 	//
 	background.ShowBitmap();// 貼上背景圖
-	gamemap->OnShow();
 	help.ShowBitmap();					// 貼上說明圖
 	//hits_left.ShowBitmap();
 	//enemy_hp.ShowBitmap();
