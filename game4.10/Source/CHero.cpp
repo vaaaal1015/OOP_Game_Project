@@ -108,8 +108,8 @@ namespace game_framework {
 		HeroAttackMovement1.SetDelayCount(3);
 		sword1.SetDelayCount(3);
 		moveRightAnimation.SetDelayCount(3);
-		jumpAnimation.SetDelayCount(3);
-		jumpAnimation1.SetDelayCount(3);
+		jumpAnimation.SetDelayCount(4);
+		jumpAnimation1.SetDelayCount(4);
 		moveLeftAnimation.SetDelayCount(3);
 		SetAttackDelayCount = AttackDelayCount = 15;
 
@@ -148,10 +148,11 @@ namespace game_framework {
 		moveLeftAnimation.AddBitmap(IDB_HEROMOVELEFT_4, RGB(255, 255, 255));
 		moveLeftAnimation.AddBitmap(IDB_HEROMOVELEFT_5, RGB(255, 255, 255));
 
-		jumpAnimation.AddBitmap(IDB_HEROJUMP_4, RGB(255, 255, 255));
 		jumpAnimation.AddBitmap(IDB_HEROJUMP_3, RGB(255, 255, 255));
-		jumpAnimation.AddBitmap(IDB_HEROJUMP_2, RGB(255, 255, 255));
-		jumpAnimation.AddBitmap(IDB_HEROJUMP_1, RGB(255, 255, 255));
+		jumpAnimation.AddBitmap(IDB_HEROJUMP_4, RGB(255, 255, 255));
+		jumpAnimation.AddBitmap(IDB_HEROJUMP_5, RGB(255, 255, 255));
+		jumpAnimation.AddBitmap(IDB_HEROJUMP_6, RGB(255, 255, 255));
+		jumpAnimation.AddBitmap(IDB_HEROJUMP_7, RGB(255, 255, 255));
 
 		jumpAnimation1.AddBitmap(IDB_HEROJUMP_0_1, RGB(255, 255, 255));
 		jumpAnimation1.AddBitmap(IDB_HEROJUMP_1_1, RGB(255, 255, 255));
@@ -280,8 +281,12 @@ namespace game_framework {
 
 	void CHero::SetMovingUp(bool flag)
 	{
-		if (isMovingUp == false) jumpAnimation.Reset();
-		isMovingUp = flag;
+		if (isMovingUp == false && flag == true)
+		{
+			jumpAnimation.Reset();
+			jumpAnimation1.Reset();
+			isMovingUp = true;
+		}
 	}
 
 	void CHero::SetHeroAttack(bool flag)
@@ -313,6 +318,7 @@ namespace game_framework {
 
 		if (isMovingUp)	//¸õÅD
 		{
+			TRACE("%d\n", jumpAnimation1.GetCurrentBitmapNumber());
 			if (faceDirection == "right")
 			{
 				jumpAnimation.SetTopLeft(currentMap->ScreenX(x), currentMap->ScreenY(y));
@@ -398,12 +404,12 @@ namespace game_framework {
 		{
 			if (faceDirection == "right")   // ÀR¤î¦V¥k¬Ý
 			{
-				sword.SetTopLeft(currentMap->ScreenX(x - 75), currentMap->ScreenY(y + 10));
+				sword.SetTopLeft(currentMap->ScreenX(x - 85), currentMap->ScreenY(y + 10));
 				sword.OnShow();
 			}
 			else							// ÀR¤î¦V¥ª¬Ý
 			{
-				sword1.SetTopLeft(currentMap->ScreenX(x + 37), currentMap->ScreenY(y + 10));
+				sword1.SetTopLeft(currentMap->ScreenX(x + 17), currentMap->ScreenY(y + 10));
 				sword1.OnShow();
 			}
 		}
