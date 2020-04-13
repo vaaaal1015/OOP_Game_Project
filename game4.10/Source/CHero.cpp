@@ -342,27 +342,21 @@ namespace game_framework {
 
 	void CHero::OnShow()
 	{
-		TRACE("%d\n", CurrentHP);
 		currentMap->OnShow();
 		LifeBarHead.SetTopLeft(currentMap->ScreenX(x-290), currentMap->ScreenY(y-205));
 		LifeBarHead.ShowBitmap();
 		int xMove = currentMap->ScreenX(x - 250);
 		int yMove = currentMap->ScreenY(y - 201);
 		float lengthOfLifeBar = ((float)CurrentHP / (float)FullHP) * 50;  //重新計算血條長度
-		if (lengthOfLifeBar > LifeBarRed.size())       //血條長度大於實際血量比例
+		if ((lengthOfLifeBar < LifeBarRed.size()) && (LifeBarRed.size() != 0))       //血條長度大於實際血量比例
 		{
+			TRACE("%f,%d\n", lengthOfLifeBar, LifeBarRed.size());
 			for (int i = LifeBarRed.size(); i > lengthOfLifeBar; i--)
 			{
 				LifeBarRed.pop_back();   //血條剪短
 			}
 		}
-		else										//血條長度小於實際血量比例
-		{
-			for (int i = LifeBarRed.size(); i < lengthOfLifeBar; i++)
-			{
-				LifeBarRed.push_back(new CMovingBitmap);   //血條加長
-			}
-		}
+		
 		for (vector<CMovingBitmap*>::iterator i = LifeBarRed.begin() ; i != LifeBarRed.end() ; i++)
 		{
 			(*i)->SetTopLeft(xMove, yMove);
