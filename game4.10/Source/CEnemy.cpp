@@ -49,16 +49,14 @@ namespace game_framework {
 		return animation.Height();
 	}
 
-	int CEnemy::GetCenterX()
+	void CEnemy::GetAttack(int x1, int x2, int y1, int y2, int damage)
 	{
-		return x + animation.Width() / 2;
+		//if ((GetX2() + 100 >= x1) && (x2 - 100 >= GetX1()) && (GetY2() >= y1) && (y2 >= GetY1()))
+		if ((GetX2() >= x1) && (x2 >= GetX1()) && (GetY2() >= y1) && (y2 >= GetY1()))
+		{
+			enemyHP -= damage;
+		}
 	}
-
-	int CEnemy::GetCenterY()
-	{
-		return y + animation.Height() / 2;
-	}
-
 
 	void CEnemy::Initialize()
 	{
@@ -72,7 +70,7 @@ namespace game_framework {
 
 		animation.SetDelayCount(3);
 		moveRightAnimation.SetDelayCount(3);
-		DeadAnimation.SetDelayCount(1);
+		DeadAnimation.SetDelayCount(3);
 		moveingStep = 10;
 		enemyHP = 100;							//敵人預設生命值
 		enemyAttackDamage = 10;					//敵人預設攻擊力
@@ -104,15 +102,16 @@ namespace game_framework {
 		DeadAnimation.AddBitmap(IDB_SUNFLOWER_DEAD_2, RGB(255, 255, 255));
 		DeadAnimation.AddBitmap(IDB_SUNFLOWER_DEAD_3, RGB(255, 255, 255));
 		DeadAnimation.AddBitmap(IDB_SUNFLOWER_DEAD_4, RGB(255, 255, 255));
+		DeadAnimation.AddBitmap(IDB_SUNFLOWER_DEAD_4, RGB(255, 255, 255));
 	}
 
 	
 	void CEnemy::OnMove()
 	{
-		const int STEP_SIZE = 2;
+		const int STEP_SIZE = 0;
 		animation.OnMove();
 		moveRightAnimation.OnMove();
-		DeadAnimation.OnMove();
+		if(enemyHP <= 0 && !DeadAnimation.IsFinalBitmap()) DeadAnimation.OnMove();
 
 		/*
 		moveingStepCount--;
@@ -183,7 +182,15 @@ namespace game_framework {
 
 	void CEnemy::OnShow()
 	{
-		if (isMovingRight)
+		if (enemyHP <= 0)
+		{
+			if (!DeadAnimation.IsFinalBitmap())
+			{
+				DeadAnimation.SetTopLeft(currentMap->ScreenX(x), currentMap->ScreenY(y));
+				DeadAnimation.OnShow();
+			}
+		}
+		else if (isMovingRight)
 		{
 			moveRightAnimation.SetTopLeft(currentMap->ScreenX(x), currentMap->ScreenY(y));
 			moveRightAnimation.OnShow();

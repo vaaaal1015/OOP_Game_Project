@@ -94,8 +94,8 @@ namespace game_framework {
 
 		isMovingLeft = isMovingRight = isMovingUp = isMovingDown = isAttacking = false;
 
-		const int INITIAL_VELOCITY = 15;	// åˆå§‹ä¸Šå‡é€Ÿåº¦
-		const int FLOOR = 100;				// åœ°æ¿åº§æ¨™
+		const int INITIAL_VELOCITY = 15;	// ªì©l¤W¤É³t«×
+		const int FLOOR = 100;				// ¦aªO®y¼Ğ
 		floor = FLOOR;
 		rising = false;
 		initial_velocity = INITIAL_VELOCITY;
@@ -115,18 +115,20 @@ namespace game_framework {
 		moveLeftAnimation.SetDelayCount(3);
 		SetAttackDelayCount = AttackDelayCount = 15;
 
-		FullHP = 100;						// ä¸»è§’é è¨­è¡€é‡ç‚º100
+		FullHP = 100;						// ¥D¨¤¹w³]¦å¶q¬°100
 		CurrentHP = FullHP;
-		heroAttackDamage = 5;				// ä¸»è§’é è¨­æ”»æ“ŠåŠ›ç‚º5
-		AttackRange = 100;					// ä¸»è§’æ”»æ“Šç¯„åœ
+		heroAttackDamage = 5;				// ¥D¨¤¹w³]§ğÀ»¤O¬°5
+		AttackRange = 100;					// ¥D¨¤§ğÀ»½d³ò
 		
 		maps.push_back(new gameMap("level_1.txt"));
 		maps.push_back(new gameMap("level_2.txt"));
 		SetMap(0);
 
+		/*
 		LifeBarRed.push_back(new CMovingBitmap);
 		LifeBarRed.push_back(new CMovingBitmap);
 		LifeBarRed.push_back(new CMovingBitmap);
+		*/
 	}
 
 	void CHero::LoadBitmap()
@@ -238,47 +240,60 @@ namespace game_framework {
 
 		if (isMovingLeft)
 		{
-			setHeroDirection("left");   //è§’è‰²å‘å·¦çœ‹
-			if (currentMap->isSpace(GetX1(), GetY1()) && currentMap->isSpace(GetX1(), GetY2()-10)) // ç•¶xåº§æ¨™é‚„æ²’ç¢°åˆ°ç‰†
+			setHeroDirection("left");   //¨¤¦â¦V¥ª¬İ
+			if (currentMap->isSpace(GetX1(), GetY1()) && currentMap->isSpace(GetX1(), GetY2()-10)) // ·íx®y¼ĞÁÙ¨S¸I¨ìÀğ
 				x -= STEP_SIZE;
 		}
 		if (isMovingRight)
 		{
-			setHeroDirection("right");   //è§’è‰²å‘å³çœ‹
-			if (currentMap->isSpace(GetX2(), GetY1()) && currentMap->isSpace(GetX2(), GetY2()-10)) // ç•¶yåº§æ¨™é‚„æ²’ç¢°åˆ°ç‰†
+			setHeroDirection("right");   //¨¤¦â¦V¥k¬İ
+			if (currentMap->isSpace(GetX2(), GetY1()) && currentMap->isSpace(GetX2(), GetY2()-10)) // ·íy®y¼ĞÁÙ¨S¸I¨ìÀğ
 				x += STEP_SIZE;
 		}
 		if (isMovingUp && y == (floor))
 		{
-			rising = true;						// æ”¹ç‚ºä¸Šå‡ç‹€æ…‹
+			rising = true;						// §ï¬°¤W¤Éª¬ºA
 		}
-		if (rising) {							// ä¸Šå‡ç‹€æ…‹
+		if (rising) {							// ¤W¤Éª¬ºA
 			if (velocity > 0) {
-				y -= velocity;					// ç•¶é€Ÿåº¦ > 0æ™‚ï¼Œyè»¸ä¸Šå‡(ç§»å‹•velocityå€‹é»ï¼Œvelocityçš„å–®ä½ç‚º é»/æ¬¡)
-				velocity--;						// å—é‡åŠ›å½±éŸ¿ï¼Œä¸‹æ¬¡çš„ä¸Šå‡é€Ÿåº¦é™ä½
-				if (!currentMap->isSpace(GetX1(), GetY1()) || !currentMap->isSpace(GetX2(), GetY1()))  // ç•¶xåº§æ¨™ç¢°åˆ°å¤©èŠ±æ¿
+				y -= velocity;					// ·í³t«× > 0®É¡Ay¶b¤W¤É(²¾°Êvelocity­ÓÂI¡Avelocityªº³æ¦ì¬° ÂI/¦¸)
+				velocity--;						// ¨ü­«¤O¼vÅT¡A¤U¦¸ªº¤W¤É³t«×­°§C
+				if (!currentMap->isSpace(GetX1(), GetY1()) || !currentMap->isSpace(GetX2(), GetY1()))  // ·íx®y¼Ğ¸I¨ì¤ÑªáªO
 				{
 					rising = false;
 					velocity = 1;
 				}
 			}
 			else {
-				rising = false;					// ç•¶é€Ÿåº¦ <= 0ï¼Œä¸Šå‡çµ‚æ­¢ï¼Œä¸‹æ¬¡æ”¹ç‚ºä¸‹é™
-				velocity = 1;					// ä¸‹é™çš„åˆé€Ÿ(velocity)ç‚º1
+				rising = false;					// ·í³t«× <= 0¡A¤W¤É²×¤î¡A¤U¦¸§ï¬°¤U­°
+				velocity = 1;					// ¤U­°ªºªì³t(velocity)¬°1
 			}
 		}
-		else {									// ä¸‹é™ç‹€æ…‹
-			if (currentMap->isSpace(GetX1(), GetY2()) && currentMap->isSpace(GetX2(), GetY2())) {  // ç•¶yåº§æ¨™é‚„æ²’ç¢°åˆ°åœ°æ¿
-				y += velocity;					// yè»¸ä¸‹é™(ç§»å‹•velocityå€‹é»ï¼Œvelocityçš„å–®ä½ç‚º é»/æ¬¡)
-				velocity++;						// å—é‡åŠ›å½±éŸ¿ï¼Œä¸‹æ¬¡çš„ä¸‹é™é€Ÿåº¦å¢åŠ 
+		else {									// ¤U­°ª¬ºA
+			if (currentMap->isSpace(GetX1(), GetY2()) && currentMap->isSpace(GetX2(), GetY2())) {  // ·íy®y¼ĞÁÙ¨S¸I¨ì¦aªO
+				y += velocity;					// y¶b¤U­°(²¾°Êvelocity­ÓÂI¡Avelocityªº³æ¦ì¬° ÂI/¦¸)
+				velocity++;						// ¨ü­«¤O¼vÅT¡A¤U¦¸ªº¤U­°³t«×¼W¥[
 			}
 			else {
 				floor = currentMap->GetBlockY(GetY2()) - GetHeight();
-				y = floor;					// ç•¶yåº§æ¨™ä½æ–¼åœ°æ¿ï¼Œæ›´æ­£ç‚ºåœ°æ¿ä¸Š
-				velocity = initial_velocity;	// é‡è¨­ä¸Šå‡åˆå§‹é€Ÿåº¦
+				y = floor;					// ·íy®y¼Ğ§C©ó¦aªO¡A§ó¥¿¬°¦aªO¤W
+				velocity = initial_velocity;	// ­«³]¤W¤Éªì©l³t«×
 			}
 		}
 		
+		if (isAttacking)
+		{
+			if (faceDirection == "right") currentMap->Attack(GetX2(), GetX2() + swordAttack.Width(), GetY1(), GetY1() + swordAttack.Height(), heroAttackDamage);
+			else currentMap->Attack(GetX1(), GetX1() + swordAttack1.Width(), GetY1(), GetY1() + swordAttack1.Height(), heroAttackDamage);
+		}
+
+		/*
+		if (isAttacking)
+		{
+			if (faceDirection == "right") currentMap->Attack(swordAttack.Left(), swordAttack.Left() + swordAttack.Width(), swordAttack.Top(), swordAttack.Top() + swordAttack.Height(), heroAttackDamage);
+			else currentMap->Attack(swordAttack1.Left(), swordAttack1.Left() + swordAttack1.Width(), swordAttack1.Top(), swordAttack1.Top() + swordAttack1.Height(), heroAttackDamage);
+		}
+		*/
 		currentMap->SetSXSY(GetCenterX() - SIZE_X / 2, GetCenterY() - SIZE_Y / 2);
 		currentMap->OnMove();
 	}
@@ -317,7 +332,7 @@ namespace game_framework {
 			HeroAttackMovement1.Reset();
 			isAttacking = true;
 			AttackDelayCount = SetAttackDelayCount;
-			isMovingLeft = isMovingRight = isMovingUp = isMovingDown = false;   //è§’è‰²ä¸èƒ½é‚Šèµ°é‚Šæ”»æ“Š
+			isMovingLeft = isMovingRight = isMovingUp = isMovingDown = false;   //¨¤¦â¤£¯àÃä¨«Ãä§ğÀ»
 		}
 	}
 
@@ -344,7 +359,7 @@ namespace game_framework {
 			(*i)->ShowBitmap();
 			xMove++;
 		}
-		if (isMovingUp)	//ï¿½ï¿½ï¿½D
+		if (isMovingUp)	// ©¹¤W¸õ
 		{
 			if (faceDirection == "right")
 			{
@@ -368,12 +383,12 @@ namespace game_framework {
 			}
 			
 		}
-		else if (isMovingRight)		// å‘å³èµ°
+		else if (isMovingRight)		// ¦V¥k¨«
 		{
 			moveRightAnimation.SetTopLeft(currentMap->ScreenX(x), currentMap->ScreenY(y));
 			moveRightAnimation.OnShow();
 		}
-		else if (isMovingLeft)	// å‘å·¦èµ°
+		else if (isMovingLeft)	// ¦V¥ª¨«
 		{
 			moveLeftAnimation.SetTopLeft(currentMap->ScreenX(x), currentMap->ScreenY(y));
 			moveLeftAnimation.OnShow();
@@ -397,12 +412,12 @@ namespace game_framework {
 		}
 		else
 		{
-			if (faceDirection == "right")   // éœæ­¢å‘å³çœ‹
+			if (faceDirection == "right")   // ÀR¤î¦V¥k¬İ
 			{
 				animation.SetTopLeft(currentMap->ScreenX(x), currentMap->ScreenY(y));
 				animation.OnShow();
 			}
-			else							// éœæ­¢å‘å·¦çœ‹
+			else							// ÀR¤î¦V¥ª¬İ
 			{
 				animation1.SetTopLeft(currentMap->ScreenX(x), currentMap->ScreenY(y));
 				animation1.OnShow();
@@ -429,12 +444,12 @@ namespace game_framework {
 		}
 		else
 		{
-			if (faceDirection == "right")   // éœæ­¢å‘å³çœ‹
+			if (faceDirection == "right")   // ÀR¤î¦V¥k¬İ
 			{
 				sword.SetTopLeft(currentMap->ScreenX(x - 85), currentMap->ScreenY(y + 10));
 				sword.OnShow();
 			}
-			else							// éœæ­¢å‘å·¦çœ‹
+			else							// ÀR¤î¦V¥ª¬İ
 			{
 				sword1.SetTopLeft(currentMap->ScreenX(x + 17), currentMap->ScreenY(y + 10));
 				sword1.OnShow();
@@ -458,8 +473,8 @@ namespace game_framework {
 		y = Y_POS;
 		isMovingLeft = isMovingRight = isMovingUp = isMovingDown = isAttacking = false;
 
-		const int INITIAL_VELOCITY = 15;	// åˆå§‹ä¸Šå‡é€Ÿåº¦
-		const int FLOOR = 100;				// åœ°æ¿åº§æ¨™
+		const int INITIAL_VELOCITY = 15;	// ªì©l¤W¤É³t«×
+		const int FLOOR = 100;				// ¦aªO®y¼Ğ
 		floor = FLOOR;
 		rising = false;
 		initial_velocity = INITIAL_VELOCITY;

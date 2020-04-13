@@ -15,26 +15,25 @@ namespace game_framework {
 		int  GetY2();					// 敵人右下角 y 座標
 		int  GetWidth();				// 敵人的寬
 		int  GetHeight();				// 敵人的高
-		int	 GetCenterX();				// 敵人正中央的 x 座標
-		int	 GetCenterY();				// 敵人正中央的 y 座標
 		void Initialize();				// 設定敵人為初始值
 		void LoadBitmap();				// 載入圖形
-		void OnMove();	// 移動敵人
-		void OnShow();	// 將敵人圖形貼到畫面
+		void OnMove();					// 移動敵人
+		void OnShow();					// 將敵人圖形貼到畫面
 		void SetMovingDown(bool flag);	// 設定是否正在往下移動
 		void SetMovingLeft(bool flag);	// 設定是否正在往左移動
 		void SetMovingRight(bool flag); // 設定是否正在往右移動
 		void SetMovingUp(bool flag);	// 設定是否正在往上移動
 		void SetXY(int nx, int ny);		// 設定敵人左上角座標
+		void GetAttack(int x1, int x2, int y1, int y2, int damage);		// 被攻擊
 
 	protected:
-		CAnimation animation;		// 敵人的動畫
-		CAnimation moveRightAnimation;  //向右移動動畫
-		CAnimation moveLeftAnimation;   //向左移動動畫
-		CAnimation jumpAnimation;		//跳躍動畫
-		CAnimation DeadAnimation;		//死亡動畫
-		int x, y;					// 敵人左上角座標
-		int enemyHP;				//敵人生命值
+		CAnimation animation;			// 敵人的動畫
+		CAnimation moveRightAnimation;  // 向右移動動畫
+		CAnimation moveLeftAnimation;   // 向左移動動畫
+		CAnimation jumpAnimation;		// 跳躍動畫
+		CAnimation DeadAnimation;		// 死亡動畫
+		int x, y;						// 敵人左上角座標
+		int enemyHP;					// 敵人生命值
 		int enemyAttackDamage;		//敵人攻擊力
 		bool isMovingDown;			// 是否正在往下移動
 		bool isMovingLeft;			// 是否正在往左移動
