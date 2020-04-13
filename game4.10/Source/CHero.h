@@ -33,7 +33,8 @@ namespace game_framework {
 		void SetHeroHP(int inputHP);	// 設定主角HP值
 		bool isAttacking;				// 正在攻擊
 		void SetMap(int index);			// 
-
+		int GetHeroFullHP();
+		int GetHeroCurrentHP();
 	protected:
 		CAnimation animation;			// 英雄的動畫(向右)
 		CAnimation animation1;			// 英雄的動畫(向左)
@@ -47,8 +48,9 @@ namespace game_framework {
 		CAnimation sword1;				// 載入劍的動畫(向左)
 		CAnimation swordAttack;			// 劍的攻擊動畫(向右)
 		CAnimation swordAttack1;		// 劍的攻擊動畫(向左)
+		CMovingBitmap LifeBarHead;		// 血條
+		vector<CMovingBitmap*> LifeBarRed;		// 血條
 		int x, y;						// 英雄左上角座標
-		int heroHP;						// 英雄生命值
 		int AttackRange;				// 英雄攻擊範圍
 		int heroAttackDamage;			// 英雄攻擊力
 		bool isMovingDown;				// 是否正在往下移動
@@ -62,9 +64,11 @@ namespace game_framework {
 		int velocity;					// 目前的速度(點/次)
 		int SetAttackDelayCount;		// 設定攻擊延遲時間
 		int AttackDelayCount;			// 攻擊延遲時間
-
+		
 	private:
 		vector<gameMap*> maps;
 		gameMap* currentMap;
+		int FullHP;
+		int CurrentHP;
 	};
 }

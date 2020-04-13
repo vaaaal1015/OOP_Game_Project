@@ -294,6 +294,10 @@ IDB_HEROJUMP_3_1        BITMAP                  "..\\RES\\charactor\\jump1\\Hero
 
 IDB_HEROJUMP_4_1        BITMAP                  "..\\RES\\charactor\\jump1\\HeroJump_7_1.bmp"
 
+IDB_LIFEBAR             BITMAP                  "..\\RES\\UI\\LifeBar.bmp"
+
+IDB_LIFEBARHEAD         BITMAP                  "..\\RES\\UI\\LifeBarHead.bmp"
+
 
 /////////////////////////////////////////////////////////////////////////////
 //

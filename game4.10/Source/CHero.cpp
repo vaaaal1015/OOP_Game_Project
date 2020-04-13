@@ -21,6 +21,7 @@ namespace game_framework {
 	CHero::~CHero()
 	{
 		maps.clear();
+		for (vector<CMovingBitmap*>::iterator i = LifeBarRed.begin(); i != LifeBarRed.end(); i++) delete (*i);
 	}
 
 	int CHero::GetX1()
@@ -56,7 +57,7 @@ namespace game_framework {
 	{
 		if (((x <= objectX)) && (objectX <= x + animation.Width()) && ((y <= objectY) && (y + animation.Height())))
 		{
-			heroHP -= objectDamage;
+			CurrentHP -= objectDamage;
 		}
 
 	}
@@ -113,13 +114,18 @@ namespace game_framework {
 		moveLeftAnimation.SetDelayCount(3);
 		SetAttackDelayCount = AttackDelayCount = 15;
 
-		heroHP = 100;						// 主角預設血量為100
+		FullHP = 100;						// 主角預設血量為100
+		CurrentHP = FullHP;
 		heroAttackDamage = 5;				// 主角預設攻擊力為5
 		AttackRange = 100;					// 主角攻擊範圍
 		
 		maps.push_back(new gameMap("level_1.txt"));
 		maps.push_back(new gameMap("level_2.txt"));
 		SetMap(0);
+
+		LifeBarRed.push_back(new CMovingBitmap);
+		LifeBarRed.push_back(new CMovingBitmap);
+		LifeBarRed.push_back(new CMovingBitmap);
 	}
 
 	void CHero::LoadBitmap()
@@ -197,7 +203,19 @@ namespace game_framework {
 		swordAttack1.AddBitmap(IDB_SWORDATTACK_6_1, RGB(255, 255, 255));
 		swordAttack1.AddBitmap(IDB_SWORDATTACK_7_1, RGB(255, 255, 255));
 
+		LifeBarHead.LoadBitmap(IDB_LIFEBARHEAD, RGB(255, 255, 255));
+		for (vector<CMovingBitmap*>::iterator i = LifeBarRed.begin(); i != LifeBarRed.end(); i++) (*i)->LoadBitmap(IDB_LIFEBAR, RGB(255, 255, 255));
 		for (vector<gameMap*>::iterator i = maps.begin(); i != maps.end(); i++) (*i)->LoadBitmap();
+	}
+
+	int CHero::GetHeroFullHP()
+	{
+		return FullHP;
+	}
+
+	int CHero::GetHeroCurrentHP()
+	{
+		return CurrentHP;
 	}
 
 	void CHero::OnMove()
@@ -215,7 +233,6 @@ namespace game_framework {
 		moveLeftAnimation.OnMove();
 		jumpAnimation.OnMove();
 		jumpAnimation1.OnMove();
-
 		if(AttackDelayCount !=0) AttackDelayCount--;
 
 		if (isMovingLeft)
@@ -315,10 +332,18 @@ namespace game_framework {
 	void CHero::OnShow()
 	{
 		currentMap->OnShow();
-
+		LifeBarHead.SetTopLeft(currentMap->ScreenX(x-290), currentMap->ScreenY(y-205));
+		LifeBarHead.ShowBitmap();
+		int xMove = currentMap->ScreenX(x - 270);
+		int yMove = currentMap->ScreenY(y - 205);
+		for (vector<CMovingBitmap*>::iterator i = LifeBarRed.begin() ; i != LifeBarRed.end() ; i++)
+		{
+			(*i)->SetTopLeft(xMove, yMove);
+			(*i)->ShowBitmap();
+			xMove++;
+		}
 		if (isMovingUp)	//跳躍
 		{
-			TRACE("%d\n", jumpAnimation1.GetCurrentBitmapNumber());
 			if (faceDirection == "right")
 			{
 				jumpAnimation.SetTopLeft(currentMap->ScreenX(x), currentMap->ScreenY(y));
@@ -417,7 +442,7 @@ namespace game_framework {
 
 	void CHero::SetHeroHP(int inputHP)
 	{
-		heroHP = inputHP;
+		FullHP = inputHP;
 	}
 
 	void CHero::SetMap(int index)

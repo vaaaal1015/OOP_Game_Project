@@ -151,6 +151,10 @@
 #define IDB_HEROJUMP_3_1                253
 #define IDB_BITMAP27                    254
 #define IDB_HEROJUMP_4_1                254
+#define IDB_BITMAP10                    255
+#define IDB_LIFEBAR                     255
+#define IDB_BITMAP11                    256
+#define IDB_LIFEBARHEAD                 256
 #define IDC_README                      1001
 #define ID_FILE_PAUSE                   32771
 #define ID_TOGGLE_FULLSCREEN            32772
@@ -163,7 +167,7 @@
 #ifdef APSTUDIO_INVOKED
 #ifndef APSTUDIO_READONLY_SYMBOLS
 #define _APS_3D_CONTROLS                     1
-#define _APS_NEXT_RESOURCE_VALUE        255
+#define _APS_NEXT_RESOURCE_VALUE        257
 #define _APS_NEXT_COMMAND_VALUE         32776
 #define _APS_NEXT_CONTROL_VALUE         1003
 #define _APS_NEXT_SYMED_VALUE           101
