@@ -124,11 +124,13 @@ namespace game_framework {
 		maps.push_back(new gameMap("level_2.txt"));
 		SetMap(0);
 
-		/*
-		LifeBarRed.push_back(new CMovingBitmap);
-		LifeBarRed.push_back(new CMovingBitmap);
-		LifeBarRed.push_back(new CMovingBitmap);
-		*/
+		if (LifeBarRed.size() == 0)
+		{
+			for (int i = 0; i < 50; i++)
+			{
+				LifeBarRed.push_back(new CMovingBitmap);    //50個血條圖片
+			}
+		}
 	}
 
 	void CHero::LoadBitmap()
@@ -351,13 +353,28 @@ namespace game_framework {
 		currentMap->OnShow();
 		LifeBarHead.SetTopLeft(currentMap->ScreenX(x-290), currentMap->ScreenY(y-205));
 		LifeBarHead.ShowBitmap();
-		int xMove = currentMap->ScreenX(x - 270);
-		int yMove = currentMap->ScreenY(y - 205);
+		int xMove = currentMap->ScreenX(x - 250);
+		int yMove = currentMap->ScreenY(y - 201);
+		float lengthOfLifeBar = ((float)CurrentHP / (float)FullHP) * 50;  //重新計算血條長度
+		if (lengthOfLifeBar > LifeBarRed.size())       //血條長度大於實際血量比例
+		{
+			for (int i = LifeBarRed.size(); i > lengthOfLifeBar; i--)
+			{
+				LifeBarRed.pop_back();   //血條剪短
+			}
+		}
+		else										//血條長度小於實際血量比例
+		{
+			for (int i = LifeBarRed.size(); i < lengthOfLifeBar; i++)
+			{
+				LifeBarRed.push_back(new CMovingBitmap);   //血條加長
+			}
+		}
 		for (vector<CMovingBitmap*>::iterator i = LifeBarRed.begin() ; i != LifeBarRed.end() ; i++)
 		{
 			(*i)->SetTopLeft(xMove, yMove);
 			(*i)->ShowBitmap();
-			xMove++;
+			xMove += 6;
 		}
 		if (isMovingUp)	// 往上跳
 		{
