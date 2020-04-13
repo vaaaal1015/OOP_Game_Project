@@ -35,6 +35,8 @@ namespace game_framework {
 		void SetMap(int index);			// 
 		int GetHeroFullHP();
 		int GetHeroCurrentHP();
+		void AttackByEnemy();
+
 	protected:
 		CAnimation animation;			// 英雄的動畫(向右)
 		CAnimation animation1;			// 英雄的動畫(向左)

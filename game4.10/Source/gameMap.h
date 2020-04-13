@@ -11,7 +11,8 @@ namespace game_framework {
 		int ScreenY(int y);
 		int GetBlockY(int y);
 		void OnMove();
-		void Attack(int x1, int x2, int y1, int y2, int damage);		// 攻擊
+		void AttackByHero(int x1, int x2, int y1, int y2, int damage);		// 攻擊
+		int AttackByEnemy(int x1, int x2, int y1, int y2);
 
 	protected:
 		CMovingBitmap ground; //建立草地圖案

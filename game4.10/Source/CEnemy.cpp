@@ -51,7 +51,6 @@ namespace game_framework {
 
 	void CEnemy::GetAttack(int x1, int x2, int y1, int y2, int damage)
 	{
-		//if ((GetX2() + 100 >= x1) && (x2 - 100 >= GetX1()) && (GetY2() >= y1) && (y2 >= GetY1()))
 		if ((GetX2() >= x1) && (x2 >= GetX1()) && (GetY2() >= y1) && (y2 >= GetY1()))
 		{
 			enemyHP -= damage;
@@ -203,4 +202,12 @@ namespace game_framework {
 		}
 	}
 
+	int CEnemy::AttackByEnemy(int x1, int x2, int y1, int y2)
+	{
+		if ((GetX2() >= x1) && (x2 >= GetX1()) && (GetY2() >= y1) && (y2 >= GetY1()))
+		{
+			return enemyAttackDamage;
+		}
+		else return 0;
+	}
 }

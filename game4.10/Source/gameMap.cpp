@@ -115,7 +115,7 @@ namespace game_framework {
 		for (vector<CEnemy*>::iterator i = allEnemy.begin(); i != allEnemy.end(); i++) (*i)->OnShow();
 	}
 
-	void gameMap::Attack(int x1, int x2, int y1, int y2, int damage)		// 攻擊
+	void gameMap::AttackByHero(int x1, int x2, int y1, int y2, int damage)		// 攻擊
 	{
 		for (vector<CEnemy*>::iterator i = allEnemy.begin(); i != allEnemy.end(); i++) (*i)->GetAttack(x1, x2, y1, y2, damage);
 	}
@@ -131,5 +131,14 @@ namespace game_framework {
 	int gameMap::ScreenY(int y) // y 為地圖的 y 點座標
 	{
 		return y - sy; // 回傳螢幕的點座標
+	}
+	int gameMap::AttackByEnemy(int x1, int x2, int y1, int y2)
+	{
+		int damage = 0;
+
+		for (vector<CEnemy*>::iterator i = allEnemy.begin(); i != allEnemy.end(); i++)
+			damage += (*i)->AttackByEnemy(x1, x2, y1, y2);
+
+		return damage;
 	}
 }

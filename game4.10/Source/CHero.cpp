@@ -60,7 +60,6 @@ namespace game_framework {
 		{
 			CurrentHP -= objectDamage;
 		}
-
 	}
 
 	int CHero::GetWidth()
@@ -283,17 +282,10 @@ namespace game_framework {
 		
 		if (isAttacking)
 		{
-			if (faceDirection == "right") currentMap->Attack(GetX2(), GetX2() + swordAttack.Width(), GetY1(), GetY1() + swordAttack.Height(), heroAttackDamage);
-			else currentMap->Attack(GetX1(), GetX1() + swordAttack1.Width(), GetY1(), GetY1() + swordAttack1.Height(), heroAttackDamage);
+			if (faceDirection == "right") currentMap->AttackByHero(GetX2(), GetX2() + swordAttack.Width(), GetY1(), GetY1() + swordAttack.Height(), heroAttackDamage);
+			else currentMap->AttackByHero(GetX1(), GetX1() + swordAttack1.Width(), GetY1(), GetY1() + swordAttack1.Height(), heroAttackDamage);
 		}
-
-		/*
-		if (isAttacking)
-		{
-			if (faceDirection == "right") currentMap->Attack(swordAttack.Left(), swordAttack.Left() + swordAttack.Width(), swordAttack.Top(), swordAttack.Top() + swordAttack.Height(), heroAttackDamage);
-			else currentMap->Attack(swordAttack1.Left(), swordAttack1.Left() + swordAttack1.Width(), swordAttack1.Top(), swordAttack1.Top() + swordAttack1.Height(), heroAttackDamage);
-		}
-		*/
+		AttackByEnemy();
 		currentMap->SetSXSY(GetCenterX() - SIZE_X / 2, GetCenterY() - SIZE_Y / 2);
 		currentMap->OnMove();
 	}
@@ -348,6 +340,7 @@ namespace game_framework {
 
 	void CHero::OnShow()
 	{
+		TRACE("%d\n", CurrentHP);
 		currentMap->OnShow();
 		LifeBarHead.SetTopLeft(currentMap->ScreenX(x-290), currentMap->ScreenY(y-205));
 		LifeBarHead.ShowBitmap();
@@ -479,5 +472,25 @@ namespace game_framework {
 		rising = false;
 		initial_velocity = INITIAL_VELOCITY;
 		velocity = initial_velocity;
+	}
+
+	void CHero::AttackByEnemy()
+	{
+		int damageFromLeft = 0;
+		int damageFromRight = 0;
+
+		damageFromLeft = currentMap->AttackByEnemy(GetX1(), GetX1(), GetY1(), GetY2());
+		damageFromRight = currentMap->AttackByEnemy(GetX2(), GetX2(), GetY1(), GetY2());
+
+		if (damageFromLeft != 0)
+		{
+			x += 30;
+			CurrentHP -= damageFromLeft;
+		}
+		else if (damageFromRight != 0)
+		{
+			x -= 30;
+			CurrentHP -= damageFromRight;
+		}
 	}
 }

@@ -25,6 +25,7 @@ namespace game_framework {
 		void SetMovingUp(bool flag);	// 設定是否正在往上移動
 		void SetXY(int nx, int ny);		// 設定敵人左上角座標
 		void GetAttack(int x1, int x2, int y1, int y2, int damage);		// 被攻擊
+		int AttackByEnemy(int x1, int x2, int y1, int y2);
 
 	protected:
 		CAnimation animation;			// 敵人的動畫
