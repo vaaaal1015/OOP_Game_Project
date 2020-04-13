@@ -94,8 +94,8 @@ namespace game_framework {
 
 		isMovingLeft = isMovingRight = isMovingUp = isMovingDown = isAttacking = false;
 
-		const int INITIAL_VELOCITY = 15;	// ��l�W�ɳt��
-		const int FLOOR = 100;				// �a�O�y��
+		const int INITIAL_VELOCITY = 15;	// 初始上升速度
+		const int FLOOR = 100;				// 地板座標
 		floor = FLOOR;
 		rising = false;
 		initial_velocity = INITIAL_VELOCITY;
@@ -115,10 +115,10 @@ namespace game_framework {
 		moveLeftAnimation.SetDelayCount(3);
 		SetAttackDelayCount = AttackDelayCount = 15;
 
-		FullHP = 100;						// �D���w�]��q��100
+		FullHP = 100;						// 主角預設血量為100
 		CurrentHP = FullHP;
-		heroAttackDamage = 5;				// �D���w�]�����O��5
-		AttackRange = 100;					// �D�������d��
+		heroAttackDamage = 5;				// 主角預設攻擊力為5
+		AttackRange = 100;					// 主角攻擊範圍
 		
 		maps.push_back(new gameMap("level_1.txt"));
 		maps.push_back(new gameMap("level_2.txt"));
@@ -238,44 +238,44 @@ namespace game_framework {
 
 		if (isMovingLeft)
 		{
-			setHeroDirection("left");   //����V����
-			if (currentMap->isSpace(GetX1(), GetY1()) && currentMap->isSpace(GetX1(), GetY2()-10)) // ��x�y���٨S�I����
+			setHeroDirection("left");   //角色向左看
+			if (currentMap->isSpace(GetX1(), GetY1()) && currentMap->isSpace(GetX1(), GetY2()-10)) // 當x座標還沒碰到牆
 				x -= STEP_SIZE;
 		}
 		if (isMovingRight)
 		{
-			setHeroDirection("right");   //����V�k��
-			if (currentMap->isSpace(GetX2(), GetY1()) && currentMap->isSpace(GetX2(), GetY2()-10)) // ��y�y���٨S�I����
+			setHeroDirection("right");   //角色向右看
+			if (currentMap->isSpace(GetX2(), GetY1()) && currentMap->isSpace(GetX2(), GetY2()-10)) // 當y座標還沒碰到牆
 				x += STEP_SIZE;
 		}
 		if (isMovingUp && y == (floor))
 		{
-			rising = true;						// �אּ�W�ɪ��A
+			rising = true;						// 改為上升狀態
 		}
-		if (rising) {							// �W�ɪ��A
+		if (rising) {							// 上升狀態
 			if (velocity > 0) {
-				y -= velocity;					// ���t�� > 0�ɡAy�b�W��(����velocity���I�Avelocity����쬰 �I/��)
-				velocity--;						// �����O�v�T�A�U�����W�ɳt�׭��C
-				if (!currentMap->isSpace(GetX1(), GetY1()) || !currentMap->isSpace(GetX2(), GetY1()))  // ��x�y�иI��Ѫ�O
+				y -= velocity;					// 當速度 > 0時，y軸上升(移動velocity個點，velocity的單位為 點/次)
+				velocity--;						// 受重力影響，下次的上升速度降低
+				if (!currentMap->isSpace(GetX1(), GetY1()) || !currentMap->isSpace(GetX2(), GetY1()))  // 當x座標碰到天花板
 				{
 					rising = false;
 					velocity = 1;
 				}
 			}
 			else {
-				rising = false;					// ���t�� <= 0�A�W�ɲפ�A�U���אּ�U��
-				velocity = 1;					// �U������t(velocity)��1
+				rising = false;					// 當速度 <= 0，上升終止，下次改為下降
+				velocity = 1;					// 下降的初速(velocity)為1
 			}
 		}
-		else {									// �U�����A
-			if (currentMap->isSpace(GetX1(), GetY2()) && currentMap->isSpace(GetX2(), GetY2())) {  // ��y�y���٨S�I��a�O
-				y += velocity;					// y�b�U��(����velocity���I�Avelocity����쬰 �I/��)
-				velocity++;						// �����O�v�T�A�U�����U���t�׼W�[
+		else {									// 下降狀態
+			if (currentMap->isSpace(GetX1(), GetY2()) && currentMap->isSpace(GetX2(), GetY2())) {  // 當y座標還沒碰到地板
+				y += velocity;					// y軸下降(移動velocity個點，velocity的單位為 點/次)
+				velocity++;						// 受重力影響，下次的下降速度增加
 			}
 			else {
 				floor = currentMap->GetBlockY(GetY2()) - GetHeight();
-				y = floor;					// ��y�y�ЧC��a�O�A�󥿬��a�O�W
-				velocity = initial_velocity;	// ���]�W�ɪ�l�t��
+				y = floor;					// 當y座標低於地板，更正為地板上
+				velocity = initial_velocity;	// 重設上升初始速度
 			}
 		}
 		
@@ -317,7 +317,7 @@ namespace game_framework {
 			HeroAttackMovement1.Reset();
 			isAttacking = true;
 			AttackDelayCount = SetAttackDelayCount;
-			isMovingLeft = isMovingRight = isMovingUp = isMovingDown = false;   //���⤣���䨫�����
+			isMovingLeft = isMovingRight = isMovingUp = isMovingDown = false;   //角色不能邊走邊攻擊
 		}
 	}
 
@@ -368,12 +368,12 @@ namespace game_framework {
 			}
 			
 		}
-		else if (isMovingRight)		// �V�k��
+		else if (isMovingRight)		// 向右走
 		{
 			moveRightAnimation.SetTopLeft(currentMap->ScreenX(x), currentMap->ScreenY(y));
 			moveRightAnimation.OnShow();
 		}
-		else if (isMovingLeft)	// �V����
+		else if (isMovingLeft)	// 向左走
 		{
 			moveLeftAnimation.SetTopLeft(currentMap->ScreenX(x), currentMap->ScreenY(y));
 			moveLeftAnimation.OnShow();
@@ -397,12 +397,12 @@ namespace game_framework {
 		}
 		else
 		{
-			if (faceDirection == "right")   // �R��V�k��
+			if (faceDirection == "right")   // 靜止向右看
 			{
 				animation.SetTopLeft(currentMap->ScreenX(x), currentMap->ScreenY(y));
 				animation.OnShow();
 			}
-			else							// �R��V����
+			else							// 靜止向左看
 			{
 				animation1.SetTopLeft(currentMap->ScreenX(x), currentMap->ScreenY(y));
 				animation1.OnShow();
@@ -429,12 +429,12 @@ namespace game_framework {
 		}
 		else
 		{
-			if (faceDirection == "right")   // �R��V�k��
+			if (faceDirection == "right")   // 靜止向右看
 			{
 				sword.SetTopLeft(currentMap->ScreenX(x - 85), currentMap->ScreenY(y + 10));
 				sword.OnShow();
 			}
-			else							// �R��V����
+			else							// 靜止向左看
 			{
 				sword1.SetTopLeft(currentMap->ScreenX(x + 17), currentMap->ScreenY(y + 10));
 				sword1.OnShow();
@@ -458,8 +458,8 @@ namespace game_framework {
 		y = Y_POS;
 		isMovingLeft = isMovingRight = isMovingUp = isMovingDown = isAttacking = false;
 
-		const int INITIAL_VELOCITY = 15;	// ��l�W�ɳt��
-		const int FLOOR = 100;				// �a�O�y��
+		const int INITIAL_VELOCITY = 15;	// 初始上升速度
+		const int FLOOR = 100;				// 地板座標
 		floor = FLOOR;
 		rising = false;
 		initial_velocity = INITIAL_VELOCITY;
