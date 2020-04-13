@@ -475,5 +475,11 @@
     <Image Include="RES\charactor\jump1\HeroJump_7_1.bmp">
       <Filter>Resource Files</Filter>
     </Image>
+    <Image Include="RES\UI_1\LifeBar.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\UI\LifeBarHead.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
   </ItemGroup>
 </Project>

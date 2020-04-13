@@ -426,6 +426,8 @@
     <Image Include="RES\sword\noMove\sword_4.bmp" />
     <Image Include="RES\sword\noMove\sword_5.bmp" />
     <Image Include="RES\sword\noMove\sword_6.bmp" />
+    <Image Include="RES\UI\LifeBarHead.bmp" />
+    <Image Include="RES\UI_1\LifeBar.bmp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

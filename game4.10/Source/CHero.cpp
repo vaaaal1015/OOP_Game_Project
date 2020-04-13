@@ -22,6 +22,7 @@ namespace game_framework {
 	CHero::~CHero()
 	{
 		for (vector<gameMap*>::iterator i = maps.begin(); i != maps.end(); i++) delete (*i);
+		for (vector<CMovingBitmap*>::iterator i = LifeBarRed.begin(); i != LifeBarRed.end(); i++) delete (*i);
 	}
 
 	int CHero::GetX1()
@@ -57,7 +58,7 @@ namespace game_framework {
 	{
 		if (((x <= objectX)) && (objectX <= x + animation.Width()) && ((y <= objectY) && (y + animation.Height())))
 		{
-			heroHP -= objectDamage;
+			CurrentHP -= objectDamage;
 		}
 
 	}
@@ -93,8 +94,8 @@ namespace game_framework {
 
 		isMovingLeft = isMovingRight = isMovingUp = isMovingDown = isAttacking = false;
 
-		const int INITIAL_VELOCITY = 15;	// ªì©l¤W¤É³t«×
-		const int FLOOR = 100;				// ¦aªO®y¼Ð
+		const int INITIAL_VELOCITY = 15;	// ï¿½ï¿½lï¿½Wï¿½É³tï¿½ï¿½
+		const int FLOOR = 100;				// ï¿½aï¿½Oï¿½yï¿½ï¿½
 		floor = FLOOR;
 		rising = false;
 		initial_velocity = INITIAL_VELOCITY;
@@ -114,13 +115,18 @@ namespace game_framework {
 		moveLeftAnimation.SetDelayCount(3);
 		SetAttackDelayCount = AttackDelayCount = 15;
 
-		heroHP = 100;						// ¥D¨¤¹w³]¦å¶q¬°100
-		heroAttackDamage = 5;				// ¥D¨¤¹w³]§ðÀ»¤O¬°5
-		AttackRange = 100;					// ¥D¨¤§ðÀ»½d³ò
+		FullHP = 100;						// ï¿½Dï¿½ï¿½ï¿½wï¿½]ï¿½ï¿½qï¿½ï¿½100
+		CurrentHP = FullHP;
+		heroAttackDamage = 5;				// ï¿½Dï¿½ï¿½ï¿½wï¿½]ï¿½ï¿½ï¿½ï¿½ï¿½Oï¿½ï¿½5
+		AttackRange = 100;					// ï¿½Dï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½dï¿½ï¿½
 		
 		maps.push_back(new gameMap("level_1.txt"));
 		maps.push_back(new gameMap("level_2.txt"));
 		SetMap(0);
+
+		LifeBarRed.push_back(new CMovingBitmap);
+		LifeBarRed.push_back(new CMovingBitmap);
+		LifeBarRed.push_back(new CMovingBitmap);
 	}
 
 	void CHero::LoadBitmap()
@@ -198,7 +204,19 @@ namespace game_framework {
 		swordAttack1.AddBitmap(IDB_SWORDATTACK_6_1, RGB(255, 255, 255));
 		swordAttack1.AddBitmap(IDB_SWORDATTACK_7_1, RGB(255, 255, 255));
 
+		LifeBarHead.LoadBitmap(IDB_LIFEBARHEAD, RGB(255, 255, 255));
+		for (vector<CMovingBitmap*>::iterator i = LifeBarRed.begin(); i != LifeBarRed.end(); i++) (*i)->LoadBitmap(IDB_LIFEBAR, RGB(255, 255, 255));
 		for (vector<gameMap*>::iterator i = maps.begin(); i != maps.end(); i++) (*i)->LoadBitmap();
+	}
+
+	int CHero::GetHeroFullHP()
+	{
+		return FullHP;
+	}
+
+	int CHero::GetHeroCurrentHP()
+	{
+		return CurrentHP;
 	}
 
 	void CHero::OnMove()
@@ -216,49 +234,48 @@ namespace game_framework {
 		moveLeftAnimation.OnMove();
 		jumpAnimation.OnMove();
 		jumpAnimation1.OnMove();
-
 		if(AttackDelayCount !=0) AttackDelayCount--;
 
 		if (isMovingLeft)
 		{
-			setHeroDirection("left");   //¨¤¦â¦V¥ª¬Ý
-			if (currentMap->isSpace(GetX1(), GetY1()) && currentMap->isSpace(GetX1(), GetY2()-10)) // ·íx®y¼ÐÁÙ¨S¸I¨ìÀð
+			setHeroDirection("left");   //ï¿½ï¿½ï¿½ï¿½Vï¿½ï¿½ï¿½ï¿½
+			if (currentMap->isSpace(GetX1(), GetY1()) && currentMap->isSpace(GetX1(), GetY2()-10)) // ï¿½ï¿½xï¿½yï¿½ï¿½ï¿½Ù¨Sï¿½Iï¿½ï¿½ï¿½ï¿½
 				x -= STEP_SIZE;
 		}
 		if (isMovingRight)
 		{
-			setHeroDirection("right");   //¨¤¦â¦V¥k¬Ý
-			if (currentMap->isSpace(GetX2(), GetY1()) && currentMap->isSpace(GetX2(), GetY2()-10)) // ·íy®y¼ÐÁÙ¨S¸I¨ìÀð
+			setHeroDirection("right");   //ï¿½ï¿½ï¿½ï¿½Vï¿½kï¿½ï¿½
+			if (currentMap->isSpace(GetX2(), GetY1()) && currentMap->isSpace(GetX2(), GetY2()-10)) // ï¿½ï¿½yï¿½yï¿½ï¿½ï¿½Ù¨Sï¿½Iï¿½ï¿½ï¿½ï¿½
 				x += STEP_SIZE;
 		}
 		if (isMovingUp && y == (floor))
 		{
-			rising = true;						// §ï¬°¤W¤Éª¬ºA
+			rising = true;						// ï¿½ï¬°ï¿½Wï¿½Éªï¿½ï¿½A
 		}
-		if (rising) {							// ¤W¤Éª¬ºA
+		if (rising) {							// ï¿½Wï¿½Éªï¿½ï¿½A
 			if (velocity > 0) {
-				y -= velocity;					// ·í³t«× > 0®É¡Ay¶b¤W¤É(²¾°Êvelocity­ÓÂI¡Avelocityªº³æ¦ì¬° ÂI/¦¸)
-				velocity--;						// ¨ü­«¤O¼vÅT¡A¤U¦¸ªº¤W¤É³t«×­°§C
-				if (!currentMap->isSpace(GetX1(), GetY1()) || !currentMap->isSpace(GetX2(), GetY1()))  // ·íx®y¼Ð¸I¨ì¤ÑªáªO
+				y -= velocity;					// ï¿½ï¿½ï¿½tï¿½ï¿½ > 0ï¿½É¡Ayï¿½bï¿½Wï¿½ï¿½(ï¿½ï¿½ï¿½ï¿½velocityï¿½ï¿½ï¿½Iï¿½Avelocityï¿½ï¿½ï¿½ï¿½ì¬° ï¿½I/ï¿½ï¿½)
+				velocity--;						// ï¿½ï¿½ï¿½ï¿½ï¿½Oï¿½vï¿½Tï¿½Aï¿½Uï¿½ï¿½ï¿½ï¿½ï¿½Wï¿½É³tï¿½×­ï¿½ï¿½C
+				if (!currentMap->isSpace(GetX1(), GetY1()) || !currentMap->isSpace(GetX2(), GetY1()))  // ï¿½ï¿½xï¿½yï¿½Ð¸Iï¿½ï¿½Ñªï¿½O
 				{
 					rising = false;
 					velocity = 1;
 				}
 			}
 			else {
-				rising = false;					// ·í³t«× <= 0¡A¤W¤É²×¤î¡A¤U¦¸§ï¬°¤U­°
-				velocity = 1;					// ¤U­°ªºªì³t(velocity)¬°1
+				rising = false;					// ï¿½ï¿½ï¿½tï¿½ï¿½ <= 0ï¿½Aï¿½Wï¿½É²×¤ï¿½Aï¿½Uï¿½ï¿½ï¿½ï¬°ï¿½Uï¿½ï¿½
+				velocity = 1;					// ï¿½Uï¿½ï¿½ï¿½ï¿½ï¿½ï¿½t(velocity)ï¿½ï¿½1
 			}
 		}
-		else {									// ¤U­°ª¬ºA
-			if (currentMap->isSpace(GetX1(), GetY2()) && currentMap->isSpace(GetX2(), GetY2())) {  // ·íy®y¼ÐÁÙ¨S¸I¨ì¦aªO
-				y += velocity;					// y¶b¤U­°(²¾°Êvelocity­ÓÂI¡Avelocityªº³æ¦ì¬° ÂI/¦¸)
-				velocity++;						// ¨ü­«¤O¼vÅT¡A¤U¦¸ªº¤U­°³t«×¼W¥[
+		else {									// ï¿½Uï¿½ï¿½ï¿½ï¿½ï¿½A
+			if (currentMap->isSpace(GetX1(), GetY2()) && currentMap->isSpace(GetX2(), GetY2())) {  // ï¿½ï¿½yï¿½yï¿½ï¿½ï¿½Ù¨Sï¿½Iï¿½ï¿½aï¿½O
+				y += velocity;					// yï¿½bï¿½Uï¿½ï¿½(ï¿½ï¿½ï¿½ï¿½velocityï¿½ï¿½ï¿½Iï¿½Avelocityï¿½ï¿½ï¿½ï¿½ì¬° ï¿½I/ï¿½ï¿½)
+				velocity++;						// ï¿½ï¿½ï¿½ï¿½ï¿½Oï¿½vï¿½Tï¿½Aï¿½Uï¿½ï¿½ï¿½ï¿½ï¿½Uï¿½ï¿½ï¿½tï¿½×¼Wï¿½[
 			}
 			else {
 				floor = currentMap->GetBlockY(GetY2()) - GetHeight();
-				y = floor;					// ·íy®y¼Ð§C©ó¦aªO¡A§ó¥¿¬°¦aªO¤W
-				velocity = initial_velocity;	// ­«³]¤W¤Éªì©l³t«×
+				y = floor;					// ï¿½ï¿½yï¿½yï¿½Ð§Cï¿½ï¿½aï¿½Oï¿½Aï¿½ó¥¿¬ï¿½ï¿½aï¿½Oï¿½W
+				velocity = initial_velocity;	// ï¿½ï¿½ï¿½]ï¿½Wï¿½Éªï¿½lï¿½tï¿½ï¿½
 			}
 		}
 		
@@ -300,7 +317,7 @@ namespace game_framework {
 			HeroAttackMovement1.Reset();
 			isAttacking = true;
 			AttackDelayCount = SetAttackDelayCount;
-			isMovingLeft = isMovingRight = isMovingUp = isMovingDown = false;   //¨¤¦â¤£¯àÃä¨«Ãä§ðÀ»
+			isMovingLeft = isMovingRight = isMovingUp = isMovingDown = false;   //ï¿½ï¿½ï¿½â¤£ï¿½ï¿½ï¿½ä¨«ï¿½ï¿½ï¿½ï¿½ï¿½
 		}
 	}
 
@@ -317,8 +334,17 @@ namespace game_framework {
 	void CHero::OnShow()
 	{
 		currentMap->OnShow();
-
-		if (isMovingUp)	//¸õÅD
+		LifeBarHead.SetTopLeft(currentMap->ScreenX(x-290), currentMap->ScreenY(y-205));
+		LifeBarHead.ShowBitmap();
+		int xMove = currentMap->ScreenX(x - 270);
+		int yMove = currentMap->ScreenY(y - 205);
+		for (vector<CMovingBitmap*>::iterator i = LifeBarRed.begin() ; i != LifeBarRed.end() ; i++)
+		{
+			(*i)->SetTopLeft(xMove, yMove);
+			(*i)->ShowBitmap();
+			xMove++;
+		}
+		if (isMovingUp)	//ï¿½ï¿½ï¿½D
 		{
 			if (faceDirection == "right")
 			{
@@ -342,12 +368,12 @@ namespace game_framework {
 			}
 			
 		}
-		else if (isMovingRight)		// ¦V¥k¨«
+		else if (isMovingRight)		// ï¿½Vï¿½kï¿½ï¿½
 		{
 			moveRightAnimation.SetTopLeft(currentMap->ScreenX(x), currentMap->ScreenY(y));
 			moveRightAnimation.OnShow();
 		}
-		else if (isMovingLeft)	// ¦V¥ª¨«
+		else if (isMovingLeft)	// ï¿½Vï¿½ï¿½ï¿½ï¿½
 		{
 			moveLeftAnimation.SetTopLeft(currentMap->ScreenX(x), currentMap->ScreenY(y));
 			moveLeftAnimation.OnShow();
@@ -371,12 +397,12 @@ namespace game_framework {
 		}
 		else
 		{
-			if (faceDirection == "right")   // ÀR¤î¦V¥k¬Ý
+			if (faceDirection == "right")   // ï¿½Rï¿½ï¿½Vï¿½kï¿½ï¿½
 			{
 				animation.SetTopLeft(currentMap->ScreenX(x), currentMap->ScreenY(y));
 				animation.OnShow();
 			}
-			else							// ÀR¤î¦V¥ª¬Ý
+			else							// ï¿½Rï¿½ï¿½Vï¿½ï¿½ï¿½ï¿½
 			{
 				animation1.SetTopLeft(currentMap->ScreenX(x), currentMap->ScreenY(y));
 				animation1.OnShow();
@@ -403,12 +429,12 @@ namespace game_framework {
 		}
 		else
 		{
-			if (faceDirection == "right")   // ÀR¤î¦V¥k¬Ý
+			if (faceDirection == "right")   // ï¿½Rï¿½ï¿½Vï¿½kï¿½ï¿½
 			{
 				sword.SetTopLeft(currentMap->ScreenX(x - 85), currentMap->ScreenY(y + 10));
 				sword.OnShow();
 			}
-			else							// ÀR¤î¦V¥ª¬Ý
+			else							// ï¿½Rï¿½ï¿½Vï¿½ï¿½ï¿½ï¿½
 			{
 				sword1.SetTopLeft(currentMap->ScreenX(x + 17), currentMap->ScreenY(y + 10));
 				sword1.OnShow();
@@ -418,7 +444,7 @@ namespace game_framework {
 
 	void CHero::SetHeroHP(int inputHP)
 	{
-		heroHP = inputHP;
+		FullHP = inputHP;
 	}
 
 	void CHero::SetMap(int index)
@@ -432,8 +458,8 @@ namespace game_framework {
 		y = Y_POS;
 		isMovingLeft = isMovingRight = isMovingUp = isMovingDown = isAttacking = false;
 
-		const int INITIAL_VELOCITY = 15;	// ªì©l¤W¤É³t«×
-		const int FLOOR = 100;				// ¦aªO®y¼Ð
+		const int INITIAL_VELOCITY = 15;	// ï¿½ï¿½lï¿½Wï¿½É³tï¿½ï¿½
+		const int FLOOR = 100;				// ï¿½aï¿½Oï¿½yï¿½ï¿½
 		floor = FLOOR;
 		rising = false;
 		initial_velocity = INITIAL_VELOCITY;

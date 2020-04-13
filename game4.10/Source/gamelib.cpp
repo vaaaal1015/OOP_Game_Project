@@ -410,7 +410,13 @@ int CMovingBitmap::Top()
 int CMovingBitmap::Width()
 {
 	GAME_ASSERT(isBitmapLoaded,"A bitmap must be loaded before Width() is called !!!");
+
 	return location.right - location.left;
+}
+
+void CMovingBitmap::SetWidth(int SettingWidth)
+{
+	width = SettingWidth;
 }
 
 /////////////////////////////////////////////////////////////////////////////
