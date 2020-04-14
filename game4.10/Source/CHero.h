@@ -36,7 +36,7 @@ namespace game_framework {
 		int GetHeroFullHP();
 		int GetHeroCurrentHP();
 		void AttackByEnemy();
-
+		void SetPreviousMove(int Movement);
 	protected:
 		CAnimation animation;			// 英雄的動畫(向右)
 		CAnimation animation1;			// 英雄的動畫(向左)
@@ -66,13 +66,14 @@ namespace game_framework {
 		int velocity;					// 目前的速度(點/次)
 		int SetAttackDelayCount;		// 設定攻擊延遲時間
 		int AttackDelayCount;			// 攻擊延遲時間
-		
-		
+		int MoveDelayCount;				// 上個動作保存時間
+		int PreviousMovement;			// 紀錄上一個動作
 	private:
 		vector<gameMap*> maps;
 		gameMap* currentMap;
 		int FullHP;
 		int CurrentHP;
 		void changeLifeBarLength();
+		
 	};
 }

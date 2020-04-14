@@ -90,9 +90,8 @@ namespace game_framework {
 		const int Y_POS = 0;
 		x = X_POS;
 		y = Y_POS;
-
 		isMovingLeft = isMovingRight = isMovingUp = isMovingDown = isAttacking = false;
-
+		PreviousMovement = 0;			//紀錄上一個動作
 		const int INITIAL_VELOCITY = 15;	// 初始上升速度
 		const int FLOOR = 100;				// 地板座標
 		floor = FLOOR;
@@ -113,7 +112,7 @@ namespace game_framework {
 		jumpAnimation1.SetDelayCount(4);
 		moveLeftAnimation.SetDelayCount(3);
 		SetAttackDelayCount = AttackDelayCount = 15;
-
+		MoveDelayCount = 10;
 		FullHP = 100;						// 主角預設血量為100
 		CurrentHP = FullHP;
 		heroAttackDamage = 5;				// 主角預設攻擊力為5
@@ -125,7 +124,7 @@ namespace game_framework {
 
 		if (LifeBarRed.size() == 0)
 		{
-			for (int i = 0; i < 50; i++)
+			for (int i = 0; i < 100; i++)
 			{
 				LifeBarRed.push_back(new CMovingBitmap);    //50個血條圖片
 			}
@@ -238,21 +237,25 @@ namespace game_framework {
 		jumpAnimation.OnMove();
 		jumpAnimation1.OnMove();
 		if(AttackDelayCount !=0) AttackDelayCount--;
-
+		if (MoveDelayCount != 0) MoveDelayCount--;
+		if (MoveDelayCount == 0) SetPreviousMove(0);
 		if (isMovingLeft)
 		{
+			MoveDelayCount = 10;
 			setHeroDirection("left");   //角色向左看
 			if (currentMap->isSpace(GetX1(), GetY1()) && currentMap->isSpace(GetX1(), GetY2()-10)) // 當x座標還沒碰到牆
 				x -= STEP_SIZE;
 		}
 		if (isMovingRight)
 		{
+			MoveDelayCount = 10;
 			setHeroDirection("right");   //角色向右看
 			if (currentMap->isSpace(GetX2(), GetY1()) && currentMap->isSpace(GetX2(), GetY2()-10)) // 當y座標還沒碰到牆
 				x += STEP_SIZE;
 		}
 		if (isMovingUp && y == (floor))
 		{
+			MoveDelayCount = 10;
 			rising = true;						// 改為上升狀態
 		}
 		if (rising) {							// 上升狀態
@@ -284,6 +287,7 @@ namespace game_framework {
 		
 		if (isAttacking)
 		{
+			MoveDelayCount = 10;
 			if (faceDirection == "right") currentMap->AttackByHero(GetX2(), GetX2() + swordAttack.Width(), GetY1(), GetY1() + swordAttack.Height(), heroAttackDamage);
 			else currentMap->AttackByHero(GetX1(), GetX1() + swordAttack1.Width(), GetY1(), GetY1() + swordAttack1.Height(), heroAttackDamage);
 		}
@@ -343,7 +347,7 @@ namespace game_framework {
 	{
 		int xMove = currentMap->ScreenX(x - 250);
 		int yMove = currentMap->ScreenY(y - 201);
-		float lengthOfLifeBar = ((float)CurrentHP / (float)FullHP) * 50;  //重新計算血條長度
+		float lengthOfLifeBar = ((float)CurrentHP / (float)FullHP) * 100;  //重新計算血條長度
 		if ((lengthOfLifeBar < LifeBarRed.size()) && (LifeBarRed.size() != 0))       //血條長度大於實際血量比例
 		{
 			TRACE("%f,%d\n", lengthOfLifeBar, LifeBarRed.size());
@@ -357,7 +361,7 @@ namespace game_framework {
 		{
 			(*i)->SetTopLeft(xMove, yMove);
 			(*i)->ShowBitmap();
-			xMove += 6;
+			xMove += 3;
 		}
 	}
 	void CHero::OnShow()
@@ -467,6 +471,11 @@ namespace game_framework {
 	void CHero::SetHeroHP(int inputHP)
 	{
 		FullHP = inputHP;
+	}
+
+	void CHero::SetPreviousMove(int Movement)
+	{
+		PreviousMovement = Movement;
 	}
 
 	void CHero::SetMap(int index)
