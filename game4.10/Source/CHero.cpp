@@ -339,12 +339,8 @@ namespace game_framework {
 	{
 		faceDirection = direction;
 	}
-
-	void CHero::OnShow()
+	void CHero::changeLifeBarLength()
 	{
-		currentMap->OnShow();
-		LifeBarHead.SetTopLeft(currentMap->ScreenX(x-290), currentMap->ScreenY(y-205));
-		LifeBarHead.ShowBitmap();
 		int xMove = currentMap->ScreenX(x - 250);
 		int yMove = currentMap->ScreenY(y - 201);
 		float lengthOfLifeBar = ((float)CurrentHP / (float)FullHP) * 50;  //重新計算血條長度
@@ -356,13 +352,20 @@ namespace game_framework {
 				LifeBarRed.pop_back();   //血條剪短
 			}
 		}
-		
-		for (vector<CMovingBitmap*>::iterator i = LifeBarRed.begin() ; i != LifeBarRed.end() ; i++)
+
+		for (vector<CMovingBitmap*>::iterator i = LifeBarRed.begin(); i != LifeBarRed.end(); i++)
 		{
 			(*i)->SetTopLeft(xMove, yMove);
 			(*i)->ShowBitmap();
 			xMove += 6;
 		}
+	}
+	void CHero::OnShow()
+	{
+		currentMap->OnShow();
+		LifeBarHead.SetTopLeft(currentMap->ScreenX(x-290), currentMap->ScreenY(y-205));
+		LifeBarHead.ShowBitmap();
+		changeLifeBarLength();
 		if (isMovingUp)	// 往上跳
 		{
 			if (faceDirection == "right")

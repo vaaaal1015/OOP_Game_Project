@@ -67,10 +67,12 @@ namespace game_framework {
 		int SetAttackDelayCount;		// 設定攻擊延遲時間
 		int AttackDelayCount;			// 攻擊延遲時間
 		
+		
 	private:
 		vector<gameMap*> maps;
 		gameMap* currentMap;
 		int FullHP;
 		int CurrentHP;
+		void changeLifeBarLength();
 	};
 }
