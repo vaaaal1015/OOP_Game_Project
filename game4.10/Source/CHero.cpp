@@ -102,6 +102,8 @@ namespace game_framework {
 		animation.SetDelayCount(3);
 		animation1.SetDelayCount(3);
 		sword.SetDelayCount(3);
+		HeroDashLeft.SetDelayCount(3);
+		HeroDashRight.SetDelayCount(3);
 		swordAttack.SetDelayCount(3);
 		swordAttack1.SetDelayCount(3);
 		HeroAttackMovement.SetDelayCount(3);
@@ -111,7 +113,7 @@ namespace game_framework {
 		jumpAnimation.SetDelayCount(4);
 		jumpAnimation1.SetDelayCount(4);
 		moveLeftAnimation.SetDelayCount(3);
-		SetAttackDelayCount = AttackDelayCount = 15;
+		SetAttackDelayCount = AttackDelayCount = DashColdDown = 15;
 		MoveDelayCount = 10;
 		FullHP = 100;						// 主角預設血量為100
 		CurrentHP = FullHP;
@@ -169,6 +171,16 @@ namespace game_framework {
 		jumpAnimation1.AddBitmap(IDB_HEROJUMP_3_1, RGB(255, 255, 255));
 		jumpAnimation1.AddBitmap(IDB_HEROJUMP_4_1, RGB(255, 255, 255));
 
+		HeroDashLeft.AddBitmap(IDB_DASH_LEFT_1, RGB(255, 255, 255));
+		HeroDashLeft.AddBitmap(IDB_DASH_LEFT_2, RGB(255, 255, 255));
+		HeroDashLeft.AddBitmap(IDB_DASH_LEFT_3, RGB(255, 255, 255));
+		HeroDashLeft.AddBitmap(IDB_DASH_LEFT_4, RGB(255, 255, 255));
+
+		HeroDashRight.AddBitmap(IDB_DASH_RIGHT_1, RGB(255, 255, 255));
+		HeroDashRight.AddBitmap(IDB_DASH_RIGHT_2, RGB(255, 255, 255));
+		HeroDashRight.AddBitmap(IDB_DASH_RIGHT_3, RGB(255, 255, 255));
+		HeroDashRight.AddBitmap(IDB_DASH_RIGHT_4, RGB(255, 255, 255));
+
 		sword.AddBitmap(IDB_sword_1, RGB(255, 255, 255));
 		sword.AddBitmap(IDB_sword_2, RGB(255, 255, 255));
 		sword.AddBitmap(IDB_sword_3, RGB(255, 255, 255));
@@ -221,6 +233,11 @@ namespace game_framework {
 		return CurrentHP;
 	}
 
+	int CHero::GetPreviousMove()
+	{
+		return PreviousMovement;
+	}
+
 	void CHero::OnMove()
 	{
 		const int STEP_SIZE = 10;
@@ -233,29 +250,51 @@ namespace game_framework {
 		swordAttack.OnMove();
 		swordAttack1.OnMove();
 		moveRightAnimation.OnMove();
+		HeroDashLeft.OnMove();
+		HeroDashRight.OnMove();
 		moveLeftAnimation.OnMove();
 		jumpAnimation.OnMove();
 		jumpAnimation1.OnMove();
 		if(AttackDelayCount !=0) AttackDelayCount--;
+		if (DashColdDown != 0) DashColdDown--;
 		if (MoveDelayCount != 0) MoveDelayCount--;
 		if (MoveDelayCount == 0) SetPreviousMove(0);
 		if (isMovingLeft)
 		{
-			MoveDelayCount = 10;
 			setHeroDirection("left");   //角色向左看
-			if (currentMap->isSpace(GetX1(), GetY1()) && currentMap->isSpace(GetX1(), GetY2()-10)) // 當x座標還沒碰到牆
-				x -= STEP_SIZE;
+			if (currentMap->isSpace(GetX1(), GetY1()) && currentMap->isSpace(GetX1(), GetY2() - 10)) // 當x座標還沒碰到牆
+			{
+				if (PreviousMovement == 1 && DashColdDown==0)
+				{
+					x -= 80;
+					DashColdDown = 15;
+					HeroDashLeft.Reset();
+				}
+				else
+				{
+					x -= STEP_SIZE;
+				}
+			}
 		}
 		if (isMovingRight)
 		{
-			MoveDelayCount = 10;
 			setHeroDirection("right");   //角色向右看
 			if (currentMap->isSpace(GetX2(), GetY1()) && currentMap->isSpace(GetX2(), GetY2()-10)) // 當y座標還沒碰到牆
-				x += STEP_SIZE;
+			{
+				if (PreviousMovement == 2 && DashColdDown == 0)
+				{
+					x += 80;
+					DashColdDown = 15;
+					HeroDashRight.Reset();
+				}
+				else
+				{
+					x += STEP_SIZE;
+				}
+			}
 		}
 		if (isMovingUp && y == (floor))
 		{
-			MoveDelayCount = 10;
 			rising = true;						// 改為上升狀態
 		}
 		if (rising) {							// 上升狀態
@@ -287,7 +326,6 @@ namespace game_framework {
 		
 		if (isAttacking)
 		{
-			MoveDelayCount = 10;
 			if (faceDirection == "right") currentMap->AttackByHero(GetX2(), GetX2() + swordAttack.Width(), GetY1(), GetY1() + swordAttack.Height(), heroAttackDamage);
 			else currentMap->AttackByHero(GetX1(), GetX1() + swordAttack1.Width(), GetY1(), GetY1() + swordAttack1.Height(), heroAttackDamage);
 		}
@@ -337,6 +375,16 @@ namespace game_framework {
 	void CHero::SetXY(int nx, int ny)
 	{
 		x = nx; y = ny;
+	}
+	
+	void CHero::SetPreviousMove(int move)
+	{
+		PreviousMovement = move;
+	}
+
+	void CHero::SetMoveDelayCount(int delay)
+	{
+		MoveDelayCount = delay;
 	}
 
 	void CHero::setHeroDirection(string direction)
@@ -396,13 +444,37 @@ namespace game_framework {
 		}
 		else if (isMovingRight)		// 向右走
 		{
-			moveRightAnimation.SetTopLeft(currentMap->ScreenX(x), currentMap->ScreenY(y));
-			moveRightAnimation.OnShow();
+			if (PreviousMovement != 2 && DashColdDown == 0)
+			{
+				moveRightAnimation.SetTopLeft(currentMap->ScreenX(x), currentMap->ScreenY(y));
+				moveRightAnimation.OnShow();
+			}
+			else
+			{
+				HeroDashRight.SetTopLeft(currentMap->ScreenX(x - 50), currentMap->ScreenY(y));
+				HeroDashRight.OnShow();
+				if(HeroDashRight.IsFinalBitmap())
+				{
+					DashColdDown = 0;
+				}
+			}
 		}
 		else if (isMovingLeft)	// 向左走
 		{
-			moveLeftAnimation.SetTopLeft(currentMap->ScreenX(x), currentMap->ScreenY(y));
-			moveLeftAnimation.OnShow();
+			if (PreviousMovement != 1 && DashColdDown==0)
+			{
+				moveLeftAnimation.SetTopLeft(currentMap->ScreenX(x), currentMap->ScreenY(y));
+				moveLeftAnimation.OnShow();
+			}
+			else
+			{
+				HeroDashLeft.SetTopLeft(currentMap->ScreenX(x), currentMap->ScreenY(y));
+				HeroDashLeft.OnShow();
+				if (HeroDashLeft.IsFinalBitmap())
+				{
+					DashColdDown = 0;
+				}
+			}
 		}
 		else if (isAttacking)
 		{
@@ -471,11 +543,6 @@ namespace game_framework {
 	void CHero::SetHeroHP(int inputHP)
 	{
 		FullHP = inputHP;
-	}
-
-	void CHero::SetPreviousMove(int Movement)
-	{
-		PreviousMovement = Movement;
 	}
 
 	void CHero::SetMap(int index)

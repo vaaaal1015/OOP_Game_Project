@@ -298,6 +298,22 @@ IDB_LIFEBAR             BITMAP                  "..\\RES\\UI\\LifeBar.bmp"
 
 IDB_LIFEBARHEAD         BITMAP                  "..\\RES\\UI\\LifeBarHead.bmp"
 
+IDB_DASH_LEFT_1         BITMAP                  "..\\RES\\charactor\\Left_Dash\\Left_Dash_1.bmp"
+
+IDB_DASH_LEFT_2         BITMAP                  "..\\RES\\charactor\\Left_Dash\\Left_Dash_2.bmp"
+
+IDB_DASH_LEFT_3         BITMAP                  "..\\RES\\charactor\\Left_Dash\\Left_Dash_3.bmp"
+
+IDB_DASH_LEFT_4         BITMAP                  "..\\RES\\charactor\\Left_Dash\\Left_Dash_4.bmp"
+
+IDB_DASH_RIGHT_1        BITMAP                  "..\\RES\\charactor\\Right_Dash\\Right_Dash_1.bmp"
+
+IDB_DASH_RIGHT_2        BITMAP                  "..\\RES\\charactor\\Right_Dash\\Right_Dash_2.bmp"
+
+IDB_DASH_RIGHT_3        BITMAP                  "..\\RES\\charactor\\Right_Dash\\Right_Dash_3.bmp"
+
+IDB_DASH_RIGHT_4        BITMAP                  "..\\RES\\charactor\\Right_Dash\\Right_Dash_4.bmp"
+
 
 /////////////////////////////////////////////////////////////////////////////
 //

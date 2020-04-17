@@ -315,9 +315,24 @@ void CGameStateRun::OnKeyUp(UINT nChar, UINT nRepCnt, UINT nFlags)
 	const char KEY_DOWN  = 0x28; // keyboard§UΩb¿Y
 	const char KEY_X = 0x58;	 // keyboard X
 	if (nChar == KEY_LEFT)
+	{
 		hero.SetMovingLeft(false);
+		if (hero.GetPreviousMove() != 1)
+		{
+			hero.SetPreviousMove(1);
+			hero.SetMoveDelayCount(5);
+		}
+			
+	}
 	if (nChar == KEY_RIGHT)
+	{
 		hero.SetMovingRight(false);
+		if (hero.GetPreviousMove() != 2)
+		{
+			hero.SetPreviousMove(2);
+			hero.SetMoveDelayCount(5);
+		}
+	}
 	/*
 	if (nChar == KEY_UP)
 		hero.SetMovingUp(false);

@@ -481,5 +481,32 @@
     <Image Include="RES\UI\LifeBarHead.bmp">
       <Filter>Resource Files</Filter>
     </Image>
+    <Image Include="RES\charactor\Left_Dash\Left_Dash_1.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\charactor\Left_Dash\Left_Dash_2.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\charactor\Left_Dash\Left_Dash_3.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\charactor\Left_Dash\Left_Dash_4.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\UI\LifeBar.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\charactor\Right_Dash\Right_Dash_1.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\charactor\Right_Dash\Right_Dash_2.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\charactor\Right_Dash\Right_Dash_3.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\charactor\Right_Dash\Right_Dash_4.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
   </ItemGroup>
 </Project>

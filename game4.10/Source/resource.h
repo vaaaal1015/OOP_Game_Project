@@ -155,6 +155,16 @@
 #define IDB_LIFEBAR                     255
 #define IDB_BITMAP11                    256
 #define IDB_LIFEBARHEAD                 256
+#define IDB_DASH_LEFT_1                 257
+#define IDB_DASH_LEFT_2                 258
+#define IDB_DASH_LEFT_3                 259
+#define IDB_BITMAP30                    260
+#define IDB_DASH_LEFT_4                 260
+#define IDB_DASH_RIGHT_1                261
+#define IDB_DASH_RIGHT_2                262
+#define IDB_DASH_RIGHT_3                263
+#define IDB_BITMAP31                    264
+#define IDB_DASH_RIGHT_4                264
 #define IDC_README                      1001
 #define ID_FILE_PAUSE                   32771
 #define ID_TOGGLE_FULLSCREEN            32772
@@ -167,7 +177,7 @@
 #ifdef APSTUDIO_INVOKED
 #ifndef APSTUDIO_READONLY_SYMBOLS
 #define _APS_3D_CONTROLS                     1
-#define _APS_NEXT_RESOURCE_VALUE        257
+#define _APS_NEXT_RESOURCE_VALUE        265
 #define _APS_NEXT_COMMAND_VALUE         32776
 #define _APS_NEXT_CONTROL_VALUE         1003
 #define _APS_NEXT_SYMED_VALUE           101

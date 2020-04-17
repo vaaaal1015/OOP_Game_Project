@@ -37,6 +37,8 @@ namespace game_framework {
 		int GetHeroCurrentHP();
 		void AttackByEnemy();
 		void SetPreviousMove(int Movement);
+		int GetPreviousMove();
+		void SetMoveDelayCount(int delay);
 	protected:
 		CAnimation animation;			// 英雄的動畫(向右)
 		CAnimation animation1;			// 英雄的動畫(向左)
@@ -50,6 +52,8 @@ namespace game_framework {
 		CAnimation sword1;				// 載入劍的動畫(向左)
 		CAnimation swordAttack;			// 劍的攻擊動畫(向右)
 		CAnimation swordAttack1;		// 劍的攻擊動畫(向左)
+		CAnimation HeroDashLeft;		// 向左衝刺
+		CAnimation HeroDashRight;		// 向右衝刺
 		CMovingBitmap LifeBarHead;		// 血條
 		vector<CMovingBitmap*> LifeBarRed;		// 血條
 		int x, y;						// 英雄左上角座標
@@ -68,6 +72,7 @@ namespace game_framework {
 		int AttackDelayCount;			// 攻擊延遲時間
 		int MoveDelayCount;				// 上個動作保存時間
 		int PreviousMovement;			// 紀錄上一個動作
+		int DashColdDown;				// 衝刺冷卻時間
 	private:
 		vector<gameMap*> maps;
 		gameMap* currentMap;
