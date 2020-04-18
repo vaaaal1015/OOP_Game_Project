@@ -26,6 +26,7 @@ namespace game_framework {
 		void SetMovingLeft(bool flag);	// 設定是否正在往左移動
 		void SetMovingRight(bool flag); // 設定是否正在往右移動
 		void SetMovingUp(bool flag);	// 設定是否正在往上移動
+		void SetHeroRoll(bool flag);	// 翻滾
 		void SetHeroAttack(bool flag);	// 設定是否正在往上移動
 		void SetXY(int nx, int ny);		// 設定英雄左上角座標
 		int HitEnemyAndReternDamage(int x1, int x2, int y1, int y2);	// 判斷有無敵人 x1(敵人左邊x座標),x2(敵人右邊座標),y1(敵人上方y座標),y2(敵人下方y座標)
@@ -54,6 +55,8 @@ namespace game_framework {
 		CAnimation swordAttack1;		// 劍的攻擊動畫(向左)
 		CAnimation HeroDashLeft;		// 向左衝刺
 		CAnimation HeroDashRight;		// 向右衝刺
+		CAnimation HeroRollLeft;		// 向左翻滾
+		CAnimation HeroRollRight;		// 向右翻滾
 		CMovingBitmap LifeBarHead;		// 血條
 		vector<CMovingBitmap*> LifeBarRed;		// 血條
 		int x, y;						// 英雄左上角座標
@@ -63,6 +66,7 @@ namespace game_framework {
 		bool isMovingLeft;				// 是否正在往左移動
 		bool isMovingRight;				// 是否正在往右移動
 		bool isMovingUp;				// 是否正在往上移動
+		bool isRolling;
 		string faceDirection;			//人物面對的方向
 		int floor;						// 地板的Y座標
 		bool rising;					// true表上升、false表下降
@@ -70,9 +74,11 @@ namespace game_framework {
 		int velocity;					// 目前的速度(點/次)
 		int SetAttackDelayCount;		// 設定攻擊延遲時間
 		int AttackDelayCount;			// 攻擊延遲時間
+		int RollDelayCount;
 		int MoveDelayCount;				// 上個動作保存時間
-		int PreviousMovement;			// 紀錄上一個動作
+		int PreviousMovement;			// 紀錄上一個動作  0:無動作; 1:向左走; 2:向右走
 		int DashColdDown;				// 衝刺冷卻時間
+
 	private:
 		vector<gameMap*> maps;
 		gameMap* currentMap;

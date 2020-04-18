@@ -508,5 +508,41 @@
     <Image Include="RES\charactor\Right_Dash\Right_Dash_4.bmp">
       <Filter>Resource Files</Filter>
     </Image>
+    <Image Include="RES\charactor\Roll_Left\Hero_Roll_Left_1.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\charactor\Roll_Left\Hero_Roll_Left_2.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\charactor\Roll_Left\Hero_Roll_Left_3.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\charactor\Roll_Left\Hero_Roll_Left_4.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\charactor\Roll_Right\Hero_Roll_Right_1.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\charactor\Roll_Right\Hero_Roll_Right_2.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\charactor\Roll_Right\Hero_Roll_Right_3.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\charactor\Roll_Right\Hero_Roll_Right_4.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\charactor\Roll_Left\Hero_Roll_Left_5.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\charactor\Roll_Left\Hero_Roll_Left_6.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\charactor\Roll_Right\Hero_Roll_Right_5.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\charactor\Roll_Right\Hero_Roll_Right_6.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
   </ItemGroup>
 </Project>

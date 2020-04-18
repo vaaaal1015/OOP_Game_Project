@@ -314,6 +314,30 @@ IDB_DASH_RIGHT_3        BITMAP                  "..\\RES\\charactor\\Right_Dash\
 
 IDB_DASH_RIGHT_4        BITMAP                  "..\\RES\\charactor\\Right_Dash\\Right_Dash_4.bmp"
 
+IDB_ROLL_LEFT_1         BITMAP                  "..\\RES\\charactor\\Roll_Left\\Hero_Roll_Left_1.bmp"
+
+IDB_ROLL_LEFT_2         BITMAP                  "..\\RES\\charactor\\Roll_Left\\Hero_Roll_Left_2.bmp"
+
+IDB_ROLL_LEFT_3         BITMAP                  "..\\RES\\charactor\\Roll_Left\\Hero_Roll_Left_3.bmp"
+
+IDB_ROLL_LEFT_4         BITMAP                  "..\\RES\\charactor\\Roll_Left\\Hero_Roll_Left_4.bmp"
+
+IDB_ROLL_RIGHT_1        BITMAP                  "..\\RES\\charactor\\Roll_Right\\Hero_Roll_Right_1.bmp"
+
+IDB_ROLL_RIGHT_2        BITMAP                  "..\\RES\\charactor\\Roll_Right\\Hero_Roll_Right_2.bmp"
+
+IDB_ROLL_RIGHT_3        BITMAP                  "..\\RES\\charactor\\Roll_Right\\Hero_Roll_Right_3.bmp"
+
+IDB_ROLL_RIGHT_4        BITMAP                  "..\\RES\\charactor\\Roll_Right\\Hero_Roll_Right_4.bmp"
+
+IDB_ROLL_LEFT_5         BITMAP                  "..\\RES\\charactor\\Roll_Left\\Hero_Roll_Left_5.bmp"
+
+IDB_ROLL_LEFT_6         BITMAP                  "..\\RES\\charactor\\Roll_Left\\Hero_Roll_Left_6.bmp"
+
+IDB_ROLL_RIGHT_5        BITMAP                  "..\\RES\\charactor\\Roll_Right\\Hero_Roll_Right_5.bmp"
+
+IDB_ROLL_RIGHT_6        BITMAP                  "..\\RES\\charactor\\Roll_Right\\Hero_Roll_Right_6.bmp"
+
 
 /////////////////////////////////////////////////////////////////////////////
 //

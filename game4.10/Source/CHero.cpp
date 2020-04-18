@@ -90,7 +90,7 @@ namespace game_framework {
 		const int Y_POS = 0;
 		x = X_POS;
 		y = Y_POS;
-		isMovingLeft = isMovingRight = isMovingUp = isMovingDown = isAttacking = false;
+		isMovingLeft = isMovingRight = isMovingUp = isMovingDown = isAttacking = isRolling = false;
 		PreviousMovement = 0;			//紀錄上一個動作
 		const int INITIAL_VELOCITY = 15;	// 初始上升速度
 		const int FLOOR = 100;				// 地板座標
@@ -113,7 +113,9 @@ namespace game_framework {
 		jumpAnimation.SetDelayCount(4);
 		jumpAnimation1.SetDelayCount(4);
 		moveLeftAnimation.SetDelayCount(3);
-		SetAttackDelayCount = AttackDelayCount = DashColdDown = 15;
+		HeroRollLeft.SetDelayCount(2);
+		HeroRollRight.SetDelayCount(2);
+		SetAttackDelayCount = AttackDelayCount = DashColdDown = RollDelayCount = 15;
 		MoveDelayCount = 10;
 		FullHP = 100;						// 主角預設血量為100
 		CurrentHP = FullHP;
@@ -205,6 +207,23 @@ namespace game_framework {
 		HeroAttackMovement1.AddBitmap(IDB_HEROATTACK_3_1, RGB(255, 255, 255));
 		HeroAttackMovement1.AddBitmap(IDB_HEROATTACK_4_1, RGB(255, 255, 255));
 
+		HeroRollLeft.AddBitmap(IDB_ROLL_LEFT_1, RGB(255, 255, 255));
+		HeroRollLeft.AddBitmap(IDB_ROLL_LEFT_2, RGB(255, 255, 255));
+		HeroRollLeft.AddBitmap(IDB_ROLL_LEFT_3, RGB(255, 255, 255));
+		HeroRollLeft.AddBitmap(IDB_ROLL_LEFT_4, RGB(255, 255, 255));
+		HeroRollLeft.AddBitmap(IDB_ROLL_LEFT_5, RGB(255, 255, 255));
+		HeroRollLeft.AddBitmap(IDB_ROLL_LEFT_6, RGB(255, 255, 255));
+		HeroRollLeft.AddBitmap(IDB_ROLL_LEFT_6, RGB(255, 255, 255));
+
+
+		HeroRollRight.AddBitmap(IDB_ROLL_RIGHT_1, RGB(255, 255, 255));
+		HeroRollRight.AddBitmap(IDB_ROLL_RIGHT_2, RGB(255, 255, 255));
+		HeroRollRight.AddBitmap(IDB_ROLL_RIGHT_3, RGB(255, 255, 255));
+		HeroRollRight.AddBitmap(IDB_ROLL_RIGHT_4, RGB(255, 255, 255));
+		HeroRollRight.AddBitmap(IDB_ROLL_RIGHT_5, RGB(255, 255, 255));
+		HeroRollRight.AddBitmap(IDB_ROLL_RIGHT_6, RGB(255, 255, 255));
+		HeroRollRight.AddBitmap(IDB_ROLL_RIGHT_6, RGB(255, 255, 255));
+
 		swordAttack.AddBitmap(IDB_SWORDATTACK_2,RGB(255, 255, 255));
 		swordAttack.AddBitmap(IDB_SWORDATTACK_3,RGB(255, 255, 255));
 		swordAttack.AddBitmap(IDB_SWORDATTACK_4,RGB(255, 255, 255));
@@ -241,6 +260,7 @@ namespace game_framework {
 	void CHero::OnMove()
 	{
 		const int STEP_SIZE = 10;
+
 		animation.OnMove();
 		animation1.OnMove();
 		sword.OnMove();
@@ -255,10 +275,14 @@ namespace game_framework {
 		moveLeftAnimation.OnMove();
 		jumpAnimation.OnMove();
 		jumpAnimation1.OnMove();
-		if(AttackDelayCount !=0) AttackDelayCount--;
-		if (DashColdDown != 0) DashColdDown--;
-		if (MoveDelayCount != 0) MoveDelayCount--;
-		if (MoveDelayCount == 0) SetPreviousMove(0);
+		HeroRollLeft.OnMove();
+		HeroRollRight.OnMove();
+
+		if(AttackDelayCount !=0) AttackDelayCount--;    //攻速
+		if (RollDelayCount != 0) RollDelayCount--;
+		if (DashColdDown != 0) DashColdDown--;      //衝刺
+		if (MoveDelayCount != 0) MoveDelayCount--;   //紀錄上個動作的保持時間
+		if (MoveDelayCount == 0) SetPreviousMove(0);  //抹除上個動作紀錄
 		if (isMovingLeft)
 		{
 			setHeroDirection("left");   //角色向左看
@@ -266,13 +290,13 @@ namespace game_framework {
 			{
 				if (PreviousMovement == 1 && DashColdDown==0)
 				{
-					x -= 80;
-					DashColdDown = 15;
-					HeroDashLeft.Reset();
+					x -= 80;    //衝刺距離
+					DashColdDown = 15;    // 衝刺冷卻時間
+					HeroDashLeft.Reset();  //重置動畫
 				}
 				else
 				{
-					x -= STEP_SIZE;
+					x -= STEP_SIZE;    //正常走
 				}
 			}
 		}
@@ -283,14 +307,33 @@ namespace game_framework {
 			{
 				if (PreviousMovement == 2 && DashColdDown == 0)
 				{
-					x += 80;
-					DashColdDown = 15;
-					HeroDashRight.Reset();
+					x += 80;     //衝刺距離
+					DashColdDown = 15;    // 衝刺冷卻時間
+					HeroDashRight.Reset();   //重置動畫
 				}
 				else
 				{
-					x += STEP_SIZE;
+					x += STEP_SIZE;    //正常走
 				}
+			}
+		}
+		if (isRolling)
+		{
+			if (faceDirection == "right")
+			{
+				if (currentMap->isSpace(GetX2(), GetY1()) && currentMap->isSpace(GetX2(), GetY2() - 10)) // 當y座標還沒碰到牆
+				{
+					x += 15;
+				}
+				if (HeroRollRight.IsFinalBitmap()) isRolling = false;
+			}
+			else
+			{
+				if (currentMap->isSpace(GetX2(), GetY1()) && currentMap->isSpace(GetX2(), GetY2() - 10)) // 當y座標還沒碰到牆
+				{
+					x -= 15;
+				}
+				if (HeroRollRight.IsFinalBitmap()) isRolling = false;
 			}
 		}
 		if (isMovingUp && y == (floor))
@@ -323,13 +366,13 @@ namespace game_framework {
 				velocity = initial_velocity;	// 重設上升初始速度
 			}
 		}
-		
+
 		if (isAttacking)
 		{
 			if (faceDirection == "right") currentMap->AttackByHero(GetX2(), GetX2() + swordAttack.Width(), GetY1(), GetY1() + swordAttack.Height(), heroAttackDamage);
 			else currentMap->AttackByHero(GetX1(), GetX1() + swordAttack1.Width(), GetY1(), GetY1() + swordAttack1.Height(), heroAttackDamage);
 		}
-		AttackByEnemy();
+		if(!isRolling) AttackByEnemy();
 		currentMap->SetSXSY(GetCenterX() - SIZE_X / 2, GetCenterY() - SIZE_Y / 2);
 		currentMap->OnMove();
 	}
@@ -368,10 +411,20 @@ namespace game_framework {
 			HeroAttackMovement1.Reset();
 			isAttacking = true;
 			AttackDelayCount = SetAttackDelayCount;
-			isMovingLeft = isMovingRight = isMovingUp = isMovingDown = false;   //角色不能邊走邊攻擊
+			isMovingLeft = isMovingRight = isMovingUp = isMovingDown = isRolling = false;   //角色不能邊走邊攻擊
 		}
 	}
-
+	void CHero::SetHeroRoll (bool flag)
+	{
+		if (RollDelayCount == 0 && flag == true) {
+			HeroRollLeft.Reset();
+			HeroRollRight.Reset();
+			isRolling = true;
+			RollDelayCount = 15;
+			
+			isMovingLeft = isMovingRight = isMovingUp = isMovingDown = isAttacking = false;   //角色不能邊走邊攻擊
+		}
+	}
 	void CHero::SetXY(int nx, int ny)
 	{
 		x = nx; y = ny;
@@ -391,6 +444,8 @@ namespace game_framework {
 	{
 		faceDirection = direction;
 	}
+
+
 	void CHero::changeLifeBarLength()
 	{
 		int xMove = currentMap->ScreenX(x - 250);
@@ -449,13 +504,13 @@ namespace game_framework {
 				moveRightAnimation.SetTopLeft(currentMap->ScreenX(x), currentMap->ScreenY(y));
 				moveRightAnimation.OnShow();
 			}
-			else
+			else   //右衝刺
 			{
 				HeroDashRight.SetTopLeft(currentMap->ScreenX(x - 50), currentMap->ScreenY(y));
 				HeroDashRight.OnShow();
 				if(HeroDashRight.IsFinalBitmap())
 				{
-					DashColdDown = 0;
+					DashColdDown = 0;    //動畫結束
 				}
 			}
 		}
@@ -466,7 +521,7 @@ namespace game_framework {
 				moveLeftAnimation.SetTopLeft(currentMap->ScreenX(x), currentMap->ScreenY(y));
 				moveLeftAnimation.OnShow();
 			}
-			else
+			else     //左衝刺
 			{
 				HeroDashLeft.SetTopLeft(currentMap->ScreenX(x), currentMap->ScreenY(y));
 				HeroDashLeft.OnShow();
@@ -474,6 +529,19 @@ namespace game_framework {
 				{
 					DashColdDown = 0;
 				}
+			}
+		}
+		else if (isRolling)
+		{
+			if (faceDirection == "right")
+			{
+				HeroRollRight.SetTopLeft(currentMap->ScreenX(x), currentMap->ScreenY(y));
+				HeroRollRight.OnShow();
+			}
+			else
+			{
+				HeroRollLeft.SetTopLeft(currentMap->ScreenX(x), currentMap->ScreenY(y));
+				HeroRollLeft.OnShow();
 			}
 		}
 		else if (isAttacking)
