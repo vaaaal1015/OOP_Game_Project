@@ -58,6 +58,7 @@ namespace game_framework {
 		CAnimation HeroRollLeft;		// 向左翻滾
 		CAnimation HeroRollRight;		// 向右翻滾
 		CMovingBitmap LifeBarHead;		// 血條
+		CInteger Health;				// 生命值
 		vector<CMovingBitmap*> LifeBarRed;		// 血條
 		int x, y;						// 英雄左上角座標
 		int AttackRange;				// 英雄攻擊範圍
@@ -66,7 +67,8 @@ namespace game_framework {
 		bool isMovingLeft;				// 是否正在往左移動
 		bool isMovingRight;				// 是否正在往右移動
 		bool isMovingUp;				// 是否正在往上移動
-		bool isRolling;
+		bool isRolling;					// 是否正在翻滾
+		bool isInvincible;				// 是否為無敵(無法被攻擊)
 		string faceDirection;			//人物面對的方向
 		int floor;						// 地板的Y座標
 		bool rising;					// true表上升、false表下降
@@ -74,10 +76,11 @@ namespace game_framework {
 		int velocity;					// 目前的速度(點/次)
 		int SetAttackDelayCount;		// 設定攻擊延遲時間
 		int AttackDelayCount;			// 攻擊延遲時間
-		int RollDelayCount;
+		int RollDelayCount;				// 翻滾延遲時間
 		int MoveDelayCount;				// 上個動作保存時間
 		int PreviousMovement;			// 紀錄上一個動作  0:無動作; 1:向左走; 2:向右走
 		int DashColdDown;				// 衝刺冷卻時間
+		int InvincibleDelayCount;		// 無敵時間
 
 	private:
 		vector<gameMap*> maps;

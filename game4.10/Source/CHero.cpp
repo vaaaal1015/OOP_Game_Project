@@ -90,7 +90,7 @@ namespace game_framework {
 		const int Y_POS = 0;
 		x = X_POS;
 		y = Y_POS;
-		isMovingLeft = isMovingRight = isMovingUp = isMovingDown = isAttacking = isRolling = false;
+		isMovingLeft = isMovingRight = isMovingUp = isMovingDown = isAttacking = isRolling = isInvincible = false;
 		PreviousMovement = 0;			//紀錄上一個動作
 		const int INITIAL_VELOCITY = 15;	// 初始上升速度
 		const int FLOOR = 100;				// 地板座標
@@ -98,7 +98,6 @@ namespace game_framework {
 		rising = false;
 		initial_velocity = INITIAL_VELOCITY;
 		velocity = initial_velocity;
-
 		animation.SetDelayCount(3);
 		animation1.SetDelayCount(3);
 		sword.SetDelayCount(3);
@@ -116,6 +115,7 @@ namespace game_framework {
 		HeroRollLeft.SetDelayCount(2);
 		HeroRollRight.SetDelayCount(2);
 		SetAttackDelayCount = AttackDelayCount = DashColdDown = RollDelayCount = 15;
+		InvincibleDelayCount = 30;
 		MoveDelayCount = 10;
 		FullHP = 100;						// 主角預設血量為100
 		CurrentHP = FullHP;
@@ -238,6 +238,7 @@ namespace game_framework {
 		swordAttack1.AddBitmap(IDB_SWORDATTACK_7_1, RGB(255, 255, 255));
 
 		LifeBarHead.LoadBitmap(IDB_LIFEBARHEAD, RGB(255, 255, 255));
+		Health.LoadBitmap();
 		for (vector<CMovingBitmap*>::iterator i = LifeBarRed.begin(); i != LifeBarRed.end(); i++) (*i)->LoadBitmap(IDB_LIFEBAR, RGB(255, 255, 255));
 		for (vector<gameMap*>::iterator i = maps.begin(); i != maps.end(); i++) (*i)->LoadBitmap();
 	}
@@ -260,7 +261,7 @@ namespace game_framework {
 	void CHero::OnMove()
 	{
 		const int STEP_SIZE = 10;
-
+		Health.SetInteger(CurrentHP);
 		animation.OnMove();
 		animation1.OnMove();
 		sword.OnMove();
@@ -279,10 +280,13 @@ namespace game_framework {
 		HeroRollRight.OnMove();
 
 		if(AttackDelayCount !=0) AttackDelayCount--;    //攻速
-		if (RollDelayCount != 0) RollDelayCount--;
+		if (RollDelayCount != 0) RollDelayCount--;		//翻滾
+		if (InvincibleDelayCount != 0) InvincibleDelayCount--;  //無敵時間
 		if (DashColdDown != 0) DashColdDown--;      //衝刺
 		if (MoveDelayCount != 0) MoveDelayCount--;   //紀錄上個動作的保持時間
 		if (MoveDelayCount == 0) SetPreviousMove(0);  //抹除上個動作紀錄
+		if (InvincibleDelayCount == 0) isInvincible = false;
+
 		if (isMovingLeft)
 		{
 			setHeroDirection("left");   //角色向左看
@@ -372,7 +376,7 @@ namespace game_framework {
 			if (faceDirection == "right") currentMap->AttackByHero(GetX2(), GetX2() + swordAttack.Width(), GetY1(), GetY1() + swordAttack.Height(), heroAttackDamage);
 			else currentMap->AttackByHero(GetX1(), GetX1() + swordAttack1.Width(), GetY1(), GetY1() + swordAttack1.Height(), heroAttackDamage);
 		}
-		if(!isRolling) AttackByEnemy();
+		if(!isRolling && !isInvincible) AttackByEnemy();
 		currentMap->SetSXSY(GetCenterX() - SIZE_X / 2, GetCenterY() - SIZE_Y / 2);
 		currentMap->OnMove();
 	}
@@ -471,8 +475,10 @@ namespace game_framework {
 	{
 		currentMap->OnShow();
 		LifeBarHead.SetTopLeft(currentMap->ScreenX(x-290), currentMap->ScreenY(y-205));
-		LifeBarHead.ShowBitmap();
+		LifeBarHead.ShowBitmap();  //顯示血條
+		Health.SetTopLeft(currentMap->ScreenX(x - 280), currentMap->ScreenY(y - 180));  
 		changeLifeBarLength();
+		Health.ShowBitmap();     // 顯示生命值
 		if (isMovingUp)	// 往上跳
 		{
 			if (faceDirection == "right")
@@ -644,11 +650,15 @@ namespace game_framework {
 		{
 			x += 30;
 			CurrentHP -= damageFromLeft;
+			isInvincible = true;
+			InvincibleDelayCount = 30;
 		}
 		else if (damageFromRight != 0)
 		{
 			x -= 30;
 			CurrentHP -= damageFromRight;
+			isInvincible = true;
+			InvincibleDelayCount = 30;
 		}
 	}
 }
