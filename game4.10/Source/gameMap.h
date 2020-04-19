@@ -13,6 +13,7 @@ namespace game_framework {
 		void OnMove();
 		void AttackByHero(int x1, int x2, int y1, int y2, int damage);		// 攻擊
 		int AttackByEnemy(int x1, int x2, int y1, int y2);
+		void SetEnemyPosition(int EnemyNumber, int EnemyX, int EnemyY);   //設定敵人位置
 
 	protected:
 		CMovingBitmap ground; //建立草地圖案

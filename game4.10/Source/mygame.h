@@ -98,8 +98,6 @@ namespace game_framework {
 		CMovingBitmap	corner;		// 角落圖
 		CMovingBitmap	lifebar;	// 英雄血量
 		CHero			hero;		// 英雄
-		CInteger		hits_left;	// 剩下的撞擊數
-		CInteger		enemy_hp;	// 敵人血量
 
 	};
 

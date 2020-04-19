@@ -338,6 +338,32 @@ IDB_ROLL_RIGHT_5        BITMAP                  "..\\RES\\charactor\\Roll_Right\
 
 IDB_ROLL_RIGHT_6        BITMAP                  "..\\RES\\charactor\\Roll_Right\\Hero_Roll_Right_6.bmp"
 
+IDB_RED_NUM_0           BITMAP                  "..\\RES\\Numbers\\NUM_0.bmp"
+
+IDB_RED_NUM_1           BITMAP                  "..\\RES\\Numbers\\NUM_1.bmp"
+
+IDB_RED_NUM_2           BITMAP                  "..\\RES\\Numbers\\NUM_2.bmp"
+
+IDB_RED_NUM_3           BITMAP                  "..\\RES\\Numbers\\NUM_3.bmp"
+
+IDB_RED_NUM_4           BITMAP                  "..\\RES\\Numbers\\NUM_4.bmp"
+
+IDB_RED_NUM_5           BITMAP                  "..\\RES\\Numbers\\NUM_5.bmp"
+
+IDB_RED_NUM_6           BITMAP                  "..\\RES\\Numbers\\NUM_6.bmp"
+
+IDB_RED_NUM_7           BITMAP                  "..\\RES\\Numbers\\NUM_7.bmp"
+
+IDB_RED_NUM_8           BITMAP                  "..\\RES\\Numbers\\NUM_8.bmp"
+
+IDB_RED_NUM_9           BITMAP                  "..\\RES\\Numbers\\NUM_9.bmp"
+
+IDB_OLD_MAN_1           BITMAP                  "..\\RES\\NPC\\Old_Man\\Old_Man_1.bmp"
+
+IDB_OLD_MAN_2           BITMAP                  "..\\RES\\NPC\\Old_Man\\Old_Man_2.bmp"
+
+IDB_OLD_MAN_3           BITMAP                  "..\\RES\\NPC\\Old_Man\\Old_Man_3.bmp"
+
 
 /////////////////////////////////////////////////////////////////////////////
 //

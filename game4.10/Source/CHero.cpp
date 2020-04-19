@@ -121,11 +121,13 @@ namespace game_framework {
 		CurrentHP = FullHP;
 		heroAttackDamage = 5;				// 主角預設攻擊力為5
 		AttackRange = 100;					// 主角攻擊範圍
-		
+		maps.push_back(new gameMap("Home.txt"));
 		maps.push_back(new gameMap("level_1.txt"));
 		maps.push_back(new gameMap("level_2.txt"));
+		
 		SetMap(0);
 
+		maps[0]->SetEnemyPosition(0, 0, 600);
 		if (LifeBarRed.size() == 0)
 		{
 			for (int i = 0; i < 100; i++)
@@ -239,6 +241,7 @@ namespace game_framework {
 
 		LifeBarHead.LoadBitmap(IDB_LIFEBARHEAD, RGB(255, 255, 255));
 		Health.LoadBitmap();
+		//DamageTaken.LoadBitmap();
 		for (vector<CMovingBitmap*>::iterator i = LifeBarRed.begin(); i != LifeBarRed.end(); i++) (*i)->LoadBitmap(IDB_LIFEBAR, RGB(255, 255, 255));
 		for (vector<gameMap*>::iterator i = maps.begin(); i != maps.end(); i++) (*i)->LoadBitmap();
 	}
@@ -479,6 +482,11 @@ namespace game_framework {
 		Health.SetTopLeft(currentMap->ScreenX(x - 280), currentMap->ScreenY(y - 180));  
 		changeLifeBarLength();
 		Health.ShowBitmap();     // 顯示生命值
+		/*if (AttackByEnemy() != 0)
+		{
+			DamageTaken.SetInteger(AttackByEnemy());
+			DamageTaken.ShowBitmap();
+		}*/
 		if (isMovingUp)	// 往上跳
 		{
 			if (faceDirection == "right")
@@ -638,7 +646,7 @@ namespace game_framework {
 		velocity = initial_velocity;
 	}
 
-	void CHero::AttackByEnemy()
+	int CHero::AttackByEnemy()
 	{
 		int damageFromLeft = 0;
 		int damageFromRight = 0;
@@ -652,13 +660,16 @@ namespace game_framework {
 			CurrentHP -= damageFromLeft;
 			isInvincible = true;
 			InvincibleDelayCount = 30;
+			return damageFromLeft;
 		}
-		else if (damageFromRight != 0)
+		if (damageFromRight != 0)
 		{
 			x -= 30;
 			CurrentHP -= damageFromRight;
 			isInvincible = true;
 			InvincibleDelayCount = 30;
+			return damageFromRight;
 		}
+		return 0;
 	}
 }

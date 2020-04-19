@@ -36,7 +36,7 @@ namespace game_framework {
 		void SetMap(int index);			// 
 		int GetHeroFullHP();
 		int GetHeroCurrentHP();
-		void AttackByEnemy();
+		int AttackByEnemy();
 		void SetPreviousMove(int Movement);
 		int GetPreviousMove();
 		void SetMoveDelayCount(int delay);
@@ -59,6 +59,7 @@ namespace game_framework {
 		CAnimation HeroRollRight;		// 向右翻滾
 		CMovingBitmap LifeBarHead;		// 血條
 		CInteger Health;				// 生命值
+		//CInteger DamageTaken;			// 顯示承受傷害
 		vector<CMovingBitmap*> LifeBarRed;		// 血條
 		int x, y;						// 英雄左上角座標
 		int AttackRange;				// 英雄攻擊範圍

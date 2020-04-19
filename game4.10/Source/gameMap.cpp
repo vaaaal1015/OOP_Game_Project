@@ -141,4 +141,9 @@ namespace game_framework {
 
 		return damage;
 	}
+	void gameMap::SetEnemyPosition(int EnemyNumber, int EnemyX, int EnemyY)
+	{
+		GAME_ASSERT((int)allEnemy.size() > EnemyNumber, "CHero: SetMap input index over range");
+		allEnemy[EnemyNumber]->SetXY(EnemyX, EnemyY);
+	}
 }

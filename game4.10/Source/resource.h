@@ -179,6 +179,21 @@
 #define IDB_ROLL_RIGHT_5                275
 #define IDB_BITMAP29                    276
 #define IDB_ROLL_RIGHT_6                276
+#define IDB_RED_NUM_0                   277
+#define IDB_RED_NUM_1                   278
+#define IDB_RED_NUM_2                   279
+#define IDB_RED_NUM_3                   280
+#define IDB_RED_NUM_4                   281
+#define IDB_RED_NUM_5                   282
+#define IDB_RED_NUM_6                   283
+#define IDB_RED_NUM_7                   284
+#define IDB_RED_NUM_8                   285
+#define IDB_BITMAP40                    286
+#define IDB_RED_NUM_9                   286
+#define IDB_OLD_MAN_1                   287
+#define IDB_OLD_MAN_2                   288
+#define IDB_BITMAP32                    289
+#define IDB_OLD_MAN_3                   289
 #define IDC_README                      1001
 #define ID_FILE_PAUSE                   32771
 #define ID_TOGGLE_FULLSCREEN            32772
@@ -191,7 +206,7 @@
 #ifdef APSTUDIO_INVOKED
 #ifndef APSTUDIO_READONLY_SYMBOLS
 #define _APS_3D_CONTROLS                     1
-#define _APS_NEXT_RESOURCE_VALUE        277
+#define _APS_NEXT_RESOURCE_VALUE        290
 #define _APS_NEXT_COMMAND_VALUE         32776
 #define _APS_NEXT_CONTROL_VALUE         1003
 #define _APS_NEXT_SYMED_VALUE           101

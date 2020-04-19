@@ -291,6 +291,7 @@ void CGameStateRun::OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags)
 	const char KEY_X = 0x58;	 // keyboard X
 	const char KEY_F1 = 0x70;	 // keyboard F1
 	const char KEY_F2 = 0x71;	 // keyboard F2
+	const char KEY_F3 = 0x72;	 // keyboard F3
 	const char KEY_Z = 0x5A;
 	if (nChar == KEY_LEFT)
 		hero.SetMovingLeft(true);
@@ -308,7 +309,8 @@ void CGameStateRun::OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags)
 		hero.SetMap(0);
 	if (nChar == KEY_F2)
 		hero.SetMap(1);
-	
+	if (nChar == KEY_F3)
+		hero.SetMap(2);
 		
 }
 
