@@ -4,6 +4,7 @@
 #include <ddraw.h>
 #include "audio.h"
 #include "gamelib.h"
+#include "NPC.h"
 #include "CEnemy.h"
 #include "gameMap.h"
 #include <fstream>
@@ -45,7 +46,7 @@ namespace game_framework {
 		}
 
 		allEnemy.push_back(new CEnemy(this));
-
+		allNPC.push_back(new NPC(this));
 	}
 
 	gameMap::~gameMap()

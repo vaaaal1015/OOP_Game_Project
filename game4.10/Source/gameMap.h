@@ -26,5 +26,6 @@ namespace game_framework {
 		int sx, sy;			  //(sx, sy)為螢幕(的左上角)在地圖上的點座標
 	private:
 		vector<CEnemy*> allEnemy;
+		vector<NPC*> allNPC;
 	};
 }

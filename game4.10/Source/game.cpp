@@ -36,6 +36,7 @@
 #include <string.h>
 #include "gamelib.h"
 #include "CEnemy.h"
+#include "NPC.h"
 #include "gameMap.h"
 #include "CHero.h"
 #include "mygame.h"

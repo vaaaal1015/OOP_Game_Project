@@ -28,13 +28,13 @@
 
 #include "stdafx.h"
 #include "game.h"
-
 #include "gameDoc.h"
 #include <mmsystem.h>
 #include <ddraw.h>
 #include <direct.h>
 #include <string.h>
 #include "gamelib.h"
+#include "NPC.h"
 #include "CEnemy.h"
 #include "gameMap.h"
 #include "CHero.h"
