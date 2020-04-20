@@ -52,6 +52,7 @@ namespace game_framework {
 	gameMap::~gameMap()
 	{
 		for (vector<CEnemy*>::iterator i = allEnemy.begin(); i != allEnemy.end(); i++) delete (*i);
+		for (vector<NPC*>::iterator i = allNPC.begin(); i != allNPC.end(); i++) delete (*i);
 	}
 
 	void gameMap::SetSXSY(int x, int y)   // 設定
@@ -82,6 +83,10 @@ namespace game_framework {
 		ground3.LoadBitmap(IDB_MAPSLIDE2);//載入斜坡2圖案
 
 		for (vector<CEnemy*>::iterator i = allEnemy.begin(); i != allEnemy.end(); i++) (*i)->LoadBitmap();
+		for (vector<NPC*>::iterator i = allNPC.begin(); i != allNPC.end(); i++)
+		{
+			(*i)->LoadBitmap();
+		}
 	}
 	void gameMap::OnShow()
 	{
@@ -114,6 +119,11 @@ namespace game_framework {
 			}
 		}
 		for (vector<CEnemy*>::iterator i = allEnemy.begin(); i != allEnemy.end(); i++) (*i)->OnShow();
+		for (vector<NPC*>::iterator i = allNPC.begin(); i != allNPC.end(); i++)
+		{
+			(*i)->OnShow();
+		}
+		
 	}
 
 	void gameMap::AttackByHero(int x1, int x2, int y1, int y2, int damage)		// 攻擊
@@ -123,6 +133,8 @@ namespace game_framework {
 
 	void gameMap::OnMove() {
 		for (vector<CEnemy*>::iterator i = allEnemy.begin(); i != allEnemy.end(); i++) (*i)->OnMove();
+		for (vector<NPC*>::iterator i = allNPC.begin(); i != allNPC.end(); i++) (*i)->OnMove();
+		
 	}
 
 	int gameMap::ScreenX(int x) // x 為地圖的點座標
@@ -133,18 +145,41 @@ namespace game_framework {
 	{
 		return y - sy; // 回傳螢幕的點座標
 	}
+
 	int gameMap::AttackByEnemy(int x1, int x2, int y1, int y2)
 	{
 		int damage = 0;
 
 		for (vector<CEnemy*>::iterator i = allEnemy.begin(); i != allEnemy.end(); i++)
 			damage += (*i)->AttackByEnemy(x1, x2, y1, y2);
-
 		return damage;
 	}
+
+	int gameMap::HeroTouchNPC(int x1, int x2, int y1, int y2)
+	{
+		int num = 0;
+		for (vector<NPC*>::iterator i = allNPC.begin(); i != allNPC.end(); i++)
+		{
+			if ((*i)->TouchedByHero(x1, x2, y1, y2))
+			{
+				return num;
+			}
+			num += 1;
+		}
+		return -1;
+	}
+
+
 	void gameMap::SetEnemyPosition(int EnemyNumber, int EnemyX, int EnemyY)
 	{
 		GAME_ASSERT((int)allEnemy.size() > EnemyNumber, "CHero: SetMap input index over range");
 		allEnemy[EnemyNumber]->SetXY(EnemyX, EnemyY);
 	}
+
+	void gameMap::SetNPCPosition(int NPCNumber, int NPCX, int NPCY)
+	{
+		GAME_ASSERT((int)allNPC.size() > NPCNumber, "CHero: SetMap input index over range");
+		allNPC[NPCNumber]->SetXY(NPCX, NPCY);
+	}
+
 }

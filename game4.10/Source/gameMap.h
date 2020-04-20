@@ -12,9 +12,10 @@ namespace game_framework {
 		int GetBlockY(int y);
 		void OnMove();
 		void AttackByHero(int x1, int x2, int y1, int y2, int damage);		// 攻擊
-		int AttackByEnemy(int x1, int x2, int y1, int y2);
+		int AttackByEnemy(int x1, int x2, int y1, int y2);  
+		int HeroTouchNPC(int x1, int x2, int y1, int y2);   //回傳碰到哪個NPC，都沒碰到就回傳-1
 		void SetEnemyPosition(int EnemyNumber, int EnemyX, int EnemyY);   //設定敵人位置
-
+		void SetNPCPosition(int NPCNumber, int NPCX, int NPCY);   //設定NPC位置
 	protected:
 		CMovingBitmap ground; //建立草地圖案
 		CMovingBitmap ground1; //建立土地圖案

@@ -128,7 +128,8 @@ namespace game_framework {
 		
 		SetMap(0);
 
-		maps[0]->SetEnemyPosition(0, 0, 600);
+		maps[0]->SetEnemyPosition(0, 600, 600);
+		maps[0]->SetNPCPosition(0, 200, 600);
 		if (LifeBarRed.size() == 0)
 		{
 			for (int i = 0; i < 100; i++)
@@ -381,6 +382,7 @@ namespace game_framework {
 			else currentMap->AttackByHero(GetX1(), GetX1() + swordAttack1.Width(), GetY1(), GetY1() + swordAttack1.Height(), heroAttackDamage);
 		}
 		if(!isRolling && !isInvincible) AttackByEnemy();
+		TouchNPC();
 		currentMap->SetSXSY(GetCenterX() - SIZE_X / 2, GetCenterY() - SIZE_Y / 2);
 		currentMap->OnMove();
 	}
@@ -672,5 +674,11 @@ namespace game_framework {
 			return damageFromRight;
 		}
 		return 0;
+	}
+	int CHero::TouchNPC()
+	{
+		int NPCNum = -1;
+		NPCNum = currentMap->HeroTouchNPC(GetX1(), GetX2(), GetY1(), GetY2());
+		return NPCNum;
 	}
 }

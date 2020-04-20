@@ -589,5 +589,23 @@
     <Image Include="RES\NPC\Old_Man\Old_Man_3.bmp">
       <Filter>Resource Files</Filter>
     </Image>
+    <Image Include="RES\NPC\Interaction_Bar\Hit_Top_Arrow\Hit_Top_Arrow_1.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\NPC\Interaction_Bar\Hit_Top_Arrow\Hit_Top_Arrow_2.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\NPC\Interaction_Bar\TALK\TALK_BAR_1.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\NPC\Interaction_Bar\TALK\TALK_BAR_2.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\NPC\Interaction_Bar\TALK\TALK_BAR_3.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\NPC\Interaction_Bar\TALK\TALK_BAR_4.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
   </ItemGroup>
 </Project>

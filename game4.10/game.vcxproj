@@ -420,6 +420,12 @@
     <Image Include="RES\mapSlideleftButtom.bmp" />
     <Image Include="RES\mapSlideleftButtom2.bmp" />
     <Image Include="RES\map_background.bmp" />
+    <Image Include="RES\NPC\Interaction_Bar\Hit_Top_Arrow\Hit_Top_Arrow_1.bmp" />
+    <Image Include="RES\NPC\Interaction_Bar\Hit_Top_Arrow\Hit_Top_Arrow_2.bmp" />
+    <Image Include="RES\NPC\Interaction_Bar\TALK\TALK_BAR_1.bmp" />
+    <Image Include="RES\NPC\Interaction_Bar\TALK\TALK_BAR_2.bmp" />
+    <Image Include="RES\NPC\Interaction_Bar\TALK\TALK_BAR_3.bmp" />
+    <Image Include="RES\NPC\Interaction_Bar\TALK\TALK_BAR_4.bmp" />
     <Image Include="RES\NPC\Old_Man\Old_Man_1.bmp" />
     <Image Include="RES\NPC\Old_Man\Old_Man_2.bmp" />
     <Image Include="RES\NPC\Old_Man\Old_Man_3.bmp" />

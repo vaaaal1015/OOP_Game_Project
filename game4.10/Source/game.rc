@@ -364,6 +364,18 @@ IDB_OLD_MAN_2           BITMAP                  "..\\RES\\NPC\\Old_Man\\Old_Man_
 
 IDB_OLD_MAN_3           BITMAP                  "..\\RES\\NPC\\Old_Man\\Old_Man_3.bmp"
 
+IDB_HIT_TOP_ARROW_1     BITMAP                  "..\\RES\\NPC\\Interaction_Bar\\Hit_Top_Arrow\\Hit_Top_Arrow_1.bmp"
+
+IDB_HIT_TOP_ARROW_2     BITMAP                  "..\\RES\\NPC\\Interaction_Bar\\Hit_Top_Arrow\\Hit_Top_Arrow_2.bmp"
+
+IDB_TALK_BAR_1          BITMAP                  "..\\RES\\NPC\\Interaction_Bar\\TALK\\TALK_BAR_1.bmp"
+
+IDB_TALK_BAR_2          BITMAP                  "..\\RES\\NPC\\Interaction_Bar\\TALK\\TALK_BAR_2.bmp"
+
+IDB_TALK_BAR_3          BITMAP                  "..\\RES\\NPC\\Interaction_Bar\\TALK\\TALK_BAR_3.bmp"
+
+IDB_TALK_BAR_4          BITMAP                  "..\\RES\\NPC\\Interaction_Bar\\TALK\\TALK_BAR_4.bmp"
+
 
 /////////////////////////////////////////////////////////////////////////////
 //

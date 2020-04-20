@@ -15,10 +15,11 @@ namespace game_framework {
 		void OnMove();					// 移動NPC
 		void OnShow();					// 將NPC圖形貼到畫面
 		void SetXY(int nx, int ny);		// 設定NPC左上角座標
-		void GetAttack(int x1, int x2, int y1, int y2, int damage);		// 被攻擊
-		int AttackByEnemy(int x1, int x2, int y1, int y2);
+		bool TouchedByHero(int x1, int x2, int y1, int y2);
+		int InteractionBarFlag;
 	protected:
 		CAnimation animation;			// NPC的動畫
+		CAnimation InteractionBar;
 		int x, y;						// NPC左上角座標
 	private:
 		gameMap* currentMap;

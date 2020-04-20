@@ -55,10 +55,20 @@ namespace game_framework {
 		x = X_POS;
 		y = Y_POS;
 		animation.SetDelayCount(3);
+		InteractionBarFlag = 0;
+		InteractionBar.SetDelayCount(3);
 	}
 
 	void NPC::LoadBitmap()
 	{
+		animation.AddBitmap(IDB_OLD_MAN_1, RGB(255, 255, 255));
+		animation.AddBitmap(IDB_OLD_MAN_2, RGB(255, 255, 255));
+		animation.AddBitmap(IDB_OLD_MAN_3, RGB(255, 255, 255));
+
+		InteractionBar.AddBitmap(IDB_TALK_BAR_1, RGB(255, 255, 255));
+		InteractionBar.AddBitmap(IDB_TALK_BAR_2, RGB(255, 255, 255));
+		InteractionBar.AddBitmap(IDB_TALK_BAR_3, RGB(255, 255, 255));
+		InteractionBar.AddBitmap(IDB_TALK_BAR_4, RGB(255, 255, 255));
 		
 	}
 
@@ -66,6 +76,7 @@ namespace game_framework {
 	void NPC::OnMove()
 	{
 		animation.OnMove();
+		InteractionBar.OnMove();
 	}
 	
 
@@ -77,5 +88,25 @@ namespace game_framework {
 	void NPC::OnShow()
 	{
 		
+		animation.SetTopLeft(currentMap->ScreenX(x), currentMap->ScreenY(y));
+		animation.OnShow();
+		if (InteractionBarFlag == 1)
+		{
+			InteractionBar.SetTopLeft(currentMap->ScreenX(x + 80), currentMap->ScreenY(y));
+			InteractionBar.OnShow();
+		}
+	}
+
+	bool NPC::TouchedByHero(int x1, int x2, int y1, int y2)
+	{
+		// TRACE("%d,%d,%d,%d\n", x1, x2, y1, y2);
+		if ((GetX2() >= x1) && (x2 >= GetX1()) && (GetY2() >= y1) && (y2 >= GetY1()))
+
+		{
+			InteractionBarFlag = 1;
+			return true;
+		}
+		InteractionBarFlag = 0;
+		return false;
 	}
 }
