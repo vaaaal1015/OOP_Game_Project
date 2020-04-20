@@ -466,6 +466,7 @@ namespace game_framework {
 			TRACE("%f,%d\n", lengthOfLifeBar, LifeBarRed.size());
 			for (int i = LifeBarRed.size(); i > lengthOfLifeBar; i--)
 			{
+				delete *LifeBarRed.rbegin();
 				LifeBarRed.pop_back();   //¦å±ø°Åµu
 			}
 		}
