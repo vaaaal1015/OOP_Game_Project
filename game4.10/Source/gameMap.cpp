@@ -90,8 +90,8 @@ namespace game_framework {
 	}
 	void gameMap::OnShow()
 	{
-		for (int i = 0; i < 48; i++) {
-			for (int j = 0; j < 64; j++) {
+		for (int i = 0; i < 32; i++) {
+			for (int j = 0; j < 96; j++) {
 				int x = j * MW - sx; // 算出第(i, j)這一格的 x 螢幕座標
 				int y = i * MH - sy; // 算出第(i, j)這一格的 y 螢幕座標
 				switch (map[i][j])

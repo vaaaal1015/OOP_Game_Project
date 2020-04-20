@@ -129,8 +129,8 @@ namespace game_framework {
 		
 		SetMap(0);
 
-		maps[0]->SetEnemyPosition(0, 600, 600);
-		maps[0]->SetNPCPosition(0, 200, 600);
+		maps[0]->SetEnemyPosition(0, 600, 300);
+		maps[0]->SetNPCPosition(0, 200, 350);
 		if (LifeBarRed.size() == 0)
 		{
 			for (int i = 0; i < 100; i++)
