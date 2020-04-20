@@ -61,9 +61,9 @@ namespace game_framework {
 
 	void NPC::LoadBitmap()
 	{
-		animation.AddBitmap(IDB_OLD_MAN_1, RGB(255, 255, 255));
-		animation.AddBitmap(IDB_OLD_MAN_2, RGB(255, 255, 255));
-		animation.AddBitmap(IDB_OLD_MAN_3, RGB(255, 255, 255));
+		animation.AddBitmap(IDB_OLD_MAN_1, RGB(255, 0, 0));
+		animation.AddBitmap(IDB_OLD_MAN_2, RGB(255, 0, 0));
+		animation.AddBitmap(IDB_OLD_MAN_3, RGB(255, 0, 0));
 
 		InteractionBar.AddBitmap(IDB_TALK_BAR_1, RGB(255, 255, 255));
 		InteractionBar.AddBitmap(IDB_TALK_BAR_2, RGB(255, 255, 255));
