@@ -330,6 +330,7 @@ namespace game_framework {
 		{
 			if (faceDirection == "right")
 			{
+				HeroRollRight.OnMove();
 				if (currentMap->isSpace(GetX2(), GetY1()) && currentMap->isSpace(GetX2(), GetY2() - 10)) // 當y座標還沒碰到牆
 				{
 					x += 15;
@@ -338,11 +339,12 @@ namespace game_framework {
 			}
 			else
 			{
+				HeroRollLeft.OnMove();
 				if (currentMap->isSpace(GetX2(), GetY1()) && currentMap->isSpace(GetX2(), GetY2() - 10)) // 當y座標還沒碰到牆
 				{
 					x -= 15;
 				}
-				if (HeroRollRight.IsFinalBitmap()) isRolling = false;
+				if (HeroRollLeft.IsFinalBitmap()) isRolling = false;
 			}
 		}
 		if (isMovingUp && y == (floor))
@@ -378,8 +380,14 @@ namespace game_framework {
 
 		if (isAttacking)
 		{
-			if (faceDirection == "right") currentMap->AttackByHero(GetX2(), GetX2() + swordAttack.Width(), GetY1(), GetY1() + swordAttack.Height(), heroAttackDamage);
-			else currentMap->AttackByHero(GetX1(), GetX1() + swordAttack1.Width(), GetY1(), GetY1() + swordAttack1.Height(), heroAttackDamage);
+			if (faceDirection == "right")
+			{
+				currentMap->AttackByHero(GetX2(), GetX2() + swordAttack.Width(), GetY1(), GetY1() + swordAttack.Height(), heroAttackDamage);
+			}
+			else
+			{
+				currentMap->AttackByHero(GetX1(), GetX1() + swordAttack1.Width(), GetY1(), GetY1() + swordAttack1.Height(), heroAttackDamage);
+			}
 		}
 		if(!isRolling && !isInvincible) AttackByEnemy();
 		TouchNPC();
@@ -568,15 +576,15 @@ namespace game_framework {
 			{
 				HeroAttackMovement.SetTopLeft(currentMap->ScreenX(x), currentMap->ScreenY(y));
 				HeroAttackMovement.OnShow();
-				swordAttack.SetTopLeft(currentMap->ScreenX(x - 40), currentMap->ScreenY(y));
-				swordAttack.OnShow();
+				/*swordAttack.SetTopLeft(currentMap->ScreenX(x - 40), currentMap->ScreenY(y));
+				swordAttack.OnShow();*/
 			}
 			else
 			{
 				HeroAttackMovement1.SetTopLeft(currentMap->ScreenX(x), currentMap->ScreenY(y));
 				HeroAttackMovement1.OnShow();
-				swordAttack1.SetTopLeft(currentMap->ScreenX(x - 75), currentMap->ScreenY(y));
-				swordAttack1.OnShow();
+				/*swordAttack1.SetTopLeft(currentMap->ScreenX(x - 75), currentMap->ScreenY(y));
+				swordAttack1.OnShow();*/
 			}
 		}
 		else
@@ -652,6 +660,7 @@ namespace game_framework {
 
 	int CHero::AttackByEnemy()
 	{
+
 		int damageFromLeft = 0;
 		int damageFromRight = 0;
 
