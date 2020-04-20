@@ -95,6 +95,7 @@ namespace game_framework {
 		PreviousMovement = 0;			//紀錄上一個動作
 		const int INITIAL_VELOCITY = 15;	// 初始上升速度
 		const int FLOOR = 100;				// 地板座標
+		Gold = 100;
 		floor = FLOOR;
 		rising = false;
 		initial_velocity = INITIAL_VELOCITY;
@@ -242,7 +243,7 @@ namespace game_framework {
 		swordAttack1.AddBitmap(IDB_SWORDATTACK_7_1, RGB(255, 255, 255));
 
 		LifeBarHead.LoadBitmap(IDB_LIFEBARHEAD, RGB(255, 255, 255));
-		Health.LoadBitmap();
+		Num.LoadBitmap();
 		//DamageTaken.LoadBitmap();
 		for (vector<CMovingBitmap*>::iterator i = LifeBarRed.begin(); i != LifeBarRed.end(); i++) (*i)->LoadBitmap(IDB_LIFEBAR, RGB(255, 255, 255));
 		for (vector<gameMap*>::iterator i = maps.begin(); i != maps.end(); i++) (*i)->LoadBitmap();
@@ -266,7 +267,6 @@ namespace game_framework {
 	void CHero::OnMove()
 	{
 		const int STEP_SIZE = 10;
-		Health.SetInteger(CurrentHP);
 		animation.OnMove();
 		animation1.OnMove();
 		sword.OnMove();
@@ -482,9 +482,9 @@ namespace game_framework {
 		currentMap->OnShow();
 		LifeBarHead.SetTopLeft(currentMap->ScreenX(x-290), currentMap->ScreenY(y-205));
 		LifeBarHead.ShowBitmap();  //顯示血條
-		Health.SetTopLeft(currentMap->ScreenX(x - 280), currentMap->ScreenY(y - 180));  
 		changeLifeBarLength();
-		Health.ShowBitmap();     // 顯示生命值
+		ShowNumber(CurrentHP, currentMap->ScreenX(x - 280), currentMap->ScreenY(y - 180));
+		ShowNumber(Gold, currentMap->ScreenX(x + 150), currentMap->ScreenY(y - 205));
 		/*if (AttackByEnemy() != 0)
 		{
 			DamageTaken.SetInteger(AttackByEnemy());
@@ -680,5 +680,12 @@ namespace game_framework {
 		int NPCNum = -1;
 		NPCNum = currentMap->HeroTouchNPC(GetX1(), GetX2(), GetY1(), GetY2());
 		return NPCNum;
+	}
+
+	void CHero::ShowNumber(int num, int x, int y)
+	{
+		Num.SetInteger(num);
+		Num.SetTopLeft(x, y);
+		Num.ShowBitmap();
 	}
 }

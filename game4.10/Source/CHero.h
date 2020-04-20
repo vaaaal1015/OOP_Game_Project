@@ -41,6 +41,7 @@ namespace game_framework {
 		void SetPreviousMove(int Movement);
 		int GetPreviousMove();
 		void SetMoveDelayCount(int delay);
+		void ShowNumber(int Number, int x, int y);
 	protected:
 		CAnimation animation;			// 英雄的動畫(向右)
 		CAnimation animation1;			// 英雄的動畫(向左)
@@ -59,7 +60,7 @@ namespace game_framework {
 		CAnimation HeroRollLeft;		// 向左翻滾
 		CAnimation HeroRollRight;		// 向右翻滾
 		CMovingBitmap LifeBarHead;		// 血條
-		CInteger Health;				// 生命值
+		CInteger Num;				// 生命值
 		//CInteger DamageTaken;			// 顯示承受傷害
 		vector<CMovingBitmap*> LifeBarRed;		// 血條
 		int x, y;						// 英雄左上角座標
@@ -72,6 +73,7 @@ namespace game_framework {
 		bool isRolling;					// 是否正在翻滾
 		bool isInvincible;				// 是否為無敵(無法被攻擊)
 		string faceDirection;			//人物面對的方向
+		int Gold;
 		int floor;						// 地板的Y座標
 		bool rising;					// true表上升、false表下降
 		int initial_velocity;			// 初始速度

@@ -81,7 +81,7 @@ namespace game_framework {
 		ground1.LoadBitmap(IDB_MAPGROUND1);//載入泥土圖案
 		ground2.LoadBitmap(IDB_MAPSLIDE1, RGB(255, 255, 255));//載入斜坡1圖案
 		ground3.LoadBitmap(IDB_MAPSLIDE2);//載入斜坡2圖案
-
+		
 		for (vector<CEnemy*>::iterator i = allEnemy.begin(); i != allEnemy.end(); i++) (*i)->LoadBitmap();
 		for (vector<NPC*>::iterator i = allNPC.begin(); i != allNPC.end(); i++)
 		{
@@ -123,7 +123,6 @@ namespace game_framework {
 		{
 			(*i)->OnShow();
 		}
-		
 	}
 
 	void gameMap::AttackByHero(int x1, int x2, int y1, int y2, int damage)		// 攻擊
