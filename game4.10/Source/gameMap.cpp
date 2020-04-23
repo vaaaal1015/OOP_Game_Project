@@ -14,7 +14,7 @@
 using namespace std;
 
 namespace game_framework {
-	gameMap::gameMap(string fileName)
+	gameMap::gameMap(string fileName ,int EnemyNumber, int NPCNumber)
 		:X(0), Y(0), MW(MIN_MAP_SIZE), MH(MIN_MAP_SIZE), sx(0), sy(0)  //圖片為10*10 初始螢幕畫面位於0,475
 	{
 
@@ -44,9 +44,8 @@ namespace game_framework {
 			}
 			i += 1;
 		}
-
-		allEnemy.push_back(new CEnemy(this));
-		allNPC.push_back(new NPC(this));
+		for (int i = 0; i < EnemyNumber; i++) allEnemy.push_back(new CEnemy(this));
+		for (int i = 0; i < NPCNumber; i++) allNPC.push_back(new NPC(this));
 	}
 
 	gameMap::~gameMap()
@@ -181,4 +180,9 @@ namespace game_framework {
 		allNPC[NPCNumber]->SetXY(NPCX, NPCY);
 	}
 
+	void gameMap::SetDifferentNPC(int NPCNumber, int DifferentNPC)
+	{
+		GAME_ASSERT((int)allNPC.size() > NPCNumber, "CHero: SetMap input index over range");
+		allNPC[NPCNumber]->SetLoadBitMapNumber(DifferentNPC);
+	}
 }

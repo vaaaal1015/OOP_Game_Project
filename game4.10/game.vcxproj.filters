@@ -138,9 +138,6 @@
     <ClCompile Include="Source\NPC.cpp">
       <Filter>MyGame</Filter>
     </ClCompile>
-    <ClCompile Include="Source\NPC_2.cpp">
-      <Filter>MFC</Filter>
-    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\audio.h">
@@ -186,9 +183,6 @@
       <Filter>MyGame</Filter>
     </ClInclude>
     <ClInclude Include="Source\NPC.h">
-      <Filter>MyGame</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\NCP_2.h">
       <Filter>MyGame</Filter>
     </ClInclude>
   </ItemGroup>
@@ -611,6 +605,36 @@
       <Filter>Resource Files</Filter>
     </Image>
     <Image Include="RES\NPC\Interaction_Bar\TALK\TALK_BAR_4.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\NPC\Giraffe\Giraffe Smith_0.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\NPC\Giraffe\Giraffe Smith_1.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\NPC\Giraffe\Giraffe Smith_2.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\NPC\Giraffe\Giraffe Smith_3.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\NPC\Giraffe\Giraffe Smith_4.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\UI\GAME_START_BUTTON.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\UI\Level_Up_Bar.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\UI\Level_Up_Button.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\UI\Quit_Button.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\UI\UI_Pause.bmp">
       <Filter>Resource Files</Filter>
     </Image>
   </ItemGroup>

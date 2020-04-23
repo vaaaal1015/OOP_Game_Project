@@ -123,14 +123,16 @@ namespace game_framework {
 		CurrentHP = FullHP;
 		heroAttackDamage = 5;				// 主角預設攻擊力為5
 		AttackRange = 100;					// 主角攻擊範圍
-		maps.push_back(new gameMap("Home.txt"));
-		maps.push_back(new gameMap("level_1.txt"));
-		maps.push_back(new gameMap("level_2.txt"));
+		maps.push_back(new gameMap("Home.txt", 0, 2));
+		maps.push_back(new gameMap("level_1.txt", 1, 0));
+		maps.push_back(new gameMap("level_2.txt", 1, 0));
 		
-		SetMap(0);
-
-		maps[0]->SetEnemyPosition(0, 600, 300);
+		maps[0]->SetDifferentNPC(0, 0);
+		maps[0]->SetDifferentNPC(1, 1);
 		maps[0]->SetNPCPosition(0, 200, 350);
+		maps[0]->SetNPCPosition(1, 400, 300);
+		SetMap(0);
+		
 		if (LifeBarRed.size() == 0)
 		{
 			for (int i = 0; i < 100; i++)

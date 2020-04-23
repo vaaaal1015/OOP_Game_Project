@@ -291,6 +291,7 @@ void CGameStateRun::OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags)
 	const char KEY_UP    = 0x26; // keyboard上箭頭
 	const char KEY_RIGHT = 0x27; // keyboard右箭頭
 	const char KEY_DOWN  = 0x28; // keyboard下箭頭
+	const char KEY_E = 0x45;	 // keyboard E
 	const char KEY_X = 0x58;	 // keyboard X
 	const char KEY_F1 = 0x70;	 // keyboard F1
 	const char KEY_F2 = 0x71;	 // keyboard F2

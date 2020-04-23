@@ -376,6 +376,26 @@ IDB_TALK_BAR_3          BITMAP                  "..\\RES\\NPC\\Interaction_Bar\\
 
 IDB_TALK_BAR_4          BITMAP                  "..\\RES\\NPC\\Interaction_Bar\\TALK\\TALK_BAR_4.bmp"
 
+IDB_GIRAFFE_1           BITMAP                  "..\\RES\\NPC\\Giraffe\\Giraffe Smith_0.bmp"
+
+IDB_GIRAFFE_2           BITMAP                  "..\\RES\\NPC\\Giraffe\\Giraffe Smith_1.bmp"
+
+IDB_GIRAFFE_3           BITMAP                  "..\\RES\\NPC\\Giraffe\\Giraffe Smith_2.bmp"
+
+IDB_GIRAFFE_4           BITMAP                  "..\\RES\\NPC\\Giraffe\\Giraffe Smith_3.bmp"
+
+IDB_GIRAFFE_5           BITMAP                  "..\\RES\\NPC\\Giraffe\\Giraffe Smith_4.bmp"
+
+IDB_UI_GAME_START       BITMAP                  "..\\RES\\UI\\GAME_START_BUTTON.bmp"
+
+IDB_UI_LEVEL_UP_INTERFACE BITMAP                  "..\\RES\\UI\\Level_Up_Bar.bmp"
+
+IDB_UI_LEVEL_UP_BAR     BITMAP                  "..\\RES\\UI\\Level_Up_Button.bmp"
+
+IDB_UI_QUIT             BITMAP                  "..\\RES\\UI\\Quit_Button.bmp"
+
+IDB_UI_PAUSE            BITMAP                  "..\\RES\\UI\\UI_Pause.bmp"
+
 
 /////////////////////////////////////////////////////////////////////////////
 //

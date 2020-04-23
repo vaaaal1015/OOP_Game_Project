@@ -52,18 +52,31 @@ namespace game_framework {
 		const int Y_POS = 0;
 		const int INITIAL_VELOCITY = 15;		// 初始上升速度
 		const int FLOOR = 100;					// 地板座標
+		LoadBitMapNumber = 0;
 		x = X_POS;
 		y = Y_POS;
-		animation.SetDelayCount(3);
+		animation.SetDelayCount(5);
 		InteractionBarFlag = 0;
-		InteractionBar.SetDelayCount(3);
+		InteractionBar.SetDelayCount(5);
 	}
 
 	void NPC::LoadBitmap()
 	{
-		animation.AddBitmap(IDB_OLD_MAN_1, RGB(255, 0, 0));
-		animation.AddBitmap(IDB_OLD_MAN_2, RGB(255, 0, 0));
-		animation.AddBitmap(IDB_OLD_MAN_3, RGB(255, 0, 0));
+		if (LoadBitMapNumber == 0)
+		{
+			animation.AddBitmap(IDB_OLD_MAN_1, RGB(255, 0, 0));
+			animation.AddBitmap(IDB_OLD_MAN_2, RGB(255, 0, 0));
+			animation.AddBitmap(IDB_OLD_MAN_3, RGB(255, 0, 0));
+		}
+		else if (LoadBitMapNumber == 1)
+		{
+			animation.AddBitmap(IDB_GIRAFFE_1, RGB(255, 0, 0));
+			animation.AddBitmap(IDB_GIRAFFE_2, RGB(255, 0, 0));
+			animation.AddBitmap(IDB_GIRAFFE_3, RGB(255, 0, 0));
+			animation.AddBitmap(IDB_GIRAFFE_4, RGB(255, 0, 0));
+			animation.AddBitmap(IDB_GIRAFFE_5, RGB(255, 0, 0));
+		}
+		
 
 		InteractionBar.AddBitmap(IDB_TALK_BAR_1, RGB(255, 255, 255));
 		InteractionBar.AddBitmap(IDB_TALK_BAR_2, RGB(255, 255, 255));
@@ -83,6 +96,11 @@ namespace game_framework {
 	void NPC::SetXY(int nx, int ny)
 	{
 		x = nx; y = ny;
+	}
+
+	void NPC::SetLoadBitMapNumber(int Number)
+	{
+		LoadBitMapNumber = Number;
 	}
 
 	void NPC::OnShow()

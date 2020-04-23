@@ -211,4 +211,9 @@ namespace game_framework {
 		}
 		else return 0;
 	}
+
+	void CEnemy::SetLoadBitMapNumber(int Number)
+	{
+		LoadBitMapNumber = Number;
+	}
 }

@@ -26,6 +26,7 @@ namespace game_framework {
 		void SetXY(int nx, int ny);		// 設定敵人左上角座標
 		void GetAttack(int x1, int x2, int y1, int y2, int damage);		// 被攻擊
 		int AttackByEnemy(int x1, int x2, int y1, int y2);
+		void SetLoadBitMapNumber(int Number);
 
 	protected:
 		CAnimation animation;			// 敵人的動畫
@@ -48,5 +49,6 @@ namespace game_framework {
 		gameMap* currentMap;
 		int moveingStepCount;
 		int moveingStep;
+		int LoadBitMapNumber;
 	};
 }

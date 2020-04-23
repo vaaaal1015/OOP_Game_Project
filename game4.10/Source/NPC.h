@@ -17,12 +17,14 @@ namespace game_framework {
 		void SetXY(int nx, int ny);		// 設定NPC左上角座標
 		bool TouchedByHero(int x1, int x2, int y1, int y2);
 		int InteractionBarFlag;
+		void SetLoadBitMapNumber(int Number);
 	protected:
-		CAnimation animation;			// NPC的動畫
-		CAnimation InteractionBar;
+		CAnimation animation;			 // NPC的動畫
+		CAnimation InteractionBar;      //互動圖
 		int x, y;						// NPC左上角座標
 	private:
 		gameMap* currentMap;
+		int LoadBitMapNumber;     //1:老人  //2:長頸鹿
 	};
 
 	
