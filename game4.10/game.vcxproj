@@ -259,8 +259,6 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source\audio.cpp" />
-    <ClCompile Include="Source\CBall.cpp" />
-    <ClCompile Include="Source\CBouncingBall.cpp" />
     <ClCompile Include="Source\CEnemy.cpp" />
     <ClCompile Include="Source\CHero.cpp" />
     <ClCompile Include="Source\game.cpp">
@@ -308,8 +306,6 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\audio.h" />
-    <ClInclude Include="Source\CBall.h" />
-    <ClInclude Include="Source\CBouncingBall.h" />
     <ClInclude Include="Source\CEnemy.h" />
     <ClInclude Include="Source\CHero.h" />
     <ClInclude Include="Source\game.h" />

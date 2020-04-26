@@ -394,6 +394,7 @@ namespace game_framework {
 		if(!isRolling && !isInvincible) AttackByEnemy();
 		TouchNPC();
 		currentMap->SetSXSY(GetCenterX() - SIZE_X / 2, GetCenterY() - SIZE_Y / 2);
+		currentMap->setHeroXY(GetX1(), GetX2(), GetY1(), GetY2());
 		currentMap->OnMove();
 	}
 

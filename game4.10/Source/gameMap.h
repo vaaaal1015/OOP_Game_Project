@@ -1,4 +1,5 @@
 namespace game_framework {
+	class NPC;
 	class gameMap {
 	public:
 		gameMap(string fileName ,int EnemyNumber, int NPCNumber);
@@ -17,6 +18,8 @@ namespace game_framework {
 		void SetEnemyPosition(int EnemyNumber, int EnemyX, int EnemyY);   //設定敵人位置
 		void SetNPCPosition(int NPCNumber, int NPCX, int NPCY);   //設定NPC位置
 		void SetDifferentNPC(int NPCNumber, int Number);    //NPCNumber:allNPC裡的哪一個 ,Number:哪一種NPC(LoadBitMapNumber)
+		void setHeroXY(int x1, int x2, int y1, int y2);
+
 	protected:
 		CMovingBitmap ground; //建立草地圖案
 		CMovingBitmap ground1; //建立土地圖案
@@ -27,7 +30,7 @@ namespace game_framework {
 		const int MW, MH;	  //每張小地圖的寬高度
 		int sx, sy;			  //(sx, sy)為螢幕(的左上角)在地圖上的點座標
 	private:
-		vector<CEnemy*> allEnemy;
+		//vector<CEnemy*> allEnemy;
 		vector<NPC*> allNPC;
 	};
 }
