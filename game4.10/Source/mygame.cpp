@@ -315,7 +315,8 @@ void CGameStateRun::OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags)
 		hero.SetMap(1);
 	if (nChar == KEY_F3)
 		hero.SetMap(2);
-		
+	if (nChar == KEY_E)
+		hero.SetTalkingToNPC(true);
 }
 
 void CGameStateRun::OnKeyUp(UINT nChar, UINT nRepCnt, UINT nFlags)
@@ -325,6 +326,7 @@ void CGameStateRun::OnKeyUp(UINT nChar, UINT nRepCnt, UINT nFlags)
 	const char KEY_RIGHT = 0x27; // keyboard右箭頭
 	const char KEY_DOWN  = 0x28; // keyboard下箭頭
 	const char KEY_X = 0x58;	 // keyboard X
+	const char KEY_E = 0x45;	 // keyboard E
 	if (nChar == KEY_LEFT)
 	{
 		hero.SetMovingLeft(false);
@@ -358,12 +360,12 @@ void CGameStateRun::OnKeyUp(UINT nChar, UINT nRepCnt, UINT nFlags)
 
 void CGameStateRun::OnLButtonDown(UINT nFlags, CPoint point)  // 處理滑鼠的動作
 {
-	hero.SetMovingLeft(true);
+	if((point.x<=409) && (point.y <= 142) && (point.x >= 239) && (point.y >= 108)) hero.SetEndTalking();
 }
 
 void CGameStateRun::OnLButtonUp(UINT nFlags, CPoint point)	// 處理滑鼠的動作
 {
-	hero.SetMovingLeft(false);
+	//hero.SetMovingLeft(false);
 }
 
 void CGameStateRun::OnMouseMove(UINT nFlags, CPoint point)	// 處理滑鼠的動作

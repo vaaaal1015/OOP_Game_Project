@@ -15,6 +15,7 @@ namespace game_framework {
 		void OnMove();
 		void AttackByHero(const int damage);		// §ðÀ»
 		void AttackByEnemy(int *heroHP);
+		void HeroTalkToNPC(bool flag);
 		void setHeroXY(int x1, int x2, int y1, int y2);
 		void SetHeroAttackRange(int x1, int x2, int y1, int y2);
 

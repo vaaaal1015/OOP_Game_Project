@@ -125,6 +125,14 @@ namespace game_framework {
 		for (vector<CEnemy*>::iterator i = allEnemy.begin(); i != allEnemy.end(); i++) (*i)->GetAttack(damage);
 	}
 
+	void gameMap::HeroTalkToNPC(bool flag)		
+	{
+		for (vector<NPC*>::iterator i = allNPC.begin(); i != allNPC.end(); i++)
+		{
+			(*i)->SetIsTalkingToHero(flag);
+		}
+	}
+
 	void gameMap::setHeroXY(int x1, int x2, int y1, int y2) {
 		for (vector<NPC*>::iterator i = allNPC.begin(); i != allNPC.end(); i++) (*i)->SetHeroXY(x1, x2, y1, y2);
 		for (vector<CEnemy*>::iterator i = allEnemy.begin(); i != allEnemy.end(); i++) (*i)->SetHeroXY(x1, x2, y1, y2);
@@ -147,7 +155,6 @@ namespace game_framework {
 	{
 		return y - sy; // 回傳螢幕的點座標
 	}
-
 	void gameMap::AttackByEnemy(int *heroHP)
 	{
 		for (vector<CEnemy*>::iterator i = allEnemy.begin(); i != allEnemy.end(); i++) (*i)->AttackByEnemy(heroHP);

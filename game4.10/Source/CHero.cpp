@@ -74,7 +74,7 @@ namespace game_framework {
 		const int Y_POS = 0;
 		x = X_POS;
 		y = Y_POS;
-		isMovingLeft = isMovingRight = isMovingUp = isMovingDown = isAttacking = isRolling = isInvincible = false;
+		isMovingLeft = isMovingRight = isMovingUp = isMovingDown = isAttacking = isRolling = isInvincible = isTalkingToNPC = false;
 		PreviousMovement = 0;			//紀錄上一個動作
 		const int INITIAL_VELOCITY = 15;	// 初始上升速度
 		const int FLOOR = 100;				// 地板座標
@@ -370,6 +370,15 @@ namespace game_framework {
 			}
 			currentMap->AttackByHero(heroAttackDamage);
 		}
+
+		if (isTalkingToNPC)
+		{
+			currentMap->HeroTalkToNPC(true);
+		}
+		else
+		{
+			currentMap->HeroTalkToNPC(false);
+		}
 		if(!isRolling && !isInvincible) AttackByEnemy();
 		currentMap->SetSXSY(GetCenterX() - SIZE_X / 2, GetCenterY() - SIZE_Y / 2);
 		currentMap->setHeroXY(GetX1(), GetX2(), GetY1(), GetY2());
@@ -401,6 +410,15 @@ namespace game_framework {
 		}
 	}
 
+	void CHero::SetTalkingToNPC(bool flag)
+	{
+		isTalkingToNPC = flag;
+	}
+
+	void CHero::SetEndTalking()
+	{
+		isTalkingToNPC = false;
+	}
 	void CHero::SetHeroAttack(bool flag)
 	{
 		if (AttackDelayCount == 0 && flag == true) {
@@ -650,7 +668,6 @@ namespace game_framework {
 			InvincibleDelayCount = 30;
 		}
 	}
-
 	void CHero::ShowNumber(int num, int x, int y)
 	{
 		Num.SetInteger(num);

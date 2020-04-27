@@ -18,6 +18,9 @@ namespace game_framework {
 
 	void NPC::OnShow() {}
 
+	void NPC::SetIsTalkingToHero(bool flag) {}
+
+
 	void NPC::SetHeroXY(int x1, int x2, int y1, int y2)
 	{
 		hero["x1"] = x1;
@@ -59,6 +62,10 @@ namespace game_framework {
 		InteractionBar.AddBitmap(IDB_TALK_BAR_2, RGB(255, 255, 255));
 		InteractionBar.AddBitmap(IDB_TALK_BAR_3, RGB(255, 255, 255));
 		InteractionBar.AddBitmap(IDB_TALK_BAR_4, RGB(255, 255, 255));
+
+		LevelUpBar.LoadBitmap(IDB_UI_LEVEL_UP_BAR);
+		PauseBar.LoadBitmap(IDB_UI_QUIT);
+		LevelUpInterface.LoadBitmap(IDB_UI_LEVEL_UP_INTERFACE);
 	}
 	void NPC_oldMan::OnMove()
 	{
@@ -75,6 +82,11 @@ namespace game_framework {
 			InteractionBar.SetTopLeft(currentMap->ScreenX(x + 80), currentMap->ScreenY(y));
 			InteractionBar.OnShow();
 		}
+		if (isTalkingToHero)
+		{
+			LevelUpInterface.SetTopLeft(currentMap->ScreenX(hero["x1"]+50), currentMap->ScreenY(hero["y1"]-190));
+			LevelUpInterface.ShowBitmap();
+		}
 	}
 
 	bool NPC_oldMan::isAroundHero()
@@ -84,4 +96,23 @@ namespace game_framework {
 		else
 			return false;
 	}
+	void NPC_oldMan::SetIsTalkingToHero(bool flag)
+	{
+		if (isAroundHero() && flag == true)
+		{
+			isTalkingToHero = true;
+		}
+	}
+
+	/*
+	bool NPC_oldMan::TouchedByHero(int x1, int x2, int y1, int y2)
+	{
+		// TRACE("%d,%d,%d,%d\n", x1, x2, y1, y2);
+		if ((GetX1() >= hero["x1"]) && (hero["x2"] >= GetX1()) && (GetY2() >= hero["y1"]) && (hero["y2"] >= GetY1()))
+		{
+			return true;
+		}
+		return false;
+	}
+	*/
 }
