@@ -7,6 +7,7 @@ namespace game_framework {
 		virtual void LoadBitmap();				// 載入圖形
 		virtual void OnMove();					// 移動NPC
 		virtual void OnShow();					// 將NPC圖形貼到畫面
+		virtual void SetIsTalkingToHero(bool flag);
 		//virtual void TouchedByHero(int x1, int x2, int y1, int y2);
 		void SetHeroXY(int x1, int x2, int y1, int y2);
 
@@ -31,7 +32,13 @@ namespace game_framework {
 		void LoadBitmap();				// 載入圖形
 		void OnMove();					// 移動NPC
 		void OnShow();					// 將NPC圖形貼到畫面
+		bool isTalkingToHero = false;
+		void SetIsTalkingToHero(bool flag);
 		//void TouchedByHero(int x1, int x2, int y1, int y2);
+	private:
+		CMovingBitmap LevelUpBar;
+		CMovingBitmap LevelUpInterface;
+		CMovingBitmap PauseBar;
 	};
 }
 

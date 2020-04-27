@@ -13,8 +13,8 @@ namespace game_framework {
 		int GetBlockY(int y);
 		void OnMove();
 		void AttackByHero(int x1, int x2, int y1, int y2, int damage);		// 攻擊
-		int AttackByEnemy(int x1, int x2, int y1, int y2);  
-		int HeroTouchNPC(int x1, int x2, int y1, int y2);   //回傳碰到哪個NPC，都沒碰到就回傳-1
+		int AttackByEnemy(int x1, int x2, int y1, int y2);
+		void HeroTalkToNPC(bool flag);
 		void SetEnemyPosition(int EnemyNumber, int EnemyX, int EnemyY);   //設定敵人位置
 		void SetNPCPosition(int NPCNumber, int NPCX, int NPCY);   //設定NPC位置
 		void SetDifferentNPC(int NPCNumber, int Number);    //NPCNumber:allNPC裡的哪一個 ,Number:哪一種NPC(LoadBitMapNumber)

@@ -127,6 +127,14 @@ namespace game_framework {
 		//for (vector<CEnemy*>::iterator i = allEnemy.begin(); i != allEnemy.end(); i++) (*i)->GetAttack(x1, x2, y1, y2, damage);
 	}
 
+	void gameMap::HeroTalkToNPC(bool flag)		
+	{
+		for (vector<NPC*>::iterator i = allNPC.begin(); i != allNPC.end(); i++)
+		{
+			(*i)->SetIsTalkingToHero(flag);
+		}
+	}
+
 	void gameMap::setHeroXY(int x1, int x2, int y1, int y2) {
 		for (vector<NPC*>::iterator i = allNPC.begin(); i != allNPC.end(); i++) (*i)->SetHeroXY(x1, x2, y1, y2);
 	}
@@ -153,22 +161,6 @@ namespace game_framework {
 			damage += (*i)->AttackByEnemy(x1, x2, y1, y2);
 		*/
 		return damage;
-	}
-
-	int gameMap::HeroTouchNPC(int x1, int x2, int y1, int y2)
-	{
-		/*
-		int num = 0;
-		for (vector<NPC*>::iterator i = allNPC.begin(); i != allNPC.end(); i++)
-		{
-			if ((*i)->TouchedByHero(x1, x2, y1, y2))
-			{
-				return num;
-			}
-			num += 1;
-		}
-		*/
-		return -1;
 	}
 
 

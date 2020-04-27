@@ -26,6 +26,7 @@ namespace game_framework {
 		void SetMovingLeft(bool flag);	// 設定是否正在往左移動
 		void SetMovingRight(bool flag); // 設定是否正在往右移動
 		void SetMovingUp(bool flag);	// 設定是否正在往上移動
+		void SetTalkingToNPC(bool flag);// 和NPC對話
 		void SetHeroRoll(bool flag);	// 翻滾
 		void SetHeroAttack(bool flag);	// 設定是否正在往上移動
 		void SetXY(int nx, int ny);		// 設定英雄左上角座標
@@ -37,11 +38,12 @@ namespace game_framework {
 		int GetHeroFullHP();
 		int GetHeroCurrentHP();
 		int AttackByEnemy();
-		int TouchNPC();
 		void SetPreviousMove(int Movement);
 		int GetPreviousMove();
 		void SetMoveDelayCount(int delay);
 		void ShowNumber(int Number, int x, int y);
+		void SetEndTalking();
+
 	protected:
 		CAnimation animation;			// 英雄的動畫(向右)
 		CAnimation animation1;			// 英雄的動畫(向左)
@@ -72,7 +74,8 @@ namespace game_framework {
 		bool isMovingUp;				// 是否正在往上移動
 		bool isRolling;					// 是否正在翻滾
 		bool isInvincible;				// 是否為無敵(無法被攻擊)
-		string faceDirection;			//人物面對的方向
+		bool isTalkingToNPC;			// 與NPC對話
+		string faceDirection;			// 人物面對的方向
 		int Gold;
 		int floor;						// 地板的Y座標
 		bool rising;					// true表上升、false表下降
