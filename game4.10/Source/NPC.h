@@ -11,8 +11,6 @@ namespace game_framework {
 		void SetHeroXY(int x1, int x2, int y1, int y2);
 
 	protected:
-		CAnimation animation;			 // NPC的動畫
-		CAnimation InteractionBar;      //互動圖
 		int x, y;						// NPC左上角座標
 		map<string, int> hero;
 		gameMap* currentMap;
@@ -32,6 +30,10 @@ namespace game_framework {
 		void OnMove();					// 移動NPC
 		void OnShow();					// 將NPC圖形貼到畫面
 		//void TouchedByHero(int x1, int x2, int y1, int y2);
+
+	private:
+		CAnimation animation;			 // NPC的動畫
+		CAnimation InteractionBar;      //互動圖
 	};
 }
 

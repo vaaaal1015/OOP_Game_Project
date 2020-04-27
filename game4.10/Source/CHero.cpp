@@ -123,14 +123,9 @@ namespace game_framework {
 		CurrentHP = FullHP;
 		heroAttackDamage = 5;				// 主角預設攻擊力為5
 		AttackRange = 100;					// 主角攻擊範圍
-		maps.push_back(new gameMap("Home.txt", 0, 2));
-		maps.push_back(new gameMap("level_1.txt", 1, 0));
-		maps.push_back(new gameMap("level_2.txt", 1, 0));
-		
-		maps[0]->SetDifferentNPC(0, 0);
-		maps[0]->SetDifferentNPC(1, 1);
-		maps[0]->SetNPCPosition(0, 200, 350);
-		maps[0]->SetNPCPosition(1, 400, 300);
+		maps.push_back(new gameMap("Home.txt"));
+		maps.push_back(new gameMap("level_1.txt"));
+		maps.push_back(new gameMap("level_2.txt"));
 		SetMap(0);
 		
 		if (LifeBarRed.size() == 0)
@@ -384,15 +379,15 @@ namespace game_framework {
 		{
 			if (faceDirection == "right")
 			{
-				currentMap->AttackByHero(GetX2(), GetX2() + swordAttack.Width(), GetY1(), GetY1() + swordAttack.Height(), heroAttackDamage);
+				currentMap->SetHeroAttackRange(GetX2(), GetX2() + swordAttack.Width(), GetY1(), GetY1() + swordAttack.Height());
 			}
 			else
 			{
-				currentMap->AttackByHero(GetX1(), GetX1() + swordAttack1.Width(), GetY1(), GetY1() + swordAttack1.Height(), heroAttackDamage);
+				currentMap->SetHeroAttackRange(GetX1(), GetX1() + swordAttack1.Width(), GetY1(), GetY1() + swordAttack1.Height());
 			}
+			currentMap->AttackByHero(heroAttackDamage);
 		}
 		if(!isRolling && !isInvincible) AttackByEnemy();
-		TouchNPC();
 		currentMap->SetSXSY(GetCenterX() - SIZE_X / 2, GetCenterY() - SIZE_Y / 2);
 		currentMap->setHeroXY(GetX1(), GetX2(), GetY1(), GetY2());
 		currentMap->OnMove();
@@ -661,38 +656,16 @@ namespace game_framework {
 		velocity = initial_velocity;
 	}
 
-	int CHero::AttackByEnemy()
+	void CHero::AttackByEnemy()
 	{
+		int hp = CurrentHP;
+		currentMap->AttackByEnemy(&CurrentHP);
 
-		int damageFromLeft = 0;
-		int damageFromRight = 0;
-
-		damageFromLeft = currentMap->AttackByEnemy(GetX1(), GetX1(), GetY1(), GetY2());
-		damageFromRight = currentMap->AttackByEnemy(GetX2(), GetX2(), GetY1(), GetY2());
-
-		if (damageFromLeft != 0)
+		if (CurrentHP != hp)
 		{
-			x += 30;
-			CurrentHP -= damageFromLeft;
 			isInvincible = true;
 			InvincibleDelayCount = 30;
-			return damageFromLeft;
 		}
-		if (damageFromRight != 0)
-		{
-			x -= 30;
-			CurrentHP -= damageFromRight;
-			isInvincible = true;
-			InvincibleDelayCount = 30;
-			return damageFromRight;
-		}
-		return 0;
-	}
-	int CHero::TouchNPC()
-	{
-		int NPCNum = -1;
-		NPCNum = currentMap->HeroTouchNPC(GetX1(), GetX2(), GetY1(), GetY2());
-		return NPCNum;
 	}
 
 	void CHero::ShowNumber(int num, int x, int y)

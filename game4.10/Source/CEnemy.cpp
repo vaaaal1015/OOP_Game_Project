@@ -4,69 +4,47 @@
 #include <ddraw.h>
 #include "audio.h"
 #include "gamelib.h"
-#include "NPC.h"
 #include "CEnemy.h"
 #include "gameMap.h"
 
 
 namespace game_framework {
 	/////////////////////////////////////////////////////////////////////////////
-	// CEraser: Eraser class
+	// CEnemy: Enemy base class
 	/////////////////////////////////////////////////////////////////////////////
+	CEnemy::CEnemy(gameMap* pointer, int x, int y) : currentMap(pointer), x(x), y(y) {};
+	
+	void CEnemy::LoadBitmap() {};
+	void CEnemy::OnMove() {};
+	void CEnemy::OnShow() {};
+	void  CEnemy::GetAttack(const int damage) {};
+	void  CEnemy::AttackByEnemy(int* heroHP) {};
 
-	CEnemy::CEnemy(gameMap* pointer)
+	void CEnemy::SetHeroXY(int x1, int x2, int y1, int y2)
 	{
-		currentMap = pointer;
-		Initialize();
+		hero["x1"] = x1;
+		hero["x2"] = x2;
+		hero["y1"] = y1;
+		hero["y2"] = y2;
 	}
 
-	int CEnemy::GetX1()
+	void CEnemy::SetHeroAttackRange(int x1, int x2, int y1, int y2)
 	{
-		return x;
+		heroAttackRange["x1"] = x1;
+		heroAttackRange["x2"] = x2;
+		heroAttackRange["y1"] = y1;
+		heroAttackRange["y2"] = y2;
 	}
 
-	int CEnemy::GetY1()
+	/////////////////////////////////////////////////////////////////////////////
+	// CEnemy_sunFlower: Enemy sunFlower class
+	/////////////////////////////////////////////////////////////////////////////
+	CEnemy_sunFlower::CEnemy_sunFlower(gameMap* pointer, int x, int y) : CEnemy(pointer, x, y)
 	{
-		return y;
-	}
-
-	int CEnemy::GetX2()
-	{
-		return x + animation.Width();
-	}
-
-	int CEnemy::GetY2()
-	{
-		return y + animation.Height();
-	}
-
-	int CEnemy::GetWidth()
-	{
-		return animation.Width();
-	}
-
-	int CEnemy::GetHeight()
-	{
-		return animation.Height();
-	}
-
-	void CEnemy::GetAttack(int x1, int x2, int y1, int y2, int damage)
-	{
-		if ((GetX2() >= x1) && (x2 >= GetX1()) && (GetY2() >= y1) && (y2 >= GetY1()))
-		{
-			enemyHP -= damage;
-		}
-	}
-
-	void CEnemy::Initialize()
-	{
-		const int X_POS = 600;
-		const int Y_POS = 0;
 		const int INITIAL_VELOCITY = 15;		// 初始上升速度
 		const int FLOOR = 100;					// 地板座標
-		x = X_POS;
-		y = Y_POS;
 		isMovingRight = true;
+		rising = false;
 
 		animation.SetDelayCount(3);
 		moveRightAnimation.SetDelayCount(3);
@@ -75,13 +53,57 @@ namespace game_framework {
 		enemyHP = 100;							//敵人預設生命值
 		enemyAttackDamage = 10;					//敵人預設攻擊力
 		floor = FLOOR;
-		rising = false;
 		initial_velocity = INITIAL_VELOCITY;
 		velocity = initial_velocity;
-
 	}
 
-	void CEnemy::LoadBitmap()
+	int CEnemy_sunFlower::GetX1()
+	{
+		return x;
+	}
+
+	int CEnemy_sunFlower::GetY1()
+	{
+		return y;
+	}
+
+	int CEnemy_sunFlower::GetX2()
+	{
+		return x + animation.Width();
+	}
+
+	int CEnemy_sunFlower::GetY2()
+	{
+		return y + animation.Height();
+	}
+
+	int CEnemy_sunFlower::GetWidth()
+	{
+		return animation.Width();
+	}
+
+	int CEnemy_sunFlower::GetHeight()
+	{
+		return animation.Height();
+	}
+
+	void CEnemy_sunFlower::GetAttack(const int damage)
+	{
+		if ((GetX2() >= heroAttackRange["x1"]) && (heroAttackRange["x2"] >= GetX1()) && (GetY2() >= heroAttackRange["y1"]) && (heroAttackRange["y2"] >= GetY1()))
+		{
+			enemyHP -= damage;
+		}
+	}
+
+	void CEnemy_sunFlower::AttackByEnemy(int *heroHP)
+	{
+		if ((GetX2() >= hero["x1"]) && (hero["x2"] >= GetX1()) && (GetY2() >= hero["y1"]) && (hero["y2"] >= GetY1()))
+		{
+			*heroHP -= enemyAttackDamage;
+		}
+	}
+
+	void CEnemy_sunFlower::LoadBitmap()
 	{
 		animation.AddBitmap(IDB_SUNFLOWERNOMOVE_1, RGB(255, 255, 255));
 		animation.AddBitmap(IDB_SUNFLOWERNOMOVE_2, RGB(255, 255, 255));
@@ -105,13 +127,13 @@ namespace game_framework {
 		DeadAnimation.AddBitmap(IDB_SUNFLOWER_DEAD_4, RGB(255, 255, 255));
 	}
 
-	
-	void CEnemy::OnMove()
+	void CEnemy_sunFlower::OnMove()
 	{
 		const int STEP_SIZE = 0;
+
 		animation.OnMove();
 		moveRightAnimation.OnMove();
-		if(enemyHP <= 0 && !DeadAnimation.IsFinalBitmap()) DeadAnimation.OnMove();
+		if (enemyHP <= 0 && !DeadAnimation.IsFinalBitmap()) DeadAnimation.OnMove();
 
 		/*
 		moveingStepCount--;
@@ -126,6 +148,11 @@ namespace game_framework {
 		{
 			if (currentMap->isSpace(GetX2(), GetY1()) && currentMap->isSpace(GetX2(), GetY2() - 10)) // 當y座標還沒碰到牆
 				x += STEP_SIZE;
+		}
+		else
+		{
+			if (currentMap->isSpace(GetX1(), GetY1()) && currentMap->isSpace(GetX1(), GetY2() - 10)) // 當y座標還沒碰到牆
+				x -= STEP_SIZE;
 		}
 
 		if (rising) {							// 上升狀態
@@ -155,32 +182,8 @@ namespace game_framework {
 			}
 		}
 	}
-	void CEnemy::SetMovingDown(bool flag)
-	{
-		isMovingDown = flag;
-	}
 
-	void CEnemy::SetMovingLeft(bool flag)
-	{
-		isMovingLeft = flag;
-	}
-
-	void CEnemy::SetMovingRight(bool flag)
-	{
-		isMovingRight = flag;
-	}
-
-	void CEnemy::SetMovingUp(bool flag)
-	{
-		isMovingUp = flag;
-	}
-
-	void CEnemy::SetXY(int nx, int ny)
-	{
-		x = nx; y = ny;
-	}
-
-	void CEnemy::OnShow()
+	void CEnemy_sunFlower::OnShow()
 	{
 		if (enemyHP <= 0)
 		{
@@ -201,19 +204,5 @@ namespace game_framework {
 			animation.SetTopLeft(currentMap->ScreenX(x), currentMap->ScreenY(y));
 			animation.OnShow();
 		}
-	}
-
-	int CEnemy::AttackByEnemy(int x1, int x2, int y1, int y2)
-	{
-		if ((GetX2() >= x1) && (x2 >= GetX1()) && (GetY2() >= y1) && (y2 >= GetY1()))
-		{
-			return enemyAttackDamage;
-		}
-		else return 0;
-	}
-
-	void CEnemy::SetLoadBitMapNumber(int Number)
-	{
-		LoadBitMapNumber = Number;
 	}
 }

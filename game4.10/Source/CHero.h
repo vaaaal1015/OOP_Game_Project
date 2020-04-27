@@ -36,8 +36,7 @@ namespace game_framework {
 		void SetMap(int index);			// 
 		int GetHeroFullHP();
 		int GetHeroCurrentHP();
-		int AttackByEnemy();
-		int TouchNPC();
+		void AttackByEnemy();
 		void SetPreviousMove(int Movement);
 		int GetPreviousMove();
 		void SetMoveDelayCount(int delay);
