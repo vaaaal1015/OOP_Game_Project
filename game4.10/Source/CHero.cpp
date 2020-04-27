@@ -45,23 +45,6 @@ namespace game_framework {
 	{
 		return y + animation.Height();
 	}
-	
-	int CHero::HitEnemyAndReternDamage(int x1, int x2, int y1, int y2)
-	{
-		if ((GetX2() + 100 >= x1) && (x2 -100 >= GetX1()) && (GetY2() >= y1) && (y2 >= GetY1())) 
-		{
-			return heroAttackDamage;
-		}
-		return 0;
-	}
-
-	void CHero::beHit(int objectX, int objectY, int objectDamage)
-	{
-		if (((x <= objectX)) && (objectX <= x + animation.Width()) && ((y <= objectY) && (y + animation.Height())))
-		{
-			CurrentHP -= objectDamage;
-		}
-	}
 
 	int CHero::GetWidth()
 	{

@@ -13,7 +13,7 @@ namespace game_framework {
 	// CEnemy: Enemy base class
 	/////////////////////////////////////////////////////////////////////////////
 	CEnemy::CEnemy(gameMap* pointer, int x, int y) : currentMap(pointer), x(x), y(y) {};
-	
+	CEnemy::~CEnemy() {};
 	void CEnemy::LoadBitmap() {};
 	void CEnemy::OnMove() {};
 	void CEnemy::OnShow() {};

@@ -9,6 +9,7 @@ namespace game_framework {
 	{
 	public:
 		CEnemy(gameMap* pointer, int x, int y);
+		~CEnemy();
 		virtual void LoadBitmap();				// 載入圖形
 		virtual void OnMove();					// 移動敵人
 		virtual void OnShow();					// 將敵人圖形貼到畫面

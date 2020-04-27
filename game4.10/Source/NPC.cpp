@@ -11,7 +11,7 @@ namespace game_framework {
 
 	//NPC class
 	NPC::NPC(gameMap* pointer,int x, int y) : currentMap(pointer), x(x), y(y) {}
-
+	NPC::~NPC() {}
 	void NPC::LoadBitmap() {}
 	
 	void NPC::OnMove() {}
@@ -84,16 +84,4 @@ namespace game_framework {
 		else
 			return false;
 	}
-
-	/*
-	bool NPC_oldMan::TouchedByHero(int x1, int x2, int y1, int y2)
-	{
-		// TRACE("%d,%d,%d,%d\n", x1, x2, y1, y2);
-		if ((GetX1() >= hero["x1"]) && (hero["x2"] >= GetX1()) && (GetY2() >= hero["y1"]) && (hero["y2"] >= GetY1()))
-		{
-			return true;
-		}
-		return false;
-	}
-	*/
 }

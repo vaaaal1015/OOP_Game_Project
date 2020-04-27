@@ -4,10 +4,10 @@ namespace game_framework {
 	{
 	public:
 		NPC(gameMap* currentMap, int nx, int ny);
+		~NPC();
 		virtual void LoadBitmap();				// 載入圖形
 		virtual void OnMove();					// 移動NPC
 		virtual void OnShow();					// 將NPC圖形貼到畫面
-		//virtual void TouchedByHero(int x1, int x2, int y1, int y2);
 		void SetHeroXY(int x1, int x2, int y1, int y2);
 
 	protected:
@@ -29,7 +29,6 @@ namespace game_framework {
 		void LoadBitmap();				// 載入圖形
 		void OnMove();					// 移動NPC
 		void OnShow();					// 將NPC圖形貼到畫面
-		//void TouchedByHero(int x1, int x2, int y1, int y2);
 
 	private:
 		CAnimation animation;			 // NPC的動畫
