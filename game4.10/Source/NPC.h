@@ -23,6 +23,7 @@ namespace game_framework {
 	{
 	public:
 		NPC_oldMan(gameMap* currentMap, int nx, int ny);
+		~NPC_oldMan();
 		int GetX1();
 		int GetY1();
 		int GetX2();

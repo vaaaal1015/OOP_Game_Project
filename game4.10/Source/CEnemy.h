@@ -29,6 +29,7 @@ namespace game_framework {
 	{
 	public:
 		CEnemy_sunFlower(gameMap* pointer, int x, int y);
+		~CEnemy_sunFlower();
 		int  GetX1();					// 敵人左上角 x 座標
 		int  GetY1();					// 敵人左上角 y 座標
 		int  GetX2();					// 敵人右下角 x 座標

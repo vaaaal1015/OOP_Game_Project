@@ -56,6 +56,8 @@ namespace game_framework {
 		initial_velocity = INITIAL_VELOCITY;
 		velocity = initial_velocity;
 	}
+	
+	CEnemy_sunFlower::~CEnemy_sunFlower() {}
 
 	int CEnemy_sunFlower::GetX1()
 	{

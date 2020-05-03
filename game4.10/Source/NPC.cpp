@@ -9,7 +9,9 @@
 
 namespace game_framework {
 
-	//NPC class
+	/////////////////////////////////////////////////////////////////////////////
+	// NPC: NPC base class
+	/////////////////////////////////////////////////////////////////////////////
 	NPC::NPC(gameMap* pointer,int x, int y) : currentMap(pointer), x(x), y(y) {}
 	NPC::~NPC() {}
 	void NPC::LoadBitmap() {}
@@ -29,9 +31,12 @@ namespace game_framework {
 		hero["y2"] = y2;
 	}
 
-
-	//NPC_OldMan class
+	/////////////////////////////////////////////////////////////////////////////
+	// NPC_oldMan: NPC old man class
+	/////////////////////////////////////////////////////////////////////////////
 	NPC_oldMan::NPC_oldMan(gameMap* pointer, int x, int y) : NPC(pointer, x, y) {}
+
+	NPC_oldMan::~NPC_oldMan() {}
 
 	int NPC_oldMan::GetX1() 
 	{ 
