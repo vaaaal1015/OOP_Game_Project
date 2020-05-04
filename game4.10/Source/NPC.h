@@ -4,7 +4,7 @@ namespace game_framework {
 	{
 	public:
 		NPC(gameMap* currentMap, int nx, int ny);
-		~NPC();
+		virtual ~NPC();
 		virtual void LoadBitmap();				// 載入圖形
 		virtual void OnMove();					// 移動NPC
 		virtual void OnShow();					// 將NPC圖形貼到畫面
