@@ -17,6 +17,13 @@ namespace game_framework {
 
 	CHero::CHero()
 	{
+		maps.push_back(new gameMap("Home.txt"));
+		maps.push_back(new gameMap("level_1.txt"));
+		maps.push_back(new gameMap("level_2.txt"));
+		SetMap(0);
+
+		for (int i = 0; i < 100; i++) LifeBarRed.push_back(new CMovingBitmap);    //50個血條圖片
+
 		Initialize();
 	}
 
@@ -106,18 +113,6 @@ namespace game_framework {
 		CurrentHP = FullHP;
 		heroAttackDamage = 5;				// 主角預設攻擊力為5
 		AttackRange = 100;					// 主角攻擊範圍
-		maps.push_back(new gameMap("Home.txt"));
-		maps.push_back(new gameMap("level_1.txt"));
-		maps.push_back(new gameMap("level_2.txt"));
-		SetMap(0);
-		
-		if (LifeBarRed.size() == 0)
-		{
-			for (int i = 0; i < 100; i++)
-			{
-				LifeBarRed.push_back(new CMovingBitmap);    //50個血條圖片
-			}
-		}
 	}
 
 	void CHero::LoadBitmap()

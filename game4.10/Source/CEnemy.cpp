@@ -14,11 +14,6 @@ namespace game_framework {
 	/////////////////////////////////////////////////////////////////////////////
 	CEnemy::CEnemy(gameMap* pointer, int x, int y) : currentMap(pointer), x(x), y(y) {};
 	CEnemy::~CEnemy() {};
-	void CEnemy::LoadBitmap() {};
-	void CEnemy::OnMove() {};
-	void CEnemy::OnShow() {};
-	void  CEnemy::GetAttack(const int damage) {};
-	void  CEnemy::AttackByEnemy(int* heroHP) {};
 
 	void CEnemy::SetHeroXY(int x1, int x2, int y1, int y2)
 	{
@@ -206,5 +201,11 @@ namespace game_framework {
 			animation.SetTopLeft(currentMap->ScreenX(x), currentMap->ScreenY(y));
 			animation.OnShow();
 		}
+	}
+
+	bool CEnemy_sunFlower::isDead()
+	{
+		if (enemyHP <= 0 && DeadAnimation.IsFinalBitmap()) return true;
+		else return false;
 	}
 }

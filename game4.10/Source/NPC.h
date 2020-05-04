@@ -5,10 +5,10 @@ namespace game_framework {
 	public:
 		NPC(gameMap* currentMap, int nx, int ny);
 		virtual ~NPC();
-		virtual void LoadBitmap();				// 載入圖形
-		virtual void OnMove();					// 移動NPC
-		virtual void OnShow();					// 將NPC圖形貼到畫面
-		virtual void SetIsTalkingToHero(bool flag);
+		virtual void LoadBitmap() = 0;				// 載入圖形
+		virtual void OnMove() = 0;					// 移動NPC
+		virtual void OnShow() = 0;					// 將NPC圖形貼到畫面
+		virtual void SetIsTalkingToHero(bool flag) = 0;
 		//virtual void TouchedByHero(int x1, int x2, int y1, int y2);
 		void SetHeroXY(int x1, int x2, int y1, int y2);
 

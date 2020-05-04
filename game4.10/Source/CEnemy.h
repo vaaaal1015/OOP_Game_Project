@@ -10,13 +10,14 @@ namespace game_framework {
 	public:
 		CEnemy(gameMap* pointer, int x, int y);
 		virtual ~CEnemy();
-		virtual void LoadBitmap();				// 載入圖形
-		virtual void OnMove();					// 移動敵人
-		virtual void OnShow();					// 將敵人圖形貼到畫面
+		virtual void LoadBitmap() = 0;				// 載入圖形
+		virtual void OnMove() = 0;					// 移動敵人
+		virtual void OnShow() = 0;					// 將敵人圖形貼到畫面
 		void SetHeroXY(int x1, int x2, int y1, int y2);				// 設定英雄位置
 		void SetHeroAttackRange(int x1, int x2, int y1, int y2);	// 設定英雄攻擊範圍
-		virtual void GetAttack(const int damage);		// 被攻擊
-		virtual void AttackByEnemy(int* heroHP);
+		virtual void GetAttack(const int damage) = 0;		// 被攻擊
+		virtual void AttackByEnemy(int* heroHP) = 0;
+		virtual bool isDead() = 0;
 
 	protected:
 		int x, y;						// 敵人左上角座標
@@ -41,6 +42,7 @@ namespace game_framework {
 		void OnShow();					// 將敵人圖形貼到畫面
 		void GetAttack(const int damage);		// 被攻擊
 		void AttackByEnemy(int* heroHP);
+		bool isDead();
 
 	private:
 		CAnimation animation;			// 敵人的動畫
