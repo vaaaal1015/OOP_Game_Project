@@ -157,7 +157,7 @@ namespace game_framework {
 
 		for (vector<CEnemy*>::iterator i = allEnemy.begin(); i != allEnemy.end(); i++) (*i)->OnMove();
 		for (vector<NPC*>::iterator i = allNPC.begin(); i != allNPC.end(); i++) (*i)->OnMove();
-		HeroIsTalkingToNPC = allNPC[0]->isTalkingToHero;
+		if(allNPC.size()!=0) HeroIsTalkingToNPC = allNPC[0]->isTalkingToHero;
 	}
 
 
