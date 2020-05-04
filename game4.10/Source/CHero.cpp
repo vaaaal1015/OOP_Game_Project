@@ -263,7 +263,7 @@ namespace game_framework {
 		jumpAnimation1.OnMove();
 		HeroRollLeft.OnMove();
 		HeroRollRight.OnMove();
-
+		if (currentMap == maps[0]) CurrentHP = FullHP;
 		if(AttackDelayCount !=0) AttackDelayCount--;    //攻速
 		if (RollDelayCount != 0) RollDelayCount--;		//翻滾
 		if (InvincibleDelayCount != 0) InvincibleDelayCount--;  //無敵時間
@@ -673,5 +673,12 @@ namespace game_framework {
 		Num.SetInteger(num);
 		Num.SetTopLeft(x, y);
 		Num.ShowBitmap();
+	}
+
+	void CHero::HeroLevelUp()
+	{
+		FullHP += 10;
+		heroAttackDamage += 10;
+		HeroLevel += 1;
 	}
 }

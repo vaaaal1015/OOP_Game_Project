@@ -107,6 +107,10 @@ namespace game_framework {
 		{
 			isTalkingToHero = true;
 		}
+		else
+		{
+			isTalkingToHero = false;
+		}
 	}
 
 	/*
