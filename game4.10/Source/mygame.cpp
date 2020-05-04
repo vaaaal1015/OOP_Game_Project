@@ -360,7 +360,15 @@ void CGameStateRun::OnKeyUp(UINT nChar, UINT nRepCnt, UINT nFlags)
 
 void CGameStateRun::OnLButtonDown(UINT nFlags, CPoint point)  // 處理滑鼠的動作
 {
-	if((point.x<=409) && (point.y <= 142) && (point.x >= 239) && (point.y >= 108)) hero.SetEndTalking();
+	if (hero.isTalkingToNPC)
+	{
+		TRACE("%d,%d\n", point.x, point.y);
+		if ((point.x <= 630) && (point.y <= 50) && (point.x >= 609) && (point.y >= 28)) hero.SetEndTalking();   //右上角xx
+		if ((point.x <= 625) && (point.y <= 216) && (point.x >= 561) && (point.y >= 199)) hero.SetEndTalking();  //cancel
+		if ((point.x <= 619) && (point.y <= 184) && (point.x >= 524) && (point.y >= 144)) hero.HeroLevelUp();
+
+	}
+	
 }
 
 void CGameStateRun::OnLButtonUp(UINT nFlags, CPoint point)	// 處理滑鼠的動作

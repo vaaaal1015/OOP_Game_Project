@@ -258,7 +258,7 @@ namespace game_framework {
 		jumpAnimation1.OnMove();
 		HeroRollLeft.OnMove();
 		HeroRollRight.OnMove();
-
+		if (currentMap == maps[0]) CurrentHP = FullHP;
 		if(AttackDelayCount !=0) AttackDelayCount--;    //攻速
 		if (RollDelayCount != 0) RollDelayCount--;		//翻滾
 		if (InvincibleDelayCount != 0) InvincibleDelayCount--;  //無敵時間
@@ -463,7 +463,7 @@ namespace game_framework {
 		int xMove = currentMap->ScreenX(x - 250);
 		int yMove = currentMap->ScreenY(y - 201);
 		float lengthOfLifeBar = ((float)CurrentHP / (float)FullHP) * 100;  //重新計算血條長度
-		if ((lengthOfLifeBar < LifeBarRed.size()) && (LifeBarRed.size() != 0))       //血條長度大於實際血量比例
+		if ((lengthOfLifeBar < LifeBarRed.size()) && (LifeBarRed.size() > 0) &&(lengthOfLifeBar >= 0))       //血條長度大於實際血量比例
 		{
 			TRACE("%f,%d\n", lengthOfLifeBar, LifeBarRed.size());
 			for (int i = LifeBarRed.size(); i > lengthOfLifeBar; i--)
@@ -486,8 +486,7 @@ namespace game_framework {
 		LifeBarHead.SetTopLeft(currentMap->ScreenX(x-290), currentMap->ScreenY(y-205));
 		LifeBarHead.ShowBitmap();  //顯示血條
 		changeLifeBarLength();
-		ShowNumber(CurrentHP, currentMap->ScreenX(x - 280), currentMap->ScreenY(y - 180));
-		ShowNumber(Gold, currentMap->ScreenX(x + 150), currentMap->ScreenY(y - 205));
+		ShowNumber(CurrentHP, currentMap->ScreenX(x - 280), currentMap->ScreenY(y - 170));
 		/*if (AttackByEnemy() != 0)
 		{
 			DamageTaken.SetInteger(AttackByEnemy());
@@ -668,5 +667,12 @@ namespace game_framework {
 		Num.SetInteger(num);
 		Num.SetTopLeft(x, y);
 		Num.ShowBitmap();
+	}
+
+	void CHero::HeroLevelUp()
+	{
+		FullHP += 5;
+		heroAttackDamage += 5;
+		HeroLevel += 1;
 	}
 }
