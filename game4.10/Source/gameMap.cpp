@@ -46,8 +46,8 @@ namespace game_framework {
 		}
 		//for (int i = 0; i < EnemyNumber; i++) allEnemy.push_back(new CEnemy(this));
 		//for (int i = 0; i < NPCNumber; i++) allNPC.push_back(new NPC(this));
-		allNPC.push_back(new NPC_oldMan(this, 200, 350));
-		allEnemy.push_back(new CEnemy_sunFlower(this, 300, 350));
+		if(fileName == "Home.txt") allNPC.push_back(new NPC_oldMan(this, 200, 350));
+		else allEnemy.push_back(new CEnemy_sunFlower(this, 300, 350));
 	}
 
 	gameMap::~gameMap()
@@ -142,6 +142,19 @@ namespace game_framework {
 	}
 
 	void gameMap::OnMove() {
+
+		vector<CEnemy*>::iterator iter = allEnemy.begin();
+		while (iter != allEnemy.end())
+		{
+			if ((*iter)->isDead())
+			{
+				delete *iter;
+				iter = allEnemy.erase(iter);
+			}
+			else
+				iter++;
+		}
+
 		for (vector<CEnemy*>::iterator i = allEnemy.begin(); i != allEnemy.end(); i++) (*i)->OnMove();
 		for (vector<NPC*>::iterator i = allNPC.begin(); i != allNPC.end(); i++) (*i)->OnMove();
 	}

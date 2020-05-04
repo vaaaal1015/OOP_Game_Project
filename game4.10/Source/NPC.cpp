@@ -14,14 +14,6 @@ namespace game_framework {
 	/////////////////////////////////////////////////////////////////////////////
 	NPC::NPC(gameMap* pointer,int x, int y) : currentMap(pointer), x(x), y(y) {}
 	NPC::~NPC() {}
-	void NPC::LoadBitmap() {}
-	
-	void NPC::OnMove() {}
-
-	void NPC::OnShow() {}
-
-	void NPC::SetIsTalkingToHero(bool flag) {}
-
 
 	void NPC::SetHeroState(int x1, int x2, int y1, int y2, int HP, int Gold, int AttackDamage, int Level)
 	{
