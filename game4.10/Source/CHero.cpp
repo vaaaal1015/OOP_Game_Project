@@ -486,6 +486,13 @@ namespace game_framework {
 		LifeBarHead.SetTopLeft(currentMap->ScreenX(x-290), currentMap->ScreenY(y-205));
 		LifeBarHead.ShowBitmap();  //Εγ₯ά¦ε±ψ
 		changeLifeBarLength();
+		if (currentMap->HeroIsTalkingToNPC)
+		{
+			ShowNumber(Gold, currentMap->ScreenX(x + 190), currentMap->ScreenY(y - 175));
+			ShowNumber(HeroLevel, currentMap->ScreenX(x + 90), currentMap->ScreenY(y - 175));
+			ShowNumber(FullHP, currentMap->ScreenX(x + 110), currentMap->ScreenY(y - 135));
+			ShowNumber(heroAttackDamage, currentMap->ScreenX(x + 140), currentMap->ScreenY(y - 110));
+		}
 		ShowNumber(CurrentHP, currentMap->ScreenX(x - 280), currentMap->ScreenY(y - 170));
 		/*if (AttackByEnemy() != 0)
 		{
