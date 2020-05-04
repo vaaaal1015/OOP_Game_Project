@@ -10,8 +10,7 @@ namespace game_framework {
 		virtual void OnShow();					// 將NPC圖形貼到畫面
 		virtual void SetIsTalkingToHero(bool flag);
 		//virtual void TouchedByHero(int x1, int x2, int y1, int y2);
-		void SetHeroXY(int x1, int x2, int y1, int y2);
-
+		void SetHeroState(int x1, int x2, int y1, int y2, int HP, int Gold, int AttackDamage, int Level);
 	protected:
 		int x, y;						// NPC左上角座標
 		map<string, int> hero;

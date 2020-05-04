@@ -16,7 +16,7 @@ namespace game_framework {
 		void AttackByHero(const int damage);		// §ðÀ»
 		void AttackByEnemy(int *heroHP);
 		void HeroTalkToNPC(bool flag);
-		void setHeroXY(int x1, int x2, int y1, int y2);
+		void setHeroState(int x1, int x2, int y1, int y2,int HP, int Gold, int AttackDamage, int Level);
 		void SetHeroAttackRange(int x1, int x2, int y1, int y2);
 
 	protected:

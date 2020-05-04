@@ -23,13 +23,18 @@ namespace game_framework {
 	void NPC::SetIsTalkingToHero(bool flag) {}
 
 
-	void NPC::SetHeroXY(int x1, int x2, int y1, int y2)
+	void NPC::SetHeroState(int x1, int x2, int y1, int y2, int HP, int Gold, int AttackDamage, int Level)
 	{
 		hero["x1"] = x1;
 		hero["x2"] = x2;
 		hero["y1"] = y1;
 		hero["y2"] = y2;
+		hero["HP"] = HP;
+		hero["Gold"] = Gold;
+		hero["AttackDamage"] = AttackDamage;
+		hero["HeroLevel"] = Level;
 	}
+
 
 	/////////////////////////////////////////////////////////////////////////////
 	// NPC_oldMan: NPC old man class

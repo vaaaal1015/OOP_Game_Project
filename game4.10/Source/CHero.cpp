@@ -381,7 +381,7 @@ namespace game_framework {
 		}
 		if(!isRolling && !isInvincible) AttackByEnemy();
 		currentMap->SetSXSY(GetCenterX() - SIZE_X / 2, GetCenterY() - SIZE_Y / 2);
-		currentMap->setHeroXY(GetX1(), GetX2(), GetY1(), GetY2());
+		currentMap->setHeroState(GetX1(), GetX2(), GetY1(), GetY2(),FullHP,Gold,heroAttackDamage,HeroLevel);
 		currentMap->OnMove();
 	}
 

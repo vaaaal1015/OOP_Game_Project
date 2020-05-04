@@ -133,8 +133,8 @@ namespace game_framework {
 		}
 	}
 
-	void gameMap::setHeroXY(int x1, int x2, int y1, int y2) {
-		for (vector<NPC*>::iterator i = allNPC.begin(); i != allNPC.end(); i++) (*i)->SetHeroXY(x1, x2, y1, y2);
+	void gameMap::setHeroState(int x1, int x2, int y1, int y2,int HP, int Gold, int AttackDamage,int Level) {
+		for (vector<NPC*>::iterator i = allNPC.begin(); i != allNPC.end(); i++) (*i)->SetHeroState(x1, x2, y1, y2, HP, Gold, AttackDamage, Level);
 		for (vector<CEnemy*>::iterator i = allEnemy.begin(); i != allEnemy.end(); i++) (*i)->SetHeroXY(x1, x2, y1, y2);
 	}
 	void gameMap::SetHeroAttackRange(int x1, int x2, int y1, int y2) {
