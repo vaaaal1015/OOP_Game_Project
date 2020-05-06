@@ -625,5 +625,11 @@
     <Image Include="RES\UI\UI_Pause.bmp">
       <Filter>Resource Files</Filter>
     </Image>
+    <Image Include="RES\UI\Worldmap_1.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\UI\Worldmap_UI_1.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
   </ItemGroup>
 </Project>

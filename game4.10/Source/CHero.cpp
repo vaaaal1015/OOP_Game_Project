@@ -218,6 +218,8 @@ namespace game_framework {
 		swordAttack1.AddBitmap(IDB_SWORDATTACK_7_1, RGB(255, 255, 255));
 
 		LifeBarHead.LoadBitmap(IDB_LIFEBARHEAD, RGB(255, 255, 255));
+		StartGameBar.LoadBitmap(IDB_UI_GAME_START);
+		WorldMap_UI_1.LoadBitmap(IDB_WORLDMAP_UI);
 		Num.LoadBitmap();
 		//DamageTaken.LoadBitmap();
 		for (vector<CMovingBitmap*>::iterator i = LifeBarRed.begin(); i != LifeBarRed.end(); i++) (*i)->LoadBitmap(IDB_LIFEBAR, RGB(255, 255, 255));
@@ -241,6 +243,8 @@ namespace game_framework {
 
 	void CHero::OnMove()
 	{
+		if (currentMap == maps[0]) isInHome = true;
+		else isInHome = false;
 		const int STEP_SIZE = 10;
 		animation.OnMove();
 		animation1.OnMove();
@@ -258,7 +262,10 @@ namespace game_framework {
 		jumpAnimation1.OnMove();
 		HeroRollLeft.OnMove();
 		HeroRollRight.OnMove();
-		if (currentMap == maps[0]) CurrentHP = FullHP;
+		if (currentMap == maps[0])     //在home時
+		{
+			CurrentHP = FullHP;
+		}
 		if(AttackDelayCount !=0) AttackDelayCount--;    //攻速
 		if (RollDelayCount != 0) RollDelayCount--;		//翻滾
 		if (InvincibleDelayCount != 0) InvincibleDelayCount--;  //無敵時間
@@ -632,6 +639,16 @@ namespace game_framework {
 				sword1.OnShow();
 			}
 		}
+		if (isInHome)
+		{
+			StartGameBar.SetTopLeft(currentMap->ScreenX(x - 100), currentMap->ScreenY(y + 150));
+			StartGameBar.ShowBitmap();
+		}
+		if (isSelectingMap)
+		{
+			WorldMap_UI_1.SetTopLeft(currentMap->ScreenX(x - 270), currentMap->ScreenY(y - 170));
+			WorldMap_UI_1.ShowBitmap();
+		}
 	}
 
 	void CHero::SetHeroHP(int inputHP)
@@ -681,5 +698,10 @@ namespace game_framework {
 		FullHP += 5;
 		heroAttackDamage += 5;
 		HeroLevel += 1;
+	}
+
+	void CHero::SelectMap(int MapNumber)
+	{
+		currentMap = maps[MapNumber];
 	}
 }

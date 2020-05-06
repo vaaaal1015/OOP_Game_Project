@@ -475,6 +475,8 @@
     <Image Include="RES\UI\LifeBarHead.bmp" />
     <Image Include="RES\UI\Quit_Button.bmp" />
     <Image Include="RES\UI\UI_Pause.bmp" />
+    <Image Include="RES\UI\Worldmap_1.bmp" />
+    <Image Include="RES\UI\Worldmap_UI_1.bmp" />
     <Image Include="RES\UI_1\LifeBar.bmp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

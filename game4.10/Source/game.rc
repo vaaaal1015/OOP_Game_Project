@@ -396,6 +396,10 @@ IDB_UI_QUIT             BITMAP                  "..\\RES\\UI\\Quit_Button.bmp"
 
 IDB_UI_PAUSE            BITMAP                  "..\\RES\\UI\\UI_Pause.bmp"
 
+IDB_WORLDMAP_1          BITMAP                  "..\\RES\\UI\\Worldmap_1.bmp"
+
+IDB_WORLDMAP_UI         BITMAP                  "..\\RES\\UI\\Worldmap_UI_1.bmp"
+
 
 /////////////////////////////////////////////////////////////////////////////
 //

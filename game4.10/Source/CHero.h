@@ -44,6 +44,9 @@ namespace game_framework {
 		void SetEndTalking();
 		bool isTalkingToNPC;			// 與NPC對話
 		int HeroLevel = 1;
+		bool isInHome = true;
+		bool isSelectingMap = false;	// 是否正在選擇地圖
+		void SelectMap(int MapNumber);
 	protected:
 		CAnimation animation;			// 英雄的動畫(向右)
 		CAnimation animation1;			// 英雄的動畫(向左)
@@ -62,6 +65,8 @@ namespace game_framework {
 		CAnimation HeroRollLeft;		// 向左翻滾
 		CAnimation HeroRollRight;		// 向右翻滾
 		CMovingBitmap LifeBarHead;		// 血條
+		CMovingBitmap StartGameBar;		// 開始按鈕
+		CMovingBitmap WorldMap_UI_1;		// 地圖_1
 		CInteger Num;				// 生命值
 		//CInteger DamageTaken;			// 顯示承受傷害
 		vector<CMovingBitmap*> LifeBarRed;		// 血條
@@ -74,6 +79,7 @@ namespace game_framework {
 		bool isMovingUp;				// 是否正在往上移動
 		bool isRolling;					// 是否正在翻滾
 		bool isInvincible;				// 是否為無敵(無法被攻擊)
+		
 		string faceDirection;			// 人物面對的方向
 		int Gold;
 		int floor;						// 地板的Y座標
