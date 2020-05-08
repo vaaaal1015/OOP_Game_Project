@@ -637,5 +637,8 @@
     <Image Include="RES\Statue\Hero Statue_Bronze_Broken.bmp">
       <Filter>Resource Files</Filter>
     </Image>
+    <Image Include="RES\UI\BlackMask.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
   </ItemGroup>
 </Project>

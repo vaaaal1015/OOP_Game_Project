@@ -97,6 +97,7 @@ namespace game_framework {
 		CMovingBitmap	help;		// 說明圖
 		CMovingBitmap	corner;		// 角落圖
 		CMovingBitmap	lifebar;	// 英雄血量
+		CMovingBitmap	BlackMask;	// 半透明效果
 		CHero			hero;		// 英雄
 
 	};

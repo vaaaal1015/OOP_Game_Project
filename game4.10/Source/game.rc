@@ -404,6 +404,8 @@ IDB_STATUE              BITMAP                  "..\\RES\\Statue\\Hero Statue_Br
 
 IDB_STATUE_BROKEN       BITMAP                  "..\\RES\\Statue\\Hero Statue_Bronze_Broken.bmp"
 
+IDB_BLACKMASK           BITMAP                  "..\\RES\\UI\\BlackMask.bmp"
+
 
 /////////////////////////////////////////////////////////////////////////////
 //
