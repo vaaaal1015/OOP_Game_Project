@@ -400,6 +400,10 @@ IDB_WORLDMAP_1          BITMAP                  "..\\RES\\UI\\Worldmap_1.bmp"
 
 IDB_WORLDMAP_UI         BITMAP                  "..\\RES\\UI\\Worldmap_UI_1.bmp"
 
+IDB_STATUE              BITMAP                  "..\\RES\\Statue\\Hero Statue_Bronze.bmp"
+
+IDB_STATUE_BROKEN       BITMAP                  "..\\RES\\Statue\\Hero Statue_Bronze_Broken.bmp"
+
 
 /////////////////////////////////////////////////////////////////////////////
 //

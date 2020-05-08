@@ -63,5 +63,36 @@ namespace game_framework {
 		int moveingStepCount;
 		int moveingStep;
 	};
+	
+	class CEnemy_Statue : public CEnemy
+	{
+	public:
+		CEnemy_Statue(gameMap* pointer, int x, int y);
+		~CEnemy_Statue();
+		int  GetX1();					// 敵人左上角 x 座標
+		int  GetY1();					// 敵人左上角 y 座標
+		int  GetX2();					// 敵人右下角 x 座標
+		int  GetY2();					// 敵人右下角 y 座標
+		int  GetWidth();				// 
+		int  GetHeight();
+		void LoadBitmap();				// 載入圖形
+		void OnMove();					// 移動敵人
+		void OnShow();					// 將敵人圖形貼到畫面
+		void GetAttack(const int damage);		// 被攻擊
+		void AttackByEnemy(int* heroHP);
+		bool isDead();
+
+	private:
+		CMovingBitmap Statue;
+		CMovingBitmap Statue_Broken;
+		int floor;				// 地板的Y座標
+		bool rising;				// true表上升、false表下降
+		int initial_velocity;		// 初始速度
+		int velocity;				// 目前的速度(點/次)
+		int enemyHP = 500;					// 敵人生命值
+		int enemyAttackDamage = 0;		//敵人攻擊力
+		int moveingStepCount;
+		int moveingStep;
+	};
 
 }

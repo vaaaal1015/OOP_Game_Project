@@ -22,7 +22,7 @@ namespace game_framework {
 		maps.push_back(new gameMap("level_2.txt"));
 		SetMap(0);
 
-		for (int i = 0; i < 100; i++) LifeBarRed.push_back(new CMovingBitmap);    //50個血條圖片
+		for (int i = 0; i < 100; i++) LifeBarRed.push_back(new CMovingBitmap);    //100個血條圖片
 
 		Initialize();
 	}
@@ -243,7 +243,7 @@ namespace game_framework {
 
 	void CHero::OnMove()
 	{
-		if (currentMap == maps[0]) isInHome = true;
+		if (currentMap == maps[0]) isInHome = true;   //判斷主角是不是在城鎮
 		else isInHome = false;
 		const int STEP_SIZE = 10;
 		animation.OnMove();
@@ -703,5 +703,6 @@ namespace game_framework {
 	void CHero::SelectMap(int MapNumber)
 	{
 		currentMap = maps[MapNumber];
+		x = 0;
 	}
 }

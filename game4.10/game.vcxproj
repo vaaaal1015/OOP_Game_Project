@@ -440,6 +440,8 @@
     <Image Include="RES\Numbers\NUM_7.bmp" />
     <Image Include="RES\Numbers\NUM_8.bmp" />
     <Image Include="RES\Numbers\NUM_9.bmp" />
+    <Image Include="RES\Statue\Hero Statue_Bronze.bmp" />
+    <Image Include="RES\Statue\Hero Statue_Bronze_Broken.bmp" />
     <Image Include="RES\sword\attackMode_1\swordAttackMode_0.bmp" />
     <Image Include="RES\sword\attackMode_1\swordAttackMode_1.bmp" />
     <Image Include="RES\sword\attackMode_1\swordAttackMode_2.bmp" />

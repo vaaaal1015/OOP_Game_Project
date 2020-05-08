@@ -208,4 +208,116 @@ namespace game_framework {
 		if (enemyHP <= 0 && DeadAnimation.IsFinalBitmap()) return true;
 		else return false;
 	}
+
+	/////////////////////////////////////////////////////////////////////////////
+	// CEnemy_Statue: Enemy Statue class
+	/////////////////////////////////////////////////////////////////////////////
+	CEnemy_Statue::CEnemy_Statue(gameMap* pointer, int x, int y) : CEnemy(pointer, x, y)
+	{
+		const int INITIAL_VELOCITY = 15;		// 初始上升速度
+		const int FLOOR = 100;					// 地板座標
+		floor = FLOOR;
+		initial_velocity = INITIAL_VELOCITY;
+		velocity = initial_velocity;
+	}
+
+	CEnemy_Statue::~CEnemy_Statue() {}
+
+	int CEnemy_Statue::GetX1()
+	{
+		return x;
+	}
+
+	int CEnemy_Statue::GetY1()
+	{
+		return y;
+	}
+
+	int CEnemy_Statue::GetX2()
+	{
+		return x + Statue.Width();
+	}
+
+	int CEnemy_Statue::GetY2()
+	{
+		return y + Statue.Height();
+	}
+
+	int CEnemy_Statue::GetWidth()
+	{
+		return Statue.Width();
+	}
+
+	int CEnemy_Statue::GetHeight()
+	{
+		return Statue.Height();
+	}
+
+	void CEnemy_Statue::GetAttack(const int damage)
+	{
+		if ((GetX2() >= heroAttackRange["x1"]) && (heroAttackRange["x2"] >= GetX1()) && (GetY2() >= heroAttackRange["y1"]) && (heroAttackRange["y2"] >= GetY1()))
+		{
+			enemyHP -= damage;
+		}
+	}
+
+
+	void CEnemy_Statue::LoadBitmap()
+	{
+		Statue.LoadBitmap(IDB_STATUE, RGB(255, 0, 0));
+		Statue_Broken.LoadBitmap(IDB_STATUE_BROKEN, RGB(255, 0, 0));
+	}
+
+	void CEnemy_Statue::OnMove()
+	{
+		const int STEP_SIZE = 0;
+
+		/*animation.OnMove();
+		moveRightAnimation.OnMove();
+		if (enemyHP <= 0 && !DeadAnimation.IsFinalBitmap()) DeadAnimation.OnMove();*/
+
+		/*
+		moveingStepCount--;
+		if (moveingStepCount < 0)
+		{
+			moveingStepCount = moveingStep;
+			isMovingRight = !isMovingRight;
+		}
+		*/
+
+		
+	}
+
+	void CEnemy_Statue::OnShow()
+	{
+		if (enemyHP <= 0)
+		{
+			Statue_Broken.SetTopLeft(currentMap->ScreenX(x), currentMap->ScreenY(y));
+			Statue_Broken.ShowBitmap();
+			/*if (!DeadAnimation.IsFinalBitmap())
+			{
+				DeadAnimation.SetTopLeft(currentMap->ScreenX(x), currentMap->ScreenY(y));
+				DeadAnimation.OnShow();
+			}*/
+		}
+		else
+		{
+			Statue.SetTopLeft(currentMap->ScreenX(x), currentMap->ScreenY(y));
+			Statue.ShowBitmap();
+		}
+	}
+
+	void CEnemy_Statue::AttackByEnemy(int *heroHP)
+	{
+		if ((GetX2() >= hero["x1"]) && (hero["x2"] >= GetX1()) && (GetY2() >= hero["y1"]) && (hero["y2"] >= GetY1()))
+		{
+			*heroHP -= enemyAttackDamage;
+		}
+	}
+
+	bool CEnemy_Statue::isDead()
+	{
+		if (enemyHP <= 0) return true;
+		else return false;
+	}
 }

@@ -47,7 +47,11 @@ namespace game_framework {
 		//for (int i = 0; i < EnemyNumber; i++) allEnemy.push_back(new CEnemy(this));
 		//for (int i = 0; i < NPCNumber; i++) allNPC.push_back(new NPC(this));
 		if(fileName == "Home.txt") allNPC.push_back(new NPC_oldMan(this, 200, 350));
-		else allEnemy.push_back(new CEnemy_sunFlower(this, 300, 350));
+		else
+		{
+			allEnemy.push_back(new CEnemy_sunFlower(this, 300, 350));
+			allEnemy.push_back(new CEnemy_Statue(this, 2950, 325));
+		}
 	}
 
 	gameMap::~gameMap()
