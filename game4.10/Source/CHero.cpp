@@ -725,7 +725,7 @@ namespace game_framework {
 		ClearedStage = false;
 		CurrentHP = FullHP;
 		currentMap = maps[0];
-		x = 0;
+		x = 0;    
 		y = 100;
 	}
 }
