@@ -100,6 +100,11 @@ namespace game_framework {
 		}
 	}
 
+	string CEnemy_sunFlower::GetEnemyType()
+	{
+		return EnemyType;
+	}
+
 	void CEnemy_sunFlower::LoadBitmap()
 	{
 		animation.AddBitmap(IDB_SUNFLOWERNOMOVE_1, RGB(255, 255, 255));
@@ -251,6 +256,11 @@ namespace game_framework {
 	int CEnemy_Statue::GetHeight()
 	{
 		return Statue.Height();
+	}
+
+	string CEnemy_Statue::GetEnemyType()
+	{
+		return EnemyType;
 	}
 
 	void CEnemy_Statue::GetAttack(const int damage)

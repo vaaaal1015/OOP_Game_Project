@@ -294,38 +294,38 @@ void CGameStateRun::OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags)
 	const char KEY_DOWN  = 0x28; // keyboard下箭頭
 	const char KEY_E = 0x45;	 // keyboard E
 	const char KEY_X = 0x58;	 // keyboard X
-	const char KEY_F1 = 0x70;	 // keyboard F1
-	const char KEY_F2 = 0x71;	 // keyboard F2
-	const char KEY_F3 = 0x72;	 // keyboard F3
-	const char KEY_Z = 0x5A;
-	if (nChar == KEY_LEFT)
-		hero.SetMovingLeft(true);
-	if (nChar == KEY_RIGHT)
-		hero.SetMovingRight(true);
-	if (nChar == KEY_UP)
-		hero.SetMovingUp(true);
-	if (nChar == KEY_DOWN)
-		hero.SetMovingDown(true);
-	if (nChar == KEY_X)
-		hero.SetHeroAttack(true);
-	if (nChar == KEY_Z)
-		hero.SetHeroRoll(true);
-	if (nChar == KEY_F1)
-		hero.SetMap(0);
-	if (nChar == KEY_F2)
-		hero.SetMap(1);
-	if (nChar == KEY_F3)
-		hero.SetMap(2);
-	if (nChar == KEY_E)
-		hero.SetTalkingToNPC(true);
+const char KEY_F1 = 0x70;	 // keyboard F1
+const char KEY_F2 = 0x71;	 // keyboard F2
+const char KEY_F3 = 0x72;	 // keyboard F3
+const char KEY_Z = 0x5A;
+if (nChar == KEY_LEFT)
+hero.SetMovingLeft(true);
+if (nChar == KEY_RIGHT)
+hero.SetMovingRight(true);
+if (nChar == KEY_UP)
+hero.SetMovingUp(true);
+if (nChar == KEY_DOWN)
+hero.SetMovingDown(true);
+if (nChar == KEY_X)
+hero.SetHeroAttack(true);
+if (nChar == KEY_Z)
+hero.SetHeroRoll(true);
+if (nChar == KEY_F1)
+hero.SetMap(0);
+if (nChar == KEY_F2)
+hero.SetMap(1);
+if (nChar == KEY_F3)
+hero.SetMap(2);
+if (nChar == KEY_E)
+hero.SetTalkingToNPC(true);
 }
 
 void CGameStateRun::OnKeyUp(UINT nChar, UINT nRepCnt, UINT nFlags)
 {
-	const char KEY_LEFT  = 0x25; // keyboard左箭頭
-	const char KEY_UP    = 0x26; // keyboard上箭頭
+	const char KEY_LEFT = 0x25; // keyboard左箭頭
+	const char KEY_UP = 0x26; // keyboard上箭頭
 	const char KEY_RIGHT = 0x27; // keyboard右箭頭
-	const char KEY_DOWN  = 0x28; // keyboard下箭頭
+	const char KEY_DOWN = 0x28; // keyboard下箭頭
 	const char KEY_X = 0x58;	 // keyboard X
 	const char KEY_E = 0x45;	 // keyboard E
 	if (nChar == KEY_LEFT)
@@ -336,7 +336,7 @@ void CGameStateRun::OnKeyUp(UINT nChar, UINT nRepCnt, UINT nFlags)
 			hero.SetPreviousMove(1);
 			hero.SetMoveDelayCount(5);
 		}
-			
+
 	}
 	if (nChar == KEY_RIGHT)
 	{
@@ -364,7 +364,7 @@ void CGameStateRun::OnLButtonDown(UINT nFlags, CPoint point)  // 處理滑鼠的動作
 	TRACE("%d,%d\n", point.x, point.y);
 	if (hero.isTalkingToNPC)
 	{
-		
+
 		if ((point.x <= 630) && (point.y <= 50) && (point.x >= 609) && (point.y >= 28)) hero.SetEndTalking();   //右上角xx
 		if ((point.x <= 625) && (point.y <= 216) && (point.x >= 561) && (point.y >= 199)) hero.SetEndTalking();  //cancel
 		if ((point.x <= 619) && (point.y <= 184) && (point.x >= 524) && (point.y >= 144)) hero.HeroLevelUp();
@@ -390,8 +390,14 @@ void CGameStateRun::OnLButtonDown(UINT nFlags, CPoint point)  // 處理滑鼠的動作
 		else
 		{
 			if ((point.x <= 437) && (point.y <= 415) && (point.x >= 188) && (point.y >= 355)) hero.isSelectingMap = true;   //右上角xx
+		}	
+	}
+	if (hero.ClearedStage)
+	{
+		if ((point.x <= 487) && (point.y <= 422) && (point.x >= 396) && (point.y >= 380))
+		{
+			hero.ResetHeroState();
 		}
-		
 	}
 	
 }

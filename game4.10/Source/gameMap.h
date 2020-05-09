@@ -19,6 +19,7 @@ namespace game_framework {
 		void setHeroState(int x1, int x2, int y1, int y2,int HP, int Gold, int AttackDamage, int Level);
 		void SetHeroAttackRange(int x1, int x2, int y1, int y2);
 		bool HeroIsTalkingToNPC = false;
+		bool isStageClear = false;
 	protected:
 		CMovingBitmap ground; //建立草地圖案
 		CMovingBitmap ground1; //建立土地圖案

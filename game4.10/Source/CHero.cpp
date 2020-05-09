@@ -220,7 +220,9 @@ namespace game_framework {
 		LifeBarHead.LoadBitmap(IDB_LIFEBARHEAD, RGB(255, 255, 255));
 		StartGameBar.LoadBitmap(IDB_UI_GAME_START);
 		WorldMap_UI_1.LoadBitmap(IDB_WORLDMAP_UI);
+		QuitButton.LoadBitmap(IDB_UI_QUIT, RGB(0, 0, 0));
 		Num.LoadBitmap();
+		BlackMask.LoadBitmap(IDB_BLACKMASK, RGB(27, 36, 46));
 		//DamageTaken.LoadBitmap();
 		for (vector<CMovingBitmap*>::iterator i = LifeBarRed.begin(); i != LifeBarRed.end(); i++) (*i)->LoadBitmap(IDB_LIFEBAR, RGB(255, 255, 255));
 		for (vector<gameMap*>::iterator i = maps.begin(); i != maps.end(); i++) (*i)->LoadBitmap();
@@ -245,6 +247,10 @@ namespace game_framework {
 	{
 		if (currentMap == maps[0]) isInHome = true;   //判斷主角是不是在城鎮
 		else isInHome = false;
+		if (currentMap != maps[0])
+		{
+			ClearedStage = currentMap->isStageClear;
+		}
 		const int STEP_SIZE = 10;
 		animation.OnMove();
 		animation1.OnMove();
@@ -649,6 +655,13 @@ namespace game_framework {
 			WorldMap_UI_1.SetTopLeft(currentMap->ScreenX(x - 270), currentMap->ScreenY(y - 170));
 			WorldMap_UI_1.ShowBitmap();
 		}
+		if (ClearedStage)
+		{
+			BlackMask.SetTopLeft(0, 0);
+			BlackMask.ShowBitmap();
+			QuitButton.SetTopLeft(currentMap->ScreenX(x + 100), currentMap->ScreenY(y + 170));
+			QuitButton.ShowBitmap();
+		}
 	}
 
 	void CHero::SetHeroHP(int inputHP)
@@ -704,5 +717,15 @@ namespace game_framework {
 	{
 		currentMap = maps[MapNumber];
 		x = 0;
+	}
+
+	void CHero::ResetHeroState()
+	{
+		currentMap->isStageClear = false;
+		ClearedStage = false;
+		CurrentHP = FullHP;
+		currentMap = maps[0];
+		x = 0;
+		y = 100;
 	}
 }

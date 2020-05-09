@@ -40,13 +40,15 @@ namespace game_framework {
 		int GetPreviousMove();
 		void SetMoveDelayCount(int delay);
 		void ShowNumber(int Number, int x, int y);
-		void HeroLevelUp();
-		void SetEndTalking();
+		void HeroLevelUp();             // 升級
+		void SetEndTalking();            // 關閉與NPC對話
 		bool isTalkingToNPC;			// 與NPC對話
 		int HeroLevel = 1;
 		bool isInHome = true;
 		bool isSelectingMap = false;	// 是否正在選擇地圖
 		void SelectMap(int MapNumber);
+		void ResetHeroState();      //重置主角狀態(回到城鎮)
+		bool ClearedStage = false;  //通關結算
 	protected:
 		CAnimation animation;			// 英雄的動畫(向右)
 		CAnimation animation1;			// 英雄的動畫(向左)
@@ -79,7 +81,6 @@ namespace game_framework {
 		bool isMovingUp;				// 是否正在往上移動
 		bool isRolling;					// 是否正在翻滾
 		bool isInvincible;				// 是否為無敵(無法被攻擊)
-		
 		string faceDirection;			// 人物面對的方向
 		int Gold;
 		int floor;						// 地板的Y座標
@@ -97,6 +98,8 @@ namespace game_framework {
 	private:
 		vector<gameMap*> maps;
 		gameMap* currentMap;
+		CMovingBitmap BlackMask;
+		CMovingBitmap QuitButton;
 		int FullHP;
 		int CurrentHP;
 		void changeLifeBarLength();

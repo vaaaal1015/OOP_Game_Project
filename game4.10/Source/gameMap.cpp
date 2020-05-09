@@ -148,12 +148,14 @@ namespace game_framework {
 	void gameMap::OnMove() {
 
 		vector<CEnemy*>::iterator iter = allEnemy.begin();
-		while (iter != allEnemy.end())
+		while (iter != allEnemy.end())         //敵人死亡會從vector裡被刪除
 		{
-			if ((*iter)->isDead())
+			if((*iter)->isDead() && (*iter)->GetEnemyType() == "Statue") isStageClear = true;   //通關完成
+			if ((*iter)->isDead() && (*iter)->GetEnemyType() != "Statue")   //雕像以外的敵人被打死
 			{
 				delete *iter;
 				iter = allEnemy.erase(iter);
+				//isStageClear = true;   //通關完成
 			}
 			else
 				iter++;

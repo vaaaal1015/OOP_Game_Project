@@ -18,7 +18,7 @@ namespace game_framework {
 		virtual void GetAttack(const int damage) = 0;		// 被攻擊
 		virtual void AttackByEnemy(int* heroHP) = 0;
 		virtual bool isDead() = 0;
-
+		virtual string GetEnemyType() = 0;
 	protected:
 		int x, y;						// 敵人左上角座標
 		gameMap* currentMap;		// 所在地圖
@@ -43,13 +43,14 @@ namespace game_framework {
 		void GetAttack(const int damage);		// 被攻擊
 		void AttackByEnemy(int* heroHP);
 		bool isDead();
-
+		string GetEnemyType();
 	private:
 		CAnimation animation;			// 敵人的動畫
 		CAnimation moveRightAnimation;  // 向右移動動畫
 		CAnimation moveLeftAnimation;   // 向左移動動畫
 		CAnimation jumpAnimation;		// 跳躍動畫
 		CAnimation DeadAnimation;		// 死亡動畫
+		string EnemyType = "Sun_Flower";
 		bool isMovingDown;			// 是否正在往下移動
 		bool isMovingLeft;			// 是否正在往左移動
 		bool isMovingRight;			// 是否正在往右移動
@@ -81,10 +82,12 @@ namespace game_framework {
 		void GetAttack(const int damage);		// 被攻擊
 		void AttackByEnemy(int* heroHP);
 		bool isDead();
+		string GetEnemyType();
 
 	private:
 		CMovingBitmap Statue;
 		CMovingBitmap Statue_Broken;
+		string EnemyType = "Statue";
 		int floor;				// 地板的Y座標
 		bool rising;				// true表上升、false表下降
 		int initial_velocity;		// 初始速度
