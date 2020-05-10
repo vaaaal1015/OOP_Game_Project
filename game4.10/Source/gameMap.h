@@ -20,6 +20,7 @@ namespace game_framework {
 		void SetHeroAttackRange(int x1, int x2, int y1, int y2);
 		bool HeroIsTalkingToNPC = false;
 		bool isStageClear = false;
+		void SetEnemyPosition(int EnemyNumber, int EnemyX, int EnemyY);
 	protected:
 		CMovingBitmap ground; //建立草地圖案
 		CMovingBitmap ground1; //建立土地圖案

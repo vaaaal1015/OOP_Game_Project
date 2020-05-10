@@ -23,6 +23,12 @@ namespace game_framework {
 		hero["y2"] = y2;
 	}
 
+	void CEnemy::SetEnemyXY(int SetX, int SetY)
+	{
+		x = SetX;
+		y = SetY;
+	}
+
 	void CEnemy::SetHeroAttackRange(int x1, int x2, int y1, int y2)
 	{
 		heroAttackRange["x1"] = x1;

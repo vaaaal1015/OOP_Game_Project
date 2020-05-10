@@ -19,6 +19,7 @@ namespace game_framework {
 		virtual void AttackByEnemy(int* heroHP) = 0;
 		virtual bool isDead() = 0;
 		virtual string GetEnemyType() = 0;
+		void SetEnemyXY(int SetX, int SetY);
 	protected:
 		int x, y;						// 敵人左上角座標
 		gameMap* currentMap;		// 所在地圖

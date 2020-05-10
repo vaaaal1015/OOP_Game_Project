@@ -179,4 +179,9 @@ namespace game_framework {
 	{
 		for (vector<CEnemy*>::iterator i = allEnemy.begin(); i != allEnemy.end(); i++) (*i)->AttackByEnemy(heroHP);
 	}
+
+	void gameMap::SetEnemyPosition(int EnemyNumber, int EnemyX, int EnemyY)
+	{
+		allEnemy[EnemyNumber]->SetEnemyXY(EnemyX, EnemyY);
+	}
 }

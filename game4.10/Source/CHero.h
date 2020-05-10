@@ -34,10 +34,10 @@ namespace game_framework {
 		bool isAttacking;				// 正在攻擊
 		void SetMap(int index);			// 
 		int GetHeroFullHP();
-		int GetHeroCurrentHP();
+		int GetHeroCurrentHP();      
 		void AttackByEnemy();
 		void SetPreviousMove(int Movement);
-		int GetPreviousMove();
+		int GetPreviousMove();          //取得上一個動作
 		void SetMoveDelayCount(int delay);
 		void ShowNumber(int Number, int x, int y);
 		void HeroLevelUp();             // 升級
@@ -82,7 +82,7 @@ namespace game_framework {
 		bool isRolling;					// 是否正在翻滾
 		bool isInvincible;				// 是否為無敵(無法被攻擊)
 		string faceDirection;			// 人物面對的方向
-		int Gold;
+		int Gold;						// 金幣
 		int floor;						// 地板的Y座標
 		bool rising;					// true表上升、false表下降
 		int initial_velocity;			// 初始速度
