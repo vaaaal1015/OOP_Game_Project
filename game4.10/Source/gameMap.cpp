@@ -14,10 +14,11 @@
 using namespace std;
 
 namespace game_framework {
-	gameMap::gameMap(string fileName)
-		:X(0), Y(0), MW(MIN_MAP_SIZE), MH(MIN_MAP_SIZE), sx(0), sy(0)  //圖片為10*10 初始螢幕畫面位於0,475
+	/////////////////////////////////////////////////////////////////////////////
+	// gameMap : gameMap base class
+	/////////////////////////////////////////////////////////////////////////////
+	gameMap::gameMap(string fileName) : X(0), Y(0), MW(MIN_MAP_SIZE), MH(MIN_MAP_SIZE), sx(0), sy(0)  //圖片為10*10 初始螢幕畫面位於0,475
 	{
-
 		fstream mapFile;
 		string mapLocation = "Map\\" + fileName;
 		mapFile.open(mapLocation, ios::in);
@@ -44,28 +45,14 @@ namespace game_framework {
 			}
 			i += 1;
 		}
-		//for (int i = 0; i < EnemyNumber; i++) allEnemy.push_back(new CEnemy(this));
-		//for (int i = 0; i < NPCNumber; i++) allNPC.push_back(new NPC(this));
-		if(fileName == "Home.txt") allNPC.push_back(new NPC_oldMan(this, 200, 350));
-		else
-		{
-			allEnemy.push_back(new CEnemy_sunFlower(this, 300, 350));
-			allEnemy.push_back(new CEnemy_Statue(this, 2950, 325));
-		}
-	}
-
-	gameMap::~gameMap()
-	{
-		for (vector<CEnemy*>::iterator i = allEnemy.begin(); i != allEnemy.end(); i++) delete (*i);
-		for (vector<NPC*>::iterator i = allNPC.begin(); i != allNPC.end(); i++) delete (*i);
 	}
 
 	void gameMap::SetSXSY(int x, int y)   // 設定
 	{
 		sx = x;
 		sy = y;
-
 	}
+
 	bool gameMap::isSpace(int x, int y)   // (x, y)為地圖的點座標
 	{
 		int gx = x / MIN_MAP_SIZE; // 轉換為格座標(整數除法)
@@ -74,10 +61,21 @@ namespace game_framework {
 		if (map[gy][gx] == 0) return true;
 		else return false;
 	}
+
 	int gameMap::GetBlockY(int y)
 	{
 		int gy = y / MIN_MAP_SIZE;  // 轉換為格座標(整數除法)
 		return gy * MH;
+	}
+
+	int gameMap::ScreenX(int x) // x 為地圖的點座標
+	{
+		return x - sx; // 回傳螢幕的 x 點座標
+	}
+
+	int gameMap::ScreenY(int y) // y 為地圖的 y 點座標
+	{
+		return y - sy; // 回傳螢幕的點座標
 	}
 
 	void gameMap::LoadBitmap()
@@ -86,10 +84,10 @@ namespace game_framework {
 		ground1.LoadBitmap(IDB_MAPGROUND1);//載入泥土圖案
 		ground2.LoadBitmap(IDB_MAPSLIDE1, RGB(255, 255, 255));//載入斜坡1圖案
 		ground3.LoadBitmap(IDB_MAPSLIDE2);//載入斜坡2圖案
-		
-		for (vector<CEnemy*>::iterator i = allEnemy.begin(); i != allEnemy.end(); i++) (*i)->LoadBitmap();
-		for (vector<NPC*>::iterator i = allNPC.begin(); i != allNPC.end(); i++) (*i)->LoadBitmap();
 	}
+
+	void gameMap::OnMove() {};
+
 	void gameMap::OnShow()
 	{
 		for (int i = 0; i < 32; i++) {
@@ -120,37 +118,80 @@ namespace game_framework {
 				}
 			}
 		}
-		for (vector<CEnemy*>::iterator i = allEnemy.begin(); i != allEnemy.end(); i++) (*i)->OnShow();
-		for (vector<NPC*>::iterator i = allNPC.begin(); i != allNPC.end(); i++)	(*i)->OnShow();
 	}
-
-	void gameMap::AttackByHero(const int damage)		// 攻擊
+	/////////////////////////////////////////////////////////////////////////////
+	// gameMap_village : gameMap_village class
+	/////////////////////////////////////////////////////////////////////////////
+	gameMap_village::gameMap_village(string fileName) : gameMap(fileName)
 	{
-		for (vector<CEnemy*>::iterator i = allEnemy.begin(); i != allEnemy.end(); i++) (*i)->GetAttack(damage);
+		allNPC.push_back(new NPC_oldMan(this, 200, 350));
 	}
 
-	void gameMap::HeroTalkToNPC(bool flag)		
+	gameMap_village::~gameMap_village()
+	{
+		for (vector<NPC*>::iterator i = allNPC.begin(); i != allNPC.end(); i++) delete (*i);
+	}
+
+	void gameMap_village::LoadBitmap()
+	{
+		gameMap::LoadBitmap();
+		for (vector<NPC*>::iterator i = allNPC.begin(); i != allNPC.end(); i++) (*i)->LoadBitmap();
+	}
+
+	void gameMap_village::OnShow()
+	{
+		gameMap::OnShow();
+		for (vector<NPC*>::iterator i = allNPC.begin(); i != allNPC.end(); i++) (*i)->OnShow();
+	}
+
+	void gameMap_village::OnMove()
+	{
+		for (vector<NPC*>::iterator i = allNPC.begin(); i != allNPC.end(); i++) (*i)->OnMove();
+		if (allNPC.size() != 0) HeroIsTalkingToNPC = allNPC[0]->isTalkingToHero;
+	}
+
+	void gameMap_village::HeroTalkToNPC(bool flag)
 	{
 		for (vector<NPC*>::iterator i = allNPC.begin(); i != allNPC.end(); i++)
-		{
 			(*i)->SetIsTalkingToHero(flag);
-		}
 	}
 
-	void gameMap::setHeroState(int x1, int x2, int y1, int y2,int HP, int Gold, int AttackDamage,int Level) {
+	void gameMap_village::setHeroState(int x1, int x2, int y1, int y2, int HP, int Gold, int AttackDamage, int Level) {
 		for (vector<NPC*>::iterator i = allNPC.begin(); i != allNPC.end(); i++) (*i)->SetHeroState(x1, x2, y1, y2, HP, Gold, AttackDamage, Level);
-		for (vector<CEnemy*>::iterator i = allEnemy.begin(); i != allEnemy.end(); i++) (*i)->SetHeroXY(x1, x2, y1, y2);
-	}
-	void gameMap::SetHeroAttackRange(int x1, int x2, int y1, int y2) {
-		for (vector<CEnemy*>::iterator i = allEnemy.begin(); i != allEnemy.end(); i++) (*i)->SetHeroAttackRange(x1, x2, y1, y2);
 	}
 
-	void gameMap::OnMove() {
+	/////////////////////////////////////////////////////////////////////////////
+	// gameMap_wild : gameMap_wild class
+	/////////////////////////////////////////////////////////////////////////////
+	gameMap_wild::gameMap_wild(string fileName) : gameMap(fileName)
+	{
+		allEnemy.push_back(new CEnemy_sunFlower(this, 300, 350));
+		allEnemy.push_back(new CEnemy_Statue(this, 2950, 325));
+	}
+
+	gameMap_wild::~gameMap_wild()
+	{
+		for (vector<CEnemy*>::iterator i = allEnemy.begin(); i != allEnemy.end(); i++) delete (*i);
+	}
+
+	void gameMap_wild::LoadBitmap()
+	{
+		gameMap::LoadBitmap();
+		for (vector<CEnemy*>::iterator i = allEnemy.begin(); i != allEnemy.end(); i++) (*i)->LoadBitmap();
+	}
+
+	void gameMap_wild::OnShow()
+	{
+		gameMap::OnShow();
+		for (vector<CEnemy*>::iterator i = allEnemy.begin(); i != allEnemy.end(); i++) (*i)->OnShow();
+	}
+
+	void gameMap_wild::OnMove() {
 
 		vector<CEnemy*>::iterator iter = allEnemy.begin();
 		while (iter != allEnemy.end())         //敵人死亡會從vector裡被刪除
 		{
-			if((*iter)->isDead() && (*iter)->GetEnemyType() == "Statue") isStageClear = true;   //通關完成
+			if ((*iter)->isDead() && (*iter)->GetEnemyType() == "Statue") isStageClear = true;   //通關完成
 			if ((*iter)->isDead() && (*iter)->GetEnemyType() != "Statue")   //雕像以外的敵人被打死
 			{
 				delete *iter;
@@ -162,26 +203,25 @@ namespace game_framework {
 		}
 
 		for (vector<CEnemy*>::iterator i = allEnemy.begin(); i != allEnemy.end(); i++) (*i)->OnMove();
-		for (vector<NPC*>::iterator i = allNPC.begin(); i != allNPC.end(); i++) (*i)->OnMove();
-		if(allNPC.size()!=0) HeroIsTalkingToNPC = allNPC[0]->isTalkingToHero;
 	}
 
+	void gameMap_wild::setHeroState(int x1, int x2, int y1, int y2, int HP, int Gold, int AttackDamage, int Level)
+	{
+		for (vector<CEnemy*>::iterator i = allEnemy.begin(); i != allEnemy.end(); i++) (*i)->SetHeroXY(x1, x2, y1, y2);
+	}
 
-	int gameMap::ScreenX(int x) // x 為地圖的點座標
+	void gameMap_wild::SetHeroAttackRange(int x1, int x2, int y1, int y2)
 	{
-		return x - sx; // 回傳螢幕的 x 點座標
+		for (vector<CEnemy*>::iterator i = allEnemy.begin(); i != allEnemy.end(); i++) (*i)->SetHeroAttackRange(x1, x2, y1, y2);
 	}
-	int gameMap::ScreenY(int y) // y 為地圖的 y 點座標
+
+	void gameMap_wild::AttackByHero(const int damage)		// 攻擊
 	{
-		return y - sy; // 回傳螢幕的點座標
+		for (vector<CEnemy*>::iterator i = allEnemy.begin(); i != allEnemy.end(); i++) (*i)->GetAttack(damage);
 	}
-	void gameMap::AttackByEnemy(int *heroHP)
+
+	void gameMap_wild::AttackByEnemy(int *heroHP)
 	{
 		for (vector<CEnemy*>::iterator i = allEnemy.begin(); i != allEnemy.end(); i++) (*i)->AttackByEnemy(heroHP);
-	}
-
-	void gameMap::SetEnemyPosition(int EnemyNumber, int EnemyX, int EnemyY)
-	{
-		allEnemy[EnemyNumber]->SetEnemyXY(EnemyX, EnemyY);
 	}
 }
