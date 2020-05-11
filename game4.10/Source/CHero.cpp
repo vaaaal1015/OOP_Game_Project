@@ -90,8 +90,8 @@ namespace game_framework {
 		rising = false;
 		initial_velocity = INITIAL_VELOCITY;
 		velocity = initial_velocity;
-		animation.SetDelayCount(3);
-		animation1.SetDelayCount(3);
+		animation.SetDelayCount(5);
+		animation1.SetDelayCount(5);
 		sword.SetDelayCount(3);
 		HeroDashLeft.SetDelayCount(3);
 		HeroDashRight.SetDelayCount(3);
@@ -104,9 +104,10 @@ namespace game_framework {
 		jumpAnimation.SetDelayCount(4);
 		jumpAnimation1.SetDelayCount(4);
 		moveLeftAnimation.SetDelayCount(3);
-		HeroRollLeft.SetDelayCount(2);
-		HeroRollRight.SetDelayCount(2);
-		SetAttackDelayCount = AttackDelayCount = DashColdDown = RollDelayCount = 15;
+		HeroRollLeft.SetDelayCount(5);
+		HeroRollRight.SetDelayCount(5);
+		SetAttackDelayCount = AttackDelayCount = DashColdDown = 15;
+		RollDelayCount = 15;
 		InvincibleDelayCount = 30;
 		MoveDelayCount = 10;
 		FullHP = 100;						// 主角預設血量為100
@@ -574,7 +575,7 @@ namespace game_framework {
 		{
 			if (faceDirection == "right")
 			{
-				HeroRollRight.SetTopLeft(currentMap->ScreenX(x), currentMap->ScreenY(y));
+				HeroRollRight.SetTopLeft(currentMap->ScreenX(x), currentMap->ScreenY(y+15));
 				HeroRollRight.OnShow();
 			}
 			else
