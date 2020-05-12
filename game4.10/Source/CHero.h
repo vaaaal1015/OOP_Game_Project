@@ -63,9 +63,13 @@ namespace game_framework {
 		CAnimation swordAttack;			// 劍的攻擊動畫(向右)
 		CAnimation swordAttack1;		// 劍的攻擊動畫(向左)
 		CAnimation HeroDashLeft;		// 向左衝刺
+		CAnimation SwordDashLeft;
 		CAnimation HeroDashRight;		// 向右衝刺
+		CAnimation SwordDashRight;
 		CAnimation HeroRollLeft;		// 向左翻滾
+		CAnimation SwordRollLeft;
 		CAnimation HeroRollRight;		// 向右翻滾
+		CAnimation SwordRollRight;
 		CMovingBitmap LifeBarHead;		// 血條
 		CMovingBitmap StartGameBar;		// 開始按鈕
 		CMovingBitmap WorldMap_UI_1;		// 地圖_1

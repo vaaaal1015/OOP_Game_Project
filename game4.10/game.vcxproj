@@ -456,6 +456,14 @@
     <Image Include="RES\sword\attackMode_1_1\swordAttackMode_4_1.bmp" />
     <Image Include="RES\sword\attackMode_1_1\swordAttackMode_5_1.bmp" />
     <Image Include="RES\sword\attackMode_1_1\swordAttackMode_6_1.bmp" />
+    <Image Include="RES\sword\DashRight\Sword_Dash_Right_0.bmp" />
+    <Image Include="RES\sword\DashRight\Sword_Dash_Right_1.bmp" />
+    <Image Include="RES\sword\DashRight\Sword_Dash_Right_2.bmp" />
+    <Image Include="RES\sword\DashRight\Sword_Dash_Right_3.bmp" />
+    <Image Include="RES\sword\Dash_Left\Sword_Dash_Left_0.bmp" />
+    <Image Include="RES\sword\Dash_Left\Sword_Dash_Left_1.bmp" />
+    <Image Include="RES\sword\Dash_Left\Sword_Dash_Left_2.bmp" />
+    <Image Include="RES\sword\Dash_Left\Sword_Dash_Left_3.bmp" />
     <Image Include="RES\sword\noMove1\sword_0_1.bmp" />
     <Image Include="RES\sword\noMove1\sword_1_1.bmp" />
     <Image Include="RES\sword\noMove1\sword_2_1.bmp" />

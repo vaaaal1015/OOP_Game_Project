@@ -159,10 +159,20 @@ namespace game_framework {
 		HeroDashLeft.AddBitmap(IDB_DASH_LEFT_3, RGB(255, 255, 255));
 		HeroDashLeft.AddBitmap(IDB_DASH_LEFT_4, RGB(255, 255, 255));
 
+		SwordDashLeft.AddBitmap(IDB_SWORDDASHLEFT_0, RGB(255, 255, 255));
+		SwordDashLeft.AddBitmap(IDB_SWORDDASHLEFT_1, RGB(255, 255, 255));
+		SwordDashLeft.AddBitmap(IDB_SWORDDASHLEFT_2, RGB(255, 255, 255));
+		SwordDashLeft.AddBitmap(IDB_SWORDDASHLEFT_3, RGB(255, 255, 255));
+
 		HeroDashRight.AddBitmap(IDB_DASH_RIGHT_1, RGB(255, 255, 255));
 		HeroDashRight.AddBitmap(IDB_DASH_RIGHT_2, RGB(255, 255, 255));
 		HeroDashRight.AddBitmap(IDB_DASH_RIGHT_3, RGB(255, 255, 255));
 		HeroDashRight.AddBitmap(IDB_DASH_RIGHT_4, RGB(255, 255, 255));
+
+		SwordDashRight.AddBitmap(IDB_SWORDDASHRIGHT_0, RGB(255, 255, 255));
+		SwordDashRight.AddBitmap(IDB_SWORDDASHRIGHT_1, RGB(255, 255, 255));
+		SwordDashRight.AddBitmap(IDB_SWORDDASHRIGHT_2, RGB(255, 255, 255));
+		SwordDashRight.AddBitmap(IDB_SWORDDASHRIGHT_3, RGB(255, 255, 255));
 
 		sword.AddBitmap(IDB_sword_1, RGB(255, 255, 255));
 		sword.AddBitmap(IDB_sword_2, RGB(255, 255, 255));
@@ -195,6 +205,7 @@ namespace game_framework {
 		HeroRollLeft.AddBitmap(IDB_ROLL_LEFT_5, RGB(255, 255, 255));
 		HeroRollLeft.AddBitmap(IDB_ROLL_LEFT_6, RGB(255, 255, 255));
 		HeroRollLeft.AddBitmap(IDB_ROLL_LEFT_6, RGB(255, 255, 255));
+
 
 
 		HeroRollRight.AddBitmap(IDB_ROLL_RIGHT_1, RGB(255, 255, 255));

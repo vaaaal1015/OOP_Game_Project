@@ -406,6 +406,22 @@ IDB_STATUE_BROKEN       BITMAP                  "..\\RES\\Statue\\Hero Statue_Br
 
 IDB_BLACKMASK           BITMAP                  "..\\RES\\UI\\BlackMask.bmp"
 
+IDB_SWORDDASHLEFT_0     BITMAP                  "..\\RES\\sword\\Dash_Left\\Sword_Dash_Left_0.bmp"
+
+IDB_SWORDDASHLEFT_1     BITMAP                  "..\\RES\\sword\\Dash_Left\\Sword_Dash_Left_1.bmp"
+
+IDB_SWORDDASHLEFT_2     BITMAP                  "..\\RES\\sword\\Dash_Left\\Sword_Dash_Left_2.bmp"
+
+IDB_SWORDDASHLEFT_3     BITMAP                  "..\\RES\\sword\\Dash_Left\\Sword_Dash_Left_3.bmp"
+
+IDB_SWORDDASHRIGHT_0    BITMAP                  "..\\RES\\sword\\DashRight\\Sword_Dash_Right_0.bmp"
+
+IDB_SWORDDASHRIGHT_1    BITMAP                  "..\\RES\\sword\\DashRight\\Sword_Dash_Right_1.bmp"
+
+IDB_SWORDDASHRIGHT_2    BITMAP                  "..\\RES\\sword\\DashRight\\Sword_Dash_Right_2.bmp"
+
+IDB_SWORDDASHRIGHT_3    BITMAP                  "..\\RES\\sword\\DashRight\\Sword_Dash_Right_3.bmp"
+
 
 /////////////////////////////////////////////////////////////////////////////
 //

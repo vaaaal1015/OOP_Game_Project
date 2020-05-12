@@ -640,5 +640,29 @@
     <Image Include="RES\UI\BlackMask.bmp">
       <Filter>Resource Files</Filter>
     </Image>
+    <Image Include="RES\sword\Dash_Left\Sword_Dash_Left_0.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\sword\Dash_Left\Sword_Dash_Left_1.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\sword\Dash_Left\Sword_Dash_Left_2.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\sword\Dash_Left\Sword_Dash_Left_3.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\sword\DashRight\Sword_Dash_Right_0.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\sword\DashRight\Sword_Dash_Right_1.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\sword\DashRight\Sword_Dash_Right_2.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\sword\DashRight\Sword_Dash_Right_3.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
   </ItemGroup>
 </Project>
