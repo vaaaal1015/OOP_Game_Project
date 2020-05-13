@@ -20,10 +20,16 @@ namespace game_framework {
 		maps.push_back(new gameMap("level_1.txt"));
 		maps.push_back(new gameMap("level_2.txt"));
 		*/
-		currentVillage = new gameMap_village;
-		currentWild = new gameMap_Lv1;
-		isInHome = true;
-		currentMap = currentVillage;
+		//currentVillage = new gameMap_village;
+		//currentWild = new gameMap_Lv1;
+		//currentVillage->LoadBitmap();
+		//currentWild->LoadBitmap();
+		currentVillage = NULL;
+		currentWild = NULL;
+		currentMap = NULL;
+		//SelectMap(0);
+		//isInHome = true;
+		//currentMap = currentVillage;
 
 		for (int i = 0; i < 100; i++) LifeBarRed.push_back(new CMovingBitmap);    //100個血條圖片
 
@@ -243,8 +249,10 @@ namespace game_framework {
 		BlackMask.LoadBitmap(IDB_BLACKMASK, RGB(27, 36, 46));
 		//DamageTaken.LoadBitmap();
 		for (vector<CMovingBitmap*>::iterator i = LifeBarRed.begin(); i != LifeBarRed.end(); i++) (*i)->LoadBitmap(IDB_LIFEBAR, RGB(255, 255, 255));
-		currentVillage->LoadBitmap();
-		currentWild->LoadBitmap();
+		//currentVillage->LoadBitmap();
+		//delete currentVillage;
+		SelectMap(0);
+		//currentWild->LoadBitmap();
 	}
 
 	int CHero::GetHeroFullHP()
@@ -407,15 +415,18 @@ namespace game_framework {
 			currentVillage->HeroTalkToNPC(false);
 		}
 
-		if(!isRolling && !isInvincible) AttackByEnemy();
+		if(!isRolling && !isInvincible && !isInHome) AttackByEnemy();
 		currentMap->SetSXSY(GetCenterX() - SIZE_X / 2, GetCenterY() - SIZE_Y / 2);
-		currentVillage->setHeroState(GetX1(), GetX2(), GetY1(), GetY2(),FullHP,Gold,heroAttackDamage,HeroLevel);
-		currentWild->setHeroState(GetX1(), GetX2(), GetY1(), GetY2(), FullHP, Gold, heroAttackDamage, HeroLevel);
 		if (isInHome)
+		{
+			currentVillage->setHeroState(GetX1(), GetX2(), GetY1(), GetY2(), FullHP, Gold, heroAttackDamage, HeroLevel);
 			currentVillage->OnMove();
+		}
 		else
+		{
+			currentWild->setHeroState(GetX1(), GetX2(), GetY1(), GetY2(), FullHP, Gold, heroAttackDamage, HeroLevel);
 			currentWild->OnMove();
-
+		}
 	}
 
 	void CHero::SetMovingDown(bool flag)
@@ -763,18 +774,29 @@ namespace game_framework {
 		switch (MapNumber)
 		{
 		case 0:
-			delete currentVillage;
+			if(currentVillage!=NULL)
+				delete currentVillage;
 			currentVillage = new gameMap_village();
+			currentVillage->LoadBitmap();
 			currentMap = currentVillage;
 			break;
 		case 1:
-			delete currentWild;
+			
+			if(currentWild!=NULL)
+				delete currentWild;
 			currentWild = new gameMap_Lv1();
+			currentWild->LoadBitmap();
+			
 			currentMap = currentWild;
 			break;
+			
 		case 2:
-			delete currentWild;
+			
+			if(currentWild!=NULL)
+				delete currentWild;
 			currentWild = new gameMap_Lv2();
+			currentWild->LoadBitmap();
+			
 			currentMap = currentWild;
 			break;
 		}
