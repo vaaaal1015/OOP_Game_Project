@@ -20,10 +20,14 @@ namespace game_framework {
 		maps.push_back(new gameMap("Home.txt"));
 		maps.push_back(new gameMap("level_1.txt"));
 		maps.push_back(new gameMap("level_2.txt"));
-		SetMap(0);
+		isInHome = true;
+		currentMap = maps[0];
 
 		for (int i = 0; i < 100; i++) LifeBarRed.push_back(new CMovingBitmap);    //100個血條圖片
 
+		FullHP = 100;				// 主角預設血量為100
+		heroAttackDamage = 50;		// 主角預設攻擊力為5
+		Gold = 100;
 		Initialize();
 	}
 
@@ -85,7 +89,6 @@ namespace game_framework {
 		PreviousMovement = 0;			//紀錄上一個動作
 		const int INITIAL_VELOCITY = 15;	// 初始上升速度
 		const int FLOOR = 100;				// 地板座標
-		Gold = 100;
 		floor = FLOOR;
 		rising = false;
 		initial_velocity = INITIAL_VELOCITY;
@@ -108,11 +111,10 @@ namespace game_framework {
 		HeroRollRight.SetDelayCount(2);
 		SetAttackDelayCount = AttackDelayCount = DashColdDown = RollDelayCount = 15;
 		InvincibleDelayCount = 30;
-		MoveDelayCount = 10;
-		FullHP = 100;						// 主角預設血量為100
+		MoveDelayCount = 10;					// 主角預設血量為100
 		CurrentHP = FullHP;
-		heroAttackDamage = 5;				// 主角預設攻擊力為5
 		AttackRange = 100;					// 主角攻擊範圍
+		isSelectingMap = false;
 	}
 
 	void CHero::LoadBitmap()
@@ -245,13 +247,16 @@ namespace game_framework {
 
 	void CHero::OnMove()
 	{
-		if (currentMap == maps[0]) isInHome = true;   //判斷主角是不是在城鎮
-		else isInHome = false;
-		if (currentMap != maps[0])
+		if (isInHome)//在home時
+		{
+			CurrentHP = FullHP;
+		}
+		else
 		{
 			ClearedStage = currentMap->isStageClear;
 		}
-		const int STEP_SIZE = 10;
+
+		const int STEP_SIZE = 30;
 		animation.OnMove();
 		animation1.OnMove();
 		sword.OnMove();
@@ -268,10 +273,7 @@ namespace game_framework {
 		jumpAnimation1.OnMove();
 		HeroRollLeft.OnMove();
 		HeroRollRight.OnMove();
-		if (currentMap == maps[0])     //在home時
-		{
-			CurrentHP = FullHP;
-		}
+
 		if(AttackDelayCount !=0) AttackDelayCount--;    //攻速
 		if (RollDelayCount != 0) RollDelayCount--;		//翻滾
 		if (InvincibleDelayCount != 0) InvincibleDelayCount--;  //無敵時間
@@ -650,6 +652,7 @@ namespace game_framework {
 			StartGameBar.SetTopLeft(currentMap->ScreenX(x - 100), currentMap->ScreenY(y + 150));
 			StartGameBar.ShowBitmap();
 		}
+
 		if (isSelectingMap)
 		{
 			WorldMap_UI_1.SetTopLeft(currentMap->ScreenX(x - 270), currentMap->ScreenY(y - 170));
@@ -669,6 +672,7 @@ namespace game_framework {
 		FullHP = inputHP;
 	}
 
+	/*
 	void CHero::SetMap(int index)
 	{
 		GAME_ASSERT((int)maps.size() > index, "CHero: SetMap input index over range");
@@ -687,6 +691,7 @@ namespace game_framework {
 		initial_velocity = INITIAL_VELOCITY;
 		velocity = initial_velocity;
 	}
+	*/
 
 	void CHero::AttackByEnemy()
 	{
@@ -715,6 +720,11 @@ namespace game_framework {
 
 	void CHero::SelectMap(int MapNumber)
 	{
+		if (MapNumber == 0)
+			isInHome = true;
+		else
+			isInHome = false;
+
 		currentMap = maps[MapNumber];
 		x = 0;
 	}
@@ -724,8 +734,50 @@ namespace game_framework {
 		currentMap->isStageClear = false;
 		ClearedStage = false;
 		CurrentHP = FullHP;
+		isInHome = true;
 		currentMap = maps[0];
 		x = 0;    
-		y = 100;
+		y = 0;
 	}
+
+	void CHero::OnLButtonDown(int Mx, int My)
+	{
+		if (isTalkingToNPC)
+		{
+			if ((Mx <= 630) && (My <= 50) && (Mx >= 609) && (My >= 28)) SetEndTalking();   //右上角xx
+			if ((Mx <= 625) && (My <= 216) && (Mx >= 561) && (My >= 199)) SetEndTalking();  //cancel
+			if ((Mx <= 619) && (My <= 184) && (Mx >= 524) && (My >= 144)) HeroLevelUp();
+		}
+
+		if (isInHome)   //在村莊
+		{
+			if (isSelectingMap)   //按GAME_START後選擇地圖畫面
+			{
+				if ((Mx <= 612) && (My <= 87) && (Mx >= 570) && (My >= 48)) isSelectingMap = false;   //右上角xx
+				if ((Mx <= 222) && (My <= 260) && (Mx >= 187) && (My >= 222))   //第一章地圖
+				{
+					SelectMap(1);
+					isSelectingMap = false;
+				}
+				if ((Mx <= 300) && (My <= 261) && (Mx >= 259) && (My >= 219))   //第一章地圖
+				{
+					SelectMap(2);
+					isSelectingMap = false;
+				}
+			}
+			else
+			{
+				if ((Mx <= 437) && (My <= 415) && (Mx >= 188) && (My >= 355)) isSelectingMap = true;
+			}
+		}
+
+		if (ClearedStage)
+		{
+			if ((Mx <= 487) && (My <= 422) && (Mx >= 396) && (My >= 380))
+			{
+				ResetHeroState();
+			}
+		}
+	}
+
 }

@@ -294,30 +294,24 @@ void CGameStateRun::OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags)
 	const char KEY_DOWN  = 0x28; // keyboard下箭頭
 	const char KEY_E = 0x45;	 // keyboard E
 	const char KEY_X = 0x58;	 // keyboard X
-const char KEY_F1 = 0x70;	 // keyboard F1
-const char KEY_F2 = 0x71;	 // keyboard F2
-const char KEY_F3 = 0x72;	 // keyboard F3
-const char KEY_Z = 0x5A;
-if (nChar == KEY_LEFT)
-hero.SetMovingLeft(true);
-if (nChar == KEY_RIGHT)
-hero.SetMovingRight(true);
-if (nChar == KEY_UP)
-hero.SetMovingUp(true);
-if (nChar == KEY_DOWN)
-hero.SetMovingDown(true);
-if (nChar == KEY_X)
-hero.SetHeroAttack(true);
-if (nChar == KEY_Z)
-hero.SetHeroRoll(true);
-if (nChar == KEY_F1)
-hero.SetMap(0);
-if (nChar == KEY_F2)
-hero.SetMap(1);
-if (nChar == KEY_F3)
-hero.SetMap(2);
-if (nChar == KEY_E)
-hero.SetTalkingToNPC(true);
+	const char KEY_F1 = 0x70;	 // keyboard F1
+	const char KEY_F2 = 0x71;	 // keyboard F2
+	const char KEY_F3 = 0x72;	 // keyboard F3
+	const char KEY_Z = 0x5A;
+	if (nChar == KEY_LEFT)
+		hero.SetMovingLeft(true);
+	if (nChar == KEY_RIGHT)
+		hero.SetMovingRight(true);
+	if (nChar == KEY_UP)
+		hero.SetMovingUp(true);
+	if (nChar == KEY_DOWN)
+		hero.SetMovingDown(true);
+	if (nChar == KEY_X)
+		hero.SetHeroAttack(true);
+	if (nChar == KEY_Z)
+		hero.SetHeroRoll(true);
+	if (nChar == KEY_E)
+		hero.SetTalkingToNPC(true);
 }
 
 void CGameStateRun::OnKeyUp(UINT nChar, UINT nRepCnt, UINT nFlags)
@@ -362,44 +356,7 @@ void CGameStateRun::OnKeyUp(UINT nChar, UINT nRepCnt, UINT nFlags)
 void CGameStateRun::OnLButtonDown(UINT nFlags, CPoint point)  // 處理滑鼠的動作
 {
 	TRACE("%d,%d\n", point.x, point.y);
-	if (hero.isTalkingToNPC)
-	{
-
-		if ((point.x <= 630) && (point.y <= 50) && (point.x >= 609) && (point.y >= 28)) hero.SetEndTalking();   //右上角xx
-		if ((point.x <= 625) && (point.y <= 216) && (point.x >= 561) && (point.y >= 199)) hero.SetEndTalking();  //cancel
-		if ((point.x <= 619) && (point.y <= 184) && (point.x >= 524) && (point.y >= 144)) hero.HeroLevelUp();
-	}
-	if (hero.isInHome)   //在村莊
-	{
-		if (hero.isSelectingMap)   //按GAME_START後選擇地圖畫面
-		{
-			if ((point.x <= 612) && (point.y <= 87) && (point.x >= 570) && (point.y >= 48)) hero.isSelectingMap = false;   //右上角xx
-			if ((point.x <= 222) && (point.y <= 260) && (point.x >= 187) && (point.y >= 222))   //第一章地圖
-			{
-				hero.SelectMap(1);
-				hero.isInHome = false;
-				hero.isSelectingMap = false;
-			}
-			if ((point.x <= 300) && (point.y <= 261) && (point.x >= 259) && (point.y >= 219))   //第一章地圖
-			{
-				hero.SelectMap(2);
-				hero.isInHome = false;
-				hero.isSelectingMap = false;
-			}
-		}
-		else
-		{
-			if ((point.x <= 437) && (point.y <= 415) && (point.x >= 188) && (point.y >= 355)) hero.isSelectingMap = true;   //右上角xx
-		}	
-	}
-	if (hero.ClearedStage)
-	{
-		if ((point.x <= 487) && (point.y <= 422) && (point.x >= 396) && (point.y >= 380))
-		{
-			hero.ResetHeroState();
-		}
-	}
-	
+	hero.OnLButtonDown(point.x, point.y);
 }
 
 void CGameStateRun::OnLButtonUp(UINT nFlags, CPoint point)	// 處理滑鼠的動作

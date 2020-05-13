@@ -32,7 +32,7 @@ namespace game_framework {
 		void SetXY(int nx, int ny);		// 設定英雄左上角座標
 		void SetHeroHP(int inputHP);	// 設定主角HP值
 		bool isAttacking;				// 正在攻擊
-		void SetMap(int index);			// 
+		//void SetMap(int index);			// 
 		int GetHeroFullHP();
 		int GetHeroCurrentHP();      
 		void AttackByEnemy();
@@ -44,11 +44,12 @@ namespace game_framework {
 		void SetEndTalking();            // 關閉與NPC對話
 		bool isTalkingToNPC;			// 與NPC對話
 		int HeroLevel = 1;
-		bool isInHome = true;
-		bool isSelectingMap = false;	// 是否正在選擇地圖
 		void SelectMap(int MapNumber);
 		void ResetHeroState();      //重置主角狀態(回到城鎮)
 		bool ClearedStage = false;  //通關結算
+		void OnLButtonDown(int Mx, int My);		//按下滑鼠左鍵
+
+
 	protected:
 		CAnimation animation;			// 英雄的動畫(向右)
 		CAnimation animation1;			// 英雄的動畫(向左)
@@ -103,6 +104,7 @@ namespace game_framework {
 		int FullHP;
 		int CurrentHP;
 		void changeLifeBarLength();
-		
+		bool isInHome;			// 是否在村莊
+		bool isSelectingMap;	// 是否正在選擇地圖
 	};
 }
