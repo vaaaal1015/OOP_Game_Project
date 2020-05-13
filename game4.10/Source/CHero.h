@@ -101,7 +101,8 @@ namespace game_framework {
 		int InvincibleDelayCount;		// µL¼Ä®É¶¡
 
 	private:
-		vector<gameMap*> maps;
+		gameMap_village* currentVillage;
+		gameMap_wild* currentWild;
 		gameMap* currentMap;
 		CMovingBitmap BlackMask;
 		CMovingBitmap QuitButton;

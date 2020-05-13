@@ -4,8 +4,6 @@
 #include <ddraw.h>
 #include "audio.h"
 #include "gamelib.h"
-#include "NPC.h"
-#include "CEnemy.h"
 #include "gameMap.h"
 #include "CHero.h"
 
@@ -17,11 +15,15 @@ namespace game_framework {
 
 	CHero::CHero()
 	{
+		/*
 		maps.push_back(new gameMap("Home.txt"));
 		maps.push_back(new gameMap("level_1.txt"));
 		maps.push_back(new gameMap("level_2.txt"));
+		*/
+		currentVillage = new gameMap_village;
+		currentWild = new gameMap_Lv1;
 		isInHome = true;
-		currentMap = maps[0];
+		currentMap = currentVillage;
 
 		for (int i = 0; i < 100; i++) LifeBarRed.push_back(new CMovingBitmap);    //100個血條圖片
 
@@ -33,7 +35,9 @@ namespace game_framework {
 
 	CHero::~CHero()
 	{
-		for (vector<gameMap*>::iterator i = maps.begin(); i != maps.end(); i++) delete (*i);
+		delete currentVillage;
+		delete currentWild;
+		//for (vector<gameMap*>::iterator i = maps.begin(); i != maps.end(); i++) delete (*i);
 		for (vector<CMovingBitmap*>::iterator i = LifeBarRed.begin(); i != LifeBarRed.end(); i++) delete (*i);
 	}
 
@@ -239,7 +243,8 @@ namespace game_framework {
 		BlackMask.LoadBitmap(IDB_BLACKMASK, RGB(27, 36, 46));
 		//DamageTaken.LoadBitmap();
 		for (vector<CMovingBitmap*>::iterator i = LifeBarRed.begin(); i != LifeBarRed.end(); i++) (*i)->LoadBitmap(IDB_LIFEBAR, RGB(255, 255, 255));
-		for (vector<gameMap*>::iterator i = maps.begin(); i != maps.end(); i++) (*i)->LoadBitmap();
+		currentVillage->LoadBitmap();
+		currentWild->LoadBitmap();
 	}
 
 	int CHero::GetHeroFullHP()
@@ -265,7 +270,7 @@ namespace game_framework {
 		}
 		else
 		{
-			ClearedStage = currentMap->isStageClear;
+			ClearedStage = currentWild->GetisStageClear();
 		}
 
 		const int STEP_SIZE = 30;
@@ -380,31 +385,37 @@ namespace game_framework {
 			}
 		}
 
-		if (isAttacking)
+		if (isAttacking && !isInHome)
 		{
 			if (faceDirection == "right")
 			{
-				currentMap->SetHeroAttackRange(GetX2(), GetX2() + swordAttack.Width(), GetY1(), GetY1() + swordAttack.Height());
+				currentWild->SetHeroAttackRange(GetX2(), GetX2() + swordAttack.Width(), GetY1(), GetY1() + swordAttack.Height());
 			}
 			else
 			{
-				currentMap->SetHeroAttackRange(GetX1(), GetX1() + swordAttack1.Width(), GetY1(), GetY1() + swordAttack1.Height());
+				currentWild->SetHeroAttackRange(GetX1(), GetX1() + swordAttack1.Width(), GetY1(), GetY1() + swordAttack1.Height());
 			}
-			currentMap->AttackByHero(heroAttackDamage);
+			currentWild->AttackByHero(heroAttackDamage);
 		}
 
-		if (isTalkingToNPC)
+		if (isTalkingToNPC && isInHome)
 		{
-			currentMap->HeroTalkToNPC(true);
+			currentVillage->HeroTalkToNPC(true);
 		}
 		else
 		{
-			currentMap->HeroTalkToNPC(false);
+			currentVillage->HeroTalkToNPC(false);
 		}
+
 		if(!isRolling && !isInvincible) AttackByEnemy();
 		currentMap->SetSXSY(GetCenterX() - SIZE_X / 2, GetCenterY() - SIZE_Y / 2);
-		currentMap->setHeroState(GetX1(), GetX2(), GetY1(), GetY2(),FullHP,Gold,heroAttackDamage,HeroLevel);
-		currentMap->OnMove();
+		currentVillage->setHeroState(GetX1(), GetX2(), GetY1(), GetY2(),FullHP,Gold,heroAttackDamage,HeroLevel);
+		currentWild->setHeroState(GetX1(), GetX2(), GetY1(), GetY2(), FullHP, Gold, heroAttackDamage, HeroLevel);
+		if (isInHome)
+			currentVillage->OnMove();
+		else
+			currentWild->OnMove();
+
 	}
 
 	void CHero::SetMovingDown(bool flag)
@@ -509,11 +520,17 @@ namespace game_framework {
 	}
 	void CHero::OnShow()
 	{
-		currentMap->OnShow();
+
+		if (isInHome)
+			currentVillage->OnShow();
+		else
+			currentWild->OnShow();
+
 		LifeBarHead.SetTopLeft(currentMap->ScreenX(x-290), currentMap->ScreenY(y-205));
 		LifeBarHead.ShowBitmap();  //顯示血條
 		changeLifeBarLength();
-		if (currentMap->HeroIsTalkingToNPC)
+
+		if (isInHome && currentVillage->GetHeroIsTalkingToNPC())
 		{
 			ShowNumber(Gold, currentMap->ScreenX(x + 190), currentMap->ScreenY(y - 175));
 			ShowNumber(HeroLevel, currentMap->ScreenX(x + 90), currentMap->ScreenY(y - 175));
@@ -708,7 +725,7 @@ namespace game_framework {
 	void CHero::AttackByEnemy()
 	{
 		int hp = CurrentHP;
-		currentMap->AttackByEnemy(&CurrentHP);
+		currentWild->AttackByEnemy(&CurrentHP);
 
 		if (CurrentHP != hp)
 		{
@@ -737,17 +754,33 @@ namespace game_framework {
 		else
 			isInHome = false;
 
-		currentMap = maps[MapNumber];
-		x = 0;
+		switch (MapNumber)
+		{
+		case 0:
+			delete currentVillage;
+			currentVillage = new gameMap_village();
+			currentMap = currentVillage;
+			break;
+		case 1:
+			delete currentWild;
+			currentWild = new gameMap_Lv1();
+			currentMap = currentWild;
+			break;
+		case 2:
+			delete currentWild;
+			currentWild = new gameMap_Lv2();
+			currentMap = currentWild;
+			break;
+		}
 	}
 
 	void CHero::ResetHeroState()
 	{
-		currentMap->isStageClear = false;
+		//currentMap->isStageClear = false;
 		ClearedStage = false;
 		CurrentHP = FullHP;
 		isInHome = true;
-		currentMap = maps[0];
+		SelectMap(0);
 		x = 0;    
 		y = 0;
 	}

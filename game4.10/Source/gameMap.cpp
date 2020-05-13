@@ -47,6 +47,11 @@ namespace game_framework {
 		}
 	}
 
+	gameMap::~gameMap()
+	{
+
+	}
+
 	void gameMap::SetSXSY(int x, int y)   // 設定
 	{
 		sx = x;
@@ -86,8 +91,6 @@ namespace game_framework {
 		ground3.LoadBitmap(IDB_MAPSLIDE2);//載入斜坡2圖案
 	}
 
-	void gameMap::OnMove() {};
-
 	void gameMap::OnShow()
 	{
 		for (int i = 0; i < 32; i++) {
@@ -122,7 +125,7 @@ namespace game_framework {
 	/////////////////////////////////////////////////////////////////////////////
 	// gameMap_village : gameMap_village class
 	/////////////////////////////////////////////////////////////////////////////
-	gameMap_village::gameMap_village(string fileName) : gameMap(fileName)
+	gameMap_village::gameMap_village() : gameMap("Home.txt")
 	{
 		allNPC.push_back(new NPC_oldMan(this, 200, 350));
 	}
@@ -156,37 +159,49 @@ namespace game_framework {
 			(*i)->SetIsTalkingToHero(flag);
 	}
 
-	void gameMap_village::setHeroState(int x1, int x2, int y1, int y2, int HP, int Gold, int AttackDamage, int Level) {
+	void gameMap_village::setHeroState(int x1, int x2, int y1, int y2, int HP, int Gold, int AttackDamage, int Level)
+	{
 		for (vector<NPC*>::iterator i = allNPC.begin(); i != allNPC.end(); i++) (*i)->SetHeroState(x1, x2, y1, y2, HP, Gold, AttackDamage, Level);
+	}
+
+	bool gameMap_village::GetHeroIsTalkingToNPC()
+	{
+		return HeroIsTalkingToNPC;
 	}
 
 	/////////////////////////////////////////////////////////////////////////////
 	// gameMap_wild : gameMap_wild class
 	/////////////////////////////////////////////////////////////////////////////
-	gameMap_wild::gameMap_wild(string fileName) : gameMap(fileName)
+	gameMap_wild::gameMap_wild(string fileName) : gameMap(fileName) {}
+
+
+	/////////////////////////////////////////////////////////////////////////////
+	// gameMap_Lv1 : gameMap_Lv1 class
+	/////////////////////////////////////////////////////////////////////////////
+	gameMap_Lv1::gameMap_Lv1() : gameMap_wild("level_1.txt")
 	{
 		allEnemy.push_back(new CEnemy_sunFlower(this, 300, 350));
 		allEnemy.push_back(new CEnemy_Statue(this, 2950, 325));
 	}
 
-	gameMap_wild::~gameMap_wild()
+	gameMap_Lv1::~gameMap_Lv1()
 	{
 		for (vector<CEnemy*>::iterator i = allEnemy.begin(); i != allEnemy.end(); i++) delete (*i);
 	}
 
-	void gameMap_wild::LoadBitmap()
+	void gameMap_Lv1::LoadBitmap()
 	{
 		gameMap::LoadBitmap();
 		for (vector<CEnemy*>::iterator i = allEnemy.begin(); i != allEnemy.end(); i++) (*i)->LoadBitmap();
 	}
 
-	void gameMap_wild::OnShow()
+	void gameMap_Lv1::OnShow()
 	{
 		gameMap::OnShow();
 		for (vector<CEnemy*>::iterator i = allEnemy.begin(); i != allEnemy.end(); i++) (*i)->OnShow();
 	}
 
-	void gameMap_wild::OnMove() {
+	void gameMap_Lv1::OnMove() {
 
 		vector<CEnemy*>::iterator iter = allEnemy.begin();
 		while (iter != allEnemy.end())         //敵人死亡會從vector裡被刪除
@@ -205,23 +220,99 @@ namespace game_framework {
 		for (vector<CEnemy*>::iterator i = allEnemy.begin(); i != allEnemy.end(); i++) (*i)->OnMove();
 	}
 
-	void gameMap_wild::setHeroState(int x1, int x2, int y1, int y2, int HP, int Gold, int AttackDamage, int Level)
+	void gameMap_Lv1::setHeroState(int x1, int x2, int y1, int y2, int HP, int Gold, int AttackDamage, int Level)
 	{
 		for (vector<CEnemy*>::iterator i = allEnemy.begin(); i != allEnemy.end(); i++) (*i)->SetHeroXY(x1, x2, y1, y2);
 	}
 
-	void gameMap_wild::SetHeroAttackRange(int x1, int x2, int y1, int y2)
+	void gameMap_Lv1::SetHeroAttackRange(int x1, int x2, int y1, int y2)
 	{
 		for (vector<CEnemy*>::iterator i = allEnemy.begin(); i != allEnemy.end(); i++) (*i)->SetHeroAttackRange(x1, x2, y1, y2);
 	}
 
-	void gameMap_wild::AttackByHero(const int damage)		// 攻擊
+	void gameMap_Lv1::AttackByHero(const int damage)		// 攻擊
 	{
 		for (vector<CEnemy*>::iterator i = allEnemy.begin(); i != allEnemy.end(); i++) (*i)->GetAttack(damage);
 	}
 
-	void gameMap_wild::AttackByEnemy(int *heroHP)
+	void gameMap_Lv1::AttackByEnemy(int *heroHP)
 	{
 		for (vector<CEnemy*>::iterator i = allEnemy.begin(); i != allEnemy.end(); i++) (*i)->AttackByEnemy(heroHP);
 	}
+
+	bool gameMap_Lv1::GetisStageClear()
+	{
+		return isStageClear;
+	}
+
+	/////////////////////////////////////////////////////////////////////////////
+	// gameMap_Lv2 : gameMap_Lv2 class
+	/////////////////////////////////////////////////////////////////////////////
+	gameMap_Lv2::gameMap_Lv2() : gameMap_wild("level_2.txt")
+	{
+		allEnemy.push_back(new CEnemy_sunFlower(this, 300, 350));
+		allEnemy.push_back(new CEnemy_Statue(this, 2950, 325));
+	}
+
+	gameMap_Lv2::~gameMap_Lv2()
+	{
+		for (vector<CEnemy*>::iterator i = allEnemy.begin(); i != allEnemy.end(); i++) delete (*i);
+	}
+
+	void gameMap_Lv2::LoadBitmap()
+	{
+		gameMap::LoadBitmap();
+		for (vector<CEnemy*>::iterator i = allEnemy.begin(); i != allEnemy.end(); i++) (*i)->LoadBitmap();
+	}
+
+	void gameMap_Lv2::OnShow()
+	{
+		gameMap::OnShow();
+		for (vector<CEnemy*>::iterator i = allEnemy.begin(); i != allEnemy.end(); i++) (*i)->OnShow();
+	}
+
+	void gameMap_Lv2::OnMove() {
+
+		vector<CEnemy*>::iterator iter = allEnemy.begin();
+		while (iter != allEnemy.end())         //敵人死亡會從vector裡被刪除
+		{
+			if ((*iter)->isDead() && (*iter)->GetEnemyType() == "Statue") isStageClear = true;   //通關完成
+			if ((*iter)->isDead() && (*iter)->GetEnemyType() != "Statue")   //雕像以外的敵人被打死
+			{
+				delete *iter;
+				iter = allEnemy.erase(iter);
+				//isStageClear = true;   //通關完成
+			}
+			else
+				iter++;
+		}
+
+		for (vector<CEnemy*>::iterator i = allEnemy.begin(); i != allEnemy.end(); i++) (*i)->OnMove();
+	}
+
+	void gameMap_Lv2::setHeroState(int x1, int x2, int y1, int y2, int HP, int Gold, int AttackDamage, int Level)
+	{
+		for (vector<CEnemy*>::iterator i = allEnemy.begin(); i != allEnemy.end(); i++) (*i)->SetHeroXY(x1, x2, y1, y2);
+	}
+
+	void gameMap_Lv2::SetHeroAttackRange(int x1, int x2, int y1, int y2)
+	{
+		for (vector<CEnemy*>::iterator i = allEnemy.begin(); i != allEnemy.end(); i++) (*i)->SetHeroAttackRange(x1, x2, y1, y2);
+	}
+
+	void gameMap_Lv2::AttackByHero(const int damage)		// 攻擊
+	{
+		for (vector<CEnemy*>::iterator i = allEnemy.begin(); i != allEnemy.end(); i++) (*i)->GetAttack(damage);
+	}
+
+	void gameMap_Lv2::AttackByEnemy(int *heroHP)
+	{
+		for (vector<CEnemy*>::iterator i = allEnemy.begin(); i != allEnemy.end(); i++) (*i)->AttackByEnemy(heroHP);
+	}
+
+	bool gameMap_Lv2::GetisStageClear()
+	{
+		return isStageClear;
+	}
+
 }
