@@ -222,6 +222,16 @@
 #define IDB_STATUE_BROKEN               309
 #define IDB_BITMAP13                    310
 #define IDB_BLACKMASK                   310
+#define IDB_SWORDDASHLEFT_0             311
+#define IDB_SWORDDASHLEFT_1             312
+#define IDB_SWORDDASHLEFT_2             313
+#define IDB_BITMAP43                    314
+#define IDB_SWORDDASHLEFT_3             314
+#define IDB_SWORDDASHRIGHT_0            315
+#define IDB_SWORDDASHRIGHT_1            316
+#define IDB_SWORDDASHRIGHT_2            317
+#define IDB_BITMAP44                    318
+#define IDB_SWORDDASHRIGHT_3            318
 #define IDC_README                      1001
 #define ID_FILE_PAUSE                   32771
 #define ID_TOGGLE_FULLSCREEN            32772
@@ -234,7 +244,7 @@
 #ifdef APSTUDIO_INVOKED
 #ifndef APSTUDIO_READONLY_SYMBOLS
 #define _APS_3D_CONTROLS                     1
-#define _APS_NEXT_RESOURCE_VALUE        311
+#define _APS_NEXT_RESOURCE_VALUE        319
 #define _APS_NEXT_COMMAND_VALUE         32776
 #define _APS_NEXT_CONTROL_VALUE         1003
 #define _APS_NEXT_SYMED_VALUE           101
