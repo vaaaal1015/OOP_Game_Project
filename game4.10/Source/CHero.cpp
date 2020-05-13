@@ -148,7 +148,7 @@ namespace game_framework {
 		moveLeftAnimation.AddBitmap(IDB_HEROMOVELEFT_4, RGB(255, 255, 255));
 		moveLeftAnimation.AddBitmap(IDB_HEROMOVELEFT_5, RGB(255, 255, 255));
 
-		jumpAnimation.AddBitmap(IDB_HEROJUMP_3, RGB(255, 255, 255));
+		//jumpAnimation.AddBitmap(IDB_HEROJUMP_3, RGB(255, 255, 255));
 		jumpAnimation.AddBitmap(IDB_HEROJUMP_4, RGB(255, 255, 255));
 		jumpAnimation.AddBitmap(IDB_HEROJUMP_5, RGB(255, 255, 255));
 		jumpAnimation.AddBitmap(IDB_HEROJUMP_6, RGB(255, 255, 255));
@@ -520,7 +520,7 @@ namespace game_framework {
 	}
 	void CHero::OnShow()
 	{
-
+		//處理UI的顯示
 		if (isInHome)
 			currentVillage->OnShow();
 		else
@@ -543,6 +543,42 @@ namespace game_framework {
 			DamageTaken.SetInteger(AttackByEnemy());
 			DamageTaken.ShowBitmap();
 		}*/
+
+		//處理劍的顯示
+		if (isAttacking)
+		{
+			if (faceDirection == "right")
+			{
+				swordAttack.SetTopLeft(currentMap->ScreenX(x - 40), currentMap->ScreenY(y + 10));
+				swordAttack.OnShow();
+			}
+			else
+			{
+				swordAttack1.SetTopLeft(currentMap->ScreenX(x - 75), currentMap->ScreenY(y + 10));
+				swordAttack1.OnShow();
+			}
+
+			if (swordAttack.IsFinalBitmap() || swordAttack1.IsFinalBitmap())
+			{
+				isAttacking = false;
+			}
+		}
+		else
+		{
+			if (faceDirection == "right")   // 靜止向右看
+			{
+				sword.SetTopLeft(currentMap->ScreenX(x - 85), currentMap->ScreenY(y + 30));
+				sword.OnShow();
+			}
+			else							// 靜止向左看
+			{
+				sword1.SetTopLeft(currentMap->ScreenX(x + 17), currentMap->ScreenY(y + 30));
+				sword1.OnShow();
+			}
+		}
+
+
+		//處理主角的顯示
 		if (isMovingUp)	// 往上跳
 		{
 			if (faceDirection == "right")
@@ -610,7 +646,7 @@ namespace game_framework {
 			}
 			else
 			{
-				HeroRollLeft.SetTopLeft(currentMap->ScreenX(x), currentMap->ScreenY(y));
+				HeroRollLeft.SetTopLeft(currentMap->ScreenX(x), currentMap->ScreenY(y+15));
 				HeroRollLeft.OnShow();
 			}
 		}
@@ -645,37 +681,7 @@ namespace game_framework {
 			}
 		}
 
-		if (isAttacking)
-		{
-			if (faceDirection == "right")
-			{
-				swordAttack.SetTopLeft(currentMap->ScreenX(x - 40), currentMap->ScreenY(y));
-				swordAttack.OnShow();
-			}
-			else
-			{
-				swordAttack1.SetTopLeft(currentMap->ScreenX(x - 75), currentMap->ScreenY(y));
-				swordAttack1.OnShow();
-			}
-
-			if (swordAttack.IsFinalBitmap() || swordAttack1.IsFinalBitmap())
-			{
-				isAttacking = false;
-			}
-		}
-		else
-		{
-			if (faceDirection == "right")   // 靜止向右看
-			{
-				sword.SetTopLeft(currentMap->ScreenX(x - 85), currentMap->ScreenY(y + 10));
-				sword.OnShow();
-			}
-			else							// 靜止向左看
-			{
-				sword1.SetTopLeft(currentMap->ScreenX(x + 17), currentMap->ScreenY(y + 10));
-				sword1.OnShow();
-			}
-		}
+		
 		if (isInHome)
 		{
 			StartGameBar.SetTopLeft(currentMap->ScreenX(x - 100), currentMap->ScreenY(y + 150));
