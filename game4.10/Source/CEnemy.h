@@ -26,8 +26,8 @@ namespace game_framework {
 		virtual void OnShow() = 0;					// 將敵人圖形貼到畫面
 		void SetHeroXY(int x1, int x2, int y1, int y2);				// 設定英雄位置
 		void SetHeroAttackRange(int x1, int x2, int y1, int y2);	// 設定英雄攻擊範圍
-		virtual void GetAttack(const int damage) = 0;		// 被攻擊
-		virtual void AttackByEnemy(int* heroHP) = 0;
+		virtual void GetAttack(const int damage) = 0;		// 被主角攻擊
+		virtual void AttackByEnemy(int* heroHP) = 0;		// 攻擊主角
 		virtual bool isDead() = 0;
 		virtual string GetEnemyType() = 0;
 		void SetEnemyXY(int SetX, int SetY);
@@ -114,6 +114,41 @@ namespace game_framework {
 		vector<bullet_sunFlower*> allBullet;
 	};
 	
+	class CEnemy_Cactus : public CEnemy
+	{
+	public:
+		CEnemy_Cactus(gameMap* pointer, int x, int y);
+		~CEnemy_Cactus();
+		int  GetX1();					// 敵人左上角 x 座標
+		int  GetY1();					// 敵人左上角 y 座標
+		int  GetX2();					// 敵人右下角 x 座標
+		int  GetY2();					// 敵人右下角 y 座標
+		int  GetWidth();				// 
+		int  GetHeight();
+		void LoadBitmap();				// 載入圖形
+		void OnMove();					// 移動敵人
+		void OnShow();					// 將敵人圖形貼到畫面
+		void GetAttack(const int damage);		// 被攻擊
+		void AttackByEnemy(int* heroHP);
+		bool isDead();
+		string GetEnemyType();
+	private:
+		CAnimation animation;			// 敵人的動畫
+		CAnimation AttackAnimation;// 攻擊
+		CAnimation DeadAnimation;
+		string EnemyType = "Cactus";
+		int floor;				// 地板的Y座標
+		bool rising;				// true表上升、false表下降
+		int initial_velocity;		// 初始速度
+		int velocity;				// 目前的速度(點/次)
+		int enemyHP;					// 敵人生命值
+		int enemyAttackDamage;		//敵人攻擊力
+		int AttackDelayCount;		// 攻擊頻率
+		bool AttackFlag;			// 等於true(發出尖刺動畫出現)時才攻擊到主角
+		bool ReadyToAttack;			// 開始攻擊動作
+	};
+
+
 	class CEnemy_Statue : public CEnemy
 	{
 	public:
@@ -143,7 +178,5 @@ namespace game_framework {
 		int velocity;				// 目前的速度(點/次)
 		int enemyHP = 500;					// 敵人生命值
 		int enemyAttackDamage = 0;		//敵人攻擊力
-		int moveingStepCount;
-		int moveingStep;
 	};
 }

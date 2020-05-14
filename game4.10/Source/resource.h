@@ -269,6 +269,26 @@
 #define IDB_SUNFLOWERBULLET_BROKEN_1    351
 #define IDB_BITMAP54                    352
 #define IDB_SUNFLOWERBULLET_BROKEN_2    352
+#define IDB_CACTUSNOMOVE_0              353
+#define IDB_CACTUSNOMOVE_1              354
+#define IDB_CACTUSNOMOVE_2              355
+#define IDB_CACTUSATTACK_0              356
+#define IDB_CACTUSATTACK_1              357
+#define IDB_CACTUSATTACK_2              358
+#define IDB_CACTUSATTACK_3              359
+#define IDB_CACTUSATTACK_4              360
+#define IDB_CACTUSATTACK_5              361
+#define IDB_CACTUSATTACK_6              362
+#define IDB_CACTUSATTACK_7              363
+#define IDB_CACTUSDEAD_0                364
+#define IDB_CACTUSDEAD_1                365
+#define IDB_CACTUSDEAD_2                366
+#define IDB_CACTUSDEAD_3                367
+#define IDB_CACTUSDEAD_4                368
+#define IDB_CACTUSDEAD_5                369
+#define IDB_CACTUSDEAD_6                370
+#define IDB_BITMAP51                    371
+#define IDB_CACTUSDEAD_7                371
 #define IDC_README                      1001
 #define ID_FILE_PAUSE                   32771
 #define ID_TOGGLE_FULLSCREEN            32772
@@ -281,7 +301,7 @@
 #ifdef APSTUDIO_INVOKED
 #ifndef APSTUDIO_READONLY_SYMBOLS
 #define _APS_3D_CONTROLS                     1
-#define _APS_NEXT_RESOURCE_VALUE        353
+#define _APS_NEXT_RESOURCE_VALUE        372
 #define _APS_NEXT_COMMAND_VALUE         32776
 #define _APS_NEXT_CONTROL_VALUE         1003
 #define _APS_NEXT_SYMED_VALUE           101

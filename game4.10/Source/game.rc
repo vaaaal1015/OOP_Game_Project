@@ -490,6 +490,44 @@ IDB_SUNFLOWERBULLET_BROKEN_1 BITMAP                  "..\\RES\\Enemy\\SmileSunFl
 
 IDB_SUNFLOWERBULLET_BROKEN_2 BITMAP                  "..\\RES\\Enemy\\SmileSunFlower\\bullet\\Sunflower_bullet_broken_2.bmp"
 
+IDB_CACTUSNOMOVE_0      BITMAP                  "..\\RES\\Enemy\\Cactus\\noMove\\Cactus_NoMove_0.bmp"
+
+IDB_CACTUSNOMOVE_1      BITMAP                  "..\\RES\\Enemy\\Cactus\\noMove\\Cactus_NoMove_1.bmp"
+
+IDB_CACTUSNOMOVE_2      BITMAP                  "..\\RES\\Enemy\\Cactus\\noMove\\Cactus_NoMove_2.bmp"
+
+IDB_CACTUSATTACK_0      BITMAP                  "..\\RES\\Enemy\\Cactus\\Attack\\Cactus_Attack_0.bmp"
+
+IDB_CACTUSATTACK_1      BITMAP                  "..\\RES\\Enemy\\Cactus\\Attack\\Cactus_Attack_1.bmp"
+
+IDB_CACTUSATTACK_2      BITMAP                  "..\\RES\\Enemy\\Cactus\\Attack\\Cactus_Attack_2.bmp"
+
+IDB_CACTUSATTACK_3      BITMAP                  "..\\RES\\Enemy\\Cactus\\Attack\\Cactus_Attack_3.bmp"
+
+IDB_CACTUSATTACK_4      BITMAP                  "..\\RES\\Enemy\\Cactus\\Attack\\Cactus_Attack_4.bmp"
+
+IDB_CACTUSATTACK_5      BITMAP                  "..\\RES\\Enemy\\Cactus\\Attack\\Cactus_Attack_5.bmp"
+
+IDB_CACTUSATTACK_6      BITMAP                  "..\\RES\\Enemy\\Cactus\\Attack\\Cactus_Attack_6.bmp"
+
+IDB_CACTUSATTACK_7      BITMAP                  "..\\RES\\Enemy\\Cactus\\Attack\\Cactus_Attack_7.bmp"
+
+IDB_CACTUSDEAD_0        BITMAP                  "..\\RES\\Enemy\\Cactus\\Dead\\Cactus_Dead_0.bmp"
+
+IDB_CACTUSDEAD_1        BITMAP                  "..\\RES\\Enemy\\Cactus\\Dead\\Cactus_Dead_1.bmp"
+
+IDB_CACTUSDEAD_2        BITMAP                  "..\\RES\\Enemy\\Cactus\\Dead\\Cactus_Dead_2.bmp"
+
+IDB_CACTUSDEAD_3        BITMAP                  "..\\RES\\Enemy\\Cactus\\Dead\\Cactus_Dead_3.bmp"
+
+IDB_CACTUSDEAD_4        BITMAP                  "..\\RES\\Enemy\\Cactus\\Dead\\Cactus_Dead_4.bmp"
+
+IDB_CACTUSDEAD_5        BITMAP                  "..\\RES\\Enemy\\Cactus\\Dead\\Cactus_Dead_5.bmp"
+
+IDB_CACTUSDEAD_6        BITMAP                  "..\\RES\\Enemy\\Cactus\\Dead\\Cactus_Dead_6.bmp"
+
+IDB_CACTUSDEAD_7        BITMAP                  "..\\RES\\Enemy\\Cactus\\Dead\\Cactus_Dead_7.bmp"
+
 
 /////////////////////////////////////////////////////////////////////////////
 //
