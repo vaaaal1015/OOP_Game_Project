@@ -4,6 +4,17 @@ namespace game_framework {
 	// 看懂就可以改寫成自己的程式了
 	/////////////////////////////////////////////////////////////////////////////
 
+	enum ACTION
+	{
+		STAND_LEFT, 
+		MOVE_LEFT, 
+		ATTACK_LEFT, 
+		STAND_RIGHT, 
+		MOVE_RIGHT, 
+		ATTACK_RIGHT,
+		DEAD
+	};
+
 	class gameMap;
 	class CEnemy
 	{
@@ -25,6 +36,36 @@ namespace game_framework {
 		gameMap* currentMap;		// 所在地圖
 		map<string, int> hero;
 		map<string, int> heroAttackRange;
+	};
+
+	class bullet
+	{
+	public:
+		bullet(gameMap* point, int nx, int ny, int step);
+		~bullet();
+		int GetX1();					// 子彈左上角 x 座標
+		int GetY1();					// 子彈左上角 y 座標
+		int GetX2();					// 子彈右下角 x 座標
+		int GetY2();					// 子彈右下角 y 座標
+		void OnMove();					// 移動敵人
+		void OnShow();					// 將敵人圖形貼到畫面
+		bool isDelet();
+
+	protected:
+		CAnimation animation;
+		int x;
+		int y;
+		gameMap *currentMap;
+		int distance;
+		int STEP_SIZE;
+	};
+
+	class bullet_sunFlower : public bullet
+	{
+	public:
+		bullet_sunFlower(gameMap* point, int nx, int ny, int step);
+		~bullet_sunFlower();
+		void LoadBitmap();				// 載入圖形
 	};
 
 	class CEnemy_sunFlower : public CEnemy
@@ -51,7 +92,6 @@ namespace game_framework {
 		CAnimation moveLeftAnimation;   // 向左移動動畫
 		CAnimation AttackRightAnimation;// 攻擊右邊
 		CAnimation AttackLeftAnimation; // 攻擊左邊
-		CAnimation Bullet;
 		CAnimation jumpAnimation;		// 跳躍動畫
 		CAnimation DeadAnimation;		// 死亡動畫
 		string EnemyType = "Sun_Flower";
@@ -67,6 +107,11 @@ namespace game_framework {
 		int enemyAttackDamage;		//敵人攻擊力
 		int moveingStepCount;
 		int moveingStep;
+		ACTION DetectHero(ACTION state);			// 偵測英雄位置:  1:距離左邊200 2:距離左邊150 3:距離右邊150 4:距離右邊200
+		int attackDelay;
+		int attackDelayCount;
+		ACTION state;
+		vector<bullet_sunFlower*> allBullet;
 	};
 	
 	class CEnemy_Statue : public CEnemy
@@ -101,5 +146,4 @@ namespace game_framework {
 		int moveingStepCount;
 		int moveingStep;
 	};
-
 }

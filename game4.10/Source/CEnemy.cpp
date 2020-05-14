@@ -47,18 +47,26 @@ namespace game_framework {
 		isMovingRight = true;
 		rising = false;
 
-		animation.SetDelayCount(3);
-		moveRightAnimation.SetDelayCount(3);
-		DeadAnimation.SetDelayCount(3);
+		animation.SetDelayCount(2);
+		moveRightAnimation.SetDelayCount(2);
+		DeadAnimation.SetDelayCount(2);
+		AttackLeftAnimation.SetDelayCount(2);
+		AttackRightAnimation.SetDelayCount(2);
 		moveingStep = 20;
 		enemyHP = 100;							//敵人預設生命值
 		enemyAttackDamage = 10;					//敵人預設攻擊力
 		floor = FLOOR;
 		initial_velocity = INITIAL_VELOCITY;
+		attackDelayCount = attackDelay = 40;
 		velocity = initial_velocity;
+		state = STAND_LEFT;
 	}
 	
-	CEnemy_sunFlower::~CEnemy_sunFlower() {}
+	CEnemy_sunFlower::~CEnemy_sunFlower()
+	{
+		for (vector<bullet_sunFlower*>::iterator i = allBullet.begin(); i != allBullet.end(); i++)
+			delete *i;
+	}
 
 	int CEnemy_sunFlower::GetX1()
 	{
@@ -100,10 +108,61 @@ namespace game_framework {
 
 	void CEnemy_sunFlower::AttackByEnemy(int *heroHP)
 	{
+		vector<bullet_sunFlower*>::iterator iter = allBullet.begin();
+		while (iter != allBullet.end())
+		{
+			if (((*iter)->GetX2() >= hero["x1"]) && (hero["x2"] >= (*iter)->GetX1()) && ((*iter)->GetY2() >= hero["y1"]) && (hero["y2"] >= (*iter)->GetY1()))
+			{
+				*heroHP -= enemyAttackDamage;
+				delete *iter;
+				iter = allBullet.erase(iter);
+			}
+			else
+				iter++;
+		}
+
 		if ((GetX2() >= hero["x1"]) && (hero["x2"] >= GetX1()) && (GetY2() >= hero["y1"]) && (hero["y2"] >= GetY1()))
 		{
-			*heroHP -= enemyAttackDamage;
+			//*heroHP -= enemyAttackDamage;
 		}
+	}
+
+	ACTION CEnemy_sunFlower::DetectHero(ACTION state)
+	{
+		if(attackDelayCount <= 0)
+		{
+			if ((GetX2() >= hero["x1"]) && (hero["x2"] >= GetX1() - 130) && (GetY2() + 100 >= hero["y1"]) && (hero["y2"] >= GetY1() - 100))
+			{
+				if (state != ATTACK_LEFT)
+					AttackLeftAnimation.Reset();
+				return ATTACK_LEFT;
+			}
+			if ((GetX2() + 130 >= hero["x1"]) && (hero["x2"] >= GetX1()) && (GetY2() + 100 >= hero["y1"]) && (hero["y2"] >= GetY1() - 100))
+			{
+				if (state != ATTACK_RIGHT)
+					AttackRightAnimation.Reset();
+				return ATTACK_RIGHT;
+			}
+			if ((GetX2() >= hero["x1"]) && (hero["x2"] >= GetX1() - 230) && (GetY2() + 100 >= hero["y1"]) && (hero["y2"] >= GetY1() - 100))
+			{
+				return MOVE_LEFT;
+			}
+			if ((GetX2() + 230 >= hero["x1"]) && (hero["x2"] >= GetX1()) && (GetY2() + 100 >= hero["y1"]) && (hero["y2"] >= GetY1() - 100))
+			{
+				return MOVE_RIGHT;
+			}
+		}
+
+		if (state == MOVE_LEFT || state == ATTACK_LEFT || state == STAND_LEFT)
+		{
+			return STAND_LEFT;
+		}
+		if (state == MOVE_RIGHT || state == ATTACK_RIGHT || state == STAND_RIGHT)
+		{
+			return STAND_RIGHT;
+		}
+		
+		return STAND_LEFT;
 	}
 
 	string CEnemy_sunFlower::GetEnemyType()
@@ -153,23 +212,12 @@ namespace game_framework {
 		AttackLeftAnimation.AddBitmap(IDB_SUNFLOWERATTACKLEFT_5, RGB(255, 255, 255));
 		AttackLeftAnimation.AddBitmap(IDB_SUNFLOWERATTACKLEFT_6, RGB(255, 255, 255));
 
-		Bullet.AddBitmap(IDB_SUNFLOWERBULLET_0, RGB(63, 72, 204));
-		Bullet.AddBitmap(IDB_SUNFLOWERBULLET_1, RGB(63, 72, 204));
-		Bullet.AddBitmap(IDB_SUNFLOWERBULLET_2, RGB(63, 72, 204));
-		Bullet.AddBitmap(IDB_SUNFLOWERBULLET_3, RGB(63, 72, 204));
-		Bullet.AddBitmap(IDB_SUNFLOWERBULLET_4, RGB(63, 72, 204));
-		Bullet.AddBitmap(IDB_SUNFLOWERBULLET_5, RGB(63, 72, 204));
-		Bullet.AddBitmap(IDB_SUNFLOWERBULLET_6, RGB(63, 72, 204));
-		Bullet.AddBitmap(IDB_SUNFLOWERBULLET_7, RGB(63, 72, 204));
-
 		DeadAnimation.AddBitmap(IDB_SUNFLOWER_DEAD_0, RGB(255, 255, 255));
 		DeadAnimation.AddBitmap(IDB_SUNFLOWER_DEAD_1, RGB(255, 255, 255));
 		DeadAnimation.AddBitmap(IDB_SUNFLOWER_DEAD_2, RGB(255, 255, 255));
 		DeadAnimation.AddBitmap(IDB_SUNFLOWER_DEAD_3, RGB(255, 255, 255));
 		DeadAnimation.AddBitmap(IDB_SUNFLOWER_DEAD_4, RGB(255, 255, 255));
 		DeadAnimation.AddBitmap(IDB_SUNFLOWER_DEAD_4, RGB(255, 255, 255));
-
-
 	}
 
 	void CEnemy_sunFlower::OnMove()
@@ -179,24 +227,56 @@ namespace game_framework {
 		animation.OnMove();
 		moveRightAnimation.OnMove();
 		moveLeftAnimation.OnMove();
-		if (enemyHP <= 0 && !DeadAnimation.IsFinalBitmap()) DeadAnimation.OnMove();
+		AttackLeftAnimation.OnMove();
+		AttackRightAnimation.OnMove();
 
-		moveingStepCount--;
-		if (moveingStepCount < 0)
+		vector<bullet_sunFlower*>::iterator iter = allBullet.begin();
+		while (iter != allBullet.end())
 		{
-			moveingStepCount = moveingStep;
-			isMovingRight = !isMovingRight;
+			if ((*iter)->isDelet())
+			{
+				delete *iter;
+				iter = allBullet.erase(iter);
+			}
+			else
+				iter++;
 		}
 
-		if (isMovingRight)
+		for (vector<bullet_sunFlower*>::iterator i = allBullet.begin(); i != allBullet.end(); i++)
+			(*i)->OnMove();
+
+		if (attackDelayCount > 0) attackDelayCount--;
+
+		state = DetectHero(state);
+
+		if (state == MOVE_LEFT)
+		{
+			if (currentMap->isSpace(GetX2(), GetY1()) && currentMap->isSpace(GetX2(), GetY2() - 10)) // 當y座標還沒碰到牆
+				x -= STEP_SIZE;
+		}
+
+		if (state == MOVE_RIGHT)
 		{
 			if (currentMap->isSpace(GetX2(), GetY1()) && currentMap->isSpace(GetX2(), GetY2() - 10)) // 當y座標還沒碰到牆
 				x += STEP_SIZE;
 		}
-		else
+
+		if (state == ATTACK_LEFT && AttackLeftAnimation.IsFinalBitmap())
 		{
-			if (currentMap->isSpace(GetX1(), GetY1()) && currentMap->isSpace(GetX1(), GetY2() - 10)) // 當y座標還沒碰到牆
-				x -= STEP_SIZE;
+			allBullet.push_back(new bullet_sunFlower(currentMap, GetX1(), GetY1() + 40, -3));
+			allBullet.back()->LoadBitmap();
+		}
+
+		if (state == ATTACK_RIGHT && AttackRightAnimation.IsFinalBitmap())
+		{
+			allBullet.push_back(new bullet_sunFlower(currentMap, GetX2(), GetY1() + 40, 3));
+			allBullet.back()->LoadBitmap();
+		}
+
+		if (enemyHP <= 0 && !DeadAnimation.IsFinalBitmap())
+		{
+			state = DEAD;
+			DeadAnimation.OnMove();
 		}
 
 		if (rising) {							// 上升狀態
@@ -229,27 +309,50 @@ namespace game_framework {
 
 	void CEnemy_sunFlower::OnShow()
 	{
-		if (enemyHP <= 0)
-		{
-			if (!DeadAnimation.IsFinalBitmap())
-			{
-				DeadAnimation.SetTopLeft(currentMap->ScreenX(x), currentMap->ScreenY(y));
-				DeadAnimation.OnShow();
-			}
-		}
-		else if (isMovingRight)
-		{
-			moveRightAnimation.SetTopLeft(currentMap->ScreenX(x), currentMap->ScreenY(y));
-			moveRightAnimation.OnShow();
+		for (vector<bullet_sunFlower*>::iterator i = allBullet.begin(); i != allBullet.end(); i++)
+			(*i)->OnShow();
 
-		}
-		else
+		switch (state)
 		{
+		case STAND_LEFT:
+			animation.SetTopLeft(currentMap->ScreenX(x), currentMap->ScreenY(y));
+			animation.OnShow();
+			break;
+		case STAND_RIGHT:
+			animation.SetTopLeft(currentMap->ScreenX(x), currentMap->ScreenY(y));
+			animation.OnShow();
+			break;
+		case MOVE_LEFT:
 			moveLeftAnimation.SetTopLeft(currentMap->ScreenX(x), currentMap->ScreenY(y));
 			moveLeftAnimation.OnShow();
-			//animation.SetTopLeft(currentMap->ScreenX(x), currentMap->ScreenY(y));
-			//animation.OnShow();
+			break;
+		case ATTACK_LEFT:
+			if(AttackLeftAnimation.IsFinalBitmap()) attackDelayCount = attackDelay;
+
+			AttackLeftAnimation.SetTopLeft(currentMap->ScreenX(x), currentMap->ScreenY(y));
+			AttackLeftAnimation.OnShow();
+			break;
+		case MOVE_RIGHT:
+			moveRightAnimation.SetTopLeft(currentMap->ScreenX(x), currentMap->ScreenY(y));
+			moveRightAnimation.OnShow();
+			break;
+		case ATTACK_RIGHT:
+			if (AttackRightAnimation.IsFinalBitmap())attackDelayCount = attackDelay;
+
+			AttackRightAnimation.SetTopLeft(currentMap->ScreenX(x), currentMap->ScreenY(y));
+			AttackRightAnimation.OnShow();
+			break;
+		case DEAD:
+			if (enemyHP <= 0)
+			{
+				if (!DeadAnimation.IsFinalBitmap())
+				{
+					DeadAnimation.SetTopLeft(currentMap->ScreenX(x), currentMap->ScreenY(y));
+					DeadAnimation.OnShow();
+				}
+			}
 		}
+
 	}
 
 	bool CEnemy_sunFlower::isDead()
@@ -357,5 +460,95 @@ namespace game_framework {
 	{
 		if (enemyHP <= 0) return true;
 		else return false;
+	}
+
+	/////////////////////////////////////////////////////////////////////////////
+	// bullet: bullet base class
+	/////////////////////////////////////////////////////////////////////////////
+	bullet::bullet(gameMap* point,int nx, int ny, int step)
+	{
+		x = nx;
+		y = ny;
+		currentMap = point;
+		distance = 0;
+		STEP_SIZE = step;
+		animation.SetDelayCount(2);
+	}
+
+	bullet::~bullet() {}
+
+	int bullet::GetX1()
+	{
+		return x;
+	}
+
+	int bullet::GetY1()
+	{
+		return y;
+	}
+
+	int bullet::GetX2()
+	{
+		return x + animation.Width();
+	}
+
+	int bullet::GetY2()
+	{
+		return y + animation.Height();
+	}
+
+	bool bullet::isDelet()
+	{
+		if (distance > 500)
+		{
+			return true;
+		}
+
+		if (!currentMap->isSpace(GetX1(), GetY1()))  // 當x座標碰到牆
+		{
+			return true;
+		}
+
+		return false;
+	}
+
+	void bullet::OnMove()
+	{
+		animation.OnMove();
+
+		x += STEP_SIZE;
+
+		if (STEP_SIZE > 0)
+		{
+			distance += STEP_SIZE;
+		}
+		else
+		{
+			distance -= STEP_SIZE;
+		}
+	}
+	void bullet::OnShow()
+	{
+		animation.SetTopLeft(currentMap->ScreenX(x), currentMap->ScreenY(y));
+		animation.OnShow();
+	}
+
+	/////////////////////////////////////////////////////////////////////////////
+	// bullet_sunFlower : bullet_sunFlower class
+	/////////////////////////////////////////////////////////////////////////////
+	bullet_sunFlower::bullet_sunFlower(gameMap* point, int nx, int ny, int step) : bullet(point, nx, ny, step) {}
+
+	bullet_sunFlower::~bullet_sunFlower() {}
+
+	void bullet_sunFlower::LoadBitmap()
+	{
+		animation.AddBitmap(IDB_SUNFLOWERBULLET_0, RGB(63, 72, 204));
+		animation.AddBitmap(IDB_SUNFLOWERBULLET_1, RGB(63, 72, 204));
+		animation.AddBitmap(IDB_SUNFLOWERBULLET_2, RGB(63, 72, 204));
+		animation.AddBitmap(IDB_SUNFLOWERBULLET_3, RGB(63, 72, 204));
+		animation.AddBitmap(IDB_SUNFLOWERBULLET_4, RGB(63, 72, 204));
+		animation.AddBitmap(IDB_SUNFLOWERBULLET_5, RGB(63, 72, 204));
+		animation.AddBitmap(IDB_SUNFLOWERBULLET_6, RGB(63, 72, 204));
+		animation.AddBitmap(IDB_SUNFLOWERBULLET_7, RGB(63, 72, 204));
 	}
 }

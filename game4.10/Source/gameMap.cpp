@@ -250,7 +250,7 @@ namespace game_framework {
 	/////////////////////////////////////////////////////////////////////////////
 	gameMap_Lv2::gameMap_Lv2() : gameMap_wild("level_2.txt")
 	{
-		allEnemy.push_back(new CEnemy_sunFlower(this, 300, 350));
+		allEnemy.push_back(new CEnemy_sunFlower(this, 1000, 350));
 		allEnemy.push_back(new CEnemy_Statue(this, 2950, 325));
 	}
 
