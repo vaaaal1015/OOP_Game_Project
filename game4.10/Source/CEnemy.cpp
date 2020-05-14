@@ -270,6 +270,14 @@ namespace game_framework {
 		floor = FLOOR;
 		initial_velocity = INITIAL_VELOCITY;
 		velocity = initial_velocity;
+		AttackDelayCount = 0;					// 設定攻擊頻率
+		AttackFlag = false;		
+		ReadyToAttack = false;
+		enemyHP = 150;
+		enemyAttackDamage = 40;
+		AttackAnimation.SetDelayCount(4);
+		DeadAnimation.SetDelayCount(3);
+		animation.SetDelayCount(5);
 	}
 
 	CEnemy_Cactus::~CEnemy_Cactus() {}
@@ -338,17 +346,23 @@ namespace game_framework {
 		DeadAnimation.AddBitmap(IDB_CACTUSDEAD_2, RGB(255, 127, 39));
 		DeadAnimation.AddBitmap(IDB_CACTUSDEAD_3, RGB(255, 127, 39));
 		DeadAnimation.AddBitmap(IDB_CACTUSDEAD_4, RGB(255, 127, 39));
-		DeadAnimation.AddBitmap(IDB_CACTUSDEAD_5, RGB(255, 127, 39));
-		DeadAnimation.AddBitmap(IDB_CACTUSDEAD_6, RGB(255, 127, 39));
-		DeadAnimation.AddBitmap(IDB_CACTUSDEAD_7, RGB(255, 127, 39));
 	}
 
 	void CEnemy_Cactus::OnMove()
 	{
 		const int STEP_SIZE = 0;
-
-		animation.OnMove();
+		if (AttackDelayCount > 0) AttackDelayCount--;
+		//TRACE("%d\n", AttackDelayCount);
+		
 		AttackAnimation.OnMove();
+		animation.OnMove();
+		if (AttackAnimation.IsFinalBitmap()) ReadyToAttack = false;
+		if (ReadyToAttack && AttackDelayCount==0)
+		{
+			AttackAnimation.Reset();
+			AttackDelayCount = 150;
+		}
+
 		if (enemyHP <= 0 && !DeadAnimation.IsFinalBitmap()) DeadAnimation.OnMove();
 		/*
 		moveingStepCount--;
@@ -372,12 +386,13 @@ namespace game_framework {
 				DeadAnimation.OnShow();
 			}
 		}
-		/*else if (isAttacking)
+		else if (ReadyToAttack)
 		{
-			moveRightAnimation.SetTopLeft(currentMap->ScreenX(x), currentMap->ScreenY(y));
-			moveRightAnimation.OnShow();
-
-		}*/
+			AttackAnimation.SetTopLeft(currentMap->ScreenX(x), currentMap->ScreenY(y));
+			AttackAnimation.OnShow();
+			if (AttackAnimation.GetCurrentBitmapNumber() == 4) AttackFlag = true;   //發出尖刺時攻擊
+			else AttackFlag = false;
+		}
 		else
 		{
 			animation.SetTopLeft(currentMap->ScreenX(x), currentMap->ScreenY(y));
@@ -387,7 +402,11 @@ namespace game_framework {
 
 	void CEnemy_Cactus::AttackByEnemy(int *heroHP)
 	{
-		if ((GetX2() >= hero["x1"]) && (hero["x2"] >= GetX1()) && (GetY2() >= hero["y1"]) && (hero["y2"] >= GetY1()))
+		if ((GetX2() >= hero["x1"]) && (hero["x2"] >= GetX1()) && (GetY2() >= hero["y1"]) && (hero["y2"] >= GetY1()) &&(AttackDelayCount==0))
+		{
+			ReadyToAttack = true;
+		}
+		if ((GetX2() >= hero["x1"]) && (hero["x2"] >= GetX1()) && (GetY2() >= hero["y1"]) && (hero["y2"] >= GetY1()) && AttackFlag)
 		{
 			*heroHP -= enemyAttackDamage;
 		}

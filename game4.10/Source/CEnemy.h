@@ -15,8 +15,8 @@ namespace game_framework {
 		virtual void OnShow() = 0;					// 將敵人圖形貼到畫面
 		void SetHeroXY(int x1, int x2, int y1, int y2);				// 設定英雄位置
 		void SetHeroAttackRange(int x1, int x2, int y1, int y2);	// 設定英雄攻擊範圍
-		virtual void GetAttack(const int damage) = 0;		// 被攻擊
-		virtual void AttackByEnemy(int* heroHP) = 0;
+		virtual void GetAttack(const int damage) = 0;		// 被主角攻擊
+		virtual void AttackByEnemy(int* heroHP) = 0;		// 攻擊主角
 		virtual bool isDead() = 0;
 		virtual string GetEnemyType() = 0;
 		void SetEnemyXY(int SetX, int SetY);
@@ -98,6 +98,9 @@ namespace game_framework {
 		int velocity;				// 目前的速度(點/次)
 		int enemyHP;					// 敵人生命值
 		int enemyAttackDamage;		//敵人攻擊力
+		int AttackDelayCount;		// 攻擊頻率
+		bool AttackFlag;			// 等於true(發出尖刺動畫出現)時才攻擊到主角
+		bool ReadyToAttack;			// 開始攻擊動作
 	};
 
 
