@@ -528,6 +528,26 @@ IDB_CACTUSDEAD_6        BITMAP                  "..\\RES\\Enemy\\Cactus\\Dead\\C
 
 IDB_CACTUSDEAD_7        BITMAP                  "..\\RES\\Enemy\\Cactus\\Dead\\Cactus_Dead_7.bmp"
 
+IDB_NUM_BLK_0           BITMAP                  "..\\RES\\Numbers\\NUM_BLK_0.bmp"
+
+IDB_NUM_BLK_1           BITMAP                  "..\\RES\\Numbers\\NUM_BLK_1.bmp"
+
+IDB_NUM_BLK_2           BITMAP                  "..\\RES\\Numbers\\NUM_BLK_2.bmp"
+
+IDB_NUM_BLK_3           BITMAP                  "..\\RES\\Numbers\\NUM_BLK_3.bmp"
+
+IDB_NUM_BLK_4           BITMAP                  "..\\RES\\Numbers\\NUM_BLK_4.bmp"
+
+IDB_NUM_BLK_5           BITMAP                  "..\\RES\\Numbers\\NUM_BLK_5.bmp"
+
+IDB_NUM_BLK_6           BITMAP                  "..\\RES\\Numbers\\NUM_BLK_6.bmp"
+
+IDB_NUM_BLK_7           BITMAP                  "..\\RES\\Numbers\\NUM_BLK_7.bmp"
+
+IDB_NUM_BLK_8           BITMAP                  "..\\RES\\Numbers\\NUM_BLK_8.bmp"
+
+IDB_NUM_BLK_9           BITMAP                  "..\\RES\\Numbers\\NUM_BLK_9.bmp"
+
 
 /////////////////////////////////////////////////////////////////////////////
 //

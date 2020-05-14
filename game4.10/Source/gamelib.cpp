@@ -269,7 +269,7 @@ void CInteger::LoadBitmap()
 	// digit[i]為class varibale，所以必須避免重複LoadBitmap
 	//
 	if (!isBmpLoaded) {
-		int d[11]={IDB_RED_NUM_0,IDB_RED_NUM_1,IDB_RED_NUM_2,IDB_RED_NUM_3,IDB_RED_NUM_4,IDB_RED_NUM_5,IDB_RED_NUM_6,IDB_RED_NUM_7,IDB_RED_NUM_8,IDB_RED_NUM_9,IDB_MINUS};
+		int d[11]={IDB_NUM_BLK_0,IDB_NUM_BLK_1,IDB_NUM_BLK_2,IDB_NUM_BLK_3,IDB_NUM_BLK_4,IDB_NUM_BLK_5,IDB_NUM_BLK_6,IDB_NUM_BLK_7,IDB_NUM_BLK_8,IDB_NUM_BLK_9,IDB_MINUS};
 		for (int i=0; i < 11; i++)
 			digit[i].LoadBitmap(d[i],RGB(255,255,255));
 		isBmpLoaded = true;
@@ -299,6 +299,72 @@ void CInteger::ShowBitmap()
 		nx = x+digit[0].Width()*NUMDIGITS;
 	}
 	for (int i=0; i < NUMDIGITS; i++) {
+		int d = MSB % 10;
+		MSB /= 10;
+		digit[d].SetTopLeft(nx, y);
+		digit[d].ShowBitmap();
+		nx -= digit[d].Width();
+	}
+	if (n < 0) { // 如果小於0，則顯示負號
+		digit[10].SetTopLeft(nx, y);
+		digit[10].ShowBitmap();
+	}
+}
+
+CMovingBitmap CInteger_Red::digit[11];
+
+CInteger_Red::CInteger_Red(int digits): NUMDIGITS(digits)
+{
+	isBmpLoaded = false;
+}
+
+void CInteger_Red::Add(int x)
+{
+	n += x;
+}
+
+int CInteger_Red::GetInteger()
+{
+	return n;
+}
+
+void CInteger_Red::LoadBitmap()
+{
+	//
+	// digit[i]為class varibale，所以必須避免重複LoadBitmap
+	//
+	if (!isBmpLoaded) {
+		int d[11] = { IDB_RED_NUM_0,IDB_RED_NUM_1,IDB_RED_NUM_2,IDB_RED_NUM_3,IDB_RED_NUM_4,IDB_RED_NUM_5,IDB_RED_NUM_6,IDB_RED_NUM_7,IDB_RED_NUM_8,IDB_RED_NUM_9,IDB_MINUS };
+		for (int i = 0; i < 11; i++)
+			digit[i].LoadBitmap(d[i], RGB(255, 255, 255));
+		isBmpLoaded = true;
+	}
+}
+
+void CInteger_Red::SetInteger(int i)
+{
+	n = i;
+}
+
+void CInteger_Red::SetTopLeft(int nx, int ny)		// 將動畫的左上角座標移至 (x,y)
+{
+	x = nx; y = ny;
+}
+
+void CInteger_Red::ShowBitmap()
+{
+	GAME_ASSERT(isBmpLoaded, "CInteger: 請先執行LoadBitmap，然後才能ShowBitmap");
+	int nx;		// 待顯示位數的 x 座標
+	int MSB;	// 最左邊(含符號)的位數的數值
+	if (n >= 0) {
+		MSB = n;
+		nx = x + digit[0].Width()*(NUMDIGITS - 1);
+	}
+	else {
+		MSB = -n;
+		nx = x + digit[0].Width()*NUMDIGITS;
+	}
+	for (int i = 0; i < NUMDIGITS; i++) {
 		int d = MSB % 10;
 		MSB /= 10;
 		digit[d].SetTopLeft(nx, y);

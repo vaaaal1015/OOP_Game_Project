@@ -823,5 +823,35 @@
     <Image Include="RES\Enemy\Cactus\Dead\Cactus_Dead_7.bmp">
       <Filter>Resource Files</Filter>
     </Image>
+    <Image Include="RES\Numbers\NUM_BLK_0.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\Numbers\NUM_BLK_1.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\Numbers\NUM_BLK_2.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\Numbers\NUM_BLK_3.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\Numbers\NUM_BLK_4.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\Numbers\NUM_BLK_5.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\Numbers\NUM_BLK_6.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\Numbers\NUM_BLK_7.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\Numbers\NUM_BLK_8.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\Numbers\NUM_BLK_9.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
   </ItemGroup>
 </Project>

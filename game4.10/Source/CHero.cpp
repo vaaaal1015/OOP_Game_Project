@@ -246,6 +246,7 @@ namespace game_framework {
 		WorldMap_UI_1.LoadBitmap(IDB_WORLDMAP_UI);
 		QuitButton.LoadBitmap(IDB_UI_QUIT, RGB(0, 0, 0));
 		Num.LoadBitmap();
+		Num_Red.LoadBitmap();
 		BlackMask.LoadBitmap(IDB_BLACKMASK, RGB(27, 36, 46));
 		//DamageTaken.LoadBitmap();
 		for (vector<CMovingBitmap*>::iterator i = LifeBarRed.begin(); i != LifeBarRed.end(); i++) (*i)->LoadBitmap(IDB_LIFEBAR, RGB(255, 255, 255));
@@ -415,7 +416,7 @@ namespace game_framework {
 			currentVillage->HeroTalkToNPC(false);
 		}
 
-		if(!isRolling && !isInvincible && !isInHome) AttackByEnemy();
+		if(!isRolling && !isInvincible && !isInHome) bleed = AttackByEnemy();
 		currentMap->SetSXSY(GetCenterX() - SIZE_X / 2, GetCenterY() - SIZE_Y / 2);
 		if (isInHome)
 		{
@@ -543,12 +544,13 @@ namespace game_framework {
 
 		if (isInHome && currentVillage->GetHeroIsTalkingToNPC())
 		{
-			ShowNumber(Gold, currentMap->ScreenX(x + 190), currentMap->ScreenY(y - 175));
-			ShowNumber(HeroLevel, currentMap->ScreenX(x + 90), currentMap->ScreenY(y - 175));
-			ShowNumber(FullHP, currentMap->ScreenX(x + 110), currentMap->ScreenY(y - 135));
-			ShowNumber(heroAttackDamage, currentMap->ScreenX(x + 140), currentMap->ScreenY(y - 110));
+			ShowNumber(1, Gold, currentMap->ScreenX(x + 190), currentMap->ScreenY(y - 175));
+			ShowNumber(1, HeroLevel, currentMap->ScreenX(x + 90), currentMap->ScreenY(y - 175));
+			ShowNumber(1, FullHP, currentMap->ScreenX(x + 110), currentMap->ScreenY(y - 135));
+			ShowNumber(1, heroAttackDamage, currentMap->ScreenX(x + 140), currentMap->ScreenY(y - 110));
 		}
-		ShowNumber(CurrentHP, currentMap->ScreenX(x - 280), currentMap->ScreenY(y - 170));
+		ShowNumber(2, CurrentHP, currentMap->ScreenX(x - 280), currentMap->ScreenY(y - 170));
+		if(bleed != 0 && InvincibleDelayCount!= 0) ShowNumber(2,bleed, currentMap->ScreenX(x - 50), currentMap->ScreenY(y - 50));
 		/*if (AttackByEnemy() != 0)
 		{
 			DamageTaken.SetInteger(AttackByEnemy());
@@ -587,7 +589,6 @@ namespace game_framework {
 				sword1.OnShow();
 			}
 		}
-
 
 		//處理主角的顯示
 		if (isMovingUp)	// 往上跳
@@ -739,7 +740,7 @@ namespace game_framework {
 	}
 	*/
 
-	void CHero::AttackByEnemy()
+	int CHero::AttackByEnemy()
 	{
 		int hp = CurrentHP;
 		currentWild->AttackByEnemy(&CurrentHP);
@@ -749,12 +750,22 @@ namespace game_framework {
 			isInvincible = true;
 			InvincibleDelayCount = 30;
 		}
+		return hp - CurrentHP;
 	}
-	void CHero::ShowNumber(int num, int x, int y)
+	void CHero::ShowNumber(int color, int num, int x, int y)
 	{
-		Num.SetInteger(num);
-		Num.SetTopLeft(x, y);
-		Num.ShowBitmap();
+		if (color == 1)
+		{
+			Num.SetInteger(num);
+			Num.SetTopLeft(x, y);
+			Num.ShowBitmap();
+		}
+		else
+		{
+			Num_Red.SetInteger(num);
+			Num_Red.SetTopLeft(x, y);
+			Num_Red.ShowBitmap();
+		}
 	}
 
 	void CHero::HeroLevelUp()

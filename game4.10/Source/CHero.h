@@ -35,11 +35,11 @@ namespace game_framework {
 		//void SetMap(int index);			// 
 		int GetHeroFullHP();
 		int GetHeroCurrentHP();      
-		void AttackByEnemy();
+		int AttackByEnemy();
 		void SetPreviousMove(int Movement);
 		int GetPreviousMove();          //取得上一個動作
 		void SetMoveDelayCount(int delay);
-		void ShowNumber(int Number, int x, int y);
+		void ShowNumber(int colot, int Number, int x, int y);//color:1:black,2:red
 		void HeroLevelUp();             // 升級
 		void SetEndTalking();            // 關閉與NPC對話
 		bool isTalkingToNPC;			// 與NPC對話
@@ -74,7 +74,8 @@ namespace game_framework {
 		CMovingBitmap LifeBarHead;		// 血條
 		CMovingBitmap StartGameBar;		// 開始按鈕
 		CMovingBitmap WorldMap_UI_1;		// 地圖_1
-		CInteger Num;				// 生命值
+		CInteger Num;					// 數字
+		CInteger_Red Num_Red;			// 紅色數字
 		//CInteger DamageTaken;			// 顯示承受傷害
 		vector<CMovingBitmap*> LifeBarRed;		// 血條
 		int x, y;						// 英雄左上角座標
@@ -99,7 +100,7 @@ namespace game_framework {
 		int PreviousMovement;			// 紀錄上一個動作  0:無動作; 1:向左走; 2:向右走
 		int DashColdDown;				// 衝刺冷卻時間
 		int InvincibleDelayCount;		// 無敵時間
-
+		int bleed = 0;
 	private:
 		gameMap_village* currentVillage;
 		gameMap_wild* currentWild;
