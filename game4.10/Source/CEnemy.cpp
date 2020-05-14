@@ -49,6 +49,10 @@ namespace game_framework {
 
 		animation.SetDelayCount(3);
 		moveRightAnimation.SetDelayCount(3);
+		moveLeftAnimation.SetDelayCount(3);
+		AttackLeftAnimation.SetDelayCount(5);
+		AttackRightAnimation.SetDelayCount(5);
+		Bullet.SetDelayCount(4);
 		DeadAnimation.SetDelayCount(3);
 		moveingStep = 10;
 		enemyHP = 100;							//敵人預設生命值
@@ -254,6 +258,147 @@ namespace game_framework {
 		if (enemyHP <= 0 && DeadAnimation.IsFinalBitmap()) return true;
 		else return false;
 	}
+
+
+	/////////////////////////////////////////////////////////////////////////////
+	// CEnemy_Cactus: Enemy Cactus class
+	/////////////////////////////////////////////////////////////////////////////
+	CEnemy_Cactus::CEnemy_Cactus(gameMap* pointer, int x, int y) : CEnemy(pointer, x, y)
+	{
+		const int INITIAL_VELOCITY = 15;		// 初始上升速度
+		const int FLOOR = 100;					// 地板座標
+		floor = FLOOR;
+		initial_velocity = INITIAL_VELOCITY;
+		velocity = initial_velocity;
+	}
+
+	CEnemy_Cactus::~CEnemy_Cactus() {}
+
+	int CEnemy_Cactus::GetX1()
+	{
+		return x;
+	}
+
+	int CEnemy_Cactus::GetY1()
+	{
+		return y;
+	}
+
+	int CEnemy_Cactus::GetX2()
+	{
+		return x + animation.Width();
+	}
+
+	int CEnemy_Cactus::GetY2()
+	{
+		return y + animation.Height();
+	}
+
+	int CEnemy_Cactus::GetWidth()
+	{
+		return animation.Width();
+	}
+
+	int CEnemy_Cactus::GetHeight()
+	{
+		return animation.Height();
+	}
+
+	string CEnemy_Cactus::GetEnemyType()
+	{
+		return EnemyType;
+	}
+
+	void CEnemy_Cactus::GetAttack(const int damage)
+	{
+		if ((GetX2() >= heroAttackRange["x1"]) && (heroAttackRange["x2"] >= GetX1()) && (GetY2() >= heroAttackRange["y1"]) && (heroAttackRange["y2"] >= GetY1()))
+		{
+			enemyHP -= damage;
+		}
+	}
+
+
+	void CEnemy_Cactus::LoadBitmap()
+	{
+		animation.AddBitmap(IDB_CACTUSNOMOVE_0, RGB(255, 127, 39));
+		animation.AddBitmap(IDB_CACTUSNOMOVE_1, RGB(255, 127, 39));
+		animation.AddBitmap(IDB_CACTUSNOMOVE_2, RGB(255, 127, 39));
+
+		AttackAnimation.AddBitmap(IDB_CACTUSATTACK_0, RGB(255, 127, 39));
+		AttackAnimation.AddBitmap(IDB_CACTUSATTACK_1, RGB(255, 127, 39));
+		AttackAnimation.AddBitmap(IDB_CACTUSATTACK_2, RGB(255, 127, 39));
+		AttackAnimation.AddBitmap(IDB_CACTUSATTACK_3, RGB(255, 127, 39));
+		AttackAnimation.AddBitmap(IDB_CACTUSATTACK_4, RGB(255, 127, 39));
+		AttackAnimation.AddBitmap(IDB_CACTUSATTACK_5, RGB(255, 127, 39));
+		AttackAnimation.AddBitmap(IDB_CACTUSATTACK_6, RGB(255, 127, 39));
+		AttackAnimation.AddBitmap(IDB_CACTUSATTACK_7, RGB(255, 127, 39));
+
+		DeadAnimation.AddBitmap(IDB_CACTUSDEAD_0, RGB(255, 127, 39));
+		DeadAnimation.AddBitmap(IDB_CACTUSDEAD_1, RGB(255, 127, 39));
+		DeadAnimation.AddBitmap(IDB_CACTUSDEAD_2, RGB(255, 127, 39));
+		DeadAnimation.AddBitmap(IDB_CACTUSDEAD_3, RGB(255, 127, 39));
+		DeadAnimation.AddBitmap(IDB_CACTUSDEAD_4, RGB(255, 127, 39));
+		DeadAnimation.AddBitmap(IDB_CACTUSDEAD_5, RGB(255, 127, 39));
+		DeadAnimation.AddBitmap(IDB_CACTUSDEAD_6, RGB(255, 127, 39));
+		DeadAnimation.AddBitmap(IDB_CACTUSDEAD_7, RGB(255, 127, 39));
+	}
+
+	void CEnemy_Cactus::OnMove()
+	{
+		const int STEP_SIZE = 0;
+
+		animation.OnMove();
+		AttackAnimation.OnMove();
+		if (enemyHP <= 0 && !DeadAnimation.IsFinalBitmap()) DeadAnimation.OnMove();
+		/*
+		moveingStepCount--;
+		if (moveingStepCount < 0)
+		{
+			moveingStepCount = moveingStep;
+			isMovingRight = !isMovingRight;
+		}
+		*/
+
+
+	}
+
+	void CEnemy_Cactus::OnShow()
+	{
+		if (enemyHP <= 0)
+		{
+			if (!DeadAnimation.IsFinalBitmap())
+			{
+				DeadAnimation.SetTopLeft(currentMap->ScreenX(x), currentMap->ScreenY(y));
+				DeadAnimation.OnShow();
+			}
+		}
+		/*else if (isAttacking)
+		{
+			moveRightAnimation.SetTopLeft(currentMap->ScreenX(x), currentMap->ScreenY(y));
+			moveRightAnimation.OnShow();
+
+		}*/
+		else
+		{
+			animation.SetTopLeft(currentMap->ScreenX(x), currentMap->ScreenY(y));
+			animation.OnShow();
+		}
+	}
+
+	void CEnemy_Cactus::AttackByEnemy(int *heroHP)
+	{
+		if ((GetX2() >= hero["x1"]) && (hero["x2"] >= GetX1()) && (GetY2() >= hero["y1"]) && (hero["y2"] >= GetY1()))
+		{
+			*heroHP -= enemyAttackDamage;
+		}
+	}
+
+	bool CEnemy_Cactus::isDead()
+	{
+		if (enemyHP <= 0) return true;
+		else return false;
+	}
+
 
 	/////////////////////////////////////////////////////////////////////////////
 	// CEnemy_Statue: Enemy Statue class
