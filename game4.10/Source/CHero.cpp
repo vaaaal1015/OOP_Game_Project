@@ -800,6 +800,9 @@ namespace game_framework {
 			currentMap = currentWild;
 			break;
 		}
+		x = 0;
+		y = 0;
+
 	}
 
 	void CHero::ResetHeroState()

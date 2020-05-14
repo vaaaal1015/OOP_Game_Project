@@ -422,6 +422,52 @@ IDB_SWORDDASHRIGHT_2    BITMAP                  "..\\RES\\sword\\DashRight\\Swor
 
 IDB_SWORDDASHRIGHT_3    BITMAP                  "..\\RES\\sword\\DashRight\\Sword_Dash_Right_3.bmp"
 
+IDB_SUNFLOWERLEFTWALK_0 BITMAP                  "..\\RES\\Enemy\\SmileSunFlower\\leftWalk\\Smile SunFlower_Left_Walk_0.bmp"
+
+IDB_SUNFLOWERLEFTWALK_1 BITMAP                  "..\\RES\\Enemy\\SmileSunFlower\\leftWalk\\Smile SunFlower_Left_Walk_1.bmp"
+
+IDB_SUNFLOWERLEFTWALK_2 BITMAP                  "..\\RES\\Enemy\\SmileSunFlower\\leftWalk\\Smile SunFlower_Left_Walk_2.bmp"
+
+IDB_SUNFLOWERLEFTWALK_3 BITMAP                  "..\\RES\\Enemy\\SmileSunFlower\\leftWalk\\Smile SunFlower_Left_Walk_3.bmp"
+
+IDB_SUNFLOWERLEFTWALK_4 BITMAP                  "..\\RES\\Enemy\\SmileSunFlower\\leftWalk\\Smile SunFlower_Left_Walk_4.bmp"
+
+IDB_SUNFLOWERLEFTWALK_5 BITMAP                  "..\\RES\\Enemy\\SmileSunFlower\\leftWalk\\Smile SunFlower_Left_Walk_5.bmp"
+
+IDB_SUNFLOWERLEFTWALK_6 BITMAP                  "..\\RES\\Enemy\\SmileSunFlower\\leftWalk\\Smile SunFlower_Left_Walk_6.bmp"
+
+IDB_SUNFLOWERLEFTWALK_7 BITMAP                  "..\\RES\\Enemy\\SmileSunFlower\\leftWalk\\Smile SunFlower_Left_Walk_7.bmp"
+
+IDB_SUNFLOWERLEFTWALK_8 BITMAP                  "..\\RES\\Enemy\\SmileSunFlower\\leftWalk\\Smile SunFlower_Left_Walk_8.bmp"
+
+IDB_SUNFLOWERATTACKRIGHT_0 BITMAP                  "..\\RES\\Enemy\\SmileSunFlower\\attackRight\\Smile SunFlower_Attack_0.bmp"
+
+IDB_SUNFLOWERATTACKRIGHT_1 BITMAP                  "..\\RES\\Enemy\\SmileSunFlower\\attackRight\\Smile SunFlower_Attack_1.bmp"
+
+IDB_SUNFLOWERATTACKRIGHT_2 BITMAP                  "..\\RES\\Enemy\\SmileSunFlower\\attackRight\\Smile SunFlower_Attack_2.bmp"
+
+IDB_SUNFLOWERATTACKRIGHT_3 BITMAP                  "..\\RES\\Enemy\\SmileSunFlower\\attackRight\\Smile SunFlower_Attack_3.bmp"
+
+IDB_SUNFLOWERATTACKRIGHT_4 BITMAP                  "..\\RES\\Enemy\\SmileSunFlower\\attackRight\\Smile SunFlower_Attack_4.bmp"
+
+IDB_SUNFLOWERATTACKRIGHT_5 BITMAP                  "..\\RES\\Enemy\\SmileSunFlower\\attackRight\\Smile SunFlower_Attack_5.bmp"
+
+IDB_SUNFLOWERATTACKRIGHT_6 BITMAP                  "..\\RES\\Enemy\\SmileSunFlower\\attackRight\\Smile SunFlower_Attack_6.bmp"
+
+IDB_SUNFLOWERATTACKLEFT_0 BITMAP                  "..\\RES\\Enemy\\SmileSunFlower\\attackLeft\\Smile SunFlower_Attack_0.bmp"
+
+IDB_SUNFLOWERATTACKLEFT_1 BITMAP                  "..\\RES\\Enemy\\SmileSunFlower\\attackLeft\\Smile SunFlower_Attack_1.bmp"
+
+IDB_SUNFLOWERATTACKLEFT_2 BITMAP                  "..\\RES\\Enemy\\SmileSunFlower\\attackLeft\\Smile SunFlower_Attack_2.bmp"
+
+IDB_SUNFLOWERATTACKLEFT_3 BITMAP                  "..\\RES\\Enemy\\SmileSunFlower\\attackLeft\\Smile SunFlower_Attack_3.bmp"
+
+IDB_SUNFLOWERATTACKLEFT_4 BITMAP                  "..\\RES\\Enemy\\SmileSunFlower\\attackLeft\\Smile SunFlower_Attack_4.bmp"
+
+IDB_SUNFLOWERATTACKLEFT_5 BITMAP                  "..\\RES\\Enemy\\SmileSunFlower\\attackLeft\\Smile SunFlower_Attack_5.bmp"
+
+IDB_SUNFLOWERATTACKLEFT_6 BITMAP                  "..\\RES\\Enemy\\SmileSunFlower\\attackLeft\\Smile SunFlower_Attack_6.bmp"
+
 
 /////////////////////////////////////////////////////////////////////////////
 //

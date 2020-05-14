@@ -664,5 +664,74 @@
     <Image Include="RES\sword\DashRight\Sword_Dash_Right_3.bmp">
       <Filter>Resource Files</Filter>
     </Image>
+    <Image Include="RES\Enemy\SmileSunFlower\leftWalk\Smile SunFlower_Left_Walk_0.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\Enemy\SmileSunFlower\leftWalk\Smile SunFlower_Left_Walk_1.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\Enemy\SmileSunFlower\leftWalk\Smile SunFlower_Left_Walk_2.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\Enemy\SmileSunFlower\leftWalk\Smile SunFlower_Left_Walk_3.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\Enemy\SmileSunFlower\leftWalk\Smile SunFlower_Left_Walk_4.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\Enemy\SmileSunFlower\leftWalk\Smile SunFlower_Left_Walk_5.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\Enemy\SmileSunFlower\leftWalk\Smile SunFlower_Left_Walk_6.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\Enemy\SmileSunFlower\leftWalk\Smile SunFlower_Left_Walk_7.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\Enemy\SmileSunFlower\leftWalk\Smile SunFlower_Left_Walk_8.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\Enemy\SmileSunFlower\attackRight\Smile SunFlower_Attack_0.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\Enemy\SmileSunFlower\attackRight\Smile SunFlower_Attack_1.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\Enemy\SmileSunFlower\attackRight\Smile SunFlower_Attack_2.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\Enemy\SmileSunFlower\attackRight\Smile SunFlower_Attack_3.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\Enemy\SmileSunFlower\attackRight\Smile SunFlower_Attack_4.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\Enemy\SmileSunFlower\attackRight\Smile SunFlower_Attack_5.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\Enemy\SmileSunFlower\attackRight\Smile SunFlower_Attack_6.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\Enemy\SmileSunFlower\attackLeft\Smile SunFlower_Attack_0.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\Enemy\SmileSunFlower\attackLeft\Smile SunFlower_Attack_1.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\Enemy\SmileSunFlower\attackLeft\Smile SunFlower_Attack_2.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\Enemy\SmileSunFlower\attackLeft\Smile SunFlower_Attack_3.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\Enemy\SmileSunFlower\attackLeft\Smile SunFlower_Attack_4.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\Enemy\SmileSunFlower\attackLeft\Smile SunFlower_Attack_5.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\Enemy\SmileSunFlower\attackLeft\Smile SunFlower_Attack_6.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
   </ItemGroup>
 </Project>

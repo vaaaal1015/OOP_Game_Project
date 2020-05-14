@@ -127,6 +127,24 @@ namespace game_framework {
 		moveRightAnimation.AddBitmap(IDB_SUNFLOWERRIGHTWALK_8, RGB(255, 255, 255));
 		moveRightAnimation.AddBitmap(IDB_SUNFLOWERRIGHTWALK_9, RGB(255, 255, 255));
 
+		moveLeftAnimation.AddBitmap(IDB_SUNFLOWERLEFTWALK_0, RGB(255, 255, 255));
+		moveLeftAnimation.AddBitmap(IDB_SUNFLOWERLEFTWALK_1, RGB(255, 255, 255));
+		moveLeftAnimation.AddBitmap(IDB_SUNFLOWERLEFTWALK_2, RGB(255, 255, 255));
+		moveLeftAnimation.AddBitmap(IDB_SUNFLOWERLEFTWALK_3, RGB(255, 255, 255));
+		moveLeftAnimation.AddBitmap(IDB_SUNFLOWERLEFTWALK_4, RGB(255, 255, 255));
+		moveLeftAnimation.AddBitmap(IDB_SUNFLOWERLEFTWALK_5, RGB(255, 255, 255));
+		moveLeftAnimation.AddBitmap(IDB_SUNFLOWERLEFTWALK_6, RGB(255, 255, 255));
+		moveLeftAnimation.AddBitmap(IDB_SUNFLOWERLEFTWALK_7, RGB(255, 255, 255));
+		moveLeftAnimation.AddBitmap(IDB_SUNFLOWERLEFTWALK_8, RGB(255, 255, 255));
+
+		AttackRightAnimation.AddBitmap(IDB_SUNFLOWERATTACKRIGHT_0, RGB(255, 255, 255));
+		AttackRightAnimation.AddBitmap(IDB_SUNFLOWERATTACKRIGHT_1, RGB(255, 255, 255));
+		AttackRightAnimation.AddBitmap(IDB_SUNFLOWERATTACKRIGHT_2, RGB(255, 255, 255));
+		AttackRightAnimation.AddBitmap(IDB_SUNFLOWERATTACKRIGHT_3, RGB(255, 255, 255));
+		AttackRightAnimation.AddBitmap(IDB_SUNFLOWERATTACKRIGHT_4, RGB(255, 255, 255));
+		AttackRightAnimation.AddBitmap(IDB_SUNFLOWERATTACKRIGHT_5, RGB(255, 255, 255));
+		AttackRightAnimation.AddBitmap(IDB_SUNFLOWERATTACKRIGHT_6, RGB(255, 255, 255));
+
 		DeadAnimation.AddBitmap(IDB_SUNFLOWER_DEAD_0, RGB(255, 255, 255));
 		DeadAnimation.AddBitmap(IDB_SUNFLOWER_DEAD_1, RGB(255, 255, 255));
 		DeadAnimation.AddBitmap(IDB_SUNFLOWER_DEAD_2, RGB(255, 255, 255));
