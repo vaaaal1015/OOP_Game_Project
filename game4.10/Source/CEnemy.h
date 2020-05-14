@@ -51,6 +51,7 @@ namespace game_framework {
 		CAnimation moveLeftAnimation;   // 向左移動動畫
 		CAnimation AttackRightAnimation;// 攻擊右邊
 		CAnimation AttackLeftAnimation; // 攻擊左邊
+		CAnimation Bullet;
 		CAnimation jumpAnimation;		// 跳躍動畫
 		CAnimation DeadAnimation;		// 死亡動畫
 		string EnemyType = "Sun_Flower";

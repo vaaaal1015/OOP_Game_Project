@@ -145,6 +145,23 @@ namespace game_framework {
 		AttackRightAnimation.AddBitmap(IDB_SUNFLOWERATTACKRIGHT_5, RGB(255, 255, 255));
 		AttackRightAnimation.AddBitmap(IDB_SUNFLOWERATTACKRIGHT_6, RGB(255, 255, 255));
 
+		AttackLeftAnimation.AddBitmap(IDB_SUNFLOWERATTACKLEFT_0, RGB(255, 255, 255));
+		AttackLeftAnimation.AddBitmap(IDB_SUNFLOWERATTACKLEFT_1, RGB(255, 255, 255));
+		AttackLeftAnimation.AddBitmap(IDB_SUNFLOWERATTACKLEFT_2, RGB(255, 255, 255));
+		AttackLeftAnimation.AddBitmap(IDB_SUNFLOWERATTACKLEFT_3, RGB(255, 255, 255));
+		AttackLeftAnimation.AddBitmap(IDB_SUNFLOWERATTACKLEFT_4, RGB(255, 255, 255));
+		AttackLeftAnimation.AddBitmap(IDB_SUNFLOWERATTACKLEFT_5, RGB(255, 255, 255));
+		AttackLeftAnimation.AddBitmap(IDB_SUNFLOWERATTACKLEFT_6, RGB(255, 255, 255));
+
+		Bullet.AddBitmap(IDB_SUNFLOWERBULLET_0, RGB(63, 72, 204));
+		Bullet.AddBitmap(IDB_SUNFLOWERBULLET_1, RGB(63, 72, 204));
+		Bullet.AddBitmap(IDB_SUNFLOWERBULLET_2, RGB(63, 72, 204));
+		Bullet.AddBitmap(IDB_SUNFLOWERBULLET_3, RGB(63, 72, 204));
+		Bullet.AddBitmap(IDB_SUNFLOWERBULLET_4, RGB(63, 72, 204));
+		Bullet.AddBitmap(IDB_SUNFLOWERBULLET_5, RGB(63, 72, 204));
+		Bullet.AddBitmap(IDB_SUNFLOWERBULLET_6, RGB(63, 72, 204));
+		Bullet.AddBitmap(IDB_SUNFLOWERBULLET_7, RGB(63, 72, 204));
+
 		DeadAnimation.AddBitmap(IDB_SUNFLOWER_DEAD_0, RGB(255, 255, 255));
 		DeadAnimation.AddBitmap(IDB_SUNFLOWER_DEAD_1, RGB(255, 255, 255));
 		DeadAnimation.AddBitmap(IDB_SUNFLOWER_DEAD_2, RGB(255, 255, 255));
