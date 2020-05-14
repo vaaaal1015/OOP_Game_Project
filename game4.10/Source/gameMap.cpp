@@ -182,7 +182,7 @@ namespace game_framework {
 	{
 		allEnemy.push_back(new CEnemy_sunFlower(this, 300, 350));
 		allEnemy.push_back(new CEnemy_Statue(this, 2950, 325));
-		allEnemy.push_back(new CEnemy_Cactus(this, 550, 300));
+		allEnemy.push_back(new CEnemy_Cactus(this, 500, 280));
 	}
 
 	gameMap_Lv1::~gameMap_Lv1()

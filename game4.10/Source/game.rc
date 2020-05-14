@@ -548,6 +548,12 @@ IDB_NUM_BLK_8           BITMAP                  "..\\RES\\Numbers\\NUM_BLK_8.bmp
 
 IDB_NUM_BLK_9           BITMAP                  "..\\RES\\Numbers\\NUM_BLK_9.bmp"
 
+IDB_SUNFLOWERNOMOVELEFT_0 BITMAP                  "..\\RES\\Enemy\\SmileSunFlower\\noMoveLeft\\Smile SunFlower_0.bmp"
+
+IDB_SUNFLOWERNOMOVELEFT_1 BITMAP                  "..\\RES\\Enemy\\SmileSunFlower\\noMoveLeft\\Smile SunFlower_1.bmp"
+
+IDB_SUNFLOWERNOMOVELEFT_2 BITMAP                  "..\\RES\\Enemy\\SmileSunFlower\\noMoveLeft\\Smile SunFlower_2.bmp"
+
 
 /////////////////////////////////////////////////////////////////////////////
 //

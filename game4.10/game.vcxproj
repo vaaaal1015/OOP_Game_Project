@@ -448,6 +448,9 @@
     <Image Include="RES\Enemy\SmileSunFlower\leftWalk\Smile SunFlower_Left_Walk_6.bmp" />
     <Image Include="RES\Enemy\SmileSunFlower\leftWalk\Smile SunFlower_Left_Walk_7.bmp" />
     <Image Include="RES\Enemy\SmileSunFlower\leftWalk\Smile SunFlower_Left_Walk_8.bmp" />
+    <Image Include="RES\Enemy\SmileSunFlower\noMoveLeft\Smile SunFlower_0.bmp" />
+    <Image Include="RES\Enemy\SmileSunFlower\noMoveLeft\Smile SunFlower_1.bmp" />
+    <Image Include="RES\Enemy\SmileSunFlower\noMoveLeft\Smile SunFlower_2.bmp" />
     <Image Include="RES\Enemy\SmileSunFlower\noMove\Smile SunFlower_0.bmp" />
     <Image Include="RES\Enemy\SmileSunFlower\noMove\Smile SunFlower_1.bmp" />
     <Image Include="RES\Enemy\SmileSunFlower\noMove\Smile SunFlower_2.bmp" />

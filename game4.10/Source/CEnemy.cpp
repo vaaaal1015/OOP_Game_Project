@@ -46,9 +46,11 @@ namespace game_framework {
 		const int FLOOR = 100;					// ¦aªO®y¼Ð
 		isMovingRight = true;
 		rising = false;
-		animation.SetDelayCount(2);
-		moveRightAnimation.SetDelayCount(2);
-		DeadAnimation.SetDelayCount(2);
+		animation.SetDelayCount(3);
+		animationLeft.SetDelayCount(3);
+		moveRightAnimation.SetDelayCount(3);
+		moveLeftAnimation.SetDelayCount(3);
+		DeadAnimation.SetDelayCount(3);
 		AttackLeftAnimation.SetDelayCount(2);
 		AttackRightAnimation.SetDelayCount(2);
 		moveingStep = 20;
@@ -175,6 +177,10 @@ namespace game_framework {
 		animation.AddBitmap(IDB_SUNFLOWERNOMOVE_2, RGB(255, 255, 255));
 		animation.AddBitmap(IDB_SUNFLOWERNOMOVE_3, RGB(255, 255, 255));
 
+		animationLeft.AddBitmap(IDB_SUNFLOWERNOMOVELEFT_0, RGB(255, 255, 255));
+		animationLeft.AddBitmap(IDB_SUNFLOWERNOMOVELEFT_1, RGB(255, 255, 255));
+		animationLeft.AddBitmap(IDB_SUNFLOWERNOMOVELEFT_2, RGB(255, 255, 255));
+
 		moveRightAnimation.AddBitmap(IDB_SUNFLOWERRIGHTWALK_1, RGB(255, 255, 255));
 		moveRightAnimation.AddBitmap(IDB_SUNFLOWERRIGHTWALK_2, RGB(255, 255, 255));
 		moveRightAnimation.AddBitmap(IDB_SUNFLOWERRIGHTWALK_3, RGB(255, 255, 255));
@@ -224,6 +230,7 @@ namespace game_framework {
 		const int STEP_SIZE = 2;
 
 		animation.OnMove();
+		animationLeft.OnMove();
 		moveRightAnimation.OnMove();
 		moveLeftAnimation.OnMove();
 		AttackLeftAnimation.OnMove();
@@ -314,8 +321,8 @@ namespace game_framework {
 		switch (state)
 		{
 		case STAND_LEFT:
-			animation.SetTopLeft(currentMap->ScreenX(x), currentMap->ScreenY(y));
-			animation.OnShow();
+			animationLeft.SetTopLeft(currentMap->ScreenX(x), currentMap->ScreenY(y));
+			animationLeft.OnShow();
 			break;
 		case STAND_RIGHT:
 			animation.SetTopLeft(currentMap->ScreenX(x), currentMap->ScreenY(y));

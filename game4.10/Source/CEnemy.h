@@ -88,6 +88,7 @@ namespace game_framework {
 		string GetEnemyType();
 	private:
 		CAnimation animation;			// 敵人的動畫
+		CAnimation animationLeft;		// 敵人的動畫(左)
 		CAnimation moveRightAnimation;  // 向右移動動畫
 		CAnimation moveLeftAnimation;   // 向左移動動畫
 		CAnimation AttackRightAnimation;// 攻擊右邊
