@@ -257,6 +257,18 @@
 #define IDB_SUNFLOWERATTACKLEFT_5       340
 #define IDB_BITMAP49                    341
 #define IDB_SUNFLOWERATTACKLEFT_6       341
+#define IDB_SUNFLOWERBULLET_0           342
+#define IDB_SUNFLOWERBULLET_1           343
+#define IDB_SUNFLOWERBULLET_2           344
+#define IDB_SUNFLOWERBULLET_3           345
+#define IDB_SUNFLOWERBULLET_4           346
+#define IDB_SUNFLOWERBULLET_5           347
+#define IDB_SUNFLOWERBULLET_6           348
+#define IDB_SUNFLOWERBULLET_7           349
+#define IDB_SUNFLOWERBULLET_BROKEN_0    350
+#define IDB_SUNFLOWERBULLET_BROKEN_1    351
+#define IDB_BITMAP54                    352
+#define IDB_SUNFLOWERBULLET_BROKEN_2    352
 #define IDC_README                      1001
 #define ID_FILE_PAUSE                   32771
 #define ID_TOGGLE_FULLSCREEN            32772
@@ -269,7 +281,7 @@
 #ifdef APSTUDIO_INVOKED
 #ifndef APSTUDIO_READONLY_SYMBOLS
 #define _APS_3D_CONTROLS                     1
-#define _APS_NEXT_RESOURCE_VALUE        342
+#define _APS_NEXT_RESOURCE_VALUE        353
 #define _APS_NEXT_COMMAND_VALUE         32776
 #define _APS_NEXT_CONTROL_VALUE         1003
 #define _APS_NEXT_SYMED_VALUE           101

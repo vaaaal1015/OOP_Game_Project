@@ -733,5 +733,38 @@
     <Image Include="RES\Enemy\SmileSunFlower\attackLeft\Smile SunFlower_Attack_6.bmp">
       <Filter>Resource Files</Filter>
     </Image>
+    <Image Include="RES\Enemy\SmileSunFlower\bullet\Sunflower_bullet_0.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\Enemy\SmileSunFlower\bullet\Sunflower_bullet_1.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\Enemy\SmileSunFlower\bullet\Sunflower_bullet_2.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\Enemy\SmileSunFlower\bullet\Sunflower_bullet_3.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\Enemy\SmileSunFlower\bullet\Sunflower_bullet_4.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\Enemy\SmileSunFlower\bullet\Sunflower_bullet_5.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\Enemy\SmileSunFlower\bullet\Sunflower_bullet_6.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\Enemy\SmileSunFlower\bullet\Sunflower_bullet_7.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\Enemy\SmileSunFlower\bullet\Sunflower_bullet_broken_0.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\Enemy\SmileSunFlower\bullet\Sunflower_bullet_broken_1.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\Enemy\SmileSunFlower\bullet\Sunflower_bullet_broken_2.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
   </ItemGroup>
 </Project>
