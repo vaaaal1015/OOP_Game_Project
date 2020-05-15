@@ -554,6 +554,22 @@ IDB_SUNFLOWERNOMOVELEFT_1 BITMAP                  "..\\RES\\Enemy\\SmileSunFlowe
 
 IDB_SUNFLOWERNOMOVELEFT_2 BITMAP                  "..\\RES\\Enemy\\SmileSunFlower\\noMoveLeft\\Smile SunFlower_2.bmp"
 
+IDB_SWORDROLLRIGHT_0    BITMAP                  "..\\RES\\sword\\RollRight\\Sword_Roll_right_0.bmp"
+
+IDB_SWORDROLLRIGHT_1    BITMAP                  "..\\RES\\sword\\RollRight\\Sword_Roll_right_1.bmp"
+
+IDB_SWORDROLLRIGHT_2    BITMAP                  "..\\RES\\sword\\RollRight\\Sword_Roll_right_2.bmp"
+
+IDB_SWORDROLLRIGHT_3    BITMAP                  "..\\RES\\sword\\RollRight\\Sword_Roll_right_3.bmp"
+
+IDB_SWORDROLLLEFT_0     BITMAP                  "..\\RES\\sword\\RollLeft\\Sword_Roll_Left_0.bmp"
+
+IDB_SWORDROLLLEFT_1     BITMAP                  "..\\RES\\sword\\RollLeft\\Sword_Roll_Left_1.bmp"
+
+IDB_SWORDROLLLEFT_2     BITMAP                  "..\\RES\\sword\\RollLeft\\Sword_Roll_Left_2.bmp"
+
+IDB_SWORDROLLLEFT_3     BITMAP                  "..\\RES\\sword\\RollLeft\\Sword_Roll_Left_3.bmp"
+
 
 /////////////////////////////////////////////////////////////////////////////
 //

@@ -119,6 +119,10 @@ namespace game_framework {
 		moveLeftAnimation.SetDelayCount(3);
 		HeroRollLeft.SetDelayCount(5);
 		HeroRollRight.SetDelayCount(5);
+		SwordRollRight.SetDelayCount(5);
+		SwordRollLeft.SetDelayCount(5);
+		SwordDashLeft.SetDelayCount(3);
+		SwordDashRight.SetDelayCount(3);
 		SetAttackDelayCount = AttackDelayCount = DashColdDown = 15;
 		RollDelayCount = 15;
 		InvincibleDelayCount = 30;
@@ -218,7 +222,10 @@ namespace game_framework {
 		HeroRollLeft.AddBitmap(IDB_ROLL_LEFT_6, RGB(255, 255, 255));
 		HeroRollLeft.AddBitmap(IDB_ROLL_LEFT_6, RGB(255, 255, 255));
 
-
+		SwordRollRight.AddBitmap(IDB_SWORDROLLRIGHT_0, RGB(255, 255, 255));
+		SwordRollRight.AddBitmap(IDB_SWORDROLLRIGHT_1, RGB(255, 255, 255));
+		SwordRollRight.AddBitmap(IDB_SWORDROLLRIGHT_2, RGB(255, 255, 255));
+		SwordRollRight.AddBitmap(IDB_SWORDROLLRIGHT_3, RGB(255, 255, 255));
 
 		HeroRollRight.AddBitmap(IDB_ROLL_RIGHT_1, RGB(255, 255, 255));
 		HeroRollRight.AddBitmap(IDB_ROLL_RIGHT_2, RGB(255, 255, 255));
@@ -228,12 +235,28 @@ namespace game_framework {
 		HeroRollRight.AddBitmap(IDB_ROLL_RIGHT_6, RGB(255, 255, 255));
 		HeroRollRight.AddBitmap(IDB_ROLL_RIGHT_6, RGB(255, 255, 255));
 
+		SwordRollLeft.AddBitmap(IDB_SWORDROLLLEFT_0, RGB(255, 255, 255));
+		SwordRollLeft.AddBitmap(IDB_SWORDROLLLEFT_1, RGB(255, 255, 255));
+		SwordRollLeft.AddBitmap(IDB_SWORDROLLLEFT_2, RGB(255, 255, 255));
+		SwordRollLeft.AddBitmap(IDB_SWORDROLLLEFT_3, RGB(255, 255, 255));
+
 		swordAttack.AddBitmap(IDB_SWORDATTACK_2,RGB(255, 255, 255));
 		swordAttack.AddBitmap(IDB_SWORDATTACK_3,RGB(255, 255, 255));
 		swordAttack.AddBitmap(IDB_SWORDATTACK_4,RGB(255, 255, 255));
 		swordAttack.AddBitmap(IDB_SWORDATTACK_5,RGB(255, 255, 255));
 		swordAttack.AddBitmap(IDB_SWORDATTACK_6,RGB(255, 255, 255));
 		swordAttack.AddBitmap(IDB_SWORDATTACK_7,RGB(255, 255, 255));
+		
+		SwordDashLeft.AddBitmap(IDB_SWORDDASHLEFT_0, RGB(255, 255, 255));
+		SwordDashLeft.AddBitmap(IDB_SWORDDASHLEFT_0, RGB(255, 255, 255));
+		SwordDashLeft.AddBitmap(IDB_SWORDDASHLEFT_0, RGB(255, 255, 255));
+		SwordDashLeft.AddBitmap(IDB_SWORDDASHLEFT_0, RGB(255, 255, 255));
+
+		SwordDashRight.AddBitmap(IDB_SWORDDASHRIGHT_0, RGB(255, 255, 255));
+		SwordDashRight.AddBitmap(IDB_SWORDDASHRIGHT_1, RGB(255, 255, 255));
+		SwordDashRight.AddBitmap(IDB_SWORDDASHRIGHT_2, RGB(255, 255, 255));
+		SwordDashRight.AddBitmap(IDB_SWORDDASHRIGHT_3, RGB(255, 255, 255));
+
 
 		swordAttack1.AddBitmap(IDB_SWORDATTACK_3_1, RGB(255, 255, 255));
 		swordAttack1.AddBitmap(IDB_SWORDATTACK_4_1, RGB(255, 255, 255));
@@ -299,6 +322,10 @@ namespace game_framework {
 		jumpAnimation1.OnMove();
 		HeroRollLeft.OnMove();
 		HeroRollRight.OnMove();
+		SwordRollRight.OnMove();
+		SwordRollLeft.OnMove();
+		SwordDashRight.OnMove();
+		SwordDashLeft.OnMove();
 
 		if(AttackDelayCount !=0) AttackDelayCount--;    //攻速
 		if (RollDelayCount != 0) RollDelayCount--;		//翻滾
@@ -318,6 +345,7 @@ namespace game_framework {
 					x -= 80;    //衝刺距離
 					DashColdDown = 15;    // 衝刺冷卻時間
 					HeroDashLeft.Reset();  //重置動畫
+					SwordDashLeft.Reset();
 				}
 				else
 				{
@@ -335,6 +363,7 @@ namespace game_framework {
 					x += 80;     //衝刺距離
 					DashColdDown = 15;    // 衝刺冷卻時間
 					HeroDashRight.Reset();   //重置動畫
+					SwordDashRight.Reset();
 				}
 				else
 				{
@@ -347,6 +376,7 @@ namespace game_framework {
 			if (faceDirection == "right")
 			{
 				HeroRollRight.OnMove();
+				SwordRollRight.OnMove();
 				if (currentMap->isSpace(GetX2(), GetY1()) && currentMap->isSpace(GetX2(), GetY2() - 10)) // 當y座標還沒碰到牆
 				{
 					x += 15;
@@ -356,6 +386,7 @@ namespace game_framework {
 			else
 			{
 				HeroRollLeft.OnMove();
+				SwordRollLeft.OnMove();
 				if (currentMap->isSpace(GetX2(), GetY1()) && currentMap->isSpace(GetX2(), GetY2() - 10)) // 當y座標還沒碰到牆
 				{
 					x -= 15;
@@ -478,7 +509,7 @@ namespace game_framework {
 	}
 	void CHero::SetHeroRoll (bool flag)
 	{
-		if (RollDelayCount == 0 && flag == true) {
+		if (RollDelayCount == 0 && flag == true && !rising) {
 			HeroRollLeft.Reset();
 			HeroRollRight.Reset();
 			isRolling = true;
@@ -567,13 +598,52 @@ namespace game_framework {
 			}
 			else
 			{
-				swordAttack1.SetTopLeft(currentMap->ScreenX(x - 75), currentMap->ScreenY(y + 10));
+				swordAttack1.SetTopLeft(currentMap->ScreenX(x - 90), currentMap->ScreenY(y + 10));
 				swordAttack1.OnShow();
 			}
 
 			if (swordAttack.IsFinalBitmap() || swordAttack1.IsFinalBitmap())
 			{
 				isAttacking = false;
+			}
+		}
+		else if (isMovingRight)		// 向右走
+		{
+			if (!(PreviousMovement != 2 && DashColdDown == 0))
+			{
+				SwordDashRight.SetTopLeft(currentMap->ScreenX(x - 100), currentMap->ScreenY(y + 35));
+				SwordDashRight.OnShow();
+			}
+			else
+			{
+				sword.SetTopLeft(currentMap->ScreenX(x - 80), currentMap->ScreenY(y + 30));
+				sword.OnShow();
+			}
+		}
+		else if (isMovingLeft)		// 向右走
+		{
+			if (!(PreviousMovement != 2 && DashColdDown == 0))
+			{
+				SwordDashLeft.SetTopLeft(currentMap->ScreenX(x + 43), currentMap->ScreenY(y + 35));
+				SwordDashLeft.OnShow();
+			}
+			else
+			{
+				sword1.SetTopLeft(currentMap->ScreenX(x + 17), currentMap->ScreenY(y + 30));
+				sword1.OnShow();
+			}
+		}
+		else if (isRolling)
+		{
+			if (faceDirection == "right")
+			{
+				SwordRollRight.SetTopLeft(currentMap->ScreenX(x - 25), currentMap->ScreenY(y-5));
+				SwordRollRight.OnShow();
+			}
+			else
+			{
+				SwordRollLeft.SetTopLeft(currentMap->ScreenX(x - 20), currentMap->ScreenY(y - 5));
+				SwordRollLeft.OnShow();
 			}
 		}
 		else

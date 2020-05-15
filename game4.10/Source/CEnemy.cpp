@@ -269,13 +269,13 @@ namespace game_framework {
 
 		if (state == ATTACK_LEFT && AttackLeftAnimation.IsFinalBitmap())
 		{
-			allBullet.push_back(new bullet_sunFlower(currentMap, GetX1(), GetY1() + 40, -3));
+			allBullet.push_back(new bullet_sunFlower(currentMap, GetX1(), GetY1() + 40, -5));
 			allBullet.back()->LoadBitmap();
 		}
 
 		if (state == ATTACK_RIGHT && AttackRightAnimation.IsFinalBitmap())
 		{
-			allBullet.push_back(new bullet_sunFlower(currentMap, GetX2(), GetY1() + 40, 3));
+			allBullet.push_back(new bullet_sunFlower(currentMap, GetX2(), GetY1() + 40, 5));
 			allBullet.back()->LoadBitmap();
 		}
 
