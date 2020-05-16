@@ -596,6 +596,28 @@ IDB_GOLDCOIN_2          BITMAP                  "..\\RES\\Item\\Gold_Coin_2.bmp"
 
 IDB_GOLDCOIN_3          BITMAP                  "..\\RES\\Item\\Gold_Coin_3.bmp"
 
+IDB_NUM_GOLD_0          BITMAP                  "..\\RES\\Numbers\\NUM_GOLD_0.bmp"
+
+IDB_NUM_GOLD_1          BITMAP                  "..\\RES\\Numbers\\NUM_GOLD_1.bmp"
+
+IDB_NUM_GOLD_2          BITMAP                  "..\\RES\\Numbers\\NUM_GOLD_2.bmp"
+
+IDB_NUM_GOLD_3          BITMAP                  "..\\RES\\Numbers\\NUM_GOLD_3.bmp"
+
+IDB_NUM_GOLD_4          BITMAP                  "..\\RES\\Numbers\\NUM_GOLD_4.bmp"
+
+IDB_NUM_GOLD_5          BITMAP                  "..\\RES\\Numbers\\NUM_GOLD_5.bmp"
+
+IDB_NUM_GOLD_6          BITMAP                  "..\\RES\\Numbers\\NUM_GOLD_6.bmp"
+
+IDB_NUM_GOLD_7          BITMAP                  "..\\RES\\Numbers\\NUM_GOLD_7.bmp"
+
+IDB_NUM_GOLD_8          BITMAP                  "..\\RES\\Numbers\\NUM_GOLD_8.bmp"
+
+IDB_NUM_GOLD_9          BITMAP                  "..\\RES\\Numbers\\NUM_GOLD_9.bmp"
+
+IDB_WORD_G              BITMAP                  "..\\RES\\UI\\WORD_G.bmp"
+
 
 /////////////////////////////////////////////////////////////////////////////
 //

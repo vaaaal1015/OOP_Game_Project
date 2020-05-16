@@ -925,5 +925,38 @@
     <Image Include="RES\Item\Gold_Coin_3.bmp">
       <Filter>Resource Files</Filter>
     </Image>
+    <Image Include="RES\Numbers\NUM_GOLD_0.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\Numbers\NUM_GOLD_1.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\Numbers\NUM_GOLD_2.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\Numbers\NUM_GOLD_3.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\Numbers\NUM_GOLD_4.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\Numbers\NUM_GOLD_5.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\Numbers\NUM_GOLD_6.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\Numbers\NUM_GOLD_7.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\Numbers\NUM_GOLD_8.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\Numbers\NUM_GOLD_9.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\UI\WORD_G.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
   </ItemGroup>
 </Project>

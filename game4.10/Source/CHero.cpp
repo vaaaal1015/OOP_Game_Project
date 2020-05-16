@@ -124,6 +124,7 @@ namespace game_framework {
 		SwordDashLeft.SetDelayCount(3);
 		SwordDashRight.SetDelayCount(3);
 		SetAttackDelayCount = AttackDelayCount = DashColdDown = 15;
+		ShowGoldDelayCount = 0;
 		RollDelayCount = 15;
 		InvincibleDelayCount = 30;
 		MoveDelayCount = 10;					// 主角預設血量為100
@@ -270,7 +271,9 @@ namespace game_framework {
 		QuitButton.LoadBitmap(IDB_UI_QUIT, RGB(0, 0, 0));
 		Num.LoadBitmap();
 		Num_Red.LoadBitmap();
+		Num_Gold.LoadBitmap();
 		BlackMask.LoadBitmap(IDB_BLACKMASK, RGB(27, 36, 46));
+		Word_G.LoadBitmap(IDB_WORD_G, RGB(255, 255, 255));
 		//DamageTaken.LoadBitmap();
 		for (vector<CMovingBitmap*>::iterator i = LifeBarRed.begin(); i != LifeBarRed.end(); i++) (*i)->LoadBitmap(IDB_LIFEBAR, RGB(255, 255, 255));
 		//currentVillage->LoadBitmap();
@@ -326,7 +329,7 @@ namespace game_framework {
 		SwordRollLeft.OnMove();
 		SwordDashRight.OnMove();
 		SwordDashLeft.OnMove();
-
+		if (ShowGoldDelayCount > 0) ShowGoldDelayCount--;
 		if(AttackDelayCount !=0) AttackDelayCount--;    //攻速
 		if (RollDelayCount != 0) RollDelayCount--;		//翻滾
 		if (InvincibleDelayCount != 0) InvincibleDelayCount--;  //無敵時間
@@ -451,7 +454,15 @@ namespace game_framework {
 		{
 			bleed = AttackByEnemy();
 			currentWild->SetHeroXY(GetX1(), GetX2(), GetY1(), GetY2());
-			HeroGetCoin();
+			if (ShowGoldDelayCount > 0)
+			{
+				HeroGetCoin();
+			}
+			else
+			{
+				GetGold = HeroGetCoin();   //重設顯示數字
+			}
+			
 		}
 		currentMap->SetSXSY(GetCenterX() - SIZE_X / 2, GetCenterY() - SIZE_Y / 2);
 		if (isInHome)
@@ -562,10 +573,8 @@ namespace game_framework {
 	void CHero::OnShow()
 	{
 		//處理UI的顯示
-		if (isInHome)
-			currentVillage->OnShow();
-		else
-			currentWild->OnShow();
+		if (isInHome) currentVillage->OnShow();
+		else currentWild->OnShow();
 
 		LifeBarHead.SetTopLeft(currentMap->ScreenX(x-290), currentMap->ScreenY(y-205));
 		LifeBarHead.ShowBitmap();  //顯示血條
@@ -580,6 +589,13 @@ namespace game_framework {
 		}
 		ShowNumber(2, CurrentHP, currentMap->ScreenX(x - 280), currentMap->ScreenY(y - 170));
 		if(bleed != 0 && InvincibleDelayCount!= 0) ShowNumber(2,bleed, currentMap->ScreenX(x - 50), currentMap->ScreenY(y - 50));
+		//TRACE("%d\n", GetGold);
+		if (ShowGoldDelayCount > 0)
+		{
+			ShowNumber(3, GetGold, currentMap->ScreenX(x - 50), currentMap->ScreenY(y - 30));
+			Word_G.SetTopLeft(currentMap->ScreenX(x + 2), currentMap->ScreenY(y - 30));
+			Word_G.ShowBitmap();
+		}
 		/*if (AttackByEnemy() != 0)
 		{
 			DamageTaken.SetInteger(AttackByEnemy());
@@ -825,7 +841,12 @@ namespace game_framework {
 	{
 		int Coin = Gold;
 		currentWild->HeroGetCoin(&Gold);
-		return Coin - Gold;
+		if (Coin < Gold)
+		{
+			//TRACE("%d\n",Gold-Coin);
+			ShowGoldDelayCount = 30;
+		}
+		return Gold - Coin;
 	}
 
 	void CHero::ShowNumber(int color, int num, int x, int y)
@@ -836,11 +857,17 @@ namespace game_framework {
 			Num.SetTopLeft(x, y);
 			Num.ShowBitmap();
 		}
-		else
+		else if(color == 2)
 		{
 			Num_Red.SetInteger(num);
 			Num_Red.SetTopLeft(x, y);
 			Num_Red.ShowBitmap();
+		}
+		else
+		{
+			Num_Gold.SetInteger(num);
+			Num_Gold.SetTopLeft(x, y);
+			Num_Gold.ShowBitmap();
 		}
 	}
 
@@ -867,6 +894,7 @@ namespace game_framework {
 			currentVillage = new gameMap_village();
 			currentVillage->LoadBitmap();
 			currentMap = currentVillage;
+			
 			break;
 		case 1:
 			
@@ -874,7 +902,7 @@ namespace game_framework {
 				delete currentWild;
 			currentWild = new gameMap_Lv1();
 			currentWild->LoadBitmap();
-			
+			CAudio::Instance()->Play(6, false);
 			currentMap = currentWild;
 			break;
 			
@@ -884,7 +912,7 @@ namespace game_framework {
 				delete currentWild;
 			currentWild = new gameMap_Lv2();
 			currentWild->LoadBitmap();
-			
+			CAudio::Instance()->Play(6, false);
 			currentMap = currentWild;
 			break;
 		}
