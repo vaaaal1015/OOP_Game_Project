@@ -580,6 +580,22 @@ IDB_BRONZECOIN_2        BITMAP                  "..\\RES\\Item\\Bronze Coin_2.bm
 
 IDB_BRONZECOIN_3        BITMAP                  "..\\RES\\Item\\Bronze Coin_3.bmp"
 
+IDB_SILVERCOIN_0        BITMAP                  "..\\RES\\Item\\Silver Coin_0.bmp"
+
+IDB_SILVERCOIN_1        BITMAP                  "..\\RES\\Item\\Silver Coin_1.bmp"
+
+IDB_SILVERCOIN_2        BITMAP                  "..\\RES\\Item\\Silver Coin_2.bmp"
+
+IDB_SILVERCOIN_3        BITMAP                  "..\\RES\\Item\\Silver Coin_3.bmp"
+
+IDB_GOLDCOIN_0          BITMAP                  "..\\RES\\Item\\Gold_Coin_0.bmp"
+
+IDB_GOLDCOIN_1          BITMAP                  "..\\RES\\Item\\Gold_Coin_1.bmp"
+
+IDB_GOLDCOIN_2          BITMAP                  "..\\RES\\Item\\Gold_Coin_2.bmp"
+
+IDB_GOLDCOIN_3          BITMAP                  "..\\RES\\Item\\Gold_Coin_3.bmp"
+
 
 /////////////////////////////////////////////////////////////////////////////
 //

@@ -468,6 +468,14 @@
     <Image Include="RES\Item\Bronze Coin_1.bmp" />
     <Image Include="RES\Item\Bronze Coin_2.bmp" />
     <Image Include="RES\Item\Bronze Coin_3.bmp" />
+    <Image Include="RES\Item\Gold_Coin_0.bmp" />
+    <Image Include="RES\Item\Gold_Coin_1.bmp" />
+    <Image Include="RES\Item\Gold_Coin_2.bmp" />
+    <Image Include="RES\Item\Gold_Coin_3.bmp" />
+    <Image Include="RES\Item\Silver Coin_0.bmp" />
+    <Image Include="RES\Item\Silver Coin_1.bmp" />
+    <Image Include="RES\Item\Silver Coin_2.bmp" />
+    <Image Include="RES\Item\Silver Coin_3.bmp" />
     <Image Include="RES\Item_Sword_29.bmp" />
     <Image Include="RES\Item_Sword_29.png" />
     <Image Include="RES\longGround.bmp" />

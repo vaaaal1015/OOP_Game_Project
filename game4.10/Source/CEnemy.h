@@ -15,6 +15,13 @@ namespace game_framework {
 		DEAD
 	};
 
+	enum Item_Type
+	{
+		BRONZE_COIN,
+		SILVER_COIN,
+		GOLDEN_COIN
+	};
+
 	class gameMap;
 	class CEnemy
 	{
@@ -24,6 +31,10 @@ namespace game_framework {
 		virtual void LoadBitmap() = 0;				// 載入圖形
 		virtual void OnMove() = 0;					// 移動敵人
 		virtual void OnShow() = 0;					// 將敵人圖形貼到畫面
+		virtual int GetX1() = 0;
+		virtual int GetY1() = 0;
+		virtual int GetX2() = 0;
+		virtual int GetY2() = 0;
 		void SetHeroXY(int x1, int x2, int y1, int y2);				// 設定英雄位置
 		void SetHeroAttackRange(int x1, int x2, int y1, int y2);	// 設定英雄攻擊範圍
 		virtual void GetAttack(const int damage) = 0;		// 被主角攻擊
@@ -59,7 +70,6 @@ namespace game_framework {
 		int distance;
 		int STEP_SIZE;
 	};
-
 	class bullet_sunFlower : public bullet
 	{
 	public:
@@ -180,4 +190,6 @@ namespace game_framework {
 		int enemyHP = 500;					// 敵人生命值
 		int enemyAttackDamage = 0;		//敵人攻擊力
 	};
+
+	
 }

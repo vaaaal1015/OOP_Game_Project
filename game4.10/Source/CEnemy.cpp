@@ -717,4 +717,6 @@ namespace game_framework {
 		animation.AddBitmap(IDB_SUNFLOWERBULLET_6, RGB(63, 72, 204));
 		animation.AddBitmap(IDB_SUNFLOWERBULLET_7, RGB(63, 72, 204));
 	}
+
+	
 }

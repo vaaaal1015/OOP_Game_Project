@@ -321,6 +321,16 @@
 #define IDB_BRONZECOIN_2                396
 #define IDB_BITMAP52                    397
 #define IDB_BRONZECOIN_3                397
+#define IDB_SILVERCOIN_0                398
+#define IDB_SILVERCOIN_1                399
+#define IDB_SILVERCOIN_2                400
+#define IDB_BITMAP53                    401
+#define IDB_SILVERCOIN_3                401
+#define IDB_GOLDCOIN_0                  402
+#define IDB_GOLDCOIN_1                  403
+#define IDB_GOLDCOIN_2                  404
+#define IDB_BITMAP56                    405
+#define IDB_GOLDCOIN_3                  405
 #define IDC_README                      1001
 #define ID_FILE_PAUSE                   32771
 #define ID_TOGGLE_FULLSCREEN            32772
@@ -333,7 +343,7 @@
 #ifdef APSTUDIO_INVOKED
 #ifndef APSTUDIO_READONLY_SYMBOLS
 #define _APS_3D_CONTROLS                     1
-#define _APS_NEXT_RESOURCE_VALUE        398
+#define _APS_NEXT_RESOURCE_VALUE        406
 #define _APS_NEXT_COMMAND_VALUE         32776
 #define _APS_NEXT_CONTROL_VALUE         1003
 #define _APS_NEXT_SYMED_VALUE           101

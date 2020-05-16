@@ -447,7 +447,12 @@ namespace game_framework {
 			currentVillage->HeroTalkToNPC(false);
 		}
 
-		if(!isRolling && !isInvincible && !isInHome) bleed = AttackByEnemy();
+		if (!isRolling && !isInvincible && !isInHome)
+		{
+			bleed = AttackByEnemy();
+			currentWild->SetHeroXY(GetX1(), GetX2(), GetY1(), GetY2());
+			HeroGetCoin();
+		}
 		currentMap->SetSXSY(GetCenterX() - SIZE_X / 2, GetCenterY() - SIZE_Y / 2);
 		if (isInHome)
 		{
@@ -815,6 +820,14 @@ namespace game_framework {
 		}
 		return hp - CurrentHP;
 	}
+
+	int CHero::HeroGetCoin()
+	{
+		int Coin = Gold;
+		currentWild->HeroGetCoin(&Gold);
+		return Coin - Gold;
+	}
+
 	void CHero::ShowNumber(int color, int num, int x, int y)
 	{
 		if (color == 1)
@@ -836,6 +849,7 @@ namespace game_framework {
 		FullHP += 5;
 		heroAttackDamage += 5;
 		HeroLevel += 1;
+		Gold -= 10;
 	}
 
 	void CHero::SelectMap(int MapNumber)
@@ -896,7 +910,7 @@ namespace game_framework {
 		{
 			if ((Mx <= 630) && (My <= 50) && (Mx >= 609) && (My >= 28)) SetEndTalking();   //¥k¤W¨¤xx
 			if ((Mx <= 625) && (My <= 216) && (Mx >= 561) && (My >= 199)) SetEndTalking();  //cancel
-			if ((Mx <= 619) && (My <= 184) && (Mx >= 524) && (My >= 144)) HeroLevelUp();
+			if ((Mx <= 619) && (My <= 184) && (Mx >= 524) && (My >= 144) && Gold >= 10) HeroLevelUp();
 		}
 
 		if (isInHome)   //¦b§ø²ø

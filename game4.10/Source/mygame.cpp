@@ -404,4 +404,6 @@ void CGameStateRun::OnShow()
 	/*BlackMask.SetTopLeft(0, 0); ¥b³z©ú
 	BlackMask.ShowBitmap();*/  
 }
+
+
 }

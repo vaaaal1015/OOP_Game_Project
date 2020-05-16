@@ -10,7 +10,8 @@
 #include <fstream>
 #include <string>
 #include <iostream>
-
+#include <cstdlib>
+#include <ctime>
 using namespace std;
 
 namespace game_framework {
@@ -174,12 +175,16 @@ namespace game_framework {
 	/////////////////////////////////////////////////////////////////////////////
 	gameMap_wild::gameMap_wild(string fileName) : gameMap(fileName) {}
 
+	
 
 	/////////////////////////////////////////////////////////////////////////////
 	// gameMap_Lv1 : gameMap_Lv1 class
 	/////////////////////////////////////////////////////////////////////////////
 	gameMap_Lv1::gameMap_Lv1() : gameMap_wild("level_1.txt")
 	{
+		unsigned seed;
+		seed = (unsigned)time(NULL);
+		srand(seed);
 		allEnemy.push_back(new CEnemy_sunFlower(this, 300, 350));
 		allEnemy.push_back(new CEnemy_Statue(this, 2950, 325));
 		allEnemy.push_back(new CEnemy_Cactus(this, 500, 280));
@@ -188,11 +193,13 @@ namespace game_framework {
 		allEnemy.push_back(new CEnemy_Cactus(this, 1650, 20));
 		allEnemy.push_back(new CEnemy_sunFlower(this, 400, 350));
 		allEnemy.push_back(new CEnemy_sunFlower(this, 1550, 350));
+	
 	}
 
 	gameMap_Lv1::~gameMap_Lv1()
 	{
 		for (vector<CEnemy*>::iterator i = allEnemy.begin(); i != allEnemy.end(); i++) delete (*i);
+		for (vector<Item*>::iterator i = allItem.begin(); i != allItem.end(); i++) delete (*i);
 	}
 
 	void gameMap_Lv1::LoadBitmap()
@@ -205,6 +212,8 @@ namespace game_framework {
 	{
 		gameMap::OnShow();
 		for (vector<CEnemy*>::iterator i = allEnemy.begin(); i != allEnemy.end(); i++) (*i)->OnShow();
+		for (vector<Item*>::iterator i = allItem.begin(); i != allItem.end(); i++) (*i)->OnShow();
+
 	}
 
 	void gameMap_Lv1::OnMove() {
@@ -215,6 +224,7 @@ namespace game_framework {
 			if ((*iter)->isDead() && (*iter)->GetEnemyType() == "Statue") isStageClear = true;   //通關完成
 			if ((*iter)->isDead() && (*iter)->GetEnemyType() != "Statue")   //雕像以外的敵人被打死
 			{
+				DropItem(((*iter)->GetX1()+(*iter)->GetX2()) / 2, ((*iter)->GetY1() + (*iter)->GetY2()) / 2);
 				delete *iter;
 				iter = allEnemy.erase(iter);
 				//isStageClear = true;   //通關完成
@@ -222,7 +232,7 @@ namespace game_framework {
 			else
 				iter++;
 		}
-
+		for (vector<Item*>::iterator i = allItem.begin(); i != allItem.end(); i++) (*i)->OnMove();
 		for (vector<CEnemy*>::iterator i = allEnemy.begin(); i != allEnemy.end(); i++) (*i)->OnMove();
 	}
 
@@ -246,11 +256,64 @@ namespace game_framework {
 		for (vector<CEnemy*>::iterator i = allEnemy.begin(); i != allEnemy.end(); i++) (*i)->AttackByEnemy(heroHP);
 	}
 
+	void gameMap_Lv1::HeroGetCoin(int *HeroCoin)
+	{
+		vector<Item*>::iterator iter = allItem.begin();
+		while (iter != allItem.end())
+		{
+			if (((*iter)->GetX2() >= HeroX1) && (HeroX2 >= (*iter)->GetX1()) && ((*iter)->GetY2() >= HeroY1) && (HeroY2 >= (*iter)->GetY1()))
+			{
+				*HeroCoin += (*iter)->GetItemValue();
+				delete *iter;
+				iter = allItem.erase(iter);
+			}
+			else if ((*iter)->isDelete())
+			{
+				delete *iter;
+				iter = allItem.erase(iter);
+			}
+			else
+				iter++;
+		}
+	}
+
+
 	bool gameMap_Lv1::GetisStageClear()
 	{
 		return isStageClear;
 	}
 
+	void gameMap_Lv1::DropItem(int x, int y)
+	{
+		int num;
+		num = (rand() % 4);
+		switch (num)
+		{
+		case 0:
+			allItem.push_back(new Item_Bronze_Coin(this, x, y));
+			allItem.back()->LoadBitmap();
+			break;
+		case 1:
+			allItem.push_back(new Item_Silver_Coin(this, x, y));
+			allItem.back()->LoadBitmap();
+			break;
+		case 2:
+			allItem.push_back(new Item_Golden_Coin(this, x, y));
+			allItem.back()->LoadBitmap();
+			break;
+		default:
+			break;
+		}
+
+	}
+
+	void gameMap_Lv1::SetHeroXY(int x1, int x2, int y1, int y2)
+	{
+		HeroX1 = x1;
+		HeroY1 = y1;
+		HeroX2 = x2;
+		HeroY2 = y2;
+	}
 	/////////////////////////////////////////////////////////////////////////////
 	// gameMap_Lv2 : gameMap_Lv2 class
 	/////////////////////////////////////////////////////////////////////////////
@@ -320,5 +383,140 @@ namespace game_framework {
 	{
 		return isStageClear;
 	}
+	
+	void gameMap_Lv2::SetHeroXY(int x1, int x2, int y1, int y2)
+	{
+		HeroX1 = x1;
+		HeroY1 = y1;
+		HeroX2 = x2;
+		HeroY2 = y2;
+	}
+	void gameMap_Lv2::HeroGetCoin(int *HeroCoin)
+	{
+		vector<Item*>::iterator iter = allItem.begin();
+		while (iter != allItem.end())
+		{
+			if (((*iter)->GetX2() >= HeroX1) && (HeroX2 >= (*iter)->GetX1()) && ((*iter)->GetY2() >= HeroY1) && (HeroY2 >= (*iter)->GetY1()))
+			{
+				*HeroCoin += (*iter)->GetItemValue();
+				delete *iter;
+				iter = allItem.erase(iter);
+			}
+			else
+				iter++;
+		}
+	}
 
+	/////////////////////////////////////////////////////////////////////////////
+	// Item: Item base class
+	/////////////////////////////////////////////////////////////////////////////
+	Item::Item(gameMap* point, int nx, int ny)
+	{
+		x = nx;
+		y = ny;
+		currentMap = point;
+		animation.SetDelayCount(3);
+	}
+
+	Item::~Item() {}
+
+	int Item::GetX1()
+	{
+		return x;
+	}
+
+	int Item::GetY1()
+	{
+		return y;
+	}
+
+	int Item::GetX2()
+	{
+		return x + animation.Width();
+	}
+
+	int Item::GetY2()
+	{
+		return y + animation.Height();
+	}
+
+	bool Item::isDelete()
+	{
+		if (ExistTime == 0)
+		{
+			return true;
+		}
+		return false;
+	}
+
+	void Item::OnMove()
+	{
+		animation.OnMove();
+		if (ExistTime > 0) ExistTime--;
+	}
+	void Item::OnShow()
+	{
+		animation.SetTopLeft(currentMap->ScreenX(x), currentMap->ScreenY(y));
+		animation.OnShow();
+	}
+
+	/////////////////////////////////////////////////////////////////////////////
+	// Item_Bronze_Coin : Item class
+	/////////////////////////////////////////////////////////////////////////////
+	Item_Bronze_Coin::Item_Bronze_Coin(gameMap* point, int nx, int ny) : Item(point, nx, ny) {}
+
+	Item_Bronze_Coin::~Item_Bronze_Coin() {}
+
+	void Item_Bronze_Coin::LoadBitmap()
+	{
+		animation.AddBitmap(IDB_BRONZECOIN_0, RGB(0, 162, 232));
+		animation.AddBitmap(IDB_BRONZECOIN_1, RGB(0, 162, 232));
+		animation.AddBitmap(IDB_BRONZECOIN_2, RGB(0, 162, 232));
+		animation.AddBitmap(IDB_BRONZECOIN_3, RGB(0, 162, 232));
+	}
+	
+	int Item_Bronze_Coin::GetItemValue()
+	{
+		return 10;
+	}
+
+	/////////////////////////////////////////////////////////////////////////////
+	// Item_Silver_Coin : Item class
+	/////////////////////////////////////////////////////////////////////////////
+	Item_Silver_Coin::Item_Silver_Coin(gameMap* point, int nx, int ny) : Item(point, nx, ny) {}
+
+	Item_Silver_Coin::~Item_Silver_Coin() {}
+
+	void Item_Silver_Coin::LoadBitmap()
+	{
+		animation.AddBitmap(IDB_SILVERCOIN_0, RGB(0, 162, 232));
+		animation.AddBitmap(IDB_SILVERCOIN_1, RGB(0, 162, 232));
+		animation.AddBitmap(IDB_SILVERCOIN_2, RGB(0, 162, 232));
+		animation.AddBitmap(IDB_SILVERCOIN_3, RGB(0, 162, 232));
+	}
+
+	int Item_Silver_Coin::GetItemValue()
+	{
+		return 30;
+	}
+
+	/////////////////////////////////////////////////////////////////////////////
+	// Item_Silver_Coin : Item class
+	/////////////////////////////////////////////////////////////////////////////
+	Item_Golden_Coin::Item_Golden_Coin(gameMap* point, int nx, int ny) : Item(point, nx, ny) {}
+
+	Item_Golden_Coin::~Item_Golden_Coin() {}
+
+	void Item_Golden_Coin::LoadBitmap()
+	{
+		animation.AddBitmap(IDB_GOLDCOIN_0, RGB(0, 162, 232));
+		animation.AddBitmap(IDB_GOLDCOIN_1, RGB(0, 162, 232));
+		animation.AddBitmap(IDB_GOLDCOIN_2, RGB(0, 162, 232));
+		animation.AddBitmap(IDB_GOLDCOIN_3, RGB(0, 162, 232));
+	}
+
+	int Item_Golden_Coin::GetItemValue()
+	{
+		return 100;
+	}
 }

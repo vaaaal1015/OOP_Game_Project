@@ -1,6 +1,7 @@
 namespace game_framework {
 	class NPC;
 	class CEnemy;
+	class Item;
 	class gameMap {
 	public:
 		gameMap(string fileName);
@@ -11,7 +12,6 @@ namespace game_framework {
 		int GetBlockY(int y);
 		bool isSpace(int x, int y);  //判斷是否為空氣，是就回傳True
 		void SetSXSY(int x, int y);   //設定(sx, sy)為螢幕(的左上角)在地圖上的點座標
-
 		void LoadBitmap();    //載入地圖
 		void OnShow();		  //顯示地圖
 
@@ -58,7 +58,9 @@ namespace game_framework {
 		virtual void AttackByEnemy(int *heroHP) = 0;
 		virtual void SetHeroAttackRange(int x1, int x2, int y1, int y2) = 0;
 		virtual bool GetisStageClear() = 0;
-
+		virtual void HeroGetCoin(int *HeroGold) = 0;
+		virtual void SetHeroXY(int x1, int x2, int y1, int y2) = 0;				// 設定英雄位置
+		
 	};
 
 	class gameMap_Lv1 : public gameMap_wild {
@@ -74,10 +76,18 @@ namespace game_framework {
 		void AttackByEnemy(int *heroHP);
 		void SetHeroAttackRange(int x1, int x2, int y1, int y2);
 		bool GetisStageClear();
-
+		void HeroGetCoin(int *HeroGold);
+		void SetHeroXY(int x1, int x2, int y1, int y2);
+	protected:
+		int HeroX1;
+		int HeroY1;
+		int HeroX2;
+		int HeroY2;
 	private:
 		vector<CEnemy*> allEnemy;
+		vector<Item*> allItem;
 		bool isStageClear = false;
+		void DropItem(int x, int y);
 	};
 
 	class gameMap_Lv2 : public gameMap_wild {
@@ -93,9 +103,65 @@ namespace game_framework {
 		void AttackByEnemy(int *heroHP);
 		void SetHeroAttackRange(int x1, int x2, int y1, int y2);
 		bool GetisStageClear();
-
+		void HeroGetCoin(int *HeroGold);
+		void SetHeroXY(int x1, int x2, int y1, int y2);
+	protected:
+		int HeroX1;
+		int HeroY1;
+		int HeroX2;
+		int HeroY2;
 	private:
 		vector<CEnemy*> allEnemy;
 		bool isStageClear = false;
+		vector<Item*> allItem;
+	};
+
+	class Item
+	{
+	public:
+		Item(gameMap* point, int nx, int ny);
+		~Item();
+		int GetX1();					// 物品左上角 x 座標
+		int GetY1();					// 物品左上角 y 座標
+		int GetX2();					// 物品右下角 x 座標
+		int GetY2();					// 物品右下角 y 座標
+		void OnMove();					// 移動物品
+		void OnShow();					// 將物品圖形貼到畫面
+		bool isDelete();
+		virtual int GetItemValue() = 0;
+		virtual void LoadBitmap() = 0;
+	protected:
+		CAnimation animation;
+		int x;
+		int y;
+		gameMap *currentMap;
+		int ExistTime = 300;
+	};
+
+	class Item_Bronze_Coin : public Item
+	{
+	public:
+		Item_Bronze_Coin(gameMap* point, int nx, int ny);
+		~Item_Bronze_Coin();
+		void LoadBitmap();				// 載入圖形
+		int GetItemValue();
+	};
+
+	class Item_Silver_Coin : public Item
+	{
+	public:
+		Item_Silver_Coin(gameMap* point, int nx, int ny);
+		~Item_Silver_Coin();
+		void LoadBitmap();				// 載入圖形
+		int GetItemValue();
+	};
+
+	class Item_Golden_Coin : public Item
+	{
+	public:
+		Item_Golden_Coin(gameMap* point, int nx, int ny);
+		~Item_Golden_Coin();
+		void LoadBitmap();				// 載入圖形
+		int GetItemValue();
 	};
 }
