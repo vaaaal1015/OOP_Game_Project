@@ -74,6 +74,7 @@ namespace game_framework {
 		CMovingBitmap LifeBarHead;		// 血條
 		CMovingBitmap StartGameBar;		// 開始按鈕
 		CMovingBitmap WorldMap_UI_1;		// 地圖_1
+		CMovingBitmap White;
 		CInteger Num;					// 數字
 		CInteger_Red Num_Red;			// 紅色數字
 		//CInteger DamageTaken;			// 顯示承受傷害
@@ -101,6 +102,7 @@ namespace game_framework {
 		int DashColdDown;				// 衝刺冷卻時間
 		int InvincibleDelayCount;		// 無敵時間
 		int bleed = 0;
+		
 	private:
 		gameMap_village* currentVillage;
 		gameMap_wild* currentWild;

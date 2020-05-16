@@ -570,6 +570,8 @@ IDB_SWORDROLLLEFT_2     BITMAP                  "..\\RES\\sword\\RollLeft\\Sword
 
 IDB_SWORDROLLLEFT_3     BITMAP                  "..\\RES\\sword\\RollLeft\\Sword_Roll_Left_3.bmp"
 
+IDB_WHITE               BITMAP                  "..\\RES\\UI\\white.bmp"
+
 
 /////////////////////////////////////////////////////////////////////////////
 //

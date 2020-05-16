@@ -543,21 +543,14 @@ namespace game_framework {
 	{
 		int xMove = currentMap->ScreenX(x - 250);
 		int yMove = currentMap->ScreenY(y - 201);
-		float lengthOfLifeBar = ((float)CurrentHP / (float)FullHP) * 100;  //重新計算血條長度
-		if ((lengthOfLifeBar < LifeBarRed.size()) && (LifeBarRed.size() > 0) &&(lengthOfLifeBar >= 0))       //血條長度大於實際血量比例
-		{
-			TRACE("%f,%d\n", lengthOfLifeBar, LifeBarRed.size());
-			for (int i = LifeBarRed.size(); i > lengthOfLifeBar; i--)
-			{
-				delete *LifeBarRed.rbegin();
-				LifeBarRed.pop_back();   //血條剪短
-			}
-		}
+		int counter = xMove;
+		float lengthOfLifeBar = ((float)CurrentHP / (float)FullHP) * 300;  //重新計算血條長度
 
 		for (vector<CMovingBitmap*>::iterator i = LifeBarRed.begin(); i != LifeBarRed.end(); i++)
 		{
+			//TRACE("%d\n", xMove);
 			(*i)->SetTopLeft(xMove, yMove);
-			(*i)->ShowBitmap();
+			if((*i)->Left() < 45+lengthOfLifeBar) (*i)->ShowBitmap();
 			xMove += 3;
 		}
 	}
