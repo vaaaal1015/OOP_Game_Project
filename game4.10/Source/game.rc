@@ -572,6 +572,14 @@ IDB_SWORDROLLLEFT_3     BITMAP                  "..\\RES\\sword\\RollLeft\\Sword
 
 IDB_WHITE               BITMAP                  "..\\RES\\UI\\white.bmp"
 
+IDB_BRONZECOIN_0        BITMAP                  "..\\RES\\Item\\Bronze Coin_0.bmp"
+
+IDB_BRONZECOIN_1        BITMAP                  "..\\RES\\Item\\Bronze Coin_1.bmp"
+
+IDB_BRONZECOIN_2        BITMAP                  "..\\RES\\Item\\Bronze Coin_2.bmp"
+
+IDB_BRONZECOIN_3        BITMAP                  "..\\RES\\Item\\Bronze Coin_3.bmp"
+
 
 /////////////////////////////////////////////////////////////////////////////
 //

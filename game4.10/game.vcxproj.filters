@@ -889,5 +889,17 @@
     <Image Include="RES\UI\white.bmp">
       <Filter>Resource Files</Filter>
     </Image>
+    <Image Include="RES\Item\Bronze Coin_0.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\Item\Bronze Coin_1.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\Item\Bronze Coin_2.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\Item\Bronze Coin_3.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
   </ItemGroup>
 </Project>

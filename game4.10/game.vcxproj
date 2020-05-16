@@ -464,6 +464,10 @@
     <Image Include="RES\Enemy\SmileSunFlower\rightWalk\Smile SunFlower_8.bmp" />
     <Image Include="RES\Enemy\SmileSunFlower\rightWalk\Smile SunFlower_9.bmp" />
     <Image Include="RES\great_sword_logo.bmp" />
+    <Image Include="RES\Item\Bronze Coin_0.bmp" />
+    <Image Include="RES\Item\Bronze Coin_1.bmp" />
+    <Image Include="RES\Item\Bronze Coin_2.bmp" />
+    <Image Include="RES\Item\Bronze Coin_3.bmp" />
     <Image Include="RES\Item_Sword_29.bmp" />
     <Image Include="RES\Item_Sword_29.png" />
     <Image Include="RES\longGround.bmp" />
