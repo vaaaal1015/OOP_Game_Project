@@ -39,19 +39,20 @@
 */
 
 //#include "CHero.h"
-
+enum AUDIO_ID {				// 定義各種音效的編號
+	AUDIO_DING,				// 0
+	AUDIO_LAKE,				// 1
+	AUDIO_NTUT,				// 2
+	AUDIO_LOAD,   		    // 3
+	AUDIO_SUPERCAR,			// 4
+	AUDIO_GETITEM			// 5
+};
 namespace game_framework {
 	/////////////////////////////////////////////////////////////////////////////
 	// Constants
 	/////////////////////////////////////////////////////////////////////////////
 
-	enum AUDIO_ID {				// 定義各種音效的編號
-		AUDIO_DING,				// 0
-		AUDIO_LAKE,				// 1
-		AUDIO_NTUT,				// 2
-		AUDIO_LOAD,   		    // 3
-		AUDIO_SUPERCAR			// 4
-	};
+	
 	
 	/////////////////////////////////////////////////////////////////////////////
 	// 這個class為遊戲的遊戲開頭畫面物件

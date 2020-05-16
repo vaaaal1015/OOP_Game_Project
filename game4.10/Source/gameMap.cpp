@@ -263,6 +263,7 @@ namespace game_framework {
 		{
 			if (((*iter)->GetX2() >= HeroX1) && (HeroX2 >= (*iter)->GetX1()) && ((*iter)->GetY2() >= HeroY1) && (HeroY2 >= (*iter)->GetY1()))
 			{
+				CAudio::Instance()->Play(5, false);
 				*HeroCoin += (*iter)->GetItemValue();
 				delete *iter;
 				iter = allItem.erase(iter);
@@ -398,6 +399,8 @@ namespace game_framework {
 		{
 			if (((*iter)->GetX2() >= HeroX1) && (HeroX2 >= (*iter)->GetX1()) && ((*iter)->GetY2() >= HeroY1) && (HeroY2 >= (*iter)->GetY1()))
 			{
+				TRACE("PLAy\n");
+				CAudio::Instance()->Play(5, false);	
 				*HeroCoin += (*iter)->GetItemValue();
 				delete *iter;
 				iter = allItem.erase(iter);
