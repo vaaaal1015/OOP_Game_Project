@@ -969,5 +969,14 @@
     <Image Include="RES\Enemy\Cactus\GetHit\GetHit_2.bmp">
       <Filter>Resource Files</Filter>
     </Image>
+    <Image Include="RES\Enemy\SmileSunFlower\GetHitRight\GetHit_0.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\Enemy\SmileSunFlower\GetHitRight\GetHit_1.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\Enemy\SmileSunFlower\GetHitRight\GetHit_2.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
   </ItemGroup>
 </Project>

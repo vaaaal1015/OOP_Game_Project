@@ -190,10 +190,14 @@ namespace game_framework {
 		allEnemy.push_back(new CEnemy_Cactus(this, 1000, 210));
 		allEnemy.push_back(new CEnemy_sunFlower(this, 1500, 350));
 		allEnemy.push_back(new CEnemy_Cactus(this, 1650, 20));
+		allEnemy.push_back(new CEnemy_sunFlower(this, 1650, 20));
 		allEnemy.push_back(new CEnemy_sunFlower(this, 400, 350));
 		allEnemy.push_back(new CEnemy_sunFlower(this, 1550, 350));
 		allEnemy.push_back(new CEnemy_Statue(this, 2950, 325));
-	
+		allEnemy.push_back(new CEnemy_sunFlower(this, 2150, 20));
+		allEnemy.push_back(new CEnemy_sunFlower(this, 1950, 20));
+		allEnemy.push_back(new CEnemy_Cactus(this, 2400, 405));
+		allEnemy.push_back(new CEnemy_Cactus(this, 2550, 405));
 	}
 
 	gameMap_Lv1::~gameMap_Lv1()

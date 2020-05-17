@@ -22,9 +22,9 @@ namespace game_framework {
 
 		for (int i = 0; i < 100; i++) LifeBarRed.push_back(new CMovingBitmap);    //100個血條圖片
 
-		FullHP = 100;				// 主角預設血量為100
-		heroAttackDamage = 10;		// 主角預設攻擊力為5
-		Gold = 100;
+		FullHP = 200;				// 主角預設血量為100
+		heroAttackDamage = 20;		// 主角預設攻擊力為20
+		Gold = 1000;
 		Initialize();
 	}
 

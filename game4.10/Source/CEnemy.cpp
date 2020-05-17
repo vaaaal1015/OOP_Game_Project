@@ -53,7 +53,8 @@ namespace game_framework {
 		DeadAnimation.SetDelayCount(3);
 		AttackLeftAnimation.SetDelayCount(2);
 		AttackRightAnimation.SetDelayCount(2);
-		enemyHP = 100;							//敵人預設生命值
+		GetHitAnimation.SetDelayCount(3);
+		enemyHP = 150;							//敵人預設生命值
 		enemyAttackDamage = 10;					//敵人預設攻擊力
 		floor = FLOOR;
 		initial_velocity = INITIAL_VELOCITY;
@@ -102,8 +103,11 @@ namespace game_framework {
 	{
 		if ((GetX2() >= heroAttackRange["x1"]) && (heroAttackRange["x2"] >= GetX1()) && (GetY2() >= heroAttackRange["y1"]) && (heroAttackRange["y2"] >= GetY1()) && GetHitDelayCount==0)
 		{
+			GetHitAnimation.Reset();
+			CAudio::Instance()->Play(11, false);
 			GetHitDelayCount = 15;
 			enemyHP -= damage;
+			state = GET_HIT;
 		}
 	}
 
@@ -223,6 +227,10 @@ namespace game_framework {
 		DeadAnimation.AddBitmap(IDB_SUNFLOWER_DEAD_3, RGB(255, 255, 255));
 		DeadAnimation.AddBitmap(IDB_SUNFLOWER_DEAD_4, RGB(255, 255, 255));
 		DeadAnimation.AddBitmap(IDB_SUNFLOWER_DEAD_4, RGB(255, 255, 255));
+
+		GetHitAnimation.AddBitmap(IDB_SUNFLOWERGETHITRIGHT_0, RGB(255, 255, 255));
+		GetHitAnimation.AddBitmap(IDB_SUNFLOWERGETHITRIGHT_1, RGB(255, 255, 255));
+		GetHitAnimation.AddBitmap(IDB_SUNFLOWERGETHITRIGHT_2, RGB(255, 255, 255));
 	}
 
 	void CEnemy_sunFlower::OnMove()
@@ -235,7 +243,7 @@ namespace game_framework {
 		moveLeftAnimation.OnMove();
 		AttackLeftAnimation.OnMove();
 		AttackRightAnimation.OnMove();
-		if (GetHitDelayCount != 0) GetHitDelayCount--;
+		if (GetHitDelayCount > 0) GetHitDelayCount--;
 		vector<bullet_sunFlower*>::iterator iter = allBullet.begin();
 		while (iter != allBullet.end())
 		{
@@ -348,6 +356,11 @@ namespace game_framework {
 			AttackRightAnimation.SetTopLeft(currentMap->ScreenX(x), currentMap->ScreenY(y));
 			AttackRightAnimation.OnShow();
 			break;
+		case GET_HIT:
+			GetHitAnimation.SetTopLeft(currentMap->ScreenX(x), currentMap->ScreenY(y));
+			GetHitAnimation.OnShow();
+			if (GetHitAnimation.IsFinalBitmap()) GetHit = false;
+			break;
 		case DEAD:
 			if (enemyHP <= 0)
 			{
@@ -358,7 +371,12 @@ namespace game_framework {
 				}
 			}
 		}
-
+		/*else if (GetHit)
+		{
+		GetHitAnimation.SetTopLeft(currentMap->ScreenX(x), currentMap->ScreenY(y));
+		GetHitAnimation.OnShow();
+		if (GetHitAnimation.IsFinalBitmap()) GetHit = false;
+		}*/
 	}
 
 	bool CEnemy_sunFlower::isDead()
@@ -381,7 +399,7 @@ namespace game_framework {
 		AttackDelayCount = 0;					// 設定攻擊頻率
 		AttackFlag = false;		
 		ReadyToAttack = false;
-		enemyHP = 500;
+		enemyHP = 150;
 		enemyAttackDamage = 40;
 		AttackAnimation.SetDelayCount(4);
 		DeadAnimation.SetDelayCount(3);
@@ -430,7 +448,6 @@ namespace game_framework {
 	{
 		if ((GetX2() >= heroAttackRange["x1"]) && (heroAttackRange["x2"] >= GetX1()) && (GetY2() >= heroAttackRange["y1"]) && (heroAttackRange["y2"] >= GetY1()) && GetHitDelayCount==0)
 		{
-			TRACE("%d\n", enemyHP);
 			GetHitAnimation.Reset();
 			CAudio::Instance()->Play(9, false);
 			enemyHP -= damage;
@@ -509,6 +526,7 @@ namespace game_framework {
 		}
 		else if (GetHit)
 		{
+
 			GetHitAnimation.SetTopLeft(currentMap->ScreenX(x), currentMap->ScreenY(y));
 			GetHitAnimation.OnShow();
 			if (GetHitAnimation.IsFinalBitmap()) GetHit = false;
@@ -549,6 +567,7 @@ namespace game_framework {
 		floor = FLOOR;
 		initial_velocity = INITIAL_VELOCITY;
 		velocity = initial_velocity;
+		GetHitDelayCount = 0;
 	}
 
 	CEnemy_Statue::~CEnemy_Statue() {}
@@ -590,8 +609,10 @@ namespace game_framework {
 
 	void CEnemy_Statue::GetAttack(const int damage)
 	{
-		if ((GetX2() >= heroAttackRange["x1"]) && (heroAttackRange["x2"] >= GetX1()) && (GetY2() >= heroAttackRange["y1"]) && (heroAttackRange["y2"] >= GetY1()))
+		if ((GetX2() >= heroAttackRange["x1"]) && (heroAttackRange["x2"] >= GetX1()) && (GetY2() >= heroAttackRange["y1"]) && (heroAttackRange["y2"] >= GetY1()) && GetHitDelayCount==0)
 		{
+			CAudio::Instance()->Play(11, false);
+			GetHitDelayCount = 15;
 			enemyHP -= damage;
 		}
 	}
@@ -605,6 +626,7 @@ namespace game_framework {
 
 	void CEnemy_Statue::OnMove()
 	{
+		if (GetHitDelayCount > 0) GetHitDelayCount--;
 	}
 
 	void CEnemy_Statue::OnShow()

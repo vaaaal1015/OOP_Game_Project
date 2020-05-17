@@ -12,6 +12,7 @@ namespace game_framework {
 		STAND_RIGHT, 
 		MOVE_RIGHT, 
 		ATTACK_RIGHT,
+		GET_HIT,
 		DEAD
 	};
 
@@ -123,6 +124,7 @@ namespace game_framework {
 		ACTION state;
 		vector<bullet_sunFlower*> allBullet;
 		int GetHitDelayCount = 0;
+		bool GetHit = false;
 	};
 	
 	class CEnemy_Cactus : public CEnemy
@@ -193,6 +195,7 @@ namespace game_framework {
 		int enemyHP = 500;					// 敵人生命值
 		int enemyAttackDamage = 0;		//敵人攻擊力
 		int GetHitDelayCount = 0;
+		bool GetHit = false;
 	};
 
 	

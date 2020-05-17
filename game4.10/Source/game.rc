@@ -626,6 +626,32 @@ IDB_CACTUSGETHIT_1      BITMAP                  "..\\RES\\Enemy\\Cactus\\GetHit\
 
 IDB_CACTUSGETHIT_2      BITMAP                  "..\\RES\\Enemy\\Cactus\\GetHit\\GetHit_2.bmp"
 
+IDB_SUNFLOWERGETHITRIGHT_0 BITMAP                  "..\\RES\\Enemy\\SmileSunFlower\\GetHitRight\\GetHit_0.bmp"
+
+IDB_SUNFLOWERGETHITRIGHT_1 BITMAP                  "..\\RES\\Enemy\\SmileSunFlower\\GetHitRight\\GetHit_1.bmp"
+
+IDB_SUNFLOWERGETHITRIGHT_2 BITMAP                  "..\\RES\\Enemy\\SmileSunFlower\\GetHitRight\\GetHit_2.bmp"
+
+IDB_ENEMY_NUM_0         BITMAP                  "..\\RES\\Numbers\\NUM_Enemy_0.bmp"
+
+IDB_ENEMY_NUM_1         BITMAP                  "..\\RES\\Numbers\\NUM_Enemy_1.bmp"
+
+IDB_ENEMY_NUM_2         BITMAP                  "..\\RES\\Numbers\\NUM_Enemy_2.bmp"
+
+IDB_ENEMY_NUM_3         BITMAP                  "..\\RES\\Numbers\\NUM_Enemy_3.bmp"
+
+IDB_ENEMY_NUM_4         BITMAP                  "..\\RES\\Numbers\\NUM_Enemy_4.bmp"
+
+IDB_ENEMY_NUM_5         BITMAP                  "..\\RES\\Numbers\\NUM_Enemy_5.bmp"
+
+IDB_ENEMY_NUM_6         BITMAP                  "..\\RES\\Numbers\\NUM_Enemy_6.bmp"
+
+IDB_ENEMY_NUM_7         BITMAP                  "..\\RES\\Numbers\\NUM_Enemy_7.bmp"
+
+IDB_ENEMY_NUM_8         BITMAP                  "..\\RES\\Numbers\\NUM_Enemy_8.bmp"
+
+IDB_ENEMY_NUM_9         BITMAP                  "..\\RES\\Numbers\\NUM_Enemy_9.bmp"
+
 
 /////////////////////////////////////////////////////////////////////////////
 //

@@ -443,6 +443,71 @@ void CInteger_Gold::ShowBitmap()
 	}
 }
 
+CMovingBitmap CInteger_Enemy::digit[11];
+
+CInteger_Enemy::CInteger_Enemy(int digits) : NUMDIGITS(digits)
+{
+	isBmpLoaded = false;
+}
+
+void CInteger_Enemy::Add(int x)
+{
+	n += x;
+}
+
+int CInteger_Enemy::GetInteger()
+{
+	return n;
+}
+
+void CInteger_Enemy::LoadBitmap()
+{
+	//
+	// digit[i]為class varibale，所以必須避免重複LoadBitmap
+	//
+	if (!isBmpLoaded) {
+		int d[11] = { IDB_ENEMY_NUM_0,IDB_ENEMY_NUM_1,IDB_ENEMY_NUM_2,IDB_ENEMY_NUM_3,IDB_ENEMY_NUM_4,IDB_ENEMY_NUM_5,IDB_ENEMY_NUM_6,IDB_ENEMY_NUM_7,IDB_ENEMY_NUM_8,IDB_ENEMY_NUM_9,IDB_MINUS };
+		for (int i = 0; i < 11; i++)
+			digit[i].LoadBitmap(d[i], RGB(255, 255, 255));
+		isBmpLoaded = true;
+	}
+}
+
+void CInteger_Enemy::SetInteger(int i)
+{
+	n = i;
+}
+
+void CInteger_Enemy::SetTopLeft(int nx, int ny)		// 將動畫的左上角座標移至 (x,y)
+{
+	x = nx; y = ny;
+}
+
+void CInteger_Enemy::ShowBitmap()
+{
+	GAME_ASSERT(isBmpLoaded, "CInteger: 請先執行LoadBitmap，然後才能ShowBitmap");
+	int nx;		// 待顯示位數的 x 座標
+	int MSB;	// 最左邊(含符號)的位數的數值
+	if (n >= 0) {
+		MSB = n;
+		nx = x + digit[0].Width()*(NUMDIGITS - 1);
+	}
+	else {
+		MSB = -n;
+		nx = x + digit[0].Width()*NUMDIGITS;
+	}
+	for (int i = 0; i < NUMDIGITS; i++) {
+		int d = MSB % 10;
+		MSB /= 10;
+		digit[d].SetTopLeft(nx, y);
+		digit[d].ShowBitmap();
+		nx -= digit[d].Width();
+	}
+	if (n < 0) { // 如果小於0，則顯示負號
+		digit[10].SetTopLeft(nx, y);
+		digit[10].ShowBitmap();
+	}
+}
 /////////////////////////////////////////////////////////////////////////////
 // CMovingBitmap: Moving Bitmap class
 // 這個class提供可以移動的圖形
