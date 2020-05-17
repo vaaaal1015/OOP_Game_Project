@@ -143,11 +143,11 @@ namespace game_framework {
 					AttackRightAnimation.Reset();
 				return ATTACK_RIGHT;
 			}
-			if ((GetX2() >= hero["x1"]) && (hero["x2"] >= GetX1() - 230) && (GetY2() + 100 >= hero["y1"]) && (hero["y2"] >= GetY1() - 100))
+			if ((GetX2() >= hero["x1"]) && (hero["x2"] >= GetX1() - 250) && (GetY2() + 100 >= hero["y1"]) && (hero["y2"] >= GetY1() - 100))
 			{
 				return MOVE_LEFT;
 			}
-			if ((GetX2() + 230 >= hero["x1"]) && (hero["x2"] >= GetX1()) && (GetY2() + 100 >= hero["y1"]) && (hero["y2"] >= GetY1() - 100))
+			if ((GetX2() + 250 >= hero["x1"]) && (hero["x2"] >= GetX1()) && (GetY2() + 100 >= hero["y1"]) && (hero["y2"] >= GetY1() - 100))
 			{
 				return MOVE_RIGHT;
 			}
