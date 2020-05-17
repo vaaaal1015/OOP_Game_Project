@@ -48,7 +48,9 @@ enum AUDIO_ID {				// 定義各種音效的編號
 	AUDIO_GETITEM,			// 5
 	AUDIO_GAMESTART,		// 6
 	AUDIO_STAGECLEAR,		// 7
-	AUDIO_STAGE1
+	AUDIO_STAGE1,			// 8
+	AUDIO_CACTUSGETHIT,		// 9
+	AUDIO_CACTUSATTACK		// 10
 };
 namespace game_framework {
 	/////////////////////////////////////////////////////////////////////////////

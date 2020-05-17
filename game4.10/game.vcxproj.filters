@@ -958,5 +958,17 @@
     <Image Include="RES\UI\WORD_G.bmp">
       <Filter>Resource Files</Filter>
     </Image>
+    <Image Include="RES\UI\WORD_GOLD.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\Enemy\Cactus\GetHit\GetHit_0.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\Enemy\Cactus\GetHit\GetHit_1.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\Enemy\Cactus\GetHit\GetHit_2.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
   </ItemGroup>
 </Project>

@@ -274,6 +274,7 @@ namespace game_framework {
 		Num_Gold.LoadBitmap();
 		BlackMask.LoadBitmap(IDB_BLACKMASK, RGB(27, 36, 46));
 		Word_G.LoadBitmap(IDB_WORD_G, RGB(255, 255, 255));
+		Word_Gold.LoadBitmap(IDB_WORD_GOLD, RGB(255, 255, 255));
 		//DamageTaken.LoadBitmap();
 		for (vector<CMovingBitmap*>::iterator i = LifeBarRed.begin(); i != LifeBarRed.end(); i++) (*i)->LoadBitmap(IDB_LIFEBAR, RGB(255, 255, 255));
 		//currentVillage->LoadBitmap();
@@ -579,7 +580,9 @@ namespace game_framework {
 		LifeBarHead.SetTopLeft(currentMap->ScreenX(x-290), currentMap->ScreenY(y-205));
 		LifeBarHead.ShowBitmap();  //Εγ₯ά¦ε±ψ
 		changeLifeBarLength();
-
+		ShowNumber(3, Gold, currentMap->ScreenX(x + 250), currentMap->ScreenY(y - 195));
+		Word_Gold.SetTopLeft(currentMap->ScreenX(x + 200), currentMap->ScreenY(y - 195));
+		Word_Gold.ShowBitmap();
 		if (isInHome && currentVillage->GetHeroIsTalkingToNPC())
 		{
 			ShowNumber(1, Gold, currentMap->ScreenX(x + 190), currentMap->ScreenY(y - 175));

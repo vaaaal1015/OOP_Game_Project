@@ -101,8 +101,9 @@ namespace game_framework {
 
 	void CEnemy_sunFlower::GetAttack(const int damage)
 	{
-		if ((GetX2() >= heroAttackRange["x1"]) && (heroAttackRange["x2"] >= GetX1()) && (GetY2() >= heroAttackRange["y1"]) && (heroAttackRange["y2"] >= GetY1()))
+		if ((GetX2() >= heroAttackRange["x1"]) && (heroAttackRange["x2"] >= GetX1()) && (GetY2() >= heroAttackRange["y1"]) && (heroAttackRange["y2"] >= GetY1()) && GetHitDelayCount==0)
 		{
+			GetHitDelayCount = 15;
 			enemyHP -= damage;
 		}
 	}
@@ -235,7 +236,7 @@ namespace game_framework {
 		moveLeftAnimation.OnMove();
 		AttackLeftAnimation.OnMove();
 		AttackRightAnimation.OnMove();
-
+		if (GetHitDelayCount != 0) GetHitDelayCount--;
 		vector<bullet_sunFlower*>::iterator iter = allBullet.begin();
 		while (iter != allBullet.end())
 		{
@@ -381,11 +382,12 @@ namespace game_framework {
 		AttackDelayCount = 0;					// 設定攻擊頻率
 		AttackFlag = false;		
 		ReadyToAttack = false;
-		enemyHP = 150;
+		enemyHP = 500;
 		enemyAttackDamage = 40;
 		AttackAnimation.SetDelayCount(4);
 		DeadAnimation.SetDelayCount(3);
 		animation.SetDelayCount(5);
+		GetHitAnimation.SetDelayCount(3);
 	}
 
 	CEnemy_Cactus::~CEnemy_Cactus() {}
@@ -427,9 +429,14 @@ namespace game_framework {
 
 	void CEnemy_Cactus::GetAttack(const int damage)
 	{
-		if ((GetX2() >= heroAttackRange["x1"]) && (heroAttackRange["x2"] >= GetX1()) && (GetY2() >= heroAttackRange["y1"]) && (heroAttackRange["y2"] >= GetY1()))
+		if ((GetX2() >= heroAttackRange["x1"]) && (heroAttackRange["x2"] >= GetX1()) && (GetY2() >= heroAttackRange["y1"]) && (heroAttackRange["y2"] >= GetY1()) && GetHitDelayCount==0)
 		{
+			TRACE("%d\n", enemyHP);
+			GetHitAnimation.Reset();
+			CAudio::Instance()->Play(9, false);
 			enemyHP -= damage;
+			GetHit = true;
+			GetHitDelayCount = 15;
 		}
 	}
 
@@ -454,15 +461,21 @@ namespace game_framework {
 		DeadAnimation.AddBitmap(IDB_CACTUSDEAD_2, RGB(255, 127, 39));
 		DeadAnimation.AddBitmap(IDB_CACTUSDEAD_3, RGB(255, 127, 39));
 		DeadAnimation.AddBitmap(IDB_CACTUSDEAD_4, RGB(255, 127, 39));
+
+		GetHitAnimation.AddBitmap(IDB_CACTUSGETHIT_0, RGB(255, 127, 39));
+		GetHitAnimation.AddBitmap(IDB_CACTUSGETHIT_1, RGB(255, 127, 39));
+		GetHitAnimation.AddBitmap(IDB_CACTUSGETHIT_2, RGB(255, 127, 39));
 	}
 
 	void CEnemy_Cactus::OnMove()
 	{
 		const int STEP_SIZE = 0;
+		if (GetHitDelayCount > 0)GetHitDelayCount--;
 		if (AttackDelayCount > 0) AttackDelayCount--;
 		//TRACE("%d\n", AttackDelayCount);
 		
 		AttackAnimation.OnMove();
+		GetHitAnimation.OnMove();
 		animation.OnMove();
 		if (AttackAnimation.IsFinalBitmap()) ReadyToAttack = false;
 		if (ReadyToAttack && AttackDelayCount==0)
@@ -470,7 +483,7 @@ namespace game_framework {
 			AttackAnimation.Reset();
 			AttackDelayCount = 150;
 		}
-
+		//if(GetHit) GetHitAnimation.Reset();
 		if (enemyHP <= 0 && !DeadAnimation.IsFinalBitmap()) DeadAnimation.OnMove();
 		/*
 		moveingStepCount--;
@@ -498,8 +511,18 @@ namespace game_framework {
 		{
 			AttackAnimation.SetTopLeft(currentMap->ScreenX(x), currentMap->ScreenY(y));
 			AttackAnimation.OnShow();
-			if (AttackAnimation.GetCurrentBitmapNumber() == 4) AttackFlag = true;   //發出尖刺時攻擊
+			if (AttackAnimation.GetCurrentBitmapNumber() == 4)
+			{
+				CAudio::Instance()->Play(10, false);
+				AttackFlag = true;   //發出尖刺時攻擊
+			}
 			else AttackFlag = false;
+		}
+		else if (GetHit)
+		{
+			GetHitAnimation.SetTopLeft(currentMap->ScreenX(x), currentMap->ScreenY(y));
+			GetHitAnimation.OnShow();
+			if (GetHitAnimation.IsFinalBitmap()) GetHit = false;
 		}
 		else
 		{
@@ -718,5 +741,4 @@ namespace game_framework {
 		animation.AddBitmap(IDB_SUNFLOWERBULLET_7, RGB(63, 72, 204));
 	}
 
-	
 }

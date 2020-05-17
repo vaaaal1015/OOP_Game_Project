@@ -618,6 +618,14 @@ IDB_NUM_GOLD_9          BITMAP                  "..\\RES\\Numbers\\NUM_GOLD_9.bm
 
 IDB_WORD_G              BITMAP                  "..\\RES\\UI\\WORD_G.bmp"
 
+IDB_WORD_GOLD           BITMAP                  "..\\RES\\UI\\WORD_GOLD.bmp"
+
+IDB_CACTUSGETHIT_0      BITMAP                  "..\\RES\\Enemy\\Cactus\\GetHit\\GetHit_0.bmp"
+
+IDB_CACTUSGETHIT_1      BITMAP                  "..\\RES\\Enemy\\Cactus\\GetHit\\GetHit_1.bmp"
+
+IDB_CACTUSGETHIT_2      BITMAP                  "..\\RES\\Enemy\\Cactus\\GetHit\\GetHit_2.bmp"
+
 
 /////////////////////////////////////////////////////////////////////////////
 //

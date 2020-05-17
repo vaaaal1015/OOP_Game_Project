@@ -344,6 +344,12 @@
 #define IDB_NUM_GOLD_9                  415
 #define IDB_BITMAP41                    416
 #define IDB_WORD_G                      416
+#define IDB_BITMAP45                    417
+#define IDB_WORD_GOLD                   417
+#define IDB_CACTUSGETHIT_0              418
+#define IDB_CACTUSGETHIT_1              419
+#define IDB_BITMAP58                    420
+#define IDB_CACTUSGETHIT_2              420
 #define IDC_README                      1001
 #define ID_FILE_PAUSE                   32771
 #define ID_TOGGLE_FULLSCREEN            32772
@@ -356,7 +362,7 @@
 #ifdef APSTUDIO_INVOKED
 #ifndef APSTUDIO_READONLY_SYMBOLS
 #define _APS_3D_CONTROLS                     1
-#define _APS_NEXT_RESOURCE_VALUE        417
+#define _APS_NEXT_RESOURCE_VALUE        421
 #define _APS_NEXT_COMMAND_VALUE         32776
 #define _APS_NEXT_CONTROL_VALUE         1003
 #define _APS_NEXT_SYMED_VALUE           101

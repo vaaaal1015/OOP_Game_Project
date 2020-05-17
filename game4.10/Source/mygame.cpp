@@ -284,6 +284,8 @@ void CGameStateRun::OnInit()  								// 遊戲的初值及圖形設定
 	CAudio::Instance()->Load(AUDIO_GAMESTART, "sounds\\stage_start.wav");
 	CAudio::Instance()->Load(AUDIO_STAGECLEAR, "sounds\\stage_clear.wav");
 	CAudio::Instance()->Load(AUDIO_STAGE1, "sounds\\stage1.wav");
+	CAudio::Instance()->Load(AUDIO_CACTUSGETHIT, "sounds\\damaged_cactus.wav");
+	CAudio::Instance()->Load(AUDIO_CACTUSATTACK, "sounds\\cactus_attack.wav");
 	//
 	// 此OnInit動作會接到CGameStaterOver::OnInit()，所以進度還沒到100%
 	//
