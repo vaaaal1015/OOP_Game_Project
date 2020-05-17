@@ -117,9 +117,7 @@ namespace game_framework {
 		int velocity;				// 目前的速度(點/次)
 		int enemyHP;					// 敵人生命值
 		int enemyAttackDamage;		//敵人攻擊力
-		int moveingStepCount;
-		int moveingStep;
-		ACTION DetectHero(ACTION state);			// 偵測英雄位置:  1:距離左邊200 2:距離左邊150 3:距離右邊150 4:距離右邊200
+		ACTION DetectHero(ACTION state);		// 偵測英雄位置:  1:距離左邊200 2:距離左邊150 3:距離右邊150 4:距離右邊200
 		int attackDelay;
 		int attackDelayCount;
 		ACTION state;

@@ -15,26 +15,15 @@ namespace game_framework {
 
 	CHero::CHero()
 	{
-		/*
-		maps.push_back(new gameMap("Home.txt"));
-		maps.push_back(new gameMap("level_1.txt"));
-		maps.push_back(new gameMap("level_2.txt"));
-		*/
-		//currentVillage = new gameMap_village;
-		//currentWild = new gameMap_Lv1;
-		//currentVillage->LoadBitmap();
-		//currentWild->LoadBitmap();
+	
 		currentVillage = NULL;
 		currentWild = NULL;
 		currentMap = NULL;
-		//SelectMap(0);
-		//isInHome = true;
-		//currentMap = currentVillage;
 
 		for (int i = 0; i < 100; i++) LifeBarRed.push_back(new CMovingBitmap);    //100個血條圖片
 
 		FullHP = 100;				// 主角預設血量為100
-		heroAttackDamage = 50;		// 主角預設攻擊力為5
+		heroAttackDamage = 10;		// 主角預設攻擊力為5
 		Gold = 100;
 		Initialize();
 	}
@@ -277,10 +266,8 @@ namespace game_framework {
 		Word_Gold.LoadBitmap(IDB_WORD_GOLD, RGB(255, 255, 255));
 		//DamageTaken.LoadBitmap();
 		for (vector<CMovingBitmap*>::iterator i = LifeBarRed.begin(); i != LifeBarRed.end(); i++) (*i)->LoadBitmap(IDB_LIFEBAR, RGB(255, 255, 255));
-		//currentVillage->LoadBitmap();
-		//delete currentVillage;
+
 		SelectMap(0);
-		//currentWild->LoadBitmap();
 	}
 
 	int CHero::GetHeroFullHP()
@@ -309,7 +296,7 @@ namespace game_framework {
 			ClearedStage = currentWild->GetisStageClear();
 		}
 
-		const int STEP_SIZE = 30;
+		const int STEP_SIZE = 10;
 		animation.OnMove();
 		animation1.OnMove();
 		sword.OnMove();

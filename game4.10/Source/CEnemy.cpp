@@ -53,7 +53,6 @@ namespace game_framework {
 		DeadAnimation.SetDelayCount(3);
 		AttackLeftAnimation.SetDelayCount(2);
 		AttackRightAnimation.SetDelayCount(2);
-		moveingStep = 20;
 		enemyHP = 100;							//敵人預設生命值
 		enemyAttackDamage = 10;					//敵人預設攻擊力
 		floor = FLOOR;
@@ -472,7 +471,6 @@ namespace game_framework {
 		const int STEP_SIZE = 0;
 		if (GetHitDelayCount > 0)GetHitDelayCount--;
 		if (AttackDelayCount > 0) AttackDelayCount--;
-		//TRACE("%d\n", AttackDelayCount);
 		
 		AttackAnimation.OnMove();
 		GetHitAnimation.OnMove();
@@ -485,15 +483,6 @@ namespace game_framework {
 		}
 		//if(GetHit) GetHitAnimation.Reset();
 		if (enemyHP <= 0 && !DeadAnimation.IsFinalBitmap()) DeadAnimation.OnMove();
-		/*
-		moveingStepCount--;
-		if (moveingStepCount < 0)
-		{
-			moveingStepCount = moveingStep;
-			isMovingRight = !isMovingRight;
-		}
-		*/
-
 
 	}
 
@@ -615,7 +604,7 @@ namespace game_framework {
 	}
 
 	void CEnemy_Statue::OnMove()
-	{		
+	{
 	}
 
 	void CEnemy_Statue::OnShow()

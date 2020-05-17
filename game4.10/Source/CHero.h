@@ -74,7 +74,7 @@ namespace game_framework {
 		CAnimation SwordRollRight;
 		CMovingBitmap LifeBarHead;		// 血條
 		CMovingBitmap StartGameBar;		// 開始按鈕
-		CMovingBitmap WorldMap_UI_1;		// 地圖_1
+		CMovingBitmap WorldMap_UI_1;	// 地圖_1
 		CMovingBitmap White;
 		CInteger Num;					// 黑色數字
 		CInteger_Red Num_Red;			// 紅色數字
@@ -105,20 +105,20 @@ namespace game_framework {
 		int PreviousMovement;			// 紀錄上一個動作  0:無動作; 1:向左走; 2:向右走
 		int DashColdDown;				// 衝刺冷卻時間
 		int InvincibleDelayCount;		// 無敵時間
-		int ShowGoldDelayCount;
+		int ShowGoldDelayCount;			// 金幣出現的時間
 		int bleed = 0;
-		int GetGold = 0;
+		int GetGold = 0;				// 得到的金幣
 		
 	private:
-		gameMap_village* currentVillage;
-		gameMap_wild* currentWild;
-		gameMap* currentMap;
-		CMovingBitmap BlackMask;
-		CMovingBitmap QuitButton;
-		int FullHP;
-		int CurrentHP;
-		void changeLifeBarLength();
-		bool isInHome;			// 是否在村莊
-		bool isSelectingMap;	// 是否正在選擇地圖
+		gameMap_village* currentVillage;	// 紀錄目前的村莊
+		gameMap_wild* currentWild;			// 紀錄目前的野外
+		gameMap* currentMap;				// 紀錄目前的地圖
+		CMovingBitmap BlackMask;			// 黑色遮罩
+		CMovingBitmap QuitButton;			// 離開按鈕
+		int FullHP;							// 主角總血量
+		int CurrentHP;						// 主角目前的血量
+		void changeLifeBarLength();			// 改變生命條的長度
+		bool isInHome;						// 是否在村莊
+		bool isSelectingMap;				// 是否正在選擇地圖
 	};
 }

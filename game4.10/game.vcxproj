@@ -480,7 +480,6 @@
     <Image Include="RES\Item\Silver Coin_2.bmp" />
     <Image Include="RES\Item\Silver Coin_3.bmp" />
     <Image Include="RES\Item_Sword_29.bmp" />
-    <Image Include="RES\Item_Sword_29.png" />
     <Image Include="RES\longGround.bmp" />
     <Image Include="RES\mapground.bmp" />
     <Image Include="RES\mapground1.bmp" />
