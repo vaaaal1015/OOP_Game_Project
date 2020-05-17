@@ -120,7 +120,8 @@ namespace game_framework {
 	{
 	public:
 		Item(gameMap* point, int nx, int ny);
-		~Item();
+		virtual ~Item() = default;
+		//~Item();
 		int GetX1();					// 物品左上角 x 座標
 		int GetY1();					// 物品左上角 y 座標
 		int GetX2();					// 物品右下角 x 座標

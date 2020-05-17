@@ -186,13 +186,13 @@ namespace game_framework {
 		seed = (unsigned)time(NULL);
 		srand(seed);
 		allEnemy.push_back(new CEnemy_sunFlower(this, 300, 350));
-		allEnemy.push_back(new CEnemy_Statue(this, 2950, 325));
 		allEnemy.push_back(new CEnemy_Cactus(this, 500, 280));
 		allEnemy.push_back(new CEnemy_Cactus(this, 1000, 210));
 		allEnemy.push_back(new CEnemy_sunFlower(this, 1500, 350));
 		allEnemy.push_back(new CEnemy_Cactus(this, 1650, 20));
 		allEnemy.push_back(new CEnemy_sunFlower(this, 400, 350));
 		allEnemy.push_back(new CEnemy_sunFlower(this, 1550, 350));
+		allEnemy.push_back(new CEnemy_Statue(this, 2950, 325));
 	
 	}
 
@@ -324,7 +324,7 @@ namespace game_framework {
 	gameMap_Lv2::gameMap_Lv2() : gameMap_wild("level_2.txt")
 	{
 		allEnemy.push_back(new CEnemy_sunFlower(this, 1000, 350));
-		allEnemy.push_back(new CEnemy_Statue(this, 2950, 325));
+		allEnemy.push_back(new CEnemy_Statue(this, 2950, 290));
 	}
 
 	gameMap_Lv2::~gameMap_Lv2()
@@ -427,7 +427,7 @@ namespace game_framework {
 		animation.SetDelayCount(3);
 	}
 
-	Item::~Item() {}
+	//Item::~Item() {}
 
 	int Item::GetX1()
 	{

@@ -183,7 +183,6 @@
     <Image Include="RES\map_background.bmp">
       <Filter>Resource Files</Filter>
     </Image>
-    <Image Include="RES\Item_Sword_29.png" />
     <Image Include="RES\Item_Sword_29.bmp">
       <Filter>Resource Files</Filter>
     </Image>
