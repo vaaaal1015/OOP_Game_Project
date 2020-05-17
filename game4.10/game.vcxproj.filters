@@ -978,5 +978,47 @@
     <Image Include="RES\Enemy\SmileSunFlower\GetHitRight\GetHit_2.bmp">
       <Filter>Resource Files</Filter>
     </Image>
+    <Image Include="RES\Numbers\NUM_Enemy_0.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\Numbers\NUM_Enemy_1.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\Numbers\NUM_Enemy_2.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\Numbers\NUM_Enemy_3.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\Numbers\NUM_Enemy_4.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\Numbers\NUM_Enemy_5.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\Numbers\NUM_Enemy_6.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\Numbers\NUM_Enemy_7.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\Numbers\NUM_Enemy_8.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\Numbers\NUM_Enemy_9.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\numbers\bitmap48.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\numbers\bitmap3.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\Enemy\SmileSunFlower\noMove\Smile SunFlower_Left.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\Enemy\SmileSunFlower\noMove\Smile SunFlower_Right.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
   </ItemGroup>
 </Project>

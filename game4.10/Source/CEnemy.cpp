@@ -46,8 +46,8 @@ namespace game_framework {
 		const int FLOOR = 100;					// 地板座標
 		isMovingRight = true;
 		rising = false;
-		animation.SetDelayCount(3);
-		animationLeft.SetDelayCount(3);
+		animation.SetDelayCount(5);
+		animationLeft.SetDelayCount(5);
 		moveRightAnimation.SetDelayCount(3);
 		moveLeftAnimation.SetDelayCount(3);
 		DeadAnimation.SetDelayCount(3);
@@ -58,7 +58,7 @@ namespace game_framework {
 		enemyAttackDamage = 10;					//敵人預設攻擊力
 		floor = FLOOR;
 		initial_velocity = INITIAL_VELOCITY;
-		attackDelayCount = attackDelay = 40;
+		attackDelayCount = attackDelay = 70;
 		velocity = initial_velocity;
 		state = STAND_LEFT;
 	}
@@ -136,26 +136,27 @@ namespace game_framework {
 	{
 		if(attackDelayCount <= 0)
 		{
-			if ((GetX2() >= hero["x1"]) && (hero["x2"] >= GetX1() - 130) && (GetY2() + 100 >= hero["y1"]) && (hero["y2"] >= GetY1() - 100))
+			if ((GetX2() - GetWidth()/2 >= hero["x1"]) && (hero["x2"] >= GetX1() - 200) && (GetY2() + 100 >= hero["y1"]) && (hero["y2"] >= GetY1() - 100))
 			{
 				if (state != ATTACK_LEFT)
 					AttackLeftAnimation.Reset();
 				return ATTACK_LEFT;
 			}
-			if ((GetX2() + 130 >= hero["x1"]) && (hero["x2"] >= GetX1()) && (GetY2() + 100 >= hero["y1"]) && (hero["y2"] >= GetY1() - 100))
+			if ((GetX2() + 200 >= hero["x1"]) && (hero["x2"] >= GetX1() + GetWidth() / 2) && (GetY2() + 100 >= hero["y1"]) && (hero["y2"] >= GetY1() - 100))
 			{
 				if (state != ATTACK_RIGHT)
 					AttackRightAnimation.Reset();
 				return ATTACK_RIGHT;
 			}
-			if ((GetX2() >= hero["x1"]) && (hero["x2"] >= GetX1() - 250) && (GetY2() + 100 >= hero["y1"]) && (hero["y2"] >= GetY1() - 100))
-			{
-				return MOVE_LEFT;
-			}
-			if ((GetX2() + 250 >= hero["x1"]) && (hero["x2"] >= GetX1()) && (GetY2() + 100 >= hero["y1"]) && (hero["y2"] >= GetY1() - 100))
-			{
-				return MOVE_RIGHT;
-			}
+		}
+
+		if ((GetX1() - 190 >= hero["x1"]) && (hero["x2"] >= GetX1() - 270) && (GetY2() + 100 >= hero["y1"]) && (hero["y2"] >= GetY1() - 100))
+		{
+			return MOVE_LEFT;
+		}
+		if ((GetX2() + 270 >= hero["x1"]) && (hero["x2"] >= GetX2() + 190) && (GetY2() + 100 >= hero["y1"]) && (hero["y2"] >= GetY1() - 100))
+		{
+			return MOVE_RIGHT;
 		}
 
 		if (state == MOVE_LEFT || state == ATTACK_LEFT || state == STAND_LEFT)
@@ -167,6 +168,11 @@ namespace game_framework {
 			return STAND_RIGHT;
 		}
 		
+		if (state == GET_HIT)
+		{
+			return GET_HIT;
+		}
+
 		return STAND_LEFT;
 	}
 
@@ -177,13 +183,16 @@ namespace game_framework {
 
 	void CEnemy_sunFlower::LoadBitmap()
 	{
-		animation.AddBitmap(IDB_SUNFLOWERNOMOVE_1, RGB(255, 255, 255));
-		animation.AddBitmap(IDB_SUNFLOWERNOMOVE_2, RGB(255, 255, 255));
-		animation.AddBitmap(IDB_SUNFLOWERNOMOVE_3, RGB(255, 255, 255));
 
-		animationLeft.AddBitmap(IDB_SUNFLOWERNOMOVELEFT_0, RGB(255, 255, 255));
-		animationLeft.AddBitmap(IDB_SUNFLOWERNOMOVELEFT_1, RGB(255, 255, 255));
-		animationLeft.AddBitmap(IDB_SUNFLOWERNOMOVELEFT_2, RGB(255, 255, 255));
+
+		animation.AddBitmap(IDB_SUNFLOWERRIGHTWALK_2, RGB(255, 255, 255));
+		animation.AddBitmap(IDB_SUNFLOWERRIGHTWALK_7, RGB(255, 255, 255));
+		//animation.AddBitmap(IDB_SUNFLOWERNOMOVE_3, RGB(255, 255, 255));
+
+		animationLeft.AddBitmap(IDB_SUNFLOWERLEFTWALK_2, RGB(255, 255, 255));
+		animationLeft.AddBitmap(IDB_SUNFLOWERLEFTWALK_7, RGB(255, 255, 255));
+		//animationLeft.AddBitmap(IDB_SUNFLOWERNOMOVELEFT_2, RGB(255, 255, 255));
+
 
 		moveRightAnimation.AddBitmap(IDB_SUNFLOWERRIGHTWALK_1, RGB(255, 255, 255));
 		moveRightAnimation.AddBitmap(IDB_SUNFLOWERRIGHTWALK_2, RGB(255, 255, 255));
@@ -265,13 +274,13 @@ namespace game_framework {
 
 		if (state == MOVE_LEFT)
 		{
-			if (currentMap->isSpace(GetX2(), GetY1()) && currentMap->isSpace(GetX2(), GetY2() - 10)) // 當y座標還沒碰到牆
+			if (currentMap->isSpace(GetX1(), GetY1()) && currentMap->isSpace(GetX1(), GetY2() - 10)) // 當座標還沒碰到牆
 				x -= STEP_SIZE;
 		}
 
 		if (state == MOVE_RIGHT)
 		{
-			if (currentMap->isSpace(GetX2(), GetY1()) && currentMap->isSpace(GetX2(), GetY2() - 10)) // 當y座標還沒碰到牆
+			if (currentMap->isSpace(GetX2(), GetY1()) && currentMap->isSpace(GetX2(), GetY2() - 10)) // 當座標還沒碰到牆
 				x += STEP_SIZE;
 		}
 
@@ -285,6 +294,12 @@ namespace game_framework {
 		{
 			allBullet.push_back(new bullet_sunFlower(currentMap, GetX2(), GetY1() + 40, 5));
 			allBullet.back()->LoadBitmap();
+		}
+
+		if (state == GET_HIT && !GetHitAnimation.IsFinalBitmap())
+		{
+			state = GET_HIT;
+			GetHitAnimation.OnMove();
 		}
 
 		if (enemyHP <= 0 && !DeadAnimation.IsFinalBitmap())
@@ -359,7 +374,7 @@ namespace game_framework {
 		case GET_HIT:
 			GetHitAnimation.SetTopLeft(currentMap->ScreenX(x), currentMap->ScreenY(y));
 			GetHitAnimation.OnShow();
-			if (GetHitAnimation.IsFinalBitmap()) GetHit = false;
+			//if (GetHitAnimation.IsFinalBitmap()) GetHit = false;
 			break;
 		case DEAD:
 			if (enemyHP <= 0)
@@ -370,6 +385,7 @@ namespace game_framework {
 					DeadAnimation.OnShow();
 				}
 			}
+			break;
 		}
 		/*else if (GetHit)
 		{

@@ -368,9 +368,12 @@ namespace game_framework {
 			{
 				HeroRollRight.OnMove();
 				SwordRollRight.OnMove();
-				if (currentMap->isSpace(GetX2(), GetY1()) && currentMap->isSpace(GetX2(), GetY2() - 10)) // 當y座標還沒碰到牆
+				for (int i = 0; i < 15; i++)
 				{
-					x += 15;
+					if (currentMap->isSpace(GetX2(), GetY1()) && currentMap->isSpace(GetX2(), GetY2() - 10)) // 當y座標還沒碰到牆
+					{
+						x ++;
+					}
 				}
 				if (HeroRollRight.IsFinalBitmap()) isRolling = false;
 			}
@@ -378,9 +381,13 @@ namespace game_framework {
 			{
 				HeroRollLeft.OnMove();
 				SwordRollLeft.OnMove();
-				if (currentMap->isSpace(GetX2(), GetY1()) && currentMap->isSpace(GetX2(), GetY2() - 10)) // 當y座標還沒碰到牆
+
+				for (int i = 0; i < 15; i++)
 				{
-					x -= 15;
+					if (currentMap->isSpace(GetX2(), GetY1()) && currentMap->isSpace(GetX2(), GetY2() - 10)) // 當y座標還沒碰到牆
+					{
+						x --;
+					}
 				}
 				if (HeroRollLeft.IsFinalBitmap()) isRolling = false;
 			}
