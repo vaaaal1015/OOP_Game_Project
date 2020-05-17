@@ -406,6 +406,9 @@
     <Image Include="RES\Enemy\Cactus\Dead\Cactus_Dead_5.bmp" />
     <Image Include="RES\Enemy\Cactus\Dead\Cactus_Dead_6.bmp" />
     <Image Include="RES\Enemy\Cactus\Dead\Cactus_Dead_7.bmp" />
+    <Image Include="RES\Enemy\Cactus\GetHit\GetHit_0.bmp" />
+    <Image Include="RES\Enemy\Cactus\GetHit\GetHit_1.bmp" />
+    <Image Include="RES\Enemy\Cactus\GetHit\GetHit_2.bmp" />
     <Image Include="RES\Enemy\Cactus\noMove\Cactus_NoMove_0.bmp" />
     <Image Include="RES\Enemy\Cactus\noMove\Cactus_NoMove_1.bmp" />
     <Image Include="RES\Enemy\Cactus\noMove\Cactus_NoMove_2.bmp" />
@@ -439,6 +442,9 @@
     <Image Include="RES\Enemy\SmileSunFlower\dead\SunFlower_dead_3.bmp" />
     <Image Include="RES\Enemy\SmileSunFlower\dead\SunFlower_dead_4.bmp" />
     <Image Include="RES\Enemy\SmileSunFlower\dead\SunFlower_dead_5.bmp" />
+    <Image Include="RES\Enemy\SmileSunFlower\GetHitRight\GetHit_0.bmp" />
+    <Image Include="RES\Enemy\SmileSunFlower\GetHitRight\GetHit_1.bmp" />
+    <Image Include="RES\Enemy\SmileSunFlower\GetHitRight\GetHit_2.bmp" />
     <Image Include="RES\Enemy\SmileSunFlower\leftWalk\Smile SunFlower_Left_Walk_0.bmp" />
     <Image Include="RES\Enemy\SmileSunFlower\leftWalk\Smile SunFlower_Left_Walk_1.bmp" />
     <Image Include="RES\Enemy\SmileSunFlower\leftWalk\Smile SunFlower_Left_Walk_2.bmp" />
@@ -583,6 +589,7 @@
     <Image Include="RES\UI\UI_Pause.bmp" />
     <Image Include="RES\UI\white.bmp" />
     <Image Include="RES\UI\WORD_G.bmp" />
+    <Image Include="RES\UI\WORD_GOLD.bmp" />
     <Image Include="RES\UI\Worldmap_1.bmp" />
     <Image Include="RES\UI\Worldmap_UI_1.bmp" />
     <Image Include="RES\UI_1\LifeBar.bmp" />

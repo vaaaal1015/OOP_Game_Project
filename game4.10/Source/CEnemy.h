@@ -12,6 +12,7 @@ namespace game_framework {
 		STAND_RIGHT, 
 		MOVE_RIGHT, 
 		ATTACK_RIGHT,
+		GET_HIT,
 		DEAD
 	};
 
@@ -105,6 +106,7 @@ namespace game_framework {
 		CAnimation AttackLeftAnimation; // 攻擊左邊
 		CAnimation jumpAnimation;		// 跳躍動畫
 		CAnimation DeadAnimation;		// 死亡動畫
+		CAnimation GetHitAnimation;		// 被打到的動畫
 		string EnemyType = "Sun_Flower";
 		bool isMovingDown;			// 是否正在往下移動
 		bool isMovingLeft;			// 是否正在往左移動
@@ -121,6 +123,8 @@ namespace game_framework {
 		int attackDelayCount;
 		ACTION state;
 		vector<bullet_sunFlower*> allBullet;
+		int GetHitDelayCount = 0;
+		bool GetHit = false;
 	};
 	
 	class CEnemy_Cactus : public CEnemy
@@ -145,6 +149,7 @@ namespace game_framework {
 		CAnimation animation;			// 敵人的動畫
 		CAnimation AttackAnimation;// 攻擊
 		CAnimation DeadAnimation;
+		CAnimation GetHitAnimation;		// 被打到的動畫
 		string EnemyType = "Cactus";
 		int floor;				// 地板的Y座標
 		bool rising;				// true表上升、false表下降
@@ -155,6 +160,8 @@ namespace game_framework {
 		int AttackDelayCount;		// 攻擊頻率
 		bool AttackFlag;			// 等於true(發出尖刺動畫出現)時才攻擊到主角
 		bool ReadyToAttack;			// 開始攻擊動作
+		bool GetHit = false;
+		int GetHitDelayCount = 0;
 	};
 
 
@@ -187,6 +194,8 @@ namespace game_framework {
 		int velocity;				// 目前的速度(點/次)
 		int enemyHP = 500;					// 敵人生命值
 		int enemyAttackDamage = 0;		//敵人攻擊力
+		int GetHitDelayCount = 0;
+		bool GetHit = false;
 	};
 
 	

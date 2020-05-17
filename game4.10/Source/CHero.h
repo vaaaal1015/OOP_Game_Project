@@ -80,6 +80,7 @@ namespace game_framework {
 		CInteger_Red Num_Red;			// 紅色數字
 		CInteger_Gold Num_Gold;			// 黃色數字
 		CMovingBitmap Word_G;
+		CMovingBitmap Word_Gold;
 		//CInteger DamageTaken;			// 顯示承受傷害
 		vector<CMovingBitmap*> LifeBarRed;		// 血條
 		int x, y;						// 英雄左上角座標

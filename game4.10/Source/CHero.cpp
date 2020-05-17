@@ -22,9 +22,9 @@ namespace game_framework {
 
 		for (int i = 0; i < 100; i++) LifeBarRed.push_back(new CMovingBitmap);    //100個血條圖片
 
-		FullHP = 100;				// 主角預設血量為100
-		heroAttackDamage = 10;		// 主角預設攻擊力為5
-		Gold = 100;
+		FullHP = 200;				// 主角預設血量為100
+		heroAttackDamage = 20;		// 主角預設攻擊力為20
+		Gold = 1000;
 		Initialize();
 	}
 
@@ -263,6 +263,7 @@ namespace game_framework {
 		Num_Gold.LoadBitmap();
 		BlackMask.LoadBitmap(IDB_BLACKMASK, RGB(27, 36, 46));
 		Word_G.LoadBitmap(IDB_WORD_G, RGB(255, 255, 255));
+		Word_Gold.LoadBitmap(IDB_WORD_GOLD, RGB(255, 255, 255));
 		//DamageTaken.LoadBitmap();
 		for (vector<CMovingBitmap*>::iterator i = LifeBarRed.begin(); i != LifeBarRed.end(); i++) (*i)->LoadBitmap(IDB_LIFEBAR, RGB(255, 255, 255));
 
@@ -566,7 +567,9 @@ namespace game_framework {
 		LifeBarHead.SetTopLeft(currentMap->ScreenX(x-290), currentMap->ScreenY(y-205));
 		LifeBarHead.ShowBitmap();  //顯示血條
 		changeLifeBarLength();
-
+		ShowNumber(3, Gold, currentMap->ScreenX(x + 250), currentMap->ScreenY(y - 195));
+		Word_Gold.SetTopLeft(currentMap->ScreenX(x + 200), currentMap->ScreenY(y - 195));
+		Word_Gold.ShowBitmap();
 		if (isInHome && currentVillage->GetHeroIsTalkingToNPC())
 		{
 			ShowNumber(1, Gold, currentMap->ScreenX(x + 190), currentMap->ScreenY(y - 175));
