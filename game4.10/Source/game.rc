@@ -638,7 +638,7 @@ IDB_ENEMY_NUM_8         BITMAP                  "..\\RES\\Numbers\\NUM_Enemy_8.b
 
 IDB_ENEMY_NUM_9         BITMAP                  "..\\RES\\Numbers\\NUM_Enemy_9.bmp"
 
-IDB_BITMAP3             BITMAP                  "..\\res\\numbers\\bitmap3.bmp"
+//IDB_BITMAP3             BITMAP                  "..\\res\\numbers\\bitmap3.bmp"//
 
 
 /////////////////////////////////////////////////////////////////////////////
