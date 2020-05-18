@@ -291,14 +291,24 @@ void CInteger::ShowBitmap()
 	GAME_ASSERT(isBmpLoaded, "CInteger: 請先執行LoadBitmap，然後才能ShowBitmap");
 	int nx;		// 待顯示位數的 x 座標
 	int MSB;	// 最左邊(含符號)的位數的數值
+	int num = n;
+	int newNUMDIGITS = 0;
+
+	while (num > 0)
+	{
+		newNUMDIGITS++;
+		num = num / 10;
+	}
+
 	if (n >= 0) {
 		MSB = n;
-		nx = x+digit[0].Width()*(NUMDIGITS-1);
-	} else {
-		MSB = -n;
-		nx = x+digit[0].Width()*NUMDIGITS;
+		nx = x + digit[0].Width()*(newNUMDIGITS - 1);
 	}
-	for (int i=0; i < NUMDIGITS; i++) {
+	else {
+		MSB = -n;
+		nx = x + digit[0].Width()*newNUMDIGITS;
+	}
+	for (int i = 0; i < newNUMDIGITS; i++) {
 		int d = MSB % 10;
 		MSB /= 10;
 		digit[d].SetTopLeft(nx, y);
@@ -356,15 +366,24 @@ void CInteger_Red::ShowBitmap()
 	GAME_ASSERT(isBmpLoaded, "CInteger: 請先執行LoadBitmap，然後才能ShowBitmap");
 	int nx;		// 待顯示位數的 x 座標
 	int MSB;	// 最左邊(含符號)的位數的數值
+	int num = n;
+	int newNUMDIGITS = 0;
+
+	while (num > 0)
+	{
+		newNUMDIGITS++;
+		num = num / 10;
+	}
+
 	if (n >= 0) {
 		MSB = n;
-		nx = x + digit[0].Width()*(NUMDIGITS - 1);
+		nx = x + digit[0].Width()*(newNUMDIGITS - 1);
 	}
 	else {
 		MSB = -n;
-		nx = x + digit[0].Width()*NUMDIGITS;
+		nx = x + digit[0].Width()*newNUMDIGITS;
 	}
-	for (int i = 0; i < NUMDIGITS; i++) {
+	for (int i = 0; i < newNUMDIGITS; i++) {
 		int d = MSB % 10;
 		MSB /= 10;
 		digit[d].SetTopLeft(nx, y);
@@ -422,15 +441,24 @@ void CInteger_Gold::ShowBitmap()
 	GAME_ASSERT(isBmpLoaded, "CInteger: 請先執行LoadBitmap，然後才能ShowBitmap");
 	int nx;		// 待顯示位數的 x 座標
 	int MSB;	// 最左邊(含符號)的位數的數值
+	int num = n;
+	int newNUMDIGITS = 0;
+
+	while (num > 0)
+	{
+		newNUMDIGITS++;
+		num = num / 10;
+	}
+
 	if (n >= 0) {
 		MSB = n;
-		nx = x + digit[0].Width()*(NUMDIGITS - 1);
+		nx = x + digit[0].Width()*(newNUMDIGITS - 1);
 	}
 	else {
 		MSB = -n;
-		nx = x + digit[0].Width()*NUMDIGITS;
+		nx = x + digit[0].Width()*newNUMDIGITS;
 	}
-	for (int i = 0; i < NUMDIGITS; i++) {
+	for (int i = 0; i < newNUMDIGITS; i++) {
 		int d = MSB % 10;
 		MSB /= 10;
 		digit[d].SetTopLeft(nx, y);
@@ -488,15 +516,24 @@ void CInteger_Enemy::ShowBitmap()
 	GAME_ASSERT(isBmpLoaded, "CInteger: 請先執行LoadBitmap，然後才能ShowBitmap");
 	int nx;		// 待顯示位數的 x 座標
 	int MSB;	// 最左邊(含符號)的位數的數值
+	int num = n;
+	int newNUMDIGITS = 0;
+
+	while (num > 0)
+	{
+		newNUMDIGITS++;
+		num = num / 10;
+	}
+
 	if (n >= 0) {
 		MSB = n;
-		nx = x + digit[0].Width()*(NUMDIGITS - 1);
+		nx = x + digit[0].Width()*(newNUMDIGITS - 1);
 	}
 	else {
 		MSB = -n;
-		nx = x + digit[0].Width()*NUMDIGITS;
+		nx = x + digit[0].Width()*newNUMDIGITS;
 	}
-	for (int i = 0; i < NUMDIGITS; i++) {
+	for (int i = 0; i < newNUMDIGITS; i++) {
 		int d = MSB % 10;
 		MSB /= 10;
 		digit[d].SetTopLeft(nx, y);
