@@ -638,6 +638,21 @@ IDB_ENEMY_NUM_8         BITMAP                  "..\\RES\\Numbers\\NUM_Enemy_8.b
 
 IDB_ENEMY_NUM_9         BITMAP                  "..\\RES\\Numbers\\NUM_Enemy_9.bmp"
 
+IDB_FIRESWORDRIGHT_0    BITMAP                  "..\\RES\\Special_Effect\\Right_Mode_0\\Right_Mode_0.bmp"
+
+IDB_FIRESWORDRIGHT_1    BITMAP                  "..\\RES\\Special_Effect\\Right_Mode_0\\Right_Mode_1.bmp"
+
+IDB_FIRESWORDRIGHT_2    BITMAP                  "..\\RES\\Special_Effect\\Right_Mode_0\\Right_Mode_2.bmp"
+
+IDB_FIRESWORDRIGHT_3    BITMAP                  "..\\RES\\Special_Effect\\Right_Mode_0\\Right_Mode_3.bmp"
+
+IDB_FIRESWORDRIGHT_4    BITMAP                  "..\\RES\\Special_Effect\\Right_Mode_0\\Right_Mode_4.bmp"
+
+IDB_FIRESWORDRIGHT_5    BITMAP                  "..\\RES\\Special_Effect\\Right_Mode_0\\Right_Mode_5.bmp"
+
+IDB_FIRESWORDRIGHT_6    BITMAP                  "..\\RES\\Special_Effect\\Right_Mode_0\\Right_Mode_6.bmp"
+
+IDB_FIRESTONE           BITMAP                  "..\\RES\\Special_Effect\\Right_Mode_0\\Fire_Stone.bmp"
 
 
 /////////////////////////////////////////////////////////////////////////////

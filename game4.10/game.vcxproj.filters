@@ -1020,5 +1020,29 @@
     <Image Include="RES\Enemy\SmileSunFlower\noMove\Smile SunFlower_Right.bmp">
       <Filter>Resource Files</Filter>
     </Image>
+    <Image Include="RES\Special_Effect\Right_Mode_0\Right_Mode_0.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\Special_Effect\Right_Mode_0\Right_Mode_1.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\Special_Effect\Right_Mode_0\Right_Mode_2.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\Special_Effect\Right_Mode_0\Right_Mode_3.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\Special_Effect\Right_Mode_0\Right_Mode_4.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\Special_Effect\Right_Mode_0\Right_Mode_5.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\Special_Effect\Right_Mode_0\Right_Mode_6.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\Special_Effect\Right_Mode_0\Fire_Stone.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
   </ItemGroup>
 </Project>
