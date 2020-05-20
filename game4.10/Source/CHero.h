@@ -49,7 +49,7 @@ namespace game_framework {
 		void ResetHeroState();      //重置主角狀態(回到城鎮)
 		bool ClearedStage = false;  //通關結算
 		void OnLButtonDown(int Mx, int My);		//按下滑鼠左鍵
-
+		bool GetHeroIsRolling();
 
 	protected:
 		CAnimation animation;			// 英雄的動畫(向右)

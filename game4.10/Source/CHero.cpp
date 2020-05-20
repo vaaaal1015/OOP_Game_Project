@@ -969,4 +969,8 @@ namespace game_framework {
 		}
 	}
 
+	bool CHero::GetHeroIsRolling()
+	{
+		return isRolling;
+	}
 }

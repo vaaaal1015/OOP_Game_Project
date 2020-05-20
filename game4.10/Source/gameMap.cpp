@@ -298,15 +298,15 @@ namespace game_framework {
 		switch (num)
 		{
 		case 0:
-			allItem.push_back(new Item_Bronze_Coin(this, x, y));
+			allItem.push_back(new Item_Bronze_Coin(this, x, y, ItemExistTime));
 			allItem.back()->LoadBitmap();
 			break;
 		case 1:
-			allItem.push_back(new Item_Silver_Coin(this, x, y));
+			allItem.push_back(new Item_Silver_Coin(this, x, y, ItemExistTime));
 			allItem.back()->LoadBitmap();
 			break;
 		case 2:
-			allItem.push_back(new Item_Golden_Coin(this, x, y));
+			allItem.push_back(new Item_Golden_Coin(this, x, y, ItemExistTime));
 			allItem.back()->LoadBitmap();
 			break;
 		default:
@@ -423,7 +423,7 @@ namespace game_framework {
 	/////////////////////////////////////////////////////////////////////////////
 	// Item: Item base class
 	/////////////////////////////////////////////////////////////////////////////
-	Item::Item(gameMap* point, int nx, int ny)
+	Item::Item(gameMap* point, int nx, int ny, int ExistTime)
 	{
 		x = nx;
 		y = ny;
@@ -476,7 +476,7 @@ namespace game_framework {
 	/////////////////////////////////////////////////////////////////////////////
 	// Item_Bronze_Coin : Item class
 	/////////////////////////////////////////////////////////////////////////////
-	Item_Bronze_Coin::Item_Bronze_Coin(gameMap* point, int nx, int ny) : Item(point, nx, ny) {}
+	Item_Bronze_Coin::Item_Bronze_Coin(gameMap* point, int nx, int ny, int ExistTime) : Item(point, nx, ny, ExistTime) {}
 
 	Item_Bronze_Coin::~Item_Bronze_Coin() {}
 
@@ -496,7 +496,7 @@ namespace game_framework {
 	/////////////////////////////////////////////////////////////////////////////
 	// Item_Silver_Coin : Item class
 	/////////////////////////////////////////////////////////////////////////////
-	Item_Silver_Coin::Item_Silver_Coin(gameMap* point, int nx, int ny) : Item(point, nx, ny) {}
+	Item_Silver_Coin::Item_Silver_Coin(gameMap* point, int nx, int ny, int ExistTime) : Item(point, nx, ny, ExistTime) {}
 
 	Item_Silver_Coin::~Item_Silver_Coin() {}
 
@@ -516,7 +516,7 @@ namespace game_framework {
 	/////////////////////////////////////////////////////////////////////////////
 	// Item_Silver_Coin : Item class
 	/////////////////////////////////////////////////////////////////////////////
-	Item_Golden_Coin::Item_Golden_Coin(gameMap* point, int nx, int ny) : Item(point, nx, ny) {}
+	Item_Golden_Coin::Item_Golden_Coin(gameMap* point, int nx, int ny, int ExistTime) : Item(point, nx, ny, ExistTime) {}
 
 	Item_Golden_Coin::~Item_Golden_Coin() {}
 
@@ -531,5 +531,25 @@ namespace game_framework {
 	int Item_Golden_Coin::GetItemValue()
 	{
 		return 100;
+	}
+
+	/////////////////////////////////////////////////////////////////////////////
+	// Item_Fire_Stone : Item class
+	/////////////////////////////////////////////////////////////////////////////
+	Item_Fire_Stone::Item_Fire_Stone(gameMap* point, int nx, int ny, int ExistTime) : Item(point, nx, ny, ExistTime) {}
+
+	Item_Fire_Stone::~Item_Fire_Stone() {}
+
+	void Item_Fire_Stone::LoadBitmap()
+	{
+		animation.AddBitmap(IDB_FIRESTONE, RGB(255, 255, 255));
+		animation.AddBitmap(IDB_FIRESTONE, RGB(255, 255, 255));
+		animation.AddBitmap(IDB_FIRESTONE, RGB(255, 255, 255));
+		animation.AddBitmap(IDB_FIRESTONE, RGB(255, 255, 255));
+	}
+
+	int Item_Fire_Stone::GetItemValue()
+	{
+		return 1;
 	}
 }

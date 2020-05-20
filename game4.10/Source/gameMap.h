@@ -83,6 +83,7 @@ namespace game_framework {
 		int HeroY1;
 		int HeroX2;
 		int HeroY2;
+		int ItemExistTime = 300;
 	private:
 		vector<CEnemy*> allEnemy;
 		vector<Item*> allItem;
@@ -119,7 +120,7 @@ namespace game_framework {
 	class Item
 	{
 	public:
-		Item(gameMap* point, int nx, int ny);
+		Item(gameMap* point, int nx, int ny, int ExistTime);
 		virtual ~Item() = default;
 		//~Item();
 		int GetX1();					// 物品左上角 x 座標
@@ -142,7 +143,7 @@ namespace game_framework {
 	class Item_Bronze_Coin : public Item
 	{
 	public:
-		Item_Bronze_Coin(gameMap* point, int nx, int ny);
+		Item_Bronze_Coin(gameMap* point, int nx, int ny, int ExistTime);
 		~Item_Bronze_Coin();
 		void LoadBitmap();				// 載入圖形
 		int GetItemValue();
@@ -151,7 +152,7 @@ namespace game_framework {
 	class Item_Silver_Coin : public Item
 	{
 	public:
-		Item_Silver_Coin(gameMap* point, int nx, int ny);
+		Item_Silver_Coin(gameMap* point, int nx, int ny, int ExistTime);
 		~Item_Silver_Coin();
 		void LoadBitmap();				// 載入圖形
 		int GetItemValue();
@@ -160,8 +161,17 @@ namespace game_framework {
 	class Item_Golden_Coin : public Item
 	{
 	public:
-		Item_Golden_Coin(gameMap* point, int nx, int ny);
+		Item_Golden_Coin(gameMap* point, int nx, int ny, int ExistTime);
 		~Item_Golden_Coin();
+		void LoadBitmap();				// 載入圖形
+		int GetItemValue();
+	};
+
+	class Item_Fire_Stone : public Item
+	{
+	public:
+		Item_Fire_Stone(gameMap* point, int nx, int ny, int ExistTime);
+		~Item_Fire_Stone();
 		void LoadBitmap();				// 載入圖形
 		int GetItemValue();
 	};

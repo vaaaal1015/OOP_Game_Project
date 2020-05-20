@@ -305,9 +305,9 @@ void CGameStateRun::OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags)
 	const char KEY_F2 = 0x71;	 // keyboard F2
 	const char KEY_F3 = 0x72;	 // keyboard F3
 	const char KEY_Z = 0x5A;
-	if (nChar == KEY_LEFT)
+	if (nChar == KEY_LEFT && !hero.GetHeroIsRolling())     //英雄不能取消翻滾動作
 		hero.SetMovingLeft(true);
-	if (nChar == KEY_RIGHT)
+	if (nChar == KEY_RIGHT && !hero.GetHeroIsRolling())    //英雄不能取消翻滾動作
 		hero.SetMovingRight(true);
 	if (nChar == KEY_UP)
 		hero.SetMovingUp(true);
