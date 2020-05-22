@@ -198,6 +198,8 @@ namespace game_framework {
 		allEnemy.push_back(new CEnemy_sunFlower(this, 1950, 20));
 		allEnemy.push_back(new CEnemy_Cactus(this, 2400, 405));
 		allEnemy.push_back(new CEnemy_Cactus(this, 2550, 405));
+		allItem.push_back(new Item_Fire_Stone(this, 300, 350, ItemExistTime));
+		allItem.back()->LoadBitmap();
 	}
 
 	gameMap_Lv1::~gameMap_Lv1()
@@ -263,7 +265,7 @@ namespace game_framework {
 		for (vector<CEnemy*>::iterator i = allEnemy.begin(); i != allEnemy.end(); i++) (*i)->AttackByEnemy(heroHP);
 	}
 
-	void gameMap_Lv1::HeroGetCoin(int *HeroCoin)
+	void gameMap_Lv1::HeroGetItem(int *HeroCoin, int *SpecialEffect)
 	{
 		vector<Item*>::iterator iter = allItem.begin();
 		while (iter != allItem.end())
@@ -271,9 +273,18 @@ namespace game_framework {
 			if (((*iter)->GetX2() >= HeroX1) && (HeroX2 >= (*iter)->GetX1()) && ((*iter)->GetY2() >= HeroY1) && (HeroY2 >= (*iter)->GetY1()))
 			{
 				CAudio::Instance()->Play(5, false);
-				*HeroCoin += (*iter)->GetItemValue();
-				delete *iter;
-				iter = allItem.erase(iter);
+				if ((*iter)->GetItemValue() == 1)
+				{
+					*SpecialEffect = 1;
+					delete *iter;
+					iter = allItem.erase(iter);
+				}
+				else
+				{
+					*HeroCoin += (*iter)->GetItemValue();
+					delete *iter;
+					iter = allItem.erase(iter);
+				}
 			}
 			else if ((*iter)->isDelete())
 			{
@@ -294,7 +305,7 @@ namespace game_framework {
 	void gameMap_Lv1::DropItem(int x, int y)
 	{
 		int num;
-		num = (rand() % 4);
+		num = (rand() % 5);
 		switch (num)
 		{
 		case 0:
@@ -307,6 +318,10 @@ namespace game_framework {
 			break;
 		case 2:
 			allItem.push_back(new Item_Golden_Coin(this, x, y, ItemExistTime));
+			allItem.back()->LoadBitmap();
+			break;
+		case 3:
+			allItem.push_back(new Item_Fire_Stone(this, x, y, ItemExistTime));
 			allItem.back()->LoadBitmap();
 			break;
 		default:
@@ -402,18 +417,26 @@ namespace game_framework {
 		HeroX2 = x2;
 		HeroY2 = y2;
 	}
-	void gameMap_Lv2::HeroGetCoin(int *HeroCoin)
+	void gameMap_Lv2::HeroGetItem(int *HeroCoin, int *SpecialEffect)
 	{
 		vector<Item*>::iterator iter = allItem.begin();
 		while (iter != allItem.end())
 		{
 			if (((*iter)->GetX2() >= HeroX1) && (HeroX2 >= (*iter)->GetX1()) && ((*iter)->GetY2() >= HeroY1) && (HeroY2 >= (*iter)->GetY1()))
 			{
-				TRACE("PLAy\n");
-				CAudio::Instance()->Play(5, false);	
-				*HeroCoin += (*iter)->GetItemValue();
-				delete *iter;
-				iter = allItem.erase(iter);
+				CAudio::Instance()->Play(5, false);
+				if ((*iter)->GetItemValue() == 1)
+				{
+					*SpecialEffect = 1;
+					delete *iter;
+					iter = allItem.erase(iter);
+				}
+				else
+				{
+					*HeroCoin += (*iter)->GetItemValue();
+					delete *iter;
+					iter = allItem.erase(iter);
+				}
 			}
 			else
 				iter++;

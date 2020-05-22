@@ -654,6 +654,20 @@ IDB_FIRESWORDRIGHT_6    BITMAP                  "..\\RES\\Special_Effect\\Right_
 
 IDB_FIRESTONE           BITMAP                  "..\\RES\\Special_Effect\\Right_Mode_0\\Fire_Stone.bmp"
 
+IDB_FIRESWORDLEFT_0     BITMAP                  "..\\RES\\Special_Effect\\Left_Mode_0\\Left_Mode_0.bmp"
+
+IDB_FIRESWORDLEFT_1     BITMAP                  "..\\RES\\Special_Effect\\Left_Mode_0\\Left_Mode_1.bmp"
+
+IDB_FIRESWORDLEFT_2     BITMAP                  "..\\RES\\Special_Effect\\Left_Mode_0\\Left_Mode_2.bmp"
+
+IDB_FIRESWORDLEFT_3     BITMAP                  "..\\RES\\Special_Effect\\Left_Mode_0\\Left_Mode_3.bmp"
+
+IDB_FIRESWORDLEFT_4     BITMAP                  "..\\RES\\Special_Effect\\Left_Mode_0\\Left_Mode_4.bmp"
+
+IDB_FIRESWORDLEFT_5     BITMAP                  "..\\RES\\Special_Effect\\Left_Mode_0\\Left_Mode_5.bmp"
+
+IDB_FIRESWORDLEFT_6     BITMAP                  "..\\RES\\Special_Effect\\Left_Mode_0\\Left_Mode_6.bmp"
+
 
 /////////////////////////////////////////////////////////////////////////////
 //

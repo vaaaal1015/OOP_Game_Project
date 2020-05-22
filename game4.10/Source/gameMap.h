@@ -58,7 +58,7 @@ namespace game_framework {
 		virtual void AttackByEnemy(int *heroHP) = 0;
 		virtual void SetHeroAttackRange(int x1, int x2, int y1, int y2) = 0;
 		virtual bool GetisStageClear() = 0;
-		virtual void HeroGetCoin(int *HeroGold) = 0;
+		virtual void HeroGetItem(int *HeroGold ,int *SpecialEffect) = 0;
 		virtual void SetHeroXY(int x1, int x2, int y1, int y2) = 0;				// 設定英雄位置
 		
 	};
@@ -76,7 +76,7 @@ namespace game_framework {
 		void AttackByEnemy(int *heroHP);
 		void SetHeroAttackRange(int x1, int x2, int y1, int y2);
 		bool GetisStageClear();
-		void HeroGetCoin(int *HeroGold);
+		void HeroGetItem(int *HeroGold, int *SpecialEffect);
 		void SetHeroXY(int x1, int x2, int y1, int y2);
 	protected:
 		int HeroX1;
@@ -104,7 +104,7 @@ namespace game_framework {
 		void AttackByEnemy(int *heroHP);
 		void SetHeroAttackRange(int x1, int x2, int y1, int y2);
 		bool GetisStageClear();
-		void HeroGetCoin(int *HeroGold);
+		void HeroGetItem(int *HeroGold, int *SpecialEffect);
 		void SetHeroXY(int x1, int x2, int y1, int y2);
 	protected:
 		int HeroX1;

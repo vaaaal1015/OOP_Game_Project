@@ -72,6 +72,8 @@ namespace game_framework {
 		CAnimation SwordRollLeft;
 		CAnimation HeroRollRight;		// 向右翻滾
 		CAnimation SwordRollRight;
+		CAnimation FireSwordRightAnimation;
+		CAnimation FireSwordLeftAnimation;
 		CMovingBitmap LifeBarHead;		// 血條
 		CMovingBitmap StartGameBar;		// 開始按鈕
 		CMovingBitmap WorldMap_UI_1;	// 地圖_1
@@ -108,6 +110,7 @@ namespace game_framework {
 		int ShowGoldDelayCount;			// 金幣出現的時間
 		int bleed = 0;
 		int GetGold = 0;				// 得到的金幣
+		int SpecialEffect = 0;			// 0:無效果;1:火焰
 		
 	private:
 		gameMap_village* currentVillage;	// 紀錄目前的村莊

@@ -112,6 +112,8 @@ namespace game_framework {
 		SwordRollLeft.SetDelayCount(5);
 		SwordDashLeft.SetDelayCount(3);
 		SwordDashRight.SetDelayCount(3);
+		FireSwordRightAnimation.SetDelayCount(3);
+		FireSwordLeftAnimation.SetDelayCount(3);
 		SetAttackDelayCount = AttackDelayCount = DashColdDown = 15;
 		ShowGoldDelayCount = 0;
 		RollDelayCount = 15;
@@ -253,6 +255,22 @@ namespace game_framework {
 		swordAttack1.AddBitmap(IDB_SWORDATTACK_5_1, RGB(255, 255, 255));
 		swordAttack1.AddBitmap(IDB_SWORDATTACK_6_1, RGB(255, 255, 255));
 		swordAttack1.AddBitmap(IDB_SWORDATTACK_7_1, RGB(255, 255, 255));
+	
+		FireSwordRightAnimation.AddBitmap(IDB_FIRESWORDRIGHT_0, RGB(255, 255, 255));
+		FireSwordRightAnimation.AddBitmap(IDB_FIRESWORDRIGHT_1, RGB(255, 255, 255));
+		FireSwordRightAnimation.AddBitmap(IDB_FIRESWORDRIGHT_2, RGB(255, 255, 255));
+		FireSwordRightAnimation.AddBitmap(IDB_FIRESWORDRIGHT_3, RGB(255, 255, 255));
+		FireSwordRightAnimation.AddBitmap(IDB_FIRESWORDRIGHT_4, RGB(255, 255, 255));
+		FireSwordRightAnimation.AddBitmap(IDB_FIRESWORDRIGHT_5, RGB(255, 255, 255));
+		FireSwordRightAnimation.AddBitmap(IDB_FIRESWORDRIGHT_6, RGB(255, 255, 255));
+
+		FireSwordLeftAnimation.AddBitmap(IDB_FIRESWORDLEFT_0, RGB(255, 255, 255));
+		FireSwordLeftAnimation.AddBitmap(IDB_FIRESWORDLEFT_1, RGB(255, 255, 255));
+		FireSwordLeftAnimation.AddBitmap(IDB_FIRESWORDLEFT_2, RGB(255, 255, 255));
+		FireSwordLeftAnimation.AddBitmap(IDB_FIRESWORDLEFT_3, RGB(255, 255, 255));
+		FireSwordLeftAnimation.AddBitmap(IDB_FIRESWORDLEFT_4, RGB(255, 255, 255));
+		FireSwordLeftAnimation.AddBitmap(IDB_FIRESWORDLEFT_5, RGB(255, 255, 255));
+		FireSwordLeftAnimation.AddBitmap(IDB_FIRESWORDLEFT_6, RGB(255, 255, 255));
 
 		LifeBarHead.LoadBitmap(IDB_LIFEBARHEAD, RGB(255, 255, 255));
 		StartGameBar.LoadBitmap(IDB_UI_GAME_START);
@@ -317,6 +335,8 @@ namespace game_framework {
 		SwordRollLeft.OnMove();
 		SwordDashRight.OnMove();
 		SwordDashLeft.OnMove();
+		FireSwordRightAnimation.OnMove();
+		FireSwordLeftAnimation.OnMove();
 		if (ShowGoldDelayCount > 0) ShowGoldDelayCount--;
 		if(AttackDelayCount !=0) AttackDelayCount--;    //攻速
 		if (RollDelayCount != 0) RollDelayCount--;		//翻滾
@@ -513,6 +533,8 @@ namespace game_framework {
 			swordAttack.Reset();
 			HeroAttackMovement.Reset();
 			HeroAttackMovement1.Reset();
+			FireSwordRightAnimation.Reset();
+			FireSwordLeftAnimation.Reset();
 			isAttacking = true;
 			AttackDelayCount = SetAttackDelayCount;
 			isMovingLeft = isMovingRight = isMovingUp = isMovingDown = isRolling = false;   //角色不能邊走邊攻擊
@@ -606,11 +628,21 @@ namespace game_framework {
 			{
 				swordAttack.SetTopLeft(currentMap->ScreenX(x - 40), currentMap->ScreenY(y + 10));
 				swordAttack.OnShow();
+				if (SpecialEffect == 1)
+				{
+					FireSwordRightAnimation.SetTopLeft(currentMap->ScreenX(x - 50), currentMap->ScreenY(y - 10));
+					FireSwordRightAnimation.OnShow();
+				}
 			}
 			else
 			{
-				swordAttack1.SetTopLeft(currentMap->ScreenX(x - 90), currentMap->ScreenY(y + 10));
+				swordAttack1.SetTopLeft(currentMap->ScreenX(x - 95), currentMap->ScreenY(y + 10));
 				swordAttack1.OnShow();
+				if (SpecialEffect == 1)
+				{
+					FireSwordLeftAnimation.SetTopLeft(currentMap->ScreenX(x - 90), currentMap->ScreenY(y - 10));
+					FireSwordLeftAnimation.OnShow();
+				}
 			}
 
 			if (swordAttack.IsFinalBitmap() || swordAttack1.IsFinalBitmap())
@@ -837,8 +869,8 @@ namespace game_framework {
 	int CHero::HeroGetCoin()
 	{
 		int Coin = Gold;
-		currentWild->HeroGetCoin(&Gold);
-		if (Coin < Gold)
+		currentWild->HeroGetItem(&Gold, &SpecialEffect);
+		if (Coin < Gold && (Gold - Coin)>=10)
 		{
 			//TRACE("%d\n",Gold-Coin);
 			ShowGoldDelayCount = 30;
@@ -959,7 +991,6 @@ namespace game_framework {
 				if ((Mx <= 437) && (My <= 415) && (Mx >= 188) && (My >= 355)) isSelectingMap = true;
 			}
 		}
-
 		if (ClearedStage)
 		{
 			if ((Mx <= 487) && (My <= 422) && (Mx >= 396) && (My >= 380))
