@@ -122,6 +122,7 @@ namespace game_framework {
 		CurrentHP = FullHP;
 		AttackRange = 100;					// ¥D¨¤§ðÀ»½d³ò
 		isSelectingMap = false;
+		AttackRange = 150;
 	}
 
 	void CHero::LoadBitmap()
@@ -447,11 +448,11 @@ namespace game_framework {
 		{
 			if (faceDirection == "right")
 			{
-				currentWild->SetHeroAttackRange(GetX2(), GetX2() + swordAttack.Width(), GetY1(), GetY1() + swordAttack.Height());
+				currentWild->SetHeroAttackRange(GetCenterX() - AttackRange, GetCenterX() + AttackRange + 50, GetCenterY() - 50, GetCenterY() + 50);
 			}
 			else
 			{
-				currentWild->SetHeroAttackRange(GetX1(), GetX1() + swordAttack1.Width(), GetY1(), GetY1() + swordAttack1.Height());
+				currentWild->SetHeroAttackRange(GetCenterX() - AttackRange - 50, GetCenterX() + AttackRange, GetCenterY() - 50, GetCenterY() + 50);
 			}
 			currentWild->AttackByHero(heroAttackDamage);
 		}

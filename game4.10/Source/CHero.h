@@ -86,7 +86,6 @@ namespace game_framework {
 		//CInteger DamageTaken;			// 顯示承受傷害
 		vector<CMovingBitmap*> LifeBarRed;		// 血條
 		int x, y;						// 英雄左上角座標
-		int AttackRange;				// 英雄攻擊範圍
 		int heroAttackDamage;			// 英雄攻擊力
 		bool isMovingDown;				// 是否正在往下移動
 		bool isMovingLeft;				// 是否正在往左移動
@@ -123,5 +122,6 @@ namespace game_framework {
 		void changeLifeBarLength();			// 改變生命條的長度
 		bool isInHome;						// 是否在村莊
 		bool isSelectingMap;				// 是否正在選擇地圖
+		int AttackRange;
 	};
 }

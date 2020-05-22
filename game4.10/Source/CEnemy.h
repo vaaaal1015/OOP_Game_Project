@@ -158,6 +158,7 @@ namespace game_framework {
 		int enemyHP;					// 敵人生命值
 		int enemyAttackDamage;		//敵人攻擊力
 		int AttackDelayCount;		// 攻擊頻率
+		int SetAttackDelay;
 		bool AttackFlag;			// 等於true(發出尖刺動畫出現)時才攻擊到主角
 		bool ReadyToAttack;			// 開始攻擊動作
 		bool GetHit = false;
