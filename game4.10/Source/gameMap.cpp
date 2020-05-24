@@ -200,6 +200,12 @@ namespace game_framework {
 		allEnemy.push_back(new CEnemy_Cactus(this, 2550, 405));
 		allItem.push_back(new Item_Fire_Stone(this, 300, 350, ItemExistTime));
 		allItem.back()->LoadBitmap();
+		allItem.push_back(new Item_RedPot_Small(this, 500, 350, ItemExistTime));
+		allItem.back()->LoadBitmap();
+		allItem.push_back(new Item_RedPot_Medium(this, 600, 350, ItemExistTime));
+		allItem.back()->LoadBitmap();
+		allItem.push_back(new Item_RedPot_Full(this, 700, 350, ItemExistTime));
+		allItem.back()->LoadBitmap();
 	}
 
 	gameMap_Lv1::~gameMap_Lv1()
@@ -265,7 +271,7 @@ namespace game_framework {
 		for (vector<CEnemy*>::iterator i = allEnemy.begin(); i != allEnemy.end(); i++) (*i)->AttackByEnemy(heroHP);
 	}
 
-	void gameMap_Lv1::HeroGetItem(int *HeroCoin, int *SpecialEffect)
+	void gameMap_Lv1::HeroGetItem(int *HeroCoin, int *SpecialEffect, int *HeroHP,int FullHP)
 	{
 		vector<Item*>::iterator iter = allItem.begin();
 		while (iter != allItem.end())
@@ -273,17 +279,35 @@ namespace game_framework {
 			if (((*iter)->GetX2() >= HeroX1) && (HeroX2 >= (*iter)->GetX1()) && ((*iter)->GetY2() >= HeroY1) && (HeroY2 >= (*iter)->GetY1()))
 			{
 				CAudio::Instance()->Play(5, false);
-				if ((*iter)->GetItemValue() == 1)
+				switch ((*iter)->GetItemValue()) 
 				{
+				case 1:						//¤õµK¥Û
 					*SpecialEffect = 1;
 					delete *iter;
 					iter = allItem.erase(iter);
-				}
-				else
-				{
+					break;
+				case 2:						// ¤p¦å²~
+					if (*HeroHP + 30 >= FullHP) *HeroHP = FullHP;
+					else *HeroHP += 30;
+					delete *iter;
+					iter = allItem.erase(iter);
+					break;
+				case 3:						// ¤¤¦å²~
+					if (*HeroHP + 50 >= FullHP) *HeroHP = FullHP;
+					else *HeroHP += 50;
+					delete *iter;
+					iter = allItem.erase(iter);
+					break;
+				case 4:						// ¤j¦å²~
+					*HeroHP = FullHP;
+					delete *iter;
+					iter = allItem.erase(iter);
+					break;
+				default:					//ª÷¹ô
 					*HeroCoin += (*iter)->GetItemValue();
 					delete *iter;
 					iter = allItem.erase(iter);
+					break;
 				}
 			}
 			else if ((*iter)->isDelete())
@@ -296,7 +320,6 @@ namespace game_framework {
 		}
 	}
 
-
 	bool gameMap_Lv1::GetisStageClear()
 	{
 		return isStageClear;
@@ -305,7 +328,7 @@ namespace game_framework {
 	void gameMap_Lv1::DropItem(int x, int y)
 	{
 		int num;
-		num = (rand() % 5);
+		num = (rand() % 7);
 		switch (num)
 		{
 		case 0:
@@ -322,6 +345,14 @@ namespace game_framework {
 			break;
 		case 3:
 			allItem.push_back(new Item_Fire_Stone(this, x, y, ItemExistTime));
+			allItem.back()->LoadBitmap();
+			break;
+		case 4:
+			allItem.push_back(new Item_RedPot_Small(this, x, y, ItemExistTime));
+			allItem.back()->LoadBitmap();
+			break;
+		case 5:
+			allItem.push_back(new Item_RedPot_Full(this, x, y, ItemExistTime));
 			allItem.back()->LoadBitmap();
 			break;
 		default:
@@ -417,7 +448,7 @@ namespace game_framework {
 		HeroX2 = x2;
 		HeroY2 = y2;
 	}
-	void gameMap_Lv2::HeroGetItem(int *HeroCoin, int *SpecialEffect)
+	void gameMap_Lv2::HeroGetItem(int *HeroCoin, int *SpecialEffect, int *HeroHP, int FullHP)
 	{
 		vector<Item*>::iterator iter = allItem.begin();
 		while (iter != allItem.end())
@@ -425,17 +456,35 @@ namespace game_framework {
 			if (((*iter)->GetX2() >= HeroX1) && (HeroX2 >= (*iter)->GetX1()) && ((*iter)->GetY2() >= HeroY1) && (HeroY2 >= (*iter)->GetY1()))
 			{
 				CAudio::Instance()->Play(5, false);
-				if ((*iter)->GetItemValue() == 1)
+				switch ((*iter)->GetItemValue())
 				{
+				case 1:						//¤õµK¥Û
 					*SpecialEffect = 1;
 					delete *iter;
 					iter = allItem.erase(iter);
-				}
-				else
-				{
+					break;
+				case 2:						// ¤p¦å²~
+					if (*HeroHP + 30 >= FullHP) *HeroHP = FullHP;
+					else *HeroHP += 30;
+					delete *iter;
+					iter = allItem.erase(iter);
+					break;
+				case 3:						// ¤¤¦å²~
+					if (*HeroHP + 50 >= FullHP) *HeroHP = FullHP;
+					else *HeroHP += 50;
+					delete *iter;
+					iter = allItem.erase(iter);
+					break;
+				case 4:						// ¤¤¦å²~
+					*HeroHP = FullHP;
+					delete *iter;
+					iter = allItem.erase(iter);
+					break;
+				default:					//ª÷¹ô
 					*HeroCoin += (*iter)->GetItemValue();
 					delete *iter;
 					iter = allItem.erase(iter);
+					break;
 				}
 			}
 			else
@@ -443,6 +492,40 @@ namespace game_framework {
 		}
 	}
 
+	void gameMap_Lv2::DropItem(int x, int y)
+	{
+		int num;
+		num = (rand() % 7);
+		switch (num)
+		{
+		case 0:
+			allItem.push_back(new Item_Bronze_Coin(this, x, y, ItemExistTime));
+			allItem.back()->LoadBitmap();
+			break;
+		case 1:
+			allItem.push_back(new Item_Silver_Coin(this, x, y, ItemExistTime));
+			allItem.back()->LoadBitmap();
+			break;
+		case 2:
+			allItem.push_back(new Item_Golden_Coin(this, x, y, ItemExistTime));
+			allItem.back()->LoadBitmap();
+			break;
+		case 3:
+			allItem.push_back(new Item_Fire_Stone(this, x, y, ItemExistTime));
+			allItem.back()->LoadBitmap();
+			break;
+		case 4:
+			allItem.push_back(new Item_RedPot_Small(this, x, y, ItemExistTime));
+			allItem.back()->LoadBitmap();
+			break;
+		case 5:
+			allItem.push_back(new Item_RedPot_Full(this, x, y, ItemExistTime));
+			allItem.back()->LoadBitmap();
+			break;
+		default:
+			break;
+		}
+	}
 	/////////////////////////////////////////////////////////////////////////////
 	// Item: Item base class
 	/////////////////////////////////////////////////////////////////////////////
@@ -506,9 +589,6 @@ namespace game_framework {
 	void Item_Bronze_Coin::LoadBitmap()
 	{
 		animation.AddBitmap(IDB_BRONZECOIN_0, RGB(0, 162, 232));
-		animation.AddBitmap(IDB_BRONZECOIN_1, RGB(0, 162, 232));
-		animation.AddBitmap(IDB_BRONZECOIN_2, RGB(0, 162, 232));
-		animation.AddBitmap(IDB_BRONZECOIN_3, RGB(0, 162, 232));
 	}
 	
 	int Item_Bronze_Coin::GetItemValue()
@@ -526,9 +606,6 @@ namespace game_framework {
 	void Item_Silver_Coin::LoadBitmap()
 	{
 		animation.AddBitmap(IDB_SILVERCOIN_0, RGB(0, 162, 232));
-		animation.AddBitmap(IDB_SILVERCOIN_1, RGB(0, 162, 232));
-		animation.AddBitmap(IDB_SILVERCOIN_2, RGB(0, 162, 232));
-		animation.AddBitmap(IDB_SILVERCOIN_3, RGB(0, 162, 232));
 	}
 
 	int Item_Silver_Coin::GetItemValue()
@@ -546,9 +623,6 @@ namespace game_framework {
 	void Item_Golden_Coin::LoadBitmap()
 	{
 		animation.AddBitmap(IDB_GOLDCOIN_0, RGB(0, 162, 232));
-		animation.AddBitmap(IDB_GOLDCOIN_1, RGB(0, 162, 232));
-		animation.AddBitmap(IDB_GOLDCOIN_2, RGB(0, 162, 232));
-		animation.AddBitmap(IDB_GOLDCOIN_3, RGB(0, 162, 232));
 	}
 
 	int Item_Golden_Coin::GetItemValue()
@@ -566,13 +640,62 @@ namespace game_framework {
 	void Item_Fire_Stone::LoadBitmap()
 	{
 		animation.AddBitmap(IDB_FIRESTONE, RGB(255, 255, 255));
-		animation.AddBitmap(IDB_FIRESTONE, RGB(255, 255, 255));
-		animation.AddBitmap(IDB_FIRESTONE, RGB(255, 255, 255));
-		animation.AddBitmap(IDB_FIRESTONE, RGB(255, 255, 255));
 	}
 
 	int Item_Fire_Stone::GetItemValue()
 	{
 		return 1;
+	}
+
+
+	/////////////////////////////////////////////////////////////////////////////
+	// Item_RedPot_Small : Item class
+	/////////////////////////////////////////////////////////////////////////////
+	Item_RedPot_Small::Item_RedPot_Small(gameMap* point, int nx, int ny, int ExistTime) : Item(point, nx, ny, ExistTime) {}
+
+	Item_RedPot_Small::~Item_RedPot_Small() {}
+
+	void Item_RedPot_Small::LoadBitmap()
+	{
+		animation.AddBitmap(IDB_REDPOTSMALL, RGB(63, 72, 204));
+	}
+
+	int Item_RedPot_Small::GetItemValue()
+	{
+		return 2;
+	}
+
+	/////////////////////////////////////////////////////////////////////////////
+	// Item_RedPot_Medium : Item class
+	/////////////////////////////////////////////////////////////////////////////
+	Item_RedPot_Medium::Item_RedPot_Medium(gameMap* point, int nx, int ny, int ExistTime) : Item(point, nx, ny, ExistTime) {}
+
+	Item_RedPot_Medium::~Item_RedPot_Medium() {}
+
+	void Item_RedPot_Medium::LoadBitmap()
+	{
+		animation.AddBitmap(IDB_REDPOTMEDIUM, RGB(63, 72, 204));
+	}
+
+	int Item_RedPot_Medium::GetItemValue()
+	{
+		return 3;
+	}
+
+	/////////////////////////////////////////////////////////////////////////////
+	// Item_RedPot_Full : Item class
+	/////////////////////////////////////////////////////////////////////////////
+	Item_RedPot_Full::Item_RedPot_Full(gameMap* point, int nx, int ny, int ExistTime) : Item(point, nx, ny, ExistTime) {}
+
+	Item_RedPot_Full::~Item_RedPot_Full() {}
+
+	void Item_RedPot_Full::LoadBitmap()
+	{
+		animation.AddBitmap(IDB_REDPOTFULL, RGB(63, 72, 204));
+	}
+
+	int Item_RedPot_Full::GetItemValue()
+	{
+		return 4;
 	}
 }

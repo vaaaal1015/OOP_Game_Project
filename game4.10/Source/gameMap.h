@@ -58,7 +58,7 @@ namespace game_framework {
 		virtual void AttackByEnemy(int *heroHP) = 0;
 		virtual void SetHeroAttackRange(int x1, int x2, int y1, int y2) = 0;
 		virtual bool GetisStageClear() = 0;
-		virtual void HeroGetItem(int *HeroGold ,int *SpecialEffect) = 0;
+		virtual void HeroGetItem(int *HeroGold ,int *SpecialEffect, int *HeroHP, int FullHP) = 0;
 		virtual void SetHeroXY(int x1, int x2, int y1, int y2) = 0;				// 砞﹚璣动竚
 		
 	};
@@ -76,7 +76,7 @@ namespace game_framework {
 		void AttackByEnemy(int *heroHP);
 		void SetHeroAttackRange(int x1, int x2, int y1, int y2);
 		bool GetisStageClear();
-		void HeroGetItem(int *HeroGold, int *SpecialEffect);
+		void HeroGetItem(int *HeroGold, int *SpecialEffect, int *HeroHP, int FullHP);
 		void SetHeroXY(int x1, int x2, int y1, int y2);
 	protected:
 		int HeroX1;
@@ -104,17 +104,19 @@ namespace game_framework {
 		void AttackByEnemy(int *heroHP);
 		void SetHeroAttackRange(int x1, int x2, int y1, int y2);
 		bool GetisStageClear();
-		void HeroGetItem(int *HeroGold, int *SpecialEffect);
+		void HeroGetItem(int *HeroGold, int *SpecialEffect, int *HeroHP, int FullHP);
 		void SetHeroXY(int x1, int x2, int y1, int y2);
 	protected:
 		int HeroX1;
 		int HeroY1;
 		int HeroX2;
 		int HeroY2;
+		int ItemExistTime = 300;
 	private:
 		vector<CEnemy*> allEnemy;
 		bool isStageClear = false;
 		vector<Item*> allItem;
+		void DropItem(int x, int y);
 	};
 
 	class Item
@@ -137,7 +139,7 @@ namespace game_framework {
 		int x;
 		int y;
 		gameMap *currentMap;
-		int ExistTime = 300;
+		int ExistTime = 999999;
 	};
 
 	class Item_Bronze_Coin : public Item
@@ -172,6 +174,33 @@ namespace game_framework {
 	public:
 		Item_Fire_Stone(gameMap* point, int nx, int ny, int ExistTime);
 		~Item_Fire_Stone();
+		void LoadBitmap();				// 更瓜
+		int GetItemValue();
+	};
+
+	class Item_RedPot_Small : public Item
+	{
+	public:
+		Item_RedPot_Small(gameMap* point, int nx, int ny, int ExistTime);
+		~Item_RedPot_Small();
+		void LoadBitmap();				// 更瓜
+		int GetItemValue();
+	};
+
+	class Item_RedPot_Medium : public Item
+	{
+	public:
+		Item_RedPot_Medium(gameMap* point, int nx, int ny, int ExistTime);
+		~Item_RedPot_Medium();
+		void LoadBitmap();				// 更瓜
+		int GetItemValue();
+	};
+
+	class Item_RedPot_Full : public Item
+	{
+	public:
+		Item_RedPot_Full(gameMap* point, int nx, int ny, int ExistTime);
+		~Item_RedPot_Full();
 		void LoadBitmap();				// 更瓜
 		int GetItemValue();
 	};

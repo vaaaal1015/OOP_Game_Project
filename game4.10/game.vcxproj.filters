@@ -1065,5 +1065,14 @@
     <Image Include="RES\Special_Effect\Left_Mode_0\Left_Mode_6.bmp">
       <Filter>Resource Files</Filter>
     </Image>
+    <Image Include="RES\Item\RedStone_7.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\Item\RedStone_8.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\Item\RedStone_9.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
   </ItemGroup>
 </Project>

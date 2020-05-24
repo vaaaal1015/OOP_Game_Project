@@ -36,7 +36,7 @@ namespace game_framework {
 		int GetHeroFullHP();
 		int GetHeroCurrentHP();      
 		int AttackByEnemy();
-		int HeroGetCoin();
+		int HeroGetItem();
 		void SetPreviousMove(int Movement);
 		int GetPreviousMove();          //取得上一個動作
 		void SetMoveDelayCount(int delay);

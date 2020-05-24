@@ -668,6 +668,12 @@ IDB_FIRESWORDLEFT_5     BITMAP                  "..\\RES\\Special_Effect\\Left_M
 
 IDB_FIRESWORDLEFT_6     BITMAP                  "..\\RES\\Special_Effect\\Left_Mode_0\\Left_Mode_6.bmp"
 
+IDB_REDPOTSMALL         BITMAP                  "..\\RES\\Item\\RedStone_7.bmp"
+
+IDB_REDPOTFULL          BITMAP                  "..\\RES\\Item\\RedStone_8.bmp"
+
+IDB_REDPOTMEDIUM        BITMAP                  "..\\RES\\Item\\RedStone_9.bmp"
+
 
 /////////////////////////////////////////////////////////////////////////////
 //

@@ -472,11 +472,11 @@ namespace game_framework {
 			currentWild->SetHeroXY(GetX1(), GetX2(), GetY1(), GetY2());
 			if (ShowGoldDelayCount > 0)
 			{
-				HeroGetCoin();
+				HeroGetItem();
 			}
 			else
 			{
-				GetGold = HeroGetCoin();   //重設顯示數字
+				GetGold = HeroGetItem();   //重設顯示數字
 			}
 			
 		}
@@ -867,10 +867,10 @@ namespace game_framework {
 		return hp - CurrentHP;
 	}
 
-	int CHero::HeroGetCoin()
+	int CHero::HeroGetItem()
 	{
 		int Coin = Gold;
-		currentWild->HeroGetItem(&Gold, &SpecialEffect);
+		currentWild->HeroGetItem(&Gold, &SpecialEffect, &CurrentHP, FullHP);
 		if (Coin < Gold && (Gold - Coin)>=10)
 		{
 			//TRACE("%d\n",Gold-Coin);
