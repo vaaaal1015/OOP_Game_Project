@@ -550,6 +550,12 @@
     <Image Include="RES\Numbers\NUM_GOLD_7.bmp" />
     <Image Include="RES\Numbers\NUM_GOLD_8.bmp" />
     <Image Include="RES\Numbers\NUM_GOLD_9.bmp" />
+    <Image Include="RES\Special_Effect\FireCircle\AttributeAbilityVfx_24.bmp" />
+    <Image Include="RES\Special_Effect\FireCircle\AttributeAbilityVfx_25.bmp" />
+    <Image Include="RES\Special_Effect\FireCircle\AttributeAbilityVfx_26.bmp" />
+    <Image Include="RES\Special_Effect\FireCircle\AttributeAbilityVfx_27.bmp" />
+    <Image Include="RES\Special_Effect\FireCircle\AttributeAbilityVfx_28.bmp" />
+    <Image Include="RES\Special_Effect\FireCircle\AttributeAbilityVfx_29.bmp" />
     <Image Include="RES\Special_Effect\Left_Mode_0\Left_Mode_0.bmp" />
     <Image Include="RES\Special_Effect\Left_Mode_0\Left_Mode_1.bmp" />
     <Image Include="RES\Special_Effect\Left_Mode_0\Left_Mode_2.bmp" />

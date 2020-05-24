@@ -114,6 +114,7 @@ namespace game_framework {
 		SwordDashRight.SetDelayCount(3);
 		FireSwordRightAnimation.SetDelayCount(3);
 		FireSwordLeftAnimation.SetDelayCount(3);
+		FireCircle.SetDelayCount(3);
 		SetAttackDelayCount = AttackDelayCount = DashColdDown = 15;
 		ShowGoldDelayCount = 0;
 		RollDelayCount = 15;
@@ -273,6 +274,13 @@ namespace game_framework {
 		FireSwordLeftAnimation.AddBitmap(IDB_FIRESWORDLEFT_5, RGB(255, 255, 255));
 		FireSwordLeftAnimation.AddBitmap(IDB_FIRESWORDLEFT_6, RGB(255, 255, 255));
 
+		FireCircle.AddBitmap(IDB_FIRECIRCLE_0, RGB(63, 72, 204));
+		FireCircle.AddBitmap(IDB_FIRECIRCLE_1, RGB(63, 72, 204));
+		FireCircle.AddBitmap(IDB_FIRECIRCLE_2, RGB(63, 72, 204));
+		FireCircle.AddBitmap(IDB_FIRECIRCLE_3, RGB(63, 72, 204));
+		FireCircle.AddBitmap(IDB_FIRECIRCLE_4, RGB(63, 72, 204));
+		FireCircle.AddBitmap(IDB_FIRECIRCLE_5, RGB(63, 72, 204));
+
 		LifeBarHead.LoadBitmap(IDB_LIFEBARHEAD, RGB(255, 255, 255));
 		StartGameBar.LoadBitmap(IDB_UI_GAME_START);
 		WorldMap_UI_1.LoadBitmap(IDB_WORLDMAP_UI);
@@ -338,6 +346,7 @@ namespace game_framework {
 		SwordDashLeft.OnMove();
 		FireSwordRightAnimation.OnMove();
 		FireSwordLeftAnimation.OnMove();
+		FireCircle.OnMove();
 		if (ShowGoldDelayCount > 0) ShowGoldDelayCount--;
 		if(AttackDelayCount !=0) AttackDelayCount--;    //攻速
 		if (RollDelayCount != 0) RollDelayCount--;		//翻滾
@@ -623,6 +632,11 @@ namespace game_framework {
 		}*/
 
 		//處理劍的顯示
+		if (SpecialEffect == 1)
+		{
+			FireCircle.SetTopLeft(currentMap->ScreenX(x), currentMap->ScreenY(y));
+			FireCircle.OnShow();
+		}
 		if (isAttacking)
 		{
 			if (faceDirection == "right")

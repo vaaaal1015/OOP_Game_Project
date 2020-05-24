@@ -674,6 +674,18 @@ IDB_REDPOTFULL          BITMAP                  "..\\RES\\Item\\RedStone_8.bmp"
 
 IDB_REDPOTMEDIUM        BITMAP                  "..\\RES\\Item\\RedStone_9.bmp"
 
+IDB_FIRECIRCLE_0        BITMAP                  "..\\RES\\Special_Effect\\FireCircle\\AttributeAbilityVfx_24.bmp"
+
+IDB_FIRECIRCLE_1        BITMAP                  "..\\RES\\Special_Effect\\FireCircle\\AttributeAbilityVfx_25.bmp"
+
+IDB_FIRECIRCLE_2        BITMAP                  "..\\RES\\Special_Effect\\FireCircle\\AttributeAbilityVfx_26.bmp"
+
+IDB_FIRECIRCLE_3        BITMAP                  "..\\RES\\Special_Effect\\FireCircle\\AttributeAbilityVfx_27.bmp"
+
+IDB_FIRECIRCLE_4        BITMAP                  "..\\RES\\Special_Effect\\FireCircle\\AttributeAbilityVfx_28.bmp"
+
+IDB_FIRECIRCLE_5        BITMAP                  "..\\RES\\Special_Effect\\FireCircle\\AttributeAbilityVfx_29.bmp"
+
 
 /////////////////////////////////////////////////////////////////////////////
 //

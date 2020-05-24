@@ -74,6 +74,7 @@ namespace game_framework {
 		CAnimation SwordRollRight;
 		CAnimation FireSwordRightAnimation;
 		CAnimation FireSwordLeftAnimation;
+		CAnimation FireCircle;
 		CMovingBitmap LifeBarHead;		// 血條
 		CMovingBitmap StartGameBar;		// 開始按鈕
 		CMovingBitmap WorldMap_UI_1;	// 地圖_1

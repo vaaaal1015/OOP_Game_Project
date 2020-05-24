@@ -1074,5 +1074,23 @@
     <Image Include="RES\Item\RedStone_9.bmp">
       <Filter>Resource Files</Filter>
     </Image>
+    <Image Include="RES\Special_Effect\FireCircle\AttributeAbilityVfx_24.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\Special_Effect\FireCircle\AttributeAbilityVfx_25.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\Special_Effect\FireCircle\AttributeAbilityVfx_26.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\Special_Effect\FireCircle\AttributeAbilityVfx_27.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\Special_Effect\FireCircle\AttributeAbilityVfx_28.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\Special_Effect\FireCircle\AttributeAbilityVfx_29.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
   </ItemGroup>
 </Project>
