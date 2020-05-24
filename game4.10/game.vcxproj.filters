@@ -1092,5 +1092,23 @@
     <Image Include="RES\Special_Effect\FireCircle\AttributeAbilityVfx_29.bmp">
       <Filter>Resource Files</Filter>
     </Image>
+    <Image Include="RES\Special_Effect\Fire\AttributeAbilityVfx_0.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\Special_Effect\Fire\AttributeAbilityVfx_1.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\Special_Effect\Fire\AttributeAbilityVfx_2.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\Special_Effect\Fire\AttributeAbilityVfx_3.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\Special_Effect\Fire\AttributeAbilityVfx_4.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\Special_Effect\Fire\AttributeAbilityVfx_5.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
   </ItemGroup>
 </Project>

@@ -686,6 +686,18 @@ IDB_FIRECIRCLE_4        BITMAP                  "..\\RES\\Special_Effect\\FireCi
 
 IDB_FIRECIRCLE_5        BITMAP                  "..\\RES\\Special_Effect\\FireCircle\\AttributeAbilityVfx_29.bmp"
 
+IDB_FIRE_0              BITMAP                  "..\\RES\\Special_Effect\\Fire\\AttributeAbilityVfx_0.bmp"
+
+IDB_FIRE_1              BITMAP                  "..\\RES\\Special_Effect\\Fire\\AttributeAbilityVfx_1.bmp"
+
+IDB_FIRE_2              BITMAP                  "..\\RES\\Special_Effect\\Fire\\AttributeAbilityVfx_2.bmp"
+
+IDB_FIRE_3              BITMAP                  "..\\RES\\Special_Effect\\Fire\\AttributeAbilityVfx_3.bmp"
+
+IDB_FIRE_4              BITMAP                  "..\\RES\\Special_Effect\\Fire\\AttributeAbilityVfx_4.bmp"
+
+IDB_FIRE_5              BITMAP                  "..\\RES\\Special_Effect\\Fire\\AttributeAbilityVfx_5.bmp"
+
 
 /////////////////////////////////////////////////////////////////////////////
 //

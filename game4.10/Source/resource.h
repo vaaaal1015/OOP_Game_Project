@@ -390,6 +390,13 @@
 #define IDB_FIRECIRCLE_4                460
 #define IDB_BITMAP69                    461
 #define IDB_FIRECIRCLE_5                461
+#define IDB_FIRE_0                      462
+#define IDB_FIRE_1                      463
+#define IDB_FIRE_2                      464
+#define IDB_FIRE_3                      465
+#define IDB_FIRE_4                      466
+#define IDB_BITMAP70                    467
+#define IDB_FIRE_5                      467
 #define IDC_README                      1001
 #define ID_FILE_PAUSE                   32771
 #define ID_TOGGLE_FULLSCREEN            32772
@@ -402,7 +409,7 @@
 #ifdef APSTUDIO_INVOKED
 #ifndef APSTUDIO_READONLY_SYMBOLS
 #define _APS_3D_CONTROLS                     1
-#define _APS_NEXT_RESOURCE_VALUE        462
+#define _APS_NEXT_RESOURCE_VALUE        468
 #define _APS_NEXT_COMMAND_VALUE         32776
 #define _APS_NEXT_CONTROL_VALUE         1003
 #define _APS_NEXT_SYMED_VALUE           101

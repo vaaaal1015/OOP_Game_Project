@@ -75,6 +75,9 @@ namespace game_framework {
 		CAnimation FireSwordRightAnimation;
 		CAnimation FireSwordLeftAnimation;
 		CAnimation FireCircle;
+		CAnimation Fire1;
+		CAnimation Fire2;
+		CAnimation Fire3;
 		CMovingBitmap LifeBarHead;		// 血條
 		CMovingBitmap StartGameBar;		// 開始按鈕
 		CMovingBitmap WorldMap_UI_1;	// 地圖_1
@@ -111,6 +114,7 @@ namespace game_framework {
 		int bleed = 0;
 		int GetGold = 0;				// 得到的金幣
 		int SpecialEffect = 0;			// 0:無效果;1:火焰
+		int SpecialEffectCount = 0;			
 		
 	private:
 		gameMap_village* currentVillage;	// 紀錄目前的村莊

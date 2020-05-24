@@ -115,6 +115,9 @@ namespace game_framework {
 		FireSwordRightAnimation.SetDelayCount(3);
 		FireSwordLeftAnimation.SetDelayCount(3);
 		FireCircle.SetDelayCount(3);
+		Fire1.SetDelayCount(3);
+		Fire2.SetDelayCount(3);
+		Fire3.SetDelayCount(3);
 		SetAttackDelayCount = AttackDelayCount = DashColdDown = 15;
 		ShowGoldDelayCount = 0;
 		RollDelayCount = 15;
@@ -281,6 +284,27 @@ namespace game_framework {
 		FireCircle.AddBitmap(IDB_FIRECIRCLE_4, RGB(63, 72, 204));
 		FireCircle.AddBitmap(IDB_FIRECIRCLE_5, RGB(63, 72, 204));
 
+		Fire1.AddBitmap(IDB_FIRE_0, RGB(63, 72, 204));
+		Fire1.AddBitmap(IDB_FIRE_1, RGB(63, 72, 204));
+		Fire1.AddBitmap(IDB_FIRE_2, RGB(63, 72, 204));
+		Fire1.AddBitmap(IDB_FIRE_3, RGB(63, 72, 204));
+		Fire1.AddBitmap(IDB_FIRE_4, RGB(63, 72, 204));
+		Fire1.AddBitmap(IDB_FIRE_5, RGB(63, 72, 204));
+		
+		Fire2.AddBitmap(IDB_FIRE_0, RGB(63, 72, 204));
+		Fire2.AddBitmap(IDB_FIRE_1, RGB(63, 72, 204));
+		Fire2.AddBitmap(IDB_FIRE_2, RGB(63, 72, 204));
+		Fire2.AddBitmap(IDB_FIRE_3, RGB(63, 72, 204));
+		Fire2.AddBitmap(IDB_FIRE_4, RGB(63, 72, 204));
+		Fire2.AddBitmap(IDB_FIRE_5, RGB(63, 72, 204));
+
+		Fire3.AddBitmap(IDB_FIRE_0, RGB(63, 72, 204));
+		Fire3.AddBitmap(IDB_FIRE_1, RGB(63, 72, 204));
+		Fire3.AddBitmap(IDB_FIRE_2, RGB(63, 72, 204));
+		Fire3.AddBitmap(IDB_FIRE_3, RGB(63, 72, 204));
+		Fire3.AddBitmap(IDB_FIRE_4, RGB(63, 72, 204));
+		Fire3.AddBitmap(IDB_FIRE_5, RGB(63, 72, 204));
+
 		LifeBarHead.LoadBitmap(IDB_LIFEBARHEAD, RGB(255, 255, 255));
 		StartGameBar.LoadBitmap(IDB_UI_GAME_START);
 		WorldMap_UI_1.LoadBitmap(IDB_WORLDMAP_UI);
@@ -347,6 +371,10 @@ namespace game_framework {
 		FireSwordRightAnimation.OnMove();
 		FireSwordLeftAnimation.OnMove();
 		FireCircle.OnMove();
+		Fire1.OnMove();
+		Fire2.OnMove();
+		Fire3.OnMove();
+		if (SpecialEffectCount == 0) SpecialEffect = 0;			//被攻擊3次後，特殊效果消失
 		if (ShowGoldDelayCount > 0) ShowGoldDelayCount--;
 		if(AttackDelayCount !=0) AttackDelayCount--;    //攻速
 		if (RollDelayCount != 0) RollDelayCount--;		//翻滾
@@ -634,7 +662,30 @@ namespace game_framework {
 		//處理劍的顯示
 		if (SpecialEffect == 1)
 		{
-			FireCircle.SetTopLeft(currentMap->ScreenX(x), currentMap->ScreenY(y));
+			switch (SpecialEffectCount)
+			{
+			case 3:
+				Fire1.SetTopLeft(currentMap->ScreenX(x - 30), currentMap->ScreenY(y));
+				Fire2.SetTopLeft(currentMap->ScreenX(x + 45), currentMap->ScreenY(y));
+				Fire3.SetTopLeft(currentMap->ScreenX(x + 10), currentMap->ScreenY(y - 45));
+				Fire1.OnShow();
+				Fire2.OnShow();
+				Fire3.OnShow();
+				break;
+			case 2:
+				Fire1.SetTopLeft(currentMap->ScreenX(x - 30), currentMap->ScreenY(y));
+				Fire2.SetTopLeft(currentMap->ScreenX(x + 45), currentMap->ScreenY(y));
+				Fire1.OnShow();
+				Fire2.OnShow();
+				break;
+			case 1:
+				Fire1.SetTopLeft(currentMap->ScreenX(x - 30), currentMap->ScreenY(y));
+				Fire1.OnShow();
+				break;
+			default:
+				break;
+			}
+			FireCircle.SetTopLeft(currentMap->ScreenX(x), currentMap->ScreenY(y + 5));
 			FireCircle.OnShow();
 		}
 		if (isAttacking)
@@ -875,6 +926,7 @@ namespace game_framework {
 
 		if (CurrentHP != hp)
 		{
+			if (SpecialEffectCount > 0) SpecialEffectCount -= 1;
 			isInvincible = true;
 			InvincibleDelayCount = 30;
 		}
@@ -884,7 +936,7 @@ namespace game_framework {
 	int CHero::HeroGetItem()
 	{
 		int Coin = Gold;
-		currentWild->HeroGetItem(&Gold, &SpecialEffect, &CurrentHP, FullHP);
+		currentWild->HeroGetItem(&Gold, &SpecialEffect, &SpecialEffectCount, &CurrentHP, FullHP);
 		if (Coin < Gold && (Gold - Coin)>=10)
 		{
 			//TRACE("%d\n",Gold-Coin);

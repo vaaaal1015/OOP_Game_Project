@@ -271,7 +271,7 @@ namespace game_framework {
 		for (vector<CEnemy*>::iterator i = allEnemy.begin(); i != allEnemy.end(); i++) (*i)->AttackByEnemy(heroHP);
 	}
 
-	void gameMap_Lv1::HeroGetItem(int *HeroCoin, int *SpecialEffect, int *HeroHP,int FullHP)
+	void gameMap_Lv1::HeroGetItem(int *HeroCoin, int *SpecialEffect, int *SpecialEffectCount, int *HeroHP,int FullHP)
 	{
 		vector<Item*>::iterator iter = allItem.begin();
 		while (iter != allItem.end())
@@ -283,6 +283,7 @@ namespace game_framework {
 				{
 				case 1:						//¤õµK¥Û
 					*SpecialEffect = 1;
+					*SpecialEffectCount = 3;
 					delete *iter;
 					iter = allItem.erase(iter);
 					break;
@@ -448,7 +449,7 @@ namespace game_framework {
 		HeroX2 = x2;
 		HeroY2 = y2;
 	}
-	void gameMap_Lv2::HeroGetItem(int *HeroCoin, int *SpecialEffect, int *HeroHP, int FullHP)
+	void gameMap_Lv2::HeroGetItem(int *HeroCoin, int *SpecialEffect, int *SpecialEffectCount, int *HeroHP, int FullHP)
 	{
 		vector<Item*>::iterator iter = allItem.begin();
 		while (iter != allItem.end())
@@ -460,6 +461,7 @@ namespace game_framework {
 				{
 				case 1:						//¤õµK¥Û
 					*SpecialEffect = 1;
+					*SpecialEffectCount = 3;
 					delete *iter;
 					iter = allItem.erase(iter);
 					break;

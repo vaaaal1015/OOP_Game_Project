@@ -556,6 +556,12 @@
     <Image Include="RES\Special_Effect\FireCircle\AttributeAbilityVfx_27.bmp" />
     <Image Include="RES\Special_Effect\FireCircle\AttributeAbilityVfx_28.bmp" />
     <Image Include="RES\Special_Effect\FireCircle\AttributeAbilityVfx_29.bmp" />
+    <Image Include="RES\Special_Effect\Fire\AttributeAbilityVfx_0.bmp" />
+    <Image Include="RES\Special_Effect\Fire\AttributeAbilityVfx_1.bmp" />
+    <Image Include="RES\Special_Effect\Fire\AttributeAbilityVfx_2.bmp" />
+    <Image Include="RES\Special_Effect\Fire\AttributeAbilityVfx_3.bmp" />
+    <Image Include="RES\Special_Effect\Fire\AttributeAbilityVfx_4.bmp" />
+    <Image Include="RES\Special_Effect\Fire\AttributeAbilityVfx_5.bmp" />
     <Image Include="RES\Special_Effect\Left_Mode_0\Left_Mode_0.bmp" />
     <Image Include="RES\Special_Effect\Left_Mode_0\Left_Mode_1.bmp" />
     <Image Include="RES\Special_Effect\Left_Mode_0\Left_Mode_2.bmp" />
