@@ -494,6 +494,16 @@
     <Image Include="RES\mapSlideleftButtom.bmp" />
     <Image Include="RES\mapSlideleftButtom2.bmp" />
     <Image Include="RES\map_background.bmp" />
+    <Image Include="RES\Map_Object\Box.bmp" />
+    <Image Include="RES\Map_Object\Door.bmp" />
+    <Image Include="RES\Map_Object\Pop-Up Spike_0.bmp" />
+    <Image Include="RES\Map_Object\Pop-Up Spike_1.bmp" />
+    <Image Include="RES\Map_Object\Pop-Up Spike_2.bmp" />
+    <Image Include="RES\Map_Object\Pop-Up Spike_3.bmp" />
+    <Image Include="RES\Map_Object\Push_Button_Down.bmp" />
+    <Image Include="RES\Map_Object\Push_Button_Up.bmp" />
+    <Image Include="RES\Map_Object\Switch_Off.bmp" />
+    <Image Include="RES\Map_Object\Switch_On.bmp" />
     <Image Include="RES\NPC\Giraffe\Giraffe Smith_0.bmp" />
     <Image Include="RES\NPC\Giraffe\Giraffe Smith_1.bmp" />
     <Image Include="RES\NPC\Giraffe\Giraffe Smith_2.bmp" />

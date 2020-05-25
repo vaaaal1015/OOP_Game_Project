@@ -198,6 +198,7 @@ namespace game_framework {
 		allEnemy.push_back(new CEnemy_sunFlower(this, 1950, 20));
 		allEnemy.push_back(new CEnemy_Cactus(this, 2400, 405));
 		allEnemy.push_back(new CEnemy_Cactus(this, 2550, 405));
+		allObject.push_back(new Switch(this, 600, 350, true, true, true));
 		allItem.push_back(new Item_Fire_Stone(this, 300, 350, ItemExistTime));
 		allItem.back()->LoadBitmap();
 		allItem.push_back(new Item_RedPot_Small(this, 500, 350, ItemExistTime));
@@ -212,12 +213,14 @@ namespace game_framework {
 	{
 		for (vector<CEnemy*>::iterator i = allEnemy.begin(); i != allEnemy.end(); i++) delete (*i);
 		for (vector<Item*>::iterator i = allItem.begin(); i != allItem.end(); i++) delete (*i);
+		for (vector<MapObject*>::iterator i = allObject.begin(); i != allObject.end(); i++) delete(*i);
 	}
 
 	void gameMap_Lv1::LoadBitmap()
 	{
 		gameMap::LoadBitmap();
 		for (vector<CEnemy*>::iterator i = allEnemy.begin(); i != allEnemy.end(); i++) (*i)->LoadBitmap();
+		for (vector<MapObject*>::iterator i = allObject.begin(); i != allObject.end(); i++) (*i)->LoadBitmap();
 	}
 
 	void gameMap_Lv1::OnShow()
@@ -225,6 +228,7 @@ namespace game_framework {
 		gameMap::OnShow();
 		for (vector<CEnemy*>::iterator i = allEnemy.begin(); i != allEnemy.end(); i++) (*i)->OnShow();
 		for (vector<Item*>::iterator i = allItem.begin(); i != allItem.end(); i++) (*i)->OnShow();
+		for (vector<MapObject*>::iterator i = allObject.begin(); i != allObject.end(); i++) (*i)->OnShow();
 
 	}
 
@@ -249,6 +253,7 @@ namespace game_framework {
 		}
 		for (vector<Item*>::iterator i = allItem.begin(); i != allItem.end(); i++) (*i)->OnMove();
 		for (vector<CEnemy*>::iterator i = allEnemy.begin(); i != allEnemy.end(); i++) (*i)->OnMove();
+		for (vector<MapObject*>::iterator i = allObject.begin(); i != allObject.end(); i++) (*i)->OnMove();
 	}
 
 	void gameMap_Lv1::setHeroState(int x1, int x2, int y1, int y2, int HP, int Gold, int AttackDamage, int Level)
@@ -258,12 +263,17 @@ namespace game_framework {
 
 	void gameMap_Lv1::SetHeroAttackRange(int x1, int x2, int y1, int y2)
 	{
+		HeroAttackX1 = x1;
+		HeroAttackY1 = y1;
+		HeroAttackX2 = x2;
+		HeroAttackY2 = y2;
 		for (vector<CEnemy*>::iterator i = allEnemy.begin(); i != allEnemy.end(); i++) (*i)->SetHeroAttackRange(x1, x2, y1, y2);
 	}
 
 	void gameMap_Lv1::AttackByHero(const int damage)		// §ðÀ»
 	{
 		for (vector<CEnemy*>::iterator i = allEnemy.begin(); i != allEnemy.end(); i++) (*i)->GetAttack(damage);
+		for (vector<MapObject*>::iterator i = allObject.begin(); i != allObject.end(); i++) (*i)->GetAttack(HeroAttackX1, HeroAttackY1, HeroAttackX2, HeroAttackY2);
 	}
 
 	void gameMap_Lv1::AttackByEnemy(int *heroHP)
@@ -381,18 +391,22 @@ namespace game_framework {
 	gameMap_Lv2::~gameMap_Lv2()
 	{
 		for (vector<CEnemy*>::iterator i = allEnemy.begin(); i != allEnemy.end(); i++) delete (*i);
+		for (vector<Item*>::iterator i = allItem.begin(); i != allItem.end(); i++) delete (*i);
+		for (vector<MapObject*>::iterator i = allObject.begin(); i != allObject.end(); i++) delete(*i);
 	}
 
 	void gameMap_Lv2::LoadBitmap()
 	{
 		gameMap::LoadBitmap();
 		for (vector<CEnemy*>::iterator i = allEnemy.begin(); i != allEnemy.end(); i++) (*i)->LoadBitmap();
+		for (vector<MapObject*>::iterator i = allObject.begin(); i != allObject.end(); i++) (*i)->LoadBitmap();
 	}
-
 	void gameMap_Lv2::OnShow()
 	{
 		gameMap::OnShow();
 		for (vector<CEnemy*>::iterator i = allEnemy.begin(); i != allEnemy.end(); i++) (*i)->OnShow();
+		for (vector<Item*>::iterator i = allItem.begin(); i != allItem.end(); i++) (*i)->OnShow();
+		for (vector<MapObject*>::iterator i = allObject.begin(); i != allObject.end(); i++) (*i)->OnShow();
 	}
 
 	void gameMap_Lv2::OnMove() {
@@ -413,8 +427,9 @@ namespace game_framework {
 			else
 				iter++;
 		}
-
+		for (vector<Item*>::iterator i = allItem.begin(); i != allItem.end(); i++) (*i)->OnMove();
 		for (vector<CEnemy*>::iterator i = allEnemy.begin(); i != allEnemy.end(); i++) (*i)->OnMove();
+		for (vector<MapObject*>::iterator i = allObject.begin(); i != allObject.end(); i++) (*i)->OnMove();
 	}
 
 	void gameMap_Lv2::setHeroState(int x1, int x2, int y1, int y2, int HP, int Gold, int AttackDamage, int Level)
@@ -429,6 +444,7 @@ namespace game_framework {
 
 	void gameMap_Lv2::AttackByHero(const int damage)		// §ðÀ»
 	{
+		for (vector<MapObject*>::iterator i = allObject.begin(); i != allObject.end(); i++) (*i)->GetAttack(HeroX1, HeroY1, HeroX2, HeroY2);
 		for (vector<CEnemy*>::iterator i = allEnemy.begin(); i != allEnemy.end(); i++) (*i)->GetAttack(damage);
 	}
 
@@ -591,6 +607,10 @@ namespace game_framework {
 	void Item_Bronze_Coin::LoadBitmap()
 	{
 		animation.AddBitmap(IDB_BRONZECOIN_0, RGB(0, 162, 232));
+		animation.AddBitmap(IDB_BRONZECOIN_1, RGB(0, 162, 232));
+		animation.AddBitmap(IDB_BRONZECOIN_2, RGB(0, 162, 232));
+		animation.AddBitmap(IDB_BRONZECOIN_3, RGB(0, 162, 232));
+
 	}
 	
 	int Item_Bronze_Coin::GetItemValue()
@@ -608,6 +628,9 @@ namespace game_framework {
 	void Item_Silver_Coin::LoadBitmap()
 	{
 		animation.AddBitmap(IDB_SILVERCOIN_0, RGB(0, 162, 232));
+		animation.AddBitmap(IDB_SILVERCOIN_1, RGB(0, 162, 232));
+		animation.AddBitmap(IDB_SILVERCOIN_2, RGB(0, 162, 232));
+		animation.AddBitmap(IDB_SILVERCOIN_3, RGB(0, 162, 232));
 	}
 
 	int Item_Silver_Coin::GetItemValue()
@@ -625,6 +648,9 @@ namespace game_framework {
 	void Item_Golden_Coin::LoadBitmap()
 	{
 		animation.AddBitmap(IDB_GOLDCOIN_0, RGB(0, 162, 232));
+		animation.AddBitmap(IDB_GOLDCOIN_1, RGB(0, 162, 232));
+		animation.AddBitmap(IDB_GOLDCOIN_2, RGB(0, 162, 232));
+		animation.AddBitmap(IDB_GOLDCOIN_3, RGB(0, 162, 232));
 	}
 
 	int Item_Golden_Coin::GetItemValue()
@@ -699,5 +725,79 @@ namespace game_framework {
 	int Item_RedPot_Full::GetItemValue()
 	{
 		return 4;
+	}
+
+	/////////////////////////////////////////////////////////////////////////////
+	// MapObject
+	/////////////////////////////////////////////////////////////////////////////
+	MapObject::MapObject(gameMap* point, int nx, int ny, bool CanbeMoved, bool CanBeAttacked, bool BetouchedByHero)
+	{
+		x = nx;
+		y = ny;
+		currentMap = point;
+		ObjectCanBeMoved = CanbeMoved;
+		ObjectCanBeAttacked = CanBeAttacked;
+		ObjectCanBeTouchedByHero = BetouchedByHero;
+	}
+
+	/////////////////////////////////////////////////////////////////////////////
+	// class Switch : class MapObject
+	/////////////////////////////////////////////////////////////////////////////
+	Switch::Switch(gameMap* point, int nx, int ny, bool CanbeMoved, bool CanBeAttacked, bool BetouchedByHero) : MapObject(point, nx, ny, CanbeMoved, CanBeAttacked, BetouchedByHero) {}
+	
+	Switch::~Switch(){}
+
+	int Switch::GetX1()
+	{
+		return x;
+	}
+
+	int Switch::GetY1()
+	{
+		return y;
+	}
+
+	int Switch::GetX2()
+	{
+		return x + SwitchOff.Width();
+	}
+
+	int Switch::GetY2()
+	{
+		return y + SwitchOff.Height();
+	}
+
+	void Switch::LoadBitmap()
+	{
+		SwitchOff.LoadBitmap(IDB_SWITCH_OFF, RGB(255, 255, 255));
+		SwitchOn.LoadBitmap(IDB_SWITCH_ON, RGB(255, 255, 255));
+	}
+
+	void Switch::OnMove()
+	{
+		if (GetHitDelayCount > 0) GetHitDelayCount--;
+	}
+
+	void Switch::OnShow()
+	{
+		if (SwitchState)
+		{
+			SwitchOn.SetTopLeft(currentMap->ScreenX(x), currentMap->ScreenY(y));
+			SwitchOn.ShowBitmap();
+		}
+		else
+		{
+			SwitchOff.SetTopLeft(currentMap->ScreenX(x), currentMap->ScreenY(y));
+			SwitchOff.ShowBitmap();
+		}
+	}
+	void Switch::GetAttack(int HeroX1, int HeroY1, int HeroX2, int HeroY2)
+	{
+		if ((GetX2() >= HeroX1) && (HeroX2 >= GetX1()) && (GetY2() >= HeroY1) && (HeroY2 >= GetY1()) && GetHitDelayCount == 0)
+		{
+			SwitchState = !SwitchState;
+			CAudio::Instance()->Play(11, false);
+			GetHitDelayCount = 15;
+		}
 	}
 }

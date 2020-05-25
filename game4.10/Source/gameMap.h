@@ -2,6 +2,7 @@ namespace game_framework {
 	class NPC;
 	class CEnemy;
 	class Item;
+	class MapObject;
 	class gameMap {
 	public:
 		gameMap(string fileName);
@@ -60,7 +61,6 @@ namespace game_framework {
 		virtual bool GetisStageClear() = 0;
 		virtual void HeroGetItem(int *HeroGold ,int *SpecialEffect, int *SpecialEffectCount, int *HeroHP, int FullHP) = 0;
 		virtual void SetHeroXY(int x1, int x2, int y1, int y2) = 0;				// 設定英雄位置
-		
 	};
 
 	class gameMap_Lv1 : public gameMap_wild {
@@ -83,10 +83,15 @@ namespace game_framework {
 		int HeroY1;
 		int HeroX2;
 		int HeroY2;
+		int HeroAttackX1;
+		int HeroAttackY1;
+		int HeroAttackX2;
+		int HeroAttackY2;
 		int ItemExistTime = 300;
 	private:
 		vector<CEnemy*> allEnemy;
 		vector<Item*> allItem;
+		vector<MapObject*> allObject;
 		bool isStageClear = false;
 		void DropItem(int x, int y);
 	};
@@ -95,7 +100,6 @@ namespace game_framework {
 	public:
 		gameMap_Lv2();
 		~gameMap_Lv2();
-
 		void LoadBitmap();    //載入地圖
 		void OnShow();		  //顯示地圖
 		void OnMove();
@@ -111,10 +115,15 @@ namespace game_framework {
 		int HeroY1;
 		int HeroX2;
 		int HeroY2;
+		int HeroAttackX1;
+		int HeroAttackY1;
+		int HeroAttackX2;
+		int HeroAttackY2;
 		int ItemExistTime = 300;
 	private:
 		vector<CEnemy*> allEnemy;
 		bool isStageClear = false;
+		vector<MapObject*> allObject;
 		vector<Item*> allItem;
 		void DropItem(int x, int y);
 	};
@@ -203,5 +212,47 @@ namespace game_framework {
 		~Item_RedPot_Full();
 		void LoadBitmap();				// 載入圖形
 		int GetItemValue();
+	};
+
+	class MapObject
+	{
+	public:
+		MapObject(gameMap* point, int nx, int ny, bool CanBeMoved, bool CanBeAttacked, bool BetouchedByHero);
+		virtual ~MapObject() = default;
+		virtual int GetX1() = 0;					// 物品左上角 x 座標
+		virtual int GetY1() = 0;					// 物品左上角 y 座標
+		virtual int GetX2() = 0;					// 物品右下角 x 座標
+		virtual int GetY2() = 0;					// 物品右下角 y 座標
+		virtual void OnMove() = 0;					// 移動物品
+		virtual void OnShow() = 0;					// 將物品圖形貼到畫面
+		virtual void LoadBitmap() = 0;
+		virtual void GetAttack(int HeroX1, int HeroY1, int HeroX2, int HeroY2) = 0;
+	protected:
+		int x;
+		int y;
+		bool ObjectCanBeMoved;
+		bool ObjectCanBeAttacked;
+		bool ObjectCanBeTouchedByHero;
+		gameMap *currentMap;
+	};
+
+	class Switch : public MapObject
+	{
+	public:
+		Switch(gameMap* point, int nx, int ny, bool CanbeMoved, bool CanBeAttacked, bool BetouchedByHero);
+		~Switch();
+		int GetX1();
+		int GetY1();
+		int GetX2();
+		int GetY2();
+		void OnMove();
+		void OnShow();
+		void LoadBitmap();
+		void GetAttack(int HeroX1, int HeroY1, int HeroX2, int HeroY2);
+	private:
+		CMovingBitmap SwitchOn;
+		CMovingBitmap SwitchOff;
+		int GetHitDelayCount = 0;
+		bool SwitchState = false;		//預設為off
 	};
 }

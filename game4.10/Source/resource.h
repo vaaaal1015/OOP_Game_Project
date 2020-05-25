@@ -397,6 +397,17 @@
 #define IDB_FIRE_4                      466
 #define IDB_BITMAP70                    467
 #define IDB_FIRE_5                      467
+#define IDB_BOX                         468
+#define IDB_DOOR                        469
+#define IDB_POPUPSPIKE_0                470
+#define IDB_POPUPSPIKE_1                471
+#define IDB_POPUPSPIKE_2                472
+#define IDB_POPUPSPIKE_3                473
+#define IDB_PUSHBUTTONDOWN              474
+#define IDB_PUSHBUTTONUP                475
+#define IDB_SWITCH_OFF                  476
+#define IDB_BITMAP75                    477
+#define IDB_SWITCH_ON                   477
 #define IDC_README                      1001
 #define ID_FILE_PAUSE                   32771
 #define ID_TOGGLE_FULLSCREEN            32772
@@ -409,7 +420,7 @@
 #ifdef APSTUDIO_INVOKED
 #ifndef APSTUDIO_READONLY_SYMBOLS
 #define _APS_3D_CONTROLS                     1
-#define _APS_NEXT_RESOURCE_VALUE        468
+#define _APS_NEXT_RESOURCE_VALUE        478
 #define _APS_NEXT_COMMAND_VALUE         32776
 #define _APS_NEXT_CONTROL_VALUE         1003
 #define _APS_NEXT_SYMED_VALUE           101

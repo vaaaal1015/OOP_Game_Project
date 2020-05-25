@@ -1110,5 +1110,35 @@
     <Image Include="RES\Special_Effect\Fire\AttributeAbilityVfx_5.bmp">
       <Filter>Resource Files</Filter>
     </Image>
+    <Image Include="RES\Map_Object\Box.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\Map_Object\Door.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\Map_Object\Pop-Up Spike_0.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\Map_Object\Pop-Up Spike_1.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\Map_Object\Pop-Up Spike_2.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\Map_Object\Pop-Up Spike_3.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\Map_Object\Push_Button_Down.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\Map_Object\Push_Button_Up.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\Map_Object\Switch_Off.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\Map_Object\Switch_On.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
   </ItemGroup>
 </Project>

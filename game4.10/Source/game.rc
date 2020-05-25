@@ -698,6 +698,26 @@ IDB_FIRE_4              BITMAP                  "..\\RES\\Special_Effect\\Fire\\
 
 IDB_FIRE_5              BITMAP                  "..\\RES\\Special_Effect\\Fire\\AttributeAbilityVfx_5.bmp"
 
+IDB_BOX                 BITMAP                  "..\\RES\\Map_Object\\Box.bmp"
+
+IDB_DOOR                BITMAP                  "..\\RES\\Map_Object\\Door.bmp"
+
+IDB_POPUPSPIKE_0        BITMAP                  "..\\RES\\Map_Object\\Pop-Up Spike_0.bmp"
+
+IDB_POPUPSPIKE_1        BITMAP                  "..\\RES\\Map_Object\\Pop-Up Spike_1.bmp"
+
+IDB_POPUPSPIKE_2        BITMAP                  "..\\RES\\Map_Object\\Pop-Up Spike_2.bmp"
+
+IDB_POPUPSPIKE_3        BITMAP                  "..\\RES\\Map_Object\\Pop-Up Spike_3.bmp"
+
+IDB_PUSHBUTTONDOWN      BITMAP                  "..\\RES\\Map_Object\\Push_Button_Down.bmp"
+
+IDB_PUSHBUTTONUP        BITMAP                  "..\\RES\\Map_Object\\Push_Button_Up.bmp"
+
+IDB_SWITCH_OFF          BITMAP                  "..\\RES\\Map_Object\\Switch_Off.bmp"
+
+IDB_SWITCH_ON           BITMAP                  "..\\RES\\Map_Object\\Switch_On.bmp"
+
 
 /////////////////////////////////////////////////////////////////////////////
 //
