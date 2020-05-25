@@ -198,7 +198,11 @@ namespace game_framework {
 		allEnemy.push_back(new CEnemy_sunFlower(this, 1950, 20));
 		allEnemy.push_back(new CEnemy_Cactus(this, 2400, 405));
 		allEnemy.push_back(new CEnemy_Cactus(this, 2550, 405));
-		allObject.push_back(new Switch(this, 600, 350, true, true, true));
+		allObject.push_back(new Switch(this, 600, 350, true, true, true, 1));
+		allObject.push_back(new Spike(this, 800, 350, true, true, true, -1));
+		allObject.push_back(new Spike(this, 820, 350, true, true, true, -1));
+		allObject.push_back(new Spike(this, 840, 350, true, true, true, -1));
+		allObject.push_back(new Spike(this, 860, 350, true, true, true, -1));
 		allItem.push_back(new Item_Fire_Stone(this, 300, 350, ItemExistTime));
 		allItem.back()->LoadBitmap();
 		allItem.push_back(new Item_RedPot_Small(this, 500, 350, ItemExistTime));
@@ -234,6 +238,7 @@ namespace game_framework {
 
 	void gameMap_Lv1::OnMove() {
 		vector<CEnemy*>::iterator iter = allEnemy.begin();
+		MapObjectInteration();
 		while (iter != allEnemy.end())         //敵人死亡會從vector裡被刪除
 		{
 			if ((*iter)->isDead() && (*iter)->GetEnemyType() == "Statue")
@@ -279,6 +284,7 @@ namespace game_framework {
 	void gameMap_Lv1::AttackByEnemy(int *heroHP)
 	{
 		for (vector<CEnemy*>::iterator i = allEnemy.begin(); i != allEnemy.end(); i++) (*i)->AttackByEnemy(heroHP);
+		for (vector<MapObject*>::iterator i = allObject.begin(); i != allObject.end(); i++) (*i)->AttackByObject(HeroX1, HeroY1, HeroX2, HeroY2, heroHP);
 	}
 
 	void gameMap_Lv1::HeroGetItem(int *HeroCoin, int *SpecialEffect, int *SpecialEffectCount, int *HeroHP,int FullHP)
@@ -378,6 +384,20 @@ namespace game_framework {
 		HeroY1 = y1;
 		HeroX2 = x2;
 		HeroY2 = y2;
+	}
+
+	void gameMap_Lv1::MapObjectInteration()
+	{
+		for (vector<MapObject*>::iterator i = allObject.begin(); i != allObject.end(); i++)
+		{
+			for (vector<MapObject*>::iterator j = i; j != allObject.end(); j++)
+			{
+				if ((*i)->GetInterationCode() == ((-1)*(*j)->GetInterationCode()))
+				{
+					(*j)->SetState((*i)->GetState());
+				}
+			}
+		}
 	}
 	/////////////////////////////////////////////////////////////////////////////
 	// gameMap_Lv2 : gameMap_Lv2 class
@@ -730,7 +750,7 @@ namespace game_framework {
 	/////////////////////////////////////////////////////////////////////////////
 	// MapObject
 	/////////////////////////////////////////////////////////////////////////////
-	MapObject::MapObject(gameMap* point, int nx, int ny, bool CanbeMoved, bool CanBeAttacked, bool BetouchedByHero)
+	MapObject::MapObject(gameMap* point, int nx, int ny, bool CanbeMoved, bool CanBeAttacked, bool BetouchedByHero, int SetInterationCode)
 	{
 		x = nx;
 		y = ny;
@@ -738,12 +758,13 @@ namespace game_framework {
 		ObjectCanBeMoved = CanbeMoved;
 		ObjectCanBeAttacked = CanBeAttacked;
 		ObjectCanBeTouchedByHero = BetouchedByHero;
+		InterationCode = SetInterationCode;
 	}
 
 	/////////////////////////////////////////////////////////////////////////////
 	// class Switch : class MapObject
 	/////////////////////////////////////////////////////////////////////////////
-	Switch::Switch(gameMap* point, int nx, int ny, bool CanbeMoved, bool CanBeAttacked, bool BetouchedByHero) : MapObject(point, nx, ny, CanbeMoved, CanBeAttacked, BetouchedByHero) {}
+	Switch::Switch(gameMap* point, int nx, int ny, bool CanbeMoved, bool CanBeAttacked, bool BetouchedByHero, int SetInterationCode) : MapObject(point, nx, ny, CanbeMoved, CanBeAttacked, BetouchedByHero, SetInterationCode) {}
 	
 	Switch::~Switch(){}
 
@@ -798,6 +819,98 @@ namespace game_framework {
 			SwitchState = !SwitchState;
 			CAudio::Instance()->Play(11, false);
 			GetHitDelayCount = 15;
+		}
+	}
+	int Switch::GetInterationCode()
+	{
+		return InterationCode;
+	}
+
+	void Switch::SetState(bool State)
+	{
+		SwitchState = State;
+	}
+
+	bool Switch::GetState()
+	{
+		return SwitchState;
+	}
+
+	void Switch::AttackByObject(int HeroX1, int HeroY1, int HeroX2, int HeroY2, int *heroHP)
+	{
+	}
+	/////////////////////////////////////////////////////////////////////////////
+	// class Spike : class MapObject
+	/////////////////////////////////////////////////////////////////////////////
+	Spike::Spike(gameMap* point, int nx, int ny, bool CanbeMoved, bool CanBeAttacked, bool BetouchedByHero, int SetInterationCode) : MapObject(point, nx, ny, CanbeMoved, CanBeAttacked, BetouchedByHero, SetInterationCode) {}
+
+	Spike::~Spike() {}
+
+	int Spike::GetX1()
+	{
+		return x;
+	}
+
+	int Spike::GetY1()
+	{
+		return y;
+	}
+
+	int Spike::GetX2()
+	{
+		return x + SpikeUp.Width();
+	}
+
+	int Spike::GetY2()
+	{
+		return y + SpikeUp.Height();
+	}
+
+	void Spike::LoadBitmap()
+	{
+		SpikeDown.LoadBitmap(IDB_POPUPSPIKE_3, RGB(63, 72, 204));
+		SpikeUp.LoadBitmap(IDB_POPUPSPIKE_0, RGB(63, 72, 204));
+	}
+
+	void Spike::OnMove()
+	{
+	}
+
+	void Spike::OnShow()
+	{
+		if (SpikeState)
+		{
+			SpikeUp.SetTopLeft(currentMap->ScreenX(x), currentMap->ScreenY(y));
+			SpikeUp.ShowBitmap();
+		}
+		else
+		{
+			SpikeDown.SetTopLeft(currentMap->ScreenX(x), currentMap->ScreenY(y));
+			SpikeDown.ShowBitmap();
+		}
+	}
+	void Spike::GetAttack(int HeroX1, int HeroY1, int HeroX2, int HeroY2)
+	{
+	}
+	int Spike::GetInterationCode()
+	{
+		return InterationCode;
+	}
+
+	void Spike::SetState(bool State)
+	{
+		SpikeState = State;
+	}
+
+	bool Spike::GetState()
+	{
+		return SpikeState;
+	}
+	void Spike::AttackByObject(int HeroX1, int HeroY1, int HeroX2, int HeroY2, int *heroHP)
+	{
+		if ((GetX2() >= HeroX1) && (HeroX2 >= GetX1()) && (GetY2() >= HeroY1) && (HeroY2 >= GetY1()) && SpikeState)
+		{
+			*heroHP -= SpikeDamage;
 		}
 	}
 }

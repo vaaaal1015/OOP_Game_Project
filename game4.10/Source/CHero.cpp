@@ -926,7 +926,14 @@ namespace game_framework {
 
 		if (CurrentHP != hp)
 		{
-			if (SpecialEffectCount > 0) SpecialEffectCount -= 1;
+			if (SpecialEffectCount > 0)
+			{
+				SpecialEffectCount -= 1;
+				if (SpecialEffectCount == 0 && SpecialEffect == 1)   //火焰石效果消失
+				{
+					heroAttackDamage /= 2;   //回歸原本的攻擊力
+				}
+			}
 			isInvincible = true;
 			InvincibleDelayCount = 30;
 		}
@@ -936,12 +943,14 @@ namespace game_framework {
 	int CHero::HeroGetItem()
 	{
 		int Coin = Gold;
+		int SpecialEffectDectect = SpecialEffect;
 		currentWild->HeroGetItem(&Gold, &SpecialEffect, &SpecialEffectCount, &CurrentHP, FullHP);
 		if (Coin < Gold && (Gold - Coin)>=10)
 		{
 			//TRACE("%d\n",Gold-Coin);
 			ShowGoldDelayCount = 30;
 		}
+		if (SpecialEffectDectect != SpecialEffect && SpecialEffect == 1) heroAttackDamage *= 2;  //火焰石攻擊力加倍
 		return Gold - Coin;
 	}
 
@@ -1024,6 +1033,9 @@ namespace game_framework {
 		CurrentHP = FullHP;
 		isInHome = true;
 		SelectMap(0);
+		if (SpecialEffect == 1 && SpecialEffectCount != 0) heroAttackDamage /= 2;
+		SpecialEffect = 0;
+		SpecialEffectCount = 0;
 		x = 0;    
 		y = 0;
 	}

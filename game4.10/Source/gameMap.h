@@ -94,6 +94,7 @@ namespace game_framework {
 		vector<MapObject*> allObject;
 		bool isStageClear = false;
 		void DropItem(int x, int y);
+		void MapObjectInteration();
 	};
 
 	class gameMap_Lv2 : public gameMap_wild {
@@ -126,6 +127,7 @@ namespace game_framework {
 		vector<MapObject*> allObject;
 		vector<Item*> allItem;
 		void DropItem(int x, int y);
+		void MapObjectInteration();
 	};
 
 	class Item
@@ -217,7 +219,7 @@ namespace game_framework {
 	class MapObject
 	{
 	public:
-		MapObject(gameMap* point, int nx, int ny, bool CanBeMoved, bool CanBeAttacked, bool BetouchedByHero);
+		MapObject(gameMap* point, int nx, int ny, bool CanBeMoved, bool CanBeAttacked, bool BetouchedByHero, int SetInterationCode);
 		virtual ~MapObject() = default;
 		virtual int GetX1() = 0;					// 物品左上角 x 座標
 		virtual int GetY1() = 0;					// 物品左上角 y 座標
@@ -227,6 +229,10 @@ namespace game_framework {
 		virtual void OnShow() = 0;					// 將物品圖形貼到畫面
 		virtual void LoadBitmap() = 0;
 		virtual void GetAttack(int HeroX1, int HeroY1, int HeroX2, int HeroY2) = 0;
+		virtual int GetInterationCode() = 0;
+		virtual void SetState(bool State) = 0;
+		virtual bool GetState() = 0;
+		virtual void AttackByObject(int HeroX1, int HeroY1, int HeroX2, int HeroY2, int *heroHP) = 0;
 	protected:
 		int x;
 		int y;
@@ -234,12 +240,13 @@ namespace game_framework {
 		bool ObjectCanBeAttacked;
 		bool ObjectCanBeTouchedByHero;
 		gameMap *currentMap;
+		int InterationCode = 0;			// 預設為0,用於跟其他地圖物件互動ex:-1 to 1 ;-5 to 5
 	};
 
 	class Switch : public MapObject
 	{
 	public:
-		Switch(gameMap* point, int nx, int ny, bool CanbeMoved, bool CanBeAttacked, bool BetouchedByHero);
+		Switch(gameMap* point, int nx, int ny, bool CanbeMoved, bool CanBeAttacked, bool BetouchedByHero, int SetInterationCode);
 		~Switch();
 		int GetX1();
 		int GetY1();
@@ -249,10 +256,40 @@ namespace game_framework {
 		void OnShow();
 		void LoadBitmap();
 		void GetAttack(int HeroX1, int HeroY1, int HeroX2, int HeroY2);
+		int GetInterationCode();
+		void SetState(bool State);
+		bool GetState();
+		void AttackByObject(int HeroX1, int HeroY1, int HeroX2, int HeroY2, int *heroHP);
 	private:
 		CMovingBitmap SwitchOn;
 		CMovingBitmap SwitchOff;
 		int GetHitDelayCount = 0;
 		bool SwitchState = false;		//預設為off
+		
+	};
+
+	class Spike : public MapObject
+	{
+	public:
+		Spike(gameMap* point, int nx, int ny, bool CanbeMoved, bool CanBeAttacked, bool BetouchedByHero, int SetInterationCode);
+		~Spike();
+		int GetX1();
+		int GetY1();
+		int GetX2();
+		int GetY2();
+		void OnMove();
+		void OnShow();
+		void LoadBitmap();
+		void GetAttack(int HeroX1, int HeroY1, int HeroX2, int HeroY2);
+		int GetInterationCode();
+		void SetState(bool State);
+		bool GetState();
+		void AttackByObject(int HeroX1, int HeroY1, int HeroX2, int HeroY2, int *heroHP);
+	private:
+		CMovingBitmap SpikeUp;
+		CMovingBitmap SpikeDown;
+		int GetHitDelayCount = 0;
+		bool SpikeState = true;		//預設為off
+		int SpikeDamage = 20;
 	};
 }
