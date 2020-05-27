@@ -198,11 +198,16 @@ namespace game_framework {
 		allEnemy.push_back(new CEnemy_sunFlower(this, 1950, 20));
 		allEnemy.push_back(new CEnemy_Cactus(this, 2400, 405));
 		allEnemy.push_back(new CEnemy_Cactus(this, 2550, 405));
-		allObject.push_back(new Switch(this, 600, 350, true, true, true, 1));
-		allObject.push_back(new Spike(this, 800, 350, true, true, true, -1));
-		allObject.push_back(new Spike(this, 820, 350, true, true, true, -1));
-		allObject.push_back(new Spike(this, 840, 350, true, true, true, -1));
-		allObject.push_back(new Spike(this, 860, 350, true, true, true, -1));
+		allObject.push_back(new Switch(this, 600, 350, true, 1));
+		allObject.push_back(new Spike(this, 800, 350, true, -1));
+		allObject.push_back(new Spike(this, 820, 350, true, -1));
+		allObject.push_back(new Spike(this, 840, 350, true, -1));
+		allObject.push_back(new Spike(this, 860, 350, true, -1));
+		allObject.push_back(new Switch(this, 1000, 350, true, 2));
+		allObject.push_back(new Spike(this, 1100, 350, true, -2));
+		allObject.push_back(new Spike(this, 1120, 350, true, -2));
+		allObject.push_back(new Spike(this, 1140, 350, true, -2));
+		allObject.push_back(new Spike(this, 1160, 350, true, -2));
 		allItem.push_back(new Item_Fire_Stone(this, 300, 350, ItemExistTime));
 		allItem.back()->LoadBitmap();
 		allItem.push_back(new Item_RedPot_Small(this, 500, 350, ItemExistTime));
@@ -406,6 +411,14 @@ namespace game_framework {
 	{
 		allEnemy.push_back(new CEnemy_sunFlower(this, 1000, 350));
 		allEnemy.push_back(new CEnemy_Statue(this, 2950, 290));
+		allObject.push_back(new Switch(this, 300, 420, true, 1));
+		allObject.push_back(new Spike(this, 400, 460, true, -1));
+		allObject.push_back(new Spike(this, 420, 460, true, -1));
+		allObject.push_back(new Spike(this, 440, 460, true, -1));
+		allObject.push_back(new Spike(this, 460, 460, true, -1));
+		allObject.push_back(new Spike(this, 480, 460, true, -1));
+		allObject.push_back(new Spike(this, 500, 460, true, -1));
+		allObject.push_back(new Spike(this, 520, 460, true, -1));
 	}
 
 	gameMap_Lv2::~gameMap_Lv2()
@@ -431,6 +444,7 @@ namespace game_framework {
 
 	void gameMap_Lv2::OnMove() {
 		vector<CEnemy*>::iterator iter = allEnemy.begin();
+		MapObjectInteration();
 		while (iter != allEnemy.end())         //敵人死亡會從vector裡被刪除
 		{
 			if ((*iter)->isDead() && (*iter)->GetEnemyType() == "Statue")
@@ -459,17 +473,22 @@ namespace game_framework {
 
 	void gameMap_Lv2::SetHeroAttackRange(int x1, int x2, int y1, int y2)
 	{
+		HeroAttackX1 = x1;				//設定hero的攻擊範圍
+		HeroAttackY1 = y1;
+		HeroAttackX2 = x2;
+		HeroAttackY2 = y2;
 		for (vector<CEnemy*>::iterator i = allEnemy.begin(); i != allEnemy.end(); i++) (*i)->SetHeroAttackRange(x1, x2, y1, y2);
 	}
 
 	void gameMap_Lv2::AttackByHero(const int damage)		// 攻擊
 	{
-		for (vector<MapObject*>::iterator i = allObject.begin(); i != allObject.end(); i++) (*i)->GetAttack(HeroX1, HeroY1, HeroX2, HeroY2);
+		for (vector<MapObject*>::iterator i = allObject.begin(); i != allObject.end(); i++) (*i)->GetAttack(HeroAttackX1, HeroAttackY1, HeroAttackX2, HeroAttackY2);
 		for (vector<CEnemy*>::iterator i = allEnemy.begin(); i != allEnemy.end(); i++) (*i)->GetAttack(damage);
 	}
 
 	void gameMap_Lv2::AttackByEnemy(int *heroHP)
 	{
+		for (vector<MapObject*>::iterator i = allObject.begin(); i != allObject.end(); i++) (*i)->AttackByObject(HeroX1, HeroY1, HeroX2, HeroY2, heroHP);
 		for (vector<CEnemy*>::iterator i = allEnemy.begin(); i != allEnemy.end(); i++) (*i)->AttackByEnemy(heroHP);
 	}
 
@@ -562,6 +581,20 @@ namespace game_framework {
 			break;
 		default:
 			break;
+		}
+	}
+
+	void gameMap_Lv2::MapObjectInteration()
+	{
+		for (vector<MapObject*>::iterator i = allObject.begin(); i != allObject.end(); i++)
+		{
+			for (vector<MapObject*>::iterator j = i; j != allObject.end(); j++)
+			{
+				if ((*i)->GetInterationCode() == ((-1)*(*j)->GetInterationCode()))
+				{
+					(*j)->SetState((*i)->GetState());
+				}
+			}
 		}
 	}
 	/////////////////////////////////////////////////////////////////////////////
@@ -750,21 +783,19 @@ namespace game_framework {
 	/////////////////////////////////////////////////////////////////////////////
 	// MapObject
 	/////////////////////////////////////////////////////////////////////////////
-	MapObject::MapObject(gameMap* point, int nx, int ny, bool CanbeMoved, bool CanBeAttacked, bool BetouchedByHero, int SetInterationCode)
+	MapObject::MapObject(gameMap* point, int nx, int ny, bool InitialState, int SetInterationCode)
 	{
 		x = nx;
 		y = ny;
 		currentMap = point;
-		ObjectCanBeMoved = CanbeMoved;
-		ObjectCanBeAttacked = CanBeAttacked;
-		ObjectCanBeTouchedByHero = BetouchedByHero;
 		InterationCode = SetInterationCode;
+		ObjectState = InitialState;
 	}
 
 	/////////////////////////////////////////////////////////////////////////////
 	// class Switch : class MapObject
 	/////////////////////////////////////////////////////////////////////////////
-	Switch::Switch(gameMap* point, int nx, int ny, bool CanbeMoved, bool CanBeAttacked, bool BetouchedByHero, int SetInterationCode) : MapObject(point, nx, ny, CanbeMoved, CanBeAttacked, BetouchedByHero, SetInterationCode) {}
+	Switch::Switch(gameMap* point, int nx, int ny, bool InitialState , int SetInterationCode) : MapObject(point, nx, ny, InitialState, SetInterationCode) {}
 	
 	Switch::~Switch(){}
 
@@ -801,7 +832,7 @@ namespace game_framework {
 
 	void Switch::OnShow()
 	{
-		if (SwitchState)
+		if (ObjectState)
 		{
 			SwitchOn.SetTopLeft(currentMap->ScreenX(x), currentMap->ScreenY(y));
 			SwitchOn.ShowBitmap();
@@ -816,7 +847,7 @@ namespace game_framework {
 	{
 		if ((GetX2() >= HeroX1) && (HeroX2 >= GetX1()) && (GetY2() >= HeroY1) && (HeroY2 >= GetY1()) && GetHitDelayCount == 0)
 		{
-			SwitchState = !SwitchState;
+			ObjectState = !ObjectState;
 			CAudio::Instance()->Play(11, false);
 			GetHitDelayCount = 15;
 		}
@@ -828,12 +859,12 @@ namespace game_framework {
 
 	void Switch::SetState(bool State)
 	{
-		SwitchState = State;
+		ObjectState = State;
 	}
 
 	bool Switch::GetState()
 	{
-		return SwitchState;
+		return ObjectState;
 	}
 
 	void Switch::AttackByObject(int HeroX1, int HeroY1, int HeroX2, int HeroY2, int *heroHP)
@@ -842,7 +873,7 @@ namespace game_framework {
 	/////////////////////////////////////////////////////////////////////////////
 	// class Spike : class MapObject
 	/////////////////////////////////////////////////////////////////////////////
-	Spike::Spike(gameMap* point, int nx, int ny, bool CanbeMoved, bool CanBeAttacked, bool BetouchedByHero, int SetInterationCode) : MapObject(point, nx, ny, CanbeMoved, CanBeAttacked, BetouchedByHero, SetInterationCode) {}
+	Spike::Spike(gameMap* point, int nx, int ny, bool InitialState , int SetInterationCode) : MapObject(point, nx, ny, InitialState, SetInterationCode) {}
 
 	Spike::~Spike() {}
 
@@ -878,7 +909,7 @@ namespace game_framework {
 
 	void Spike::OnShow()
 	{
-		if (SpikeState)
+		if (ObjectState)
 		{
 			SpikeUp.SetTopLeft(currentMap->ScreenX(x), currentMap->ScreenY(y));
 			SpikeUp.ShowBitmap();
@@ -899,16 +930,16 @@ namespace game_framework {
 
 	void Spike::SetState(bool State)
 	{
-		SpikeState = State;
+		ObjectState = State;
 	}
 
 	bool Spike::GetState()
 	{
-		return SpikeState;
+		return ObjectState;
 	}
 	void Spike::AttackByObject(int HeroX1, int HeroY1, int HeroX2, int HeroY2, int *heroHP)
 	{
-		if ((GetX2() >= HeroX1) && (HeroX2 >= GetX1()) && (GetY2() >= HeroY1) && (HeroY2 >= GetY1()) && SpikeState)
+		if ((GetX2() >= HeroX1) && (HeroX2 >= GetX1()) && (GetY2() >= HeroY1) && (HeroY2 >= GetY1()) && ObjectState)
 		{
 			*heroHP -= SpikeDamage;
 		}

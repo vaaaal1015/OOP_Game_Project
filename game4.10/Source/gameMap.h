@@ -219,7 +219,7 @@ namespace game_framework {
 	class MapObject
 	{
 	public:
-		MapObject(gameMap* point, int nx, int ny, bool CanBeMoved, bool CanBeAttacked, bool BetouchedByHero, int SetInterationCode);
+		MapObject(gameMap* point, int nx, int ny, bool InitialState, int SetInterationCode);
 		virtual ~MapObject() = default;
 		virtual int GetX1() = 0;					// 物品左上角 x 座標
 		virtual int GetY1() = 0;					// 物品左上角 y 座標
@@ -236,9 +236,7 @@ namespace game_framework {
 	protected:
 		int x;
 		int y;
-		bool ObjectCanBeMoved;
-		bool ObjectCanBeAttacked;
-		bool ObjectCanBeTouchedByHero;
+		bool ObjectState;
 		gameMap *currentMap;
 		int InterationCode = 0;			// 預設為0,用於跟其他地圖物件互動ex:-1 to 1 ;-5 to 5
 	};
@@ -246,7 +244,7 @@ namespace game_framework {
 	class Switch : public MapObject
 	{
 	public:
-		Switch(gameMap* point, int nx, int ny, bool CanbeMoved, bool CanBeAttacked, bool BetouchedByHero, int SetInterationCode);
+		Switch(gameMap* point, int nx, int ny, bool InitialState , int SetInterationCode);
 		~Switch();
 		int GetX1();
 		int GetY1();
@@ -264,14 +262,13 @@ namespace game_framework {
 		CMovingBitmap SwitchOn;
 		CMovingBitmap SwitchOff;
 		int GetHitDelayCount = 0;
-		bool SwitchState = false;		//預設為off
 		
 	};
 
 	class Spike : public MapObject
 	{
 	public:
-		Spike(gameMap* point, int nx, int ny, bool CanbeMoved, bool CanBeAttacked, bool BetouchedByHero, int SetInterationCode);
+		Spike(gameMap* point, int nx, int ny, bool InitialState , int SetInterationCode);
 		~Spike();
 		int GetX1();
 		int GetY1();
@@ -289,7 +286,6 @@ namespace game_framework {
 		CMovingBitmap SpikeUp;
 		CMovingBitmap SpikeDown;
 		int GetHitDelayCount = 0;
-		bool SpikeState = true;		//預設為off
 		int SpikeDamage = 20;
 	};
 }
