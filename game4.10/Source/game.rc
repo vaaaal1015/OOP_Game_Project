@@ -718,6 +718,18 @@ IDB_SWITCH_OFF          BITMAP                  "..\\RES\\Map_Object\\Switch_Off
 
 IDB_SWITCH_ON           BITMAP                  "..\\RES\\Map_Object\\Switch_On.bmp"
 
+IDB_SHIELD_0            BITMAP                  "..\\RES\\Special_Effect\\Shield_0.bmp"
+
+IDB_HIT_0               BITMAP                  "..\\RES\\Special_Effect\\Hit\\Hit_0.bmp"
+
+IDB_HIT_1               BITMAP                  "..\\RES\\Special_Effect\\Hit\\Hit_1.bmp"
+
+IDB_HIT_2               BITMAP                  "..\\RES\\Special_Effect\\Hit\\Hit_2.bmp"
+
+IDB_HIT_3               BITMAP                  "..\\RES\\Special_Effect\\Hit\\Hit_3.bmp"
+
+IDB_HIT_4               BITMAP                  "..\\RES\\Special_Effect\\Hit\\Hit_4.bmp"
+
 
 /////////////////////////////////////////////////////////////////////////////
 //

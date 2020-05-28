@@ -53,6 +53,7 @@ namespace game_framework {
 		DeadAnimation.SetDelayCount(3);
 		AttackLeftAnimation.SetDelayCount(2);
 		AttackRightAnimation.SetDelayCount(2);
+		HitAnimation.SetDelayCount(2);
 		GetHitAnimation.SetDelayCount(3);
 		enemyHP = 150;							//敵人預設生命值
 		enemyAttackDamage = 10;					//敵人預設攻擊力
@@ -240,6 +241,11 @@ namespace game_framework {
 		GetHitAnimation.AddBitmap(IDB_SUNFLOWERGETHITRIGHT_0, RGB(255, 255, 255));
 		GetHitAnimation.AddBitmap(IDB_SUNFLOWERGETHITRIGHT_1, RGB(255, 255, 255));
 		GetHitAnimation.AddBitmap(IDB_SUNFLOWERGETHITRIGHT_2, RGB(255, 255, 255));
+
+		HitAnimation.AddBitmap(IDB_HIT_0, RGB(63, 72, 204));
+		HitAnimation.AddBitmap(IDB_HIT_1, RGB(63, 72, 204));
+		HitAnimation.AddBitmap(IDB_HIT_2, RGB(63, 72, 204));
+		
 	}
 
 	void CEnemy_sunFlower::OnMove()
@@ -252,7 +258,9 @@ namespace game_framework {
 		moveLeftAnimation.OnMove();
 		AttackLeftAnimation.OnMove();
 		AttackRightAnimation.OnMove();
+		
 		if (GetHitDelayCount > 0) GetHitDelayCount--;
+		else if (GetHitDelayCount == 0) HitAnimation.Reset();
 		vector<bullet_sunFlower*>::iterator iter = allBullet.begin();
 		while (iter != allBullet.end())
 		{
@@ -296,10 +304,11 @@ namespace game_framework {
 			allBullet.back()->LoadBitmap();
 		}
 
-		if (state == GET_HIT && !GetHitAnimation.IsFinalBitmap())
+		if (state == GET_HIT && !GetHitAnimation.IsFinalBitmap() && !HitAnimation.IsFinalBitmap())
 		{
 			state = GET_HIT;
 			GetHitAnimation.OnMove();
+			HitAnimation.OnMove();
 		}
 
 		if (enemyHP <= 0 && !DeadAnimation.IsFinalBitmap())
@@ -374,6 +383,12 @@ namespace game_framework {
 		case GET_HIT:
 			GetHitAnimation.SetTopLeft(currentMap->ScreenX(x), currentMap->ScreenY(y));
 			GetHitAnimation.OnShow();
+			if (!HitAnimation.IsFinalBitmap())
+			{
+				HitAnimation.SetTopLeft(currentMap->ScreenX(x), currentMap->ScreenY(y));
+				HitAnimation.OnShow();
+			}
+			
 			//if (GetHitAnimation.IsFinalBitmap()) GetHit = false;
 			break;
 		case DEAD:
@@ -421,6 +436,7 @@ namespace game_framework {
 		DeadAnimation.SetDelayCount(3);
 		animation.SetDelayCount(5);
 		GetHitAnimation.SetDelayCount(3);
+		HitAnimation.SetDelayCount(3);
 	}
 
 	CEnemy_Cactus::~CEnemy_Cactus() {}
@@ -465,6 +481,7 @@ namespace game_framework {
 		if ((GetX2() >= heroAttackRange["x1"]) && (heroAttackRange["x2"] >= GetX1()) && (GetY2() >= heroAttackRange["y1"]) && (heroAttackRange["y2"] >= GetY1()) && GetHitDelayCount==0)
 		{
 			GetHitAnimation.Reset();
+			HitAnimation.Reset();
 			CAudio::Instance()->Play(9, false);
 			enemyHP -= damage;
 			GetHit = true;
@@ -497,6 +514,12 @@ namespace game_framework {
 		GetHitAnimation.AddBitmap(IDB_CACTUSGETHIT_0, RGB(255, 127, 39));
 		GetHitAnimation.AddBitmap(IDB_CACTUSGETHIT_1, RGB(255, 127, 39));
 		GetHitAnimation.AddBitmap(IDB_CACTUSGETHIT_2, RGB(255, 127, 39));
+	
+		HitAnimation.AddBitmap(IDB_HIT_0, RGB(63, 72, 204));
+		HitAnimation.AddBitmap(IDB_HIT_1, RGB(63, 72, 204));
+		HitAnimation.AddBitmap(IDB_HIT_2, RGB(63, 72, 204));
+		HitAnimation.AddBitmap(IDB_HIT_3, RGB(63, 72, 204));
+		HitAnimation.AddBitmap(IDB_HIT_4, RGB(63, 72, 204));
 	}
 
 	void CEnemy_Cactus::OnMove()
@@ -507,6 +530,7 @@ namespace game_framework {
 		
 		AttackAnimation.OnMove();
 		GetHitAnimation.OnMove();
+		HitAnimation.OnMove();
 		animation.OnMove();
 		if (AttackAnimation.IsFinalBitmap()) ReadyToAttack = false;
 		if (ReadyToAttack && AttackDelayCount==0)
@@ -545,7 +569,10 @@ namespace game_framework {
 
 			GetHitAnimation.SetTopLeft(currentMap->ScreenX(x), currentMap->ScreenY(y));
 			GetHitAnimation.OnShow();
+			HitAnimation.SetTopLeft(currentMap->ScreenX(x), currentMap->ScreenY(y));
+			HitAnimation.OnShow();
 			if (GetHitAnimation.IsFinalBitmap()) GetHit = false;
+			if (HitAnimation.IsFinalBitmap()) GetHit = false;
 		}
 		else
 		{
@@ -584,6 +611,7 @@ namespace game_framework {
 		initial_velocity = INITIAL_VELOCITY;
 		velocity = initial_velocity;
 		GetHitDelayCount = 0;
+		HitAnimation.SetDelayCount(3);
 	}
 
 	CEnemy_Statue::~CEnemy_Statue() {}
@@ -627,8 +655,10 @@ namespace game_framework {
 	{
 		if ((GetX2() >= heroAttackRange["x1"]) && (heroAttackRange["x2"] >= GetX1()) && (GetY2() >= heroAttackRange["y1"]) && (heroAttackRange["y2"] >= GetY1()) && GetHitDelayCount==0)
 		{
+			HitAnimation.Reset();
 			CAudio::Instance()->Play(11, false);
 			GetHitDelayCount = 15;
+			GetHit = true;
 			enemyHP -= damage;
 		}
 	}
@@ -638,15 +668,23 @@ namespace game_framework {
 	{
 		Statue.LoadBitmap(IDB_STATUE, RGB(255, 0, 0));
 		Statue_Broken.LoadBitmap(IDB_STATUE_BROKEN, RGB(255, 0, 0));
+
+		HitAnimation.AddBitmap(IDB_HIT_0, RGB(63, 72, 204));
+		HitAnimation.AddBitmap(IDB_HIT_1, RGB(63, 72, 204));
+		HitAnimation.AddBitmap(IDB_HIT_2, RGB(63, 72, 204));
+		HitAnimation.AddBitmap(IDB_HIT_3, RGB(63, 72, 204));
+		HitAnimation.AddBitmap(IDB_HIT_4, RGB(63, 72, 204));
 	}
 
 	void CEnemy_Statue::OnMove()
 	{
 		if (GetHitDelayCount > 0) GetHitDelayCount--;
+		HitAnimation.OnMove();
 	}
 
 	void CEnemy_Statue::OnShow()
 	{
+		
 		if (enemyHP <= 0)
 		{
 			Statue_Broken.SetTopLeft(currentMap->ScreenX(x), currentMap->ScreenY(y));
@@ -661,6 +699,12 @@ namespace game_framework {
 		{
 			Statue.SetTopLeft(currentMap->ScreenX(x), currentMap->ScreenY(y));
 			Statue.ShowBitmap();
+		}
+		if (GetHit)
+		{
+			HitAnimation.SetTopLeft(currentMap->ScreenX(x + 5), currentMap->ScreenY(y + 50));
+			HitAnimation.OnShow();
+			if (HitAnimation.IsFinalBitmap()) GetHit = false;
 		}
 	}
 

@@ -305,6 +305,7 @@ namespace game_framework {
 		Fire3.AddBitmap(IDB_FIRE_4, RGB(63, 72, 204));
 		Fire3.AddBitmap(IDB_FIRE_5, RGB(63, 72, 204));
 
+
 		LifeBarHead.LoadBitmap(IDB_LIFEBARHEAD, RGB(255, 255, 255));
 		StartGameBar.LoadBitmap(IDB_UI_GAME_START);
 		WorldMap_UI_1.LoadBitmap(IDB_WORLDMAP_UI);
@@ -630,7 +631,7 @@ namespace game_framework {
 		//處理UI的顯示
 		if (isInHome) currentVillage->OnShow();
 		else currentWild->OnShow();
-
+		
 		LifeBarHead.SetTopLeft(currentMap->ScreenX(x-290), currentMap->ScreenY(y-205));
 		LifeBarHead.ShowBitmap();  //顯示血條
 		changeLifeBarLength();
@@ -871,7 +872,6 @@ namespace game_framework {
 				animation1.OnShow();
 			}
 		}
-
 		
 		if (isInHome)
 		{
@@ -891,6 +891,7 @@ namespace game_framework {
 			QuitButton.SetTopLeft(currentMap->ScreenX(x + 100), currentMap->ScreenY(y + 170));
 			QuitButton.ShowBitmap();
 		}
+
 	}
 
 	void CHero::SetHeroHP(int inputHP)

@@ -107,6 +107,7 @@ namespace game_framework {
 		CAnimation jumpAnimation;		// 跳躍動畫
 		CAnimation DeadAnimation;		// 死亡動畫
 		CAnimation GetHitAnimation;		// 被打到的動畫
+		CAnimation HitAnimation;		// 打擊效果
 		string EnemyType = "Sun_Flower";
 		bool isMovingDown;			// 是否正在往下移動
 		bool isMovingLeft;			// 是否正在往左移動
@@ -150,6 +151,7 @@ namespace game_framework {
 		CAnimation AttackAnimation;// 攻擊
 		CAnimation DeadAnimation;
 		CAnimation GetHitAnimation;		// 被打到的動畫
+		CAnimation HitAnimation;		// 打擊效果
 		string EnemyType = "Cactus";
 		int floor;				// 地板的Y座標
 		bool rising;				// true表上升、false表下降
@@ -188,6 +190,7 @@ namespace game_framework {
 	private:
 		CMovingBitmap Statue;
 		CMovingBitmap Statue_Broken;
+		CAnimation HitAnimation;		// 打擊效果
 		string EnemyType = "Statue";
 		int floor;				// 地板的Y座標
 		bool rising;				// true表上升、false表下降

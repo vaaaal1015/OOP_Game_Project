@@ -572,6 +572,11 @@
     <Image Include="RES\Special_Effect\Fire\AttributeAbilityVfx_3.bmp" />
     <Image Include="RES\Special_Effect\Fire\AttributeAbilityVfx_4.bmp" />
     <Image Include="RES\Special_Effect\Fire\AttributeAbilityVfx_5.bmp" />
+    <Image Include="RES\Special_Effect\Hit\Hit_0.bmp" />
+    <Image Include="RES\Special_Effect\Hit\Hit_1.bmp" />
+    <Image Include="RES\Special_Effect\Hit\Hit_2.bmp" />
+    <Image Include="RES\Special_Effect\Hit\Hit_3.bmp" />
+    <Image Include="RES\Special_Effect\Hit\Hit_4.bmp" />
     <Image Include="RES\Special_Effect\Left_Mode_0\Left_Mode_0.bmp" />
     <Image Include="RES\Special_Effect\Left_Mode_0\Left_Mode_1.bmp" />
     <Image Include="RES\Special_Effect\Left_Mode_0\Left_Mode_2.bmp" />
@@ -587,6 +592,7 @@
     <Image Include="RES\Special_Effect\Right_Mode_0\Right_Mode_4.bmp" />
     <Image Include="RES\Special_Effect\Right_Mode_0\Right_Mode_5.bmp" />
     <Image Include="RES\Special_Effect\Right_Mode_0\Right_Mode_6.bmp" />
+    <Image Include="RES\Special_Effect\Shield_0.bmp" />
     <Image Include="RES\Statue\Hero Statue_Bronze.bmp" />
     <Image Include="RES\Statue\Hero Statue_Bronze_Broken.bmp" />
     <Image Include="RES\sword\attackMode_1\swordAttackMode_0.bmp" />

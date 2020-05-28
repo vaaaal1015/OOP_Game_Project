@@ -1140,5 +1140,23 @@
     <Image Include="RES\Map_Object\Switch_On.bmp">
       <Filter>Resource Files</Filter>
     </Image>
+    <Image Include="RES\Special_Effect\Shield_0.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\Special_Effect\Hit\Hit_0.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\Special_Effect\Hit\Hit_1.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\Special_Effect\Hit\Hit_2.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\Special_Effect\Hit\Hit_3.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\Special_Effect\Hit\Hit_4.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
   </ItemGroup>
 </Project>
