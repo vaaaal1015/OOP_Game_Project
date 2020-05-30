@@ -392,6 +392,8 @@
     <Image Include="RES\charactor\Roll_Right\Hero_Roll_Right_4.bmp" />
     <Image Include="RES\charactor\Roll_Right\Hero_Roll_Right_5.bmp" />
     <Image Include="RES\charactor\Roll_Right\Hero_Roll_Right_6.bmp" />
+    <Image Include="RES\charactor\Shurikan\Shurikan_0.bmp" />
+    <Image Include="RES\charactor\Shurikan\Shurikan_1.bmp" />
     <Image Include="RES\Enemy\Cactus\Attack\Cactus_Attack_0.bmp" />
     <Image Include="RES\Enemy\Cactus\Attack\Cactus_Attack_1.bmp" />
     <Image Include="RES\Enemy\Cactus\Attack\Cactus_Attack_2.bmp" />
@@ -650,6 +652,7 @@
     <Image Include="RES\sword\RollRight\Sword_Roll_right_2.bmp" />
     <Image Include="RES\sword\RollRight\Sword_Roll_right_3.bmp" />
     <Image Include="RES\UI\BlackMask.bmp" />
+    <Image Include="RES\UI\Daggers_0_0.bmp" />
     <Image Include="RES\UI\Enemy_Life_Bar.bmp" />
     <Image Include="RES\UI\Enemy_Life_Bar_1.bmp" />
     <Image Include="RES\UI\GAME_START_BUTTON.bmp" />

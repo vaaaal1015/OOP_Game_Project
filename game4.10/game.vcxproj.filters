@@ -1191,5 +1191,20 @@
     <Image Include="RES\UI\Enemy_Life_Bar_1.bmp">
       <Filter>Resource Files</Filter>
     </Image>
+    <Image Include="res\numbers\bitmap60.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\numbers\bmp00001.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\UI\Daggers_0_0.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\charactor\Shurikan\Shurikan_0.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\charactor\Shurikan\Shurikan_1.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
   </ItemGroup>
 </Project>

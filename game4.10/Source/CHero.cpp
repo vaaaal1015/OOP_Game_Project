@@ -327,6 +327,7 @@ namespace game_framework {
 		BlackMask.LoadBitmap(IDB_BLACKMASK, RGB(27, 36, 46));
 		Word_G.LoadBitmap(IDB_WORD_G, RGB(255, 255, 255));
 		Word_Gold.LoadBitmap(IDB_WORD_GOLD, RGB(255, 255, 255));
+		ShurikanUI.LoadBitmap(IDB_HEROBULLET_UI, RGB(63, 72, 204));
 		for (vector<CMovingBitmap*>::iterator i = LifeBarRed.begin(); i != LifeBarRed.end(); i++) (*i)->LoadBitmap(IDB_LIFEBAR, RGB(255, 255, 255));
 
 		SelectMap(0);
@@ -970,6 +971,9 @@ namespace game_framework {
 		
 		LifeBarHead.SetTopLeft(currentMap->ScreenX(x-290), currentMap->ScreenY(y-205));	//顯示血條
 		LifeBarHead.ShowBitmap();  //顯示血條
+		ShurikanUI.SetTopLeft(currentMap->ScreenX(x - 290), currentMap->ScreenY(y - 155));
+		ShurikanUI.ShowBitmap();
+		ShowNumber(1, ShurikanNumber, currentMap->ScreenX(x - 240), currentMap->ScreenY(y - 145));
 		if (GainHealthDelayCount != 0)
 		{
 			GainLifeUI.SetTopLeft(currentMap->ScreenX(x - 250), currentMap->ScreenY(y - 175));//顯示回血特效

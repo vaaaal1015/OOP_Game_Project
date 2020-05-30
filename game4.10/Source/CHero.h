@@ -96,6 +96,7 @@ namespace game_framework {
 		CMovingBitmap StartGameBar;		// 秨﹍秙
 		CMovingBitmap WorldMap_UI_1;	// 瓜_1
 		CMovingBitmap White;
+		CMovingBitmap ShurikanUI;
 		CInteger Num;					// 堵︹计
 		CInteger_Red Num_Red;			// ︹计
 		CInteger_Gold Num_Gold;			// 独︹计
@@ -165,7 +166,7 @@ namespace game_framework {
 		//void TalkOnShow();
 		CAnimation currentAnimation;	// ヘ玡璣动笆礶
 		bool HasFireStone = false;
-		int Dagger1Number = 0;
+		int ShurikanNumber = 1;
 	};
 
 	class HeroBullet
