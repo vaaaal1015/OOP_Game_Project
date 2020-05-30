@@ -431,8 +431,8 @@ namespace game_framework {
 		SwordRollLeft.Reset();
 		SwordDashRight.Reset();
 		SwordDashLeft.Reset();
-		FireSwordRightAnimation.Reset();
-		FireSwordLeftAnimation.Reset();
+		//FireSwordRightAnimation.Reset();
+		//FireSwordLeftAnimation.Reset();
 	}
 
 	void CHero::StandOnShow()
@@ -490,12 +490,12 @@ namespace game_framework {
 		SwordRollLeft.Reset();
 		SwordDashRight.Reset();
 		SwordDashLeft.Reset();
-		FireSwordRightAnimation.Reset();
-		FireSwordLeftAnimation.Reset();
+		//FireSwordRightAnimation.Reset();
+		//FireSwordLeftAnimation.Reset();
 
 		const int STEP_SIZE = 10;
 
-		switch (heroDirection)
+		//switch (heroDirection)
 		/*
 		animation.OnMove();
 		animation1.OnMove();
@@ -654,8 +654,8 @@ namespace game_framework {
 		jumpAnimation1.Reset();
 		SwordDashRight.Reset();
 		SwordDashLeft.Reset();
-		FireSwordRightAnimation.Reset();
-		FireSwordLeftAnimation.Reset();
+		//FireSwordRightAnimation.Reset();
+		//FireSwordLeftAnimation.Reset();
 	}
 
 	void CHero::RollOnShow()
@@ -731,8 +731,8 @@ namespace game_framework {
 		jumpAnimation1.Reset();
 		SwordDashRight.Reset();
 		SwordDashLeft.Reset();
-		FireSwordRightAnimation.Reset();
-		FireSwordLeftAnimation.Reset();
+		//FireSwordRightAnimation.Reset();
+		//FireSwordLeftAnimation.Reset();
 	}
 
 	void CHero::AttackOnShow()
@@ -767,14 +767,37 @@ namespace game_framework {
 
 		const int STEP_SIZE = 10;
 
+		gain_life.OnMove();
+		FireSwordRightAnimation.OnMove();
+		FireSwordLeftAnimation.OnMove();
+		FireCircle.OnMove();
+		Fire1.OnMove();
+		Fire2.OnMove();
+		Fire3.OnMove();
+
+		if (SpecialEffectCount == 0) SpecialEffect = 0;			//被攻擊3次後，特殊效果消失
 		if (ShowGoldDelayCount > 0) ShowGoldDelayCount--;
-		if(AttackDelayCount !=0) AttackDelayCount--;    //攻速
+		if (AttackDelayCount != 0) AttackDelayCount--;    //攻速
 		if (RollDelayCount != 0) RollDelayCount--;		//翻滾
 		if (InvincibleDelayCount != 0) InvincibleDelayCount--;  //無敵時間
 		if (DashColdDown != 0) DashColdDown--;      //衝刺
 		if (MoveDelayCount != 0) MoveDelayCount--;   //紀錄上個動作的保持時間
 		if (MoveDelayCount == 0) SetPreviousMove(0);  //抹除上個動作紀錄
+		if (GainLifeDelayCount > 0) GainLifeDelayCount--;
 		if (InvincibleDelayCount == 0) isInvincible = false;
+		
+		if (GainHealthDelayCount != 0)			//持續回血特效
+		{
+			GainHealthDelayCount--;
+			if (CurrentHP <= FullHP - 1)
+			{
+				CurrentHP += 1;
+			}
+			else if ((FullHP - 1 <= CurrentHP) && (CurrentHP <= FullHP))
+			{
+				CurrentHP = FullHP;
+			}
+		}
 
 		setHeroAction();
 	
@@ -1069,7 +1092,7 @@ namespace game_framework {
 			StandOnShow();
 		default:
 			break;
-
+		}
 		if (GainLifeDelayCount != 0 || GainHealthDelayCount != 0)
 		{
 			gain_life.SetTopLeft(currentMap->ScreenX(x), currentMap->ScreenY(y + 25));
