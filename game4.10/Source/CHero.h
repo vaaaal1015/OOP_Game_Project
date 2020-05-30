@@ -164,6 +164,7 @@ namespace game_framework {
 		void TalkOnMove();
 		//void TalkOnShow();
 		CAnimation currentAnimation;	// 目前的英雄動畫
+		bool HasFireStone = false;
 	};
 
 	class HeroBullet

@@ -690,7 +690,7 @@ namespace game_framework {
 		switch (heroDirection)
 		{
 		case game_framework::LEFT:
-			if (SpecialEffect == 1)
+			if (HasFireStone)
 			{
 				FireSwordLeftAnimation.SetTopLeft(currentMap->ScreenX(x - 90), currentMap->ScreenY(y - 10));
 				FireSwordLeftAnimation.OnShow();
@@ -701,7 +701,7 @@ namespace game_framework {
 			HeroAttackMovement1.OnShow();
 			break;
 		case game_framework::RIGHT:
-			if (SpecialEffect == 1)
+			if (HasFireStone)
 			{
 				FireSwordRightAnimation.SetTopLeft(currentMap->ScreenX(x - 50), currentMap->ScreenY(y - 10));
 				FireSwordRightAnimation.OnShow();
@@ -1004,7 +1004,7 @@ namespace game_framework {
 
 		//處理劍的顯示
 
-		if (SpecialEffect == 1)
+		if (HasFireStone)
 		{
 			switch (SpecialEffectCount)
 			{
@@ -1117,9 +1117,10 @@ namespace game_framework {
 			if (SpecialEffectCount > 0)
 			{
 				SpecialEffectCount -= 1;
-				if (SpecialEffectCount == 0 && SpecialEffect == 1)   //火焰石效果消失
+				if (SpecialEffectCount == 0 && HasFireStone)   //火焰石效果消失
 				{
 					heroAttackDamage /= 2;   //回歸原本的攻擊力
+					HasFireStone = false;
 				}
 			}
 			isInvincible = true;
@@ -1140,11 +1141,12 @@ namespace game_framework {
 			//TRACE("%d\n",Gold-Coin);
 			ShowGoldDelayCount = 30;
 		}
-		if (SpecialEffectDectect != SpecialEffect)			//取得特殊效果的道具
+		if (SpecialEffectDectect != SpecialEffect && !HasFireStone)			//取得特殊效果的道具
 		{
 			if (SpecialEffect == 1)
 			{
 				heroAttackDamage *= 2;  //火焰石攻擊力加倍
+				HasFireStone = true;
 			}
 			else if (SpecialEffect == 2)
 			{
@@ -1233,7 +1235,8 @@ namespace game_framework {
 		CurrentHP = FullHP;
 		isInHome = true;
 		SelectMap(0);
-		if (SpecialEffect == 1 && SpecialEffectCount != 0) heroAttackDamage /= 2;
+		if (HasFireStone && SpecialEffectCount != 0) heroAttackDamage /= 2;
+		HasFireStone = false;
 		SpecialEffect = 0;
 		SpecialEffectCount = 0;
 		x = 0;    
