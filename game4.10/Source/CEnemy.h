@@ -48,6 +48,11 @@ namespace game_framework {
 		gameMap* currentMap;		// 所在地圖
 		map<string, int> hero;
 		map<string, int> heroAttackRange;
+		vector<CMovingBitmap*> LifeBar_1;		// 血條
+		CMovingBitmap LifeBar_0;
+		int ShowLifeBarDelayCount;
+		int enemyHP;
+		int FullHP;
 	};
 
 	class bullet
@@ -117,7 +122,6 @@ namespace game_framework {
 		bool rising;				// true表上升、false表下降
 		int initial_velocity;		// 初始速度
 		int velocity;				// 目前的速度(點/次)
-		int enemyHP;					// 敵人生命值
 		int enemyAttackDamage;		//敵人攻擊力
 		ACTION DetectHero(ACTION state);		// 偵測英雄位置:  1:距離左邊200 2:距離左邊150 3:距離右邊150 4:距離右邊200
 		int attackDelay;
@@ -126,6 +130,7 @@ namespace game_framework {
 		vector<bullet_sunFlower*> allBullet;
 		int GetHitDelayCount = 0;
 		bool GetHit = false;
+		void changeLifeBarLength();			// 改變生命條的長度
 	};
 	
 	class CEnemy_Cactus : public CEnemy
@@ -157,7 +162,6 @@ namespace game_framework {
 		bool rising;				// true表上升、false表下降
 		int initial_velocity;		// 初始速度
 		int velocity;				// 目前的速度(點/次)
-		int enemyHP;					// 敵人生命值
 		int enemyAttackDamage;		//敵人攻擊力
 		int AttackDelayCount;		// 攻擊頻率
 		int SetAttackDelay;
@@ -165,6 +169,7 @@ namespace game_framework {
 		bool ReadyToAttack;			// 開始攻擊動作
 		bool GetHit = false;
 		int GetHitDelayCount = 0;
+		void changeLifeBarLength();			// 改變生命條的長度
 	};
 
 
@@ -187,6 +192,7 @@ namespace game_framework {
 		bool isDead();
 		string GetEnemyType();
 
+
 	private:
 		CMovingBitmap Statue;
 		CMovingBitmap Statue_Broken;
@@ -196,10 +202,10 @@ namespace game_framework {
 		bool rising;				// true表上升、false表下降
 		int initial_velocity;		// 初始速度
 		int velocity;				// 目前的速度(點/次)
-		int enemyHP = 500;					// 敵人生命值
 		int enemyAttackDamage = 0;		//敵人攻擊力
 		int GetHitDelayCount = 0;
 		bool GetHit = false;
+		void changeLifeBarLength();			// 改變生命條的長度
 	};
 
 	

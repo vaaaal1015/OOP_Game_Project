@@ -1179,5 +1179,11 @@
     <Image Include="RES\UI\UI_Icons 1_30.bmp">
       <Filter>Resource Files</Filter>
     </Image>
+    <Image Include="RES\UI\Enemy_Life_Bar.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\UI\Enemy_Life_Bar_1.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
   </ItemGroup>
 </Project>

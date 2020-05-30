@@ -744,6 +744,10 @@ IDB_REDSTONE            BITMAP                  "..\\RES\\Item\\RedStone_0.bmp"
 
 IDB_GAINLIFE_UI         BITMAP                  "..\\RES\\UI\\UI_Icons 1_30.bmp"
 
+IDB_ENEMYLIFEBAR_LONG   BITMAP                  "..\\RES\\UI\\Enemy_Life_Bar.bmp"
+
+IDB_ENEMYLIFEBAR_0      BITMAP                  "..\\RES\\UI\\Enemy_Life_Bar_1.bmp"
+
 
 /////////////////////////////////////////////////////////////////////////////
 //

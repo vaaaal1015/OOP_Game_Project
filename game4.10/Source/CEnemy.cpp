@@ -13,7 +13,10 @@ namespace game_framework {
 	// CEnemy: Enemy base class
 	/////////////////////////////////////////////////////////////////////////////
 	CEnemy::CEnemy(gameMap* pointer, int x, int y) : currentMap(pointer), x(x), y(y) {};
-	CEnemy::~CEnemy() {};
+	CEnemy::~CEnemy() 
+	{
+		for (vector<CMovingBitmap*>::iterator i = LifeBar_1.begin(); i != LifeBar_1.end(); i++) delete (*i);
+	};
 
 	void CEnemy::SetHeroXY(int x1, int x2, int y1, int y2)
 	{
@@ -36,7 +39,7 @@ namespace game_framework {
 		heroAttackRange["y1"] = y1;
 		heroAttackRange["y2"] = y2;
 	}
-
+	
 	/////////////////////////////////////////////////////////////////////////////
 	// CEnemy_sunFlower: Enemy sunFlower class
 	/////////////////////////////////////////////////////////////////////////////
@@ -55,19 +58,22 @@ namespace game_framework {
 		AttackRightAnimation.SetDelayCount(2);
 		HitAnimation.SetDelayCount(2);
 		GetHitAnimation.SetDelayCount(3);
-		enemyHP = 150;							//敵人預設生命值
+		enemyHP = 150;	//敵人預設生命值
+		FullHP = enemyHP;
 		enemyAttackDamage = 10;					//敵人預設攻擊力
 		floor = FLOOR;
 		initial_velocity = INITIAL_VELOCITY;
 		attackDelayCount = attackDelay = 70;
 		velocity = initial_velocity;
 		state = STAND_LEFT;
+		ShowLifeBarDelayCount = 0;
+		for (int i = 0; i < 100; i++) LifeBar_1.push_back(new CMovingBitmap);    //100個血條圖片
 	}
 	
 	CEnemy_sunFlower::~CEnemy_sunFlower()
 	{
-		for (vector<bullet_sunFlower*>::iterator i = allBullet.begin(); i != allBullet.end(); i++)
-			delete *i;
+		for (vector<bullet_sunFlower*>::iterator i = allBullet.begin(); i != allBullet.end(); i++) delete *i;
+		//for (vector<CMovingBitmap*>::iterator i = LifeBar_1.begin(); i != LifeBar_1.end(); i++) delete *i;
 	}
 
 	int CEnemy_sunFlower::GetX1()
@@ -109,6 +115,7 @@ namespace game_framework {
 			GetHitDelayCount = 15;
 			enemyHP -= damage;
 			state = GET_HIT;
+			ShowLifeBarDelayCount = 150;
 		}
 	}
 
@@ -245,7 +252,9 @@ namespace game_framework {
 		HitAnimation.AddBitmap(IDB_HIT_0, RGB(63, 72, 204));
 		HitAnimation.AddBitmap(IDB_HIT_1, RGB(63, 72, 204));
 		HitAnimation.AddBitmap(IDB_HIT_2, RGB(63, 72, 204));
-		
+
+		LifeBar_0.LoadBitmap(IDB_ENEMYLIFEBAR_LONG);
+		for (vector<CMovingBitmap*>::iterator i = LifeBar_1.begin(); i != LifeBar_1.end(); i++) (*i)->LoadBitmap(IDB_ENEMYLIFEBAR_0);
 	}
 
 	void CEnemy_sunFlower::OnMove()
@@ -258,7 +267,7 @@ namespace game_framework {
 		moveLeftAnimation.OnMove();
 		AttackLeftAnimation.OnMove();
 		AttackRightAnimation.OnMove();
-		
+		if (ShowLifeBarDelayCount > 0) ShowLifeBarDelayCount--;
 		if (GetHitDelayCount > 0) GetHitDelayCount--;
 		else if (GetHitDelayCount == 0) HitAnimation.Reset();
 		vector<bullet_sunFlower*>::iterator iter = allBullet.begin();
@@ -349,7 +358,12 @@ namespace game_framework {
 	{
 		for (vector<bullet_sunFlower*>::iterator i = allBullet.begin(); i != allBullet.end(); i++)
 			(*i)->OnShow();
-
+		if (ShowLifeBarDelayCount != 0)
+		{
+			LifeBar_0.SetTopLeft(currentMap->ScreenX(x), currentMap->ScreenY(y - 5));
+			LifeBar_0.ShowBitmap();
+			changeLifeBarLength();
+		}
 		switch (state)
 		{
 		case STAND_LEFT:
@@ -416,6 +430,24 @@ namespace game_framework {
 		else return false;
 	}
 
+	void CEnemy_sunFlower::changeLifeBarLength()
+	{
+		int xMove = currentMap->ScreenX(x);
+		int yMove = currentMap->ScreenY(y - 3);
+		int counter = 0;
+		float lengthOfLifeBar = ((float)enemyHP / (float)FullHP) * 100;  //重新計算血條長度
+
+		for (vector<CMovingBitmap*>::iterator i = LifeBar_1.begin(); i != LifeBar_1.end(); i++)
+		{
+			if (xMove + counter <= xMove + lengthOfLifeBar)
+			{
+				
+				(*i)->SetTopLeft(xMove + counter, yMove);
+				(*i)->ShowBitmap();
+			}
+			counter += 1;
+		}
+	}
 
 	/////////////////////////////////////////////////////////////////////////////
 	// CEnemy_Cactus: Enemy Cactus class
@@ -437,9 +469,13 @@ namespace game_framework {
 		animation.SetDelayCount(5);
 		GetHitAnimation.SetDelayCount(3);
 		HitAnimation.SetDelayCount(3);
+		ShowLifeBarDelayCount = 0;
+		enemyHP = 500;
+		FullHP = enemyHP;
+		for (int i = 0; i < 100; i++) LifeBar_1.push_back(new CMovingBitmap);    //100個血條圖片
 	}
 
-	CEnemy_Cactus::~CEnemy_Cactus() {}
+	CEnemy_Cactus::~CEnemy_Cactus(){}
 
 	int CEnemy_Cactus::GetX1()
 	{
@@ -486,6 +522,7 @@ namespace game_framework {
 			enemyHP -= damage;
 			GetHit = true;
 			GetHitDelayCount = 15;
+			ShowLifeBarDelayCount = 150;
 		}
 	}
 
@@ -520,6 +557,9 @@ namespace game_framework {
 		HitAnimation.AddBitmap(IDB_HIT_2, RGB(63, 72, 204));
 		HitAnimation.AddBitmap(IDB_HIT_3, RGB(63, 72, 204));
 		HitAnimation.AddBitmap(IDB_HIT_4, RGB(63, 72, 204));
+
+		LifeBar_0.LoadBitmap(IDB_ENEMYLIFEBAR_LONG);
+		for (vector<CMovingBitmap*>::iterator i = LifeBar_1.begin(); i != LifeBar_1.end(); i++) (*i)->LoadBitmap(IDB_ENEMYLIFEBAR_0);
 	}
 
 	void CEnemy_Cactus::OnMove()
@@ -527,7 +567,7 @@ namespace game_framework {
 		const int STEP_SIZE = 0;
 		if (GetHitDelayCount > 0)GetHitDelayCount--;
 		if (AttackDelayCount > 0) AttackDelayCount--;
-		
+		if (ShowLifeBarDelayCount > 0) ShowLifeBarDelayCount--;
 		AttackAnimation.OnMove();
 		GetHitAnimation.OnMove();
 		HitAnimation.OnMove();
@@ -545,6 +585,12 @@ namespace game_framework {
 
 	void CEnemy_Cactus::OnShow()
 	{
+		if (ShowLifeBarDelayCount != 0)
+		{
+			LifeBar_0.SetTopLeft(currentMap->ScreenX(x), currentMap->ScreenY(y - 5));
+			LifeBar_0.ShowBitmap();
+			changeLifeBarLength();
+		}
 		if (enemyHP <= 0)
 		{
 			if (!DeadAnimation.IsFinalBitmap())
@@ -599,6 +645,24 @@ namespace game_framework {
 		else return false;
 	}
 
+	void CEnemy_Cactus::changeLifeBarLength()
+	{
+		int xMove = currentMap->ScreenX(x);
+		int yMove = currentMap->ScreenY(y - 3);
+		int counter = 0;
+		float lengthOfLifeBar = ((float)enemyHP / (float)FullHP) * 100;  //重新計算血條長度
+
+		for (vector<CMovingBitmap*>::iterator i = LifeBar_1.begin(); i != LifeBar_1.end(); i++)
+		{
+			if (xMove + counter <= xMove + lengthOfLifeBar)
+			{
+
+				(*i)->SetTopLeft(xMove + counter, yMove);
+				(*i)->ShowBitmap();
+			}
+			counter += 1;
+		}
+	}
 
 	/////////////////////////////////////////////////////////////////////////////
 	// CEnemy_Statue: Enemy Statue class
@@ -612,6 +676,10 @@ namespace game_framework {
 		velocity = initial_velocity;
 		GetHitDelayCount = 0;
 		HitAnimation.SetDelayCount(3);
+		ShowLifeBarDelayCount = 0;
+		enemyHP = 500;
+		FullHP = enemyHP;
+		for (int i = 0; i < 100; i++) LifeBar_1.push_back(new CMovingBitmap);    //100個血條圖片
 	}
 
 	CEnemy_Statue::~CEnemy_Statue() {}
@@ -660,6 +728,7 @@ namespace game_framework {
 			GetHitDelayCount = 15;
 			GetHit = true;
 			enemyHP -= damage;
+			ShowLifeBarDelayCount = 150;
 		}
 	}
 
@@ -674,17 +743,25 @@ namespace game_framework {
 		HitAnimation.AddBitmap(IDB_HIT_2, RGB(63, 72, 204));
 		HitAnimation.AddBitmap(IDB_HIT_3, RGB(63, 72, 204));
 		HitAnimation.AddBitmap(IDB_HIT_4, RGB(63, 72, 204));
+		for (vector<CMovingBitmap*>::iterator i = LifeBar_1.begin(); i != LifeBar_1.end(); i++) (*i)->LoadBitmap(IDB_ENEMYLIFEBAR_0);
+		LifeBar_0.LoadBitmap(IDB_ENEMYLIFEBAR_LONG);
 	}
 
 	void CEnemy_Statue::OnMove()
 	{
 		if (GetHitDelayCount > 0) GetHitDelayCount--;
+		if (ShowLifeBarDelayCount > 0) ShowLifeBarDelayCount--;
 		HitAnimation.OnMove();
 	}
 
 	void CEnemy_Statue::OnShow()
 	{
-		
+		if (ShowLifeBarDelayCount != 0)
+		{
+			LifeBar_0.SetTopLeft(currentMap->ScreenX(x), currentMap->ScreenY(y - 5));
+			LifeBar_0.ShowBitmap();
+			changeLifeBarLength();
+		}
 		if (enemyHP <= 0)
 		{
 			Statue_Broken.SetTopLeft(currentMap->ScreenX(x), currentMap->ScreenY(y));
@@ -720,6 +797,25 @@ namespace game_framework {
 	{
 		if (enemyHP <= 0) return true;
 		else return false;
+	}
+	
+	void CEnemy_Statue::changeLifeBarLength()
+	{
+		int xMove = currentMap->ScreenX(x);
+		int yMove = currentMap->ScreenY(y - 3);
+		int counter = 0;
+		float lengthOfLifeBar = ((float)enemyHP / (float)FullHP) * 100;  //重新計算血條長度
+
+		for (vector<CMovingBitmap*>::iterator i = LifeBar_1.begin(); i != LifeBar_1.end(); i++)
+		{
+			if (xMove + counter <= xMove + lengthOfLifeBar)
+			{
+
+				(*i)->SetTopLeft(xMove + counter, yMove);
+				(*i)->ShowBitmap();
+			}
+			counter += 1;
+		}
 	}
 
 	/////////////////////////////////////////////////////////////////////////////

@@ -654,11 +654,11 @@ namespace game_framework {
 		if (isInHome) currentVillage->OnShow();
 		else currentWild->OnShow();
 		
-		LifeBarHead.SetTopLeft(currentMap->ScreenX(x-290), currentMap->ScreenY(y-205));
+		LifeBarHead.SetTopLeft(currentMap->ScreenX(x-290), currentMap->ScreenY(y-205));	//顯示血條
 		LifeBarHead.ShowBitmap();  //顯示血條
 		if (GainHealthDelayCount != 0)
 		{
-			GainLifeUI.SetTopLeft(currentMap->ScreenX(x - 290), currentMap->ScreenY(y - 175));
+			GainLifeUI.SetTopLeft(currentMap->ScreenX(x - 250), currentMap->ScreenY(y - 175));//顯示回血特效
 			GainLifeUI.ShowBitmap();
 		}
 		changeLifeBarLength();
@@ -899,7 +899,7 @@ namespace game_framework {
 				animation1.OnShow();
 			}
 		}
-		if (GainLifeDelayCount != 0)
+		if (GainLifeDelayCount != 0 || GainHealthDelayCount != 0)
 		{
 			gain_life.SetTopLeft(currentMap->ScreenX(x), currentMap->ScreenY(y + 25));
 			gain_life.OnShow();

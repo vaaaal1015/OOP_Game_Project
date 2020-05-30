@@ -646,6 +646,8 @@
     <Image Include="RES\sword\RollRight\Sword_Roll_right_2.bmp" />
     <Image Include="RES\sword\RollRight\Sword_Roll_right_3.bmp" />
     <Image Include="RES\UI\BlackMask.bmp" />
+    <Image Include="RES\UI\Enemy_Life_Bar.bmp" />
+    <Image Include="RES\UI\Enemy_Life_Bar_1.bmp" />
     <Image Include="RES\UI\GAME_START_BUTTON.bmp" />
     <Image Include="RES\UI\Level_Up_Bar.bmp" />
     <Image Include="RES\UI\Level_Up_Button.bmp" />

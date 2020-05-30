@@ -362,7 +362,6 @@ void CGameStateRun::OnKeyUp(UINT nChar, UINT nRepCnt, UINT nFlags)
 
 void CGameStateRun::OnLButtonDown(UINT nFlags, CPoint point)  // 處理滑鼠的動作
 {
-	TRACE("%d,%d\n", point.x, point.y);
 	hero.OnLButtonDown(point.x, point.y);
 }
 
