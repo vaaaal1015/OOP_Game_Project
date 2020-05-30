@@ -48,6 +48,11 @@ namespace game_framework {
 		gameMap* currentMap;		// 所在地圖
 		map<string, int> hero;
 		map<string, int> heroAttackRange;
+		vector<CMovingBitmap*> LifeBar_1;		// 血條
+		CMovingBitmap LifeBar_0;
+		int ShowLifeBarDelayCount;
+		int enemyHP;
+		int FullHP;
 	};
 
 	class bullet
@@ -107,6 +112,7 @@ namespace game_framework {
 		CAnimation jumpAnimation;		// 跳躍動畫
 		CAnimation DeadAnimation;		// 死亡動畫
 		CAnimation GetHitAnimation;		// 被打到的動畫
+		CAnimation HitAnimation;		// 打擊效果
 		string EnemyType = "Sun_Flower";
 		bool isMovingDown;			// 是否正在往下移動
 		bool isMovingLeft;			// 是否正在往左移動
@@ -116,7 +122,6 @@ namespace game_framework {
 		bool rising;				// true表上升、false表下降
 		int initial_velocity;		// 初始速度
 		int velocity;				// 目前的速度(點/次)
-		int enemyHP;					// 敵人生命值
 		int enemyAttackDamage;		//敵人攻擊力
 		CEnemy_Action DetectHero(CEnemy_Action state);
 		int attackDelay;
@@ -125,6 +130,7 @@ namespace game_framework {
 		vector<bullet_sunFlower*> allBullet;
 		int GetHitDelayCount = 0;
 		bool GetHit = false;
+		void changeLifeBarLength();			// 改變生命條的長度
 	};
 	
 	class CEnemy_Cactus : public CEnemy
@@ -150,12 +156,12 @@ namespace game_framework {
 		CAnimation AttackAnimation;// 攻擊
 		CAnimation DeadAnimation;
 		CAnimation GetHitAnimation;		// 被打到的動畫
+		CAnimation HitAnimation;		// 打擊效果
 		string EnemyType = "Cactus";
 		int floor;				// 地板的Y座標
 		bool rising;				// true表上升、false表下降
 		int initial_velocity;		// 初始速度
 		int velocity;				// 目前的速度(點/次)
-		int enemyHP;					// 敵人生命值
 		int enemyAttackDamage;		//敵人攻擊力
 		int AttackDelayCount;		// 攻擊頻率
 		int SetAttackDelay;
@@ -163,6 +169,7 @@ namespace game_framework {
 		bool ReadyToAttack;			// 開始攻擊動作
 		bool GetHit = false;
 		int GetHitDelayCount = 0;
+		void changeLifeBarLength();			// 改變生命條的長度
 	};
 
 
@@ -185,18 +192,20 @@ namespace game_framework {
 		bool isDead();
 		string GetEnemyType();
 
+
 	private:
 		CMovingBitmap Statue;
 		CMovingBitmap Statue_Broken;
+		CAnimation HitAnimation;		// 打擊效果
 		string EnemyType = "Statue";
 		int floor;				// 地板的Y座標
 		bool rising;				// true表上升、false表下降
 		int initial_velocity;		// 初始速度
 		int velocity;				// 目前的速度(點/次)
-		int enemyHP = 500;					// 敵人生命值
 		int enemyAttackDamage = 0;		//敵人攻擊力
 		int GetHitDelayCount = 0;
 		bool GetHit = false;
+		void changeLifeBarLength();			// 改變生命條的長度
 	};
 
 	

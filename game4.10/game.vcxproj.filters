@@ -1071,10 +1071,124 @@
     <Image Include="RES\Special_Effect\Left_Mode_0\Left_Mode_6.bmp">
       <Filter>Resource Files</Filter>
     </Image>
-    <Image Include="res\numbers\bitmap60.bmp">
+    <Image Include="RES\Item\RedStone_7.bmp">
       <Filter>Resource Files</Filter>
     </Image>
-    <Image Include="res\numbers\bmp00001.bmp">
+    <Image Include="RES\Item\RedStone_8.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\Item\RedStone_9.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\Special_Effect\FireCircle\AttributeAbilityVfx_24.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\Special_Effect\FireCircle\AttributeAbilityVfx_25.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\Special_Effect\FireCircle\AttributeAbilityVfx_26.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\Special_Effect\FireCircle\AttributeAbilityVfx_27.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\Special_Effect\FireCircle\AttributeAbilityVfx_28.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\Special_Effect\FireCircle\AttributeAbilityVfx_29.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\Special_Effect\Fire\AttributeAbilityVfx_0.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\Special_Effect\Fire\AttributeAbilityVfx_1.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\Special_Effect\Fire\AttributeAbilityVfx_2.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\Special_Effect\Fire\AttributeAbilityVfx_3.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\Special_Effect\Fire\AttributeAbilityVfx_4.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\Special_Effect\Fire\AttributeAbilityVfx_5.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\Map_Object\Box.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\Map_Object\Door.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\Map_Object\Pop-Up Spike_0.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\Map_Object\Pop-Up Spike_1.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\Map_Object\Pop-Up Spike_2.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\Map_Object\Pop-Up Spike_3.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\Map_Object\Push_Button_Down.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\Map_Object\Push_Button_Up.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\Map_Object\Switch_Off.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\Map_Object\Switch_On.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\Special_Effect\Shield_0.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\Special_Effect\Hit\Hit_0.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\Special_Effect\Hit\Hit_1.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\Special_Effect\Hit\Hit_2.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\Special_Effect\Hit\Hit_3.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\Special_Effect\Hit\Hit_4.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\Special_Effect\GAIN_LIFE\gain_life_0.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\Special_Effect\GAIN_LIFE\gain_life_1.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\Special_Effect\GAIN_LIFE\gain_life_2.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\Special_Effect\GAIN_LIFE\gain_life_3.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\Special_Effect\GAIN_LIFE\gain_life_4.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\Item\RedStone_0.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\UI\UI_Icons 1_30.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\UI\Enemy_Life_Bar.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\UI\Enemy_Life_Bar_1.bmp">
       <Filter>Resource Files</Filter>
     </Image>
   </ItemGroup>

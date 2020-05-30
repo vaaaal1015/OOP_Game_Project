@@ -668,9 +668,85 @@ IDB_FIRESWORDLEFT_5     BITMAP                  "..\\RES\\Special_Effect\\Left_M
 
 IDB_FIRESWORDLEFT_6     BITMAP                  "..\\RES\\Special_Effect\\Left_Mode_0\\Left_Mode_6.bmp"
 
-IDB_BIT_RED             BITMAP                  "..\\res\\numbers\\bitmap60.bmp"
+IDB_REDPOTSMALL         BITMAP                  "..\\RES\\Item\\RedStone_7.bmp"
 
-IDB_BIT_BIUE            BITMAP                  "..\\res\\numbers\\bmp00001.bmp"
+IDB_REDPOTFULL          BITMAP                  "..\\RES\\Item\\RedStone_8.bmp"
+
+IDB_REDPOTMEDIUM        BITMAP                  "..\\RES\\Item\\RedStone_9.bmp"
+
+IDB_FIRECIRCLE_0        BITMAP                  "..\\RES\\Special_Effect\\FireCircle\\AttributeAbilityVfx_24.bmp"
+
+IDB_FIRECIRCLE_1        BITMAP                  "..\\RES\\Special_Effect\\FireCircle\\AttributeAbilityVfx_25.bmp"
+
+IDB_FIRECIRCLE_2        BITMAP                  "..\\RES\\Special_Effect\\FireCircle\\AttributeAbilityVfx_26.bmp"
+
+IDB_FIRECIRCLE_3        BITMAP                  "..\\RES\\Special_Effect\\FireCircle\\AttributeAbilityVfx_27.bmp"
+
+IDB_FIRECIRCLE_4        BITMAP                  "..\\RES\\Special_Effect\\FireCircle\\AttributeAbilityVfx_28.bmp"
+
+IDB_FIRECIRCLE_5        BITMAP                  "..\\RES\\Special_Effect\\FireCircle\\AttributeAbilityVfx_29.bmp"
+
+IDB_FIRE_0              BITMAP                  "..\\RES\\Special_Effect\\Fire\\AttributeAbilityVfx_0.bmp"
+
+IDB_FIRE_1              BITMAP                  "..\\RES\\Special_Effect\\Fire\\AttributeAbilityVfx_1.bmp"
+
+IDB_FIRE_2              BITMAP                  "..\\RES\\Special_Effect\\Fire\\AttributeAbilityVfx_2.bmp"
+
+IDB_FIRE_3              BITMAP                  "..\\RES\\Special_Effect\\Fire\\AttributeAbilityVfx_3.bmp"
+
+IDB_FIRE_4              BITMAP                  "..\\RES\\Special_Effect\\Fire\\AttributeAbilityVfx_4.bmp"
+
+IDB_FIRE_5              BITMAP                  "..\\RES\\Special_Effect\\Fire\\AttributeAbilityVfx_5.bmp"
+
+IDB_BOX                 BITMAP                  "..\\RES\\Map_Object\\Box.bmp"
+
+IDB_DOOR                BITMAP                  "..\\RES\\Map_Object\\Door.bmp"
+
+IDB_POPUPSPIKE_0        BITMAP                  "..\\RES\\Map_Object\\Pop-Up Spike_0.bmp"
+
+IDB_POPUPSPIKE_1        BITMAP                  "..\\RES\\Map_Object\\Pop-Up Spike_1.bmp"
+
+IDB_POPUPSPIKE_2        BITMAP                  "..\\RES\\Map_Object\\Pop-Up Spike_2.bmp"
+
+IDB_POPUPSPIKE_3        BITMAP                  "..\\RES\\Map_Object\\Pop-Up Spike_3.bmp"
+
+IDB_PUSHBUTTONDOWN      BITMAP                  "..\\RES\\Map_Object\\Push_Button_Down.bmp"
+
+IDB_PUSHBUTTONUP        BITMAP                  "..\\RES\\Map_Object\\Push_Button_Up.bmp"
+
+IDB_SWITCH_OFF          BITMAP                  "..\\RES\\Map_Object\\Switch_Off.bmp"
+
+IDB_SWITCH_ON           BITMAP                  "..\\RES\\Map_Object\\Switch_On.bmp"
+
+IDB_SHIELD_0            BITMAP                  "..\\RES\\Special_Effect\\Shield_0.bmp"
+
+IDB_HIT_0               BITMAP                  "..\\RES\\Special_Effect\\Hit\\Hit_0.bmp"
+
+IDB_HIT_1               BITMAP                  "..\\RES\\Special_Effect\\Hit\\Hit_1.bmp"
+
+IDB_HIT_2               BITMAP                  "..\\RES\\Special_Effect\\Hit\\Hit_2.bmp"
+
+IDB_HIT_3               BITMAP                  "..\\RES\\Special_Effect\\Hit\\Hit_3.bmp"
+
+IDB_HIT_4               BITMAP                  "..\\RES\\Special_Effect\\Hit\\Hit_4.bmp"
+
+IDB_GAINLIFE_0          BITMAP                  "..\\RES\\Special_Effect\\GAIN_LIFE\\gain_life_0.bmp"
+
+IDB_GAINLIFE_1          BITMAP                  "..\\RES\\Special_Effect\\GAIN_LIFE\\gain_life_1.bmp"
+
+IDB_GAINLIFE_2          BITMAP                  "..\\RES\\Special_Effect\\GAIN_LIFE\\gain_life_2.bmp"
+
+IDB_GAINLIFE_3          BITMAP                  "..\\RES\\Special_Effect\\GAIN_LIFE\\gain_life_3.bmp"
+
+IDB_GAINLIFE_4          BITMAP                  "..\\RES\\Special_Effect\\GAIN_LIFE\\gain_life_4.bmp"
+
+IDB_REDSTONE            BITMAP                  "..\\RES\\Item\\RedStone_0.bmp"
+
+IDB_GAINLIFE_UI         BITMAP                  "..\\RES\\UI\\UI_Icons 1_30.bmp"
+
+IDB_ENEMYLIFEBAR_LONG   BITMAP                  "..\\RES\\UI\\Enemy_Life_Bar.bmp"
+
+IDB_ENEMYLIFEBAR_0      BITMAP                  "..\\RES\\UI\\Enemy_Life_Bar_1.bmp"
 
 
 /////////////////////////////////////////////////////////////////////////////

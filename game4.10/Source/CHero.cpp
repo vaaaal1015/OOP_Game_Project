@@ -113,7 +113,14 @@ namespace game_framework {
 		SwordDashRight.SetDelayCount(3);
 		FireSwordRightAnimation.SetDelayCount(3);
 		FireSwordLeftAnimation.SetDelayCount(3);
+		FireCircle.SetDelayCount(3);
+		Fire1.SetDelayCount(3);
+		Fire2.SetDelayCount(3);
+		Fire3.SetDelayCount(3);
+		gain_life.SetDelayCount(3);
 		SetAttackDelayCount = AttackDelayCount = DashColdDown = 15;
+		GainHealthDelayCount = 0;
+		GainLifeDelayCount = 0;
 		ShowGoldDelayCount = 0;
 		RollDelayCount = 15;
 		InvincibleDelayCount = 30;
@@ -275,6 +282,41 @@ namespace game_framework {
 		FireSwordLeftAnimation.AddBitmap(IDB_FIRESWORDLEFT_5, RGB(255, 255, 255));
 		FireSwordLeftAnimation.AddBitmap(IDB_FIRESWORDLEFT_6, RGB(255, 255, 255));
 
+		FireCircle.AddBitmap(IDB_FIRECIRCLE_0, RGB(63, 72, 204));
+		FireCircle.AddBitmap(IDB_FIRECIRCLE_1, RGB(63, 72, 204));
+		FireCircle.AddBitmap(IDB_FIRECIRCLE_2, RGB(63, 72, 204));
+		FireCircle.AddBitmap(IDB_FIRECIRCLE_3, RGB(63, 72, 204));
+		FireCircle.AddBitmap(IDB_FIRECIRCLE_4, RGB(63, 72, 204));
+		FireCircle.AddBitmap(IDB_FIRECIRCLE_5, RGB(63, 72, 204));
+
+		Fire1.AddBitmap(IDB_FIRE_0, RGB(63, 72, 204));
+		Fire1.AddBitmap(IDB_FIRE_1, RGB(63, 72, 204));
+		Fire1.AddBitmap(IDB_FIRE_2, RGB(63, 72, 204));
+		Fire1.AddBitmap(IDB_FIRE_3, RGB(63, 72, 204));
+		Fire1.AddBitmap(IDB_FIRE_4, RGB(63, 72, 204));
+		Fire1.AddBitmap(IDB_FIRE_5, RGB(63, 72, 204));
+		
+		Fire2.AddBitmap(IDB_FIRE_0, RGB(63, 72, 204));
+		Fire2.AddBitmap(IDB_FIRE_1, RGB(63, 72, 204));
+		Fire2.AddBitmap(IDB_FIRE_2, RGB(63, 72, 204));
+		Fire2.AddBitmap(IDB_FIRE_3, RGB(63, 72, 204));
+		Fire2.AddBitmap(IDB_FIRE_4, RGB(63, 72, 204));
+		Fire2.AddBitmap(IDB_FIRE_5, RGB(63, 72, 204));
+
+		Fire3.AddBitmap(IDB_FIRE_0, RGB(63, 72, 204));
+		Fire3.AddBitmap(IDB_FIRE_1, RGB(63, 72, 204));
+		Fire3.AddBitmap(IDB_FIRE_2, RGB(63, 72, 204));
+		Fire3.AddBitmap(IDB_FIRE_3, RGB(63, 72, 204));
+		Fire3.AddBitmap(IDB_FIRE_4, RGB(63, 72, 204));
+		Fire3.AddBitmap(IDB_FIRE_5, RGB(63, 72, 204));
+
+		gain_life.AddBitmap(IDB_GAINLIFE_0, RGB(255, 255, 255));
+		gain_life.AddBitmap(IDB_GAINLIFE_1, RGB(255, 255, 255));
+		gain_life.AddBitmap(IDB_GAINLIFE_2, RGB(255, 255, 255));
+		gain_life.AddBitmap(IDB_GAINLIFE_3, RGB(255, 255, 255));
+		gain_life.AddBitmap(IDB_GAINLIFE_4, RGB(255, 255, 255));
+
+		GainLifeUI.LoadBitmapA(IDB_GAINLIFE_UI, RGB(255, 255, 255));
 		LifeBarHead.LoadBitmap(IDB_LIFEBARHEAD, RGB(255, 255, 255));
 		StartGameBar.LoadBitmap(IDB_UI_GAME_START);
 		WorldMap_UI_1.LoadBitmap(IDB_WORLDMAP_UI);
@@ -453,6 +495,59 @@ namespace game_framework {
 
 		const int STEP_SIZE = 10;
 
+		switch (heroDirection)
+		/*
+		animation.OnMove();
+		animation1.OnMove();
+		sword.OnMove();
+		sword1.OnMove();
+		HeroAttackMovement.OnMove();
+		HeroAttackMovement1.OnMove();
+		swordAttack.OnMove();
+		swordAttack1.OnMove();
+		moveRightAnimation.OnMove();
+		HeroDashLeft.OnMove();
+		HeroDashRight.OnMove();
+		moveLeftAnimation.OnMove();
+		jumpAnimation.OnMove();
+		jumpAnimation1.OnMove();
+		HeroRollLeft.OnMove();
+		HeroRollRight.OnMove();
+		SwordRollRight.OnMove();
+		SwordRollLeft.OnMove();
+		SwordDashRight.OnMove();
+		SwordDashLeft.OnMove();
+		gain_life.OnMove();
+		FireSwordRightAnimation.OnMove();
+		FireSwordLeftAnimation.OnMove();
+		FireCircle.OnMove();
+		Fire1.OnMove();
+		Fire2.OnMove();
+		Fire3.OnMove();
+		if (SpecialEffectCount == 0) SpecialEffect = 0;			//被攻擊3次後，特殊效果消失
+		if (ShowGoldDelayCount > 0) ShowGoldDelayCount--;
+		if(AttackDelayCount !=0) AttackDelayCount--;    //攻速
+		if (RollDelayCount != 0) RollDelayCount--;		//翻滾
+		if (InvincibleDelayCount != 0) InvincibleDelayCount--;  //無敵時間
+		if (DashColdDown != 0) DashColdDown--;      //衝刺
+		if (MoveDelayCount != 0) MoveDelayCount--;   //紀錄上個動作的保持時間
+		if (MoveDelayCount == 0) SetPreviousMove(0);  //抹除上個動作紀錄
+		if (GainLifeDelayCount > 0) GainLifeDelayCount--;
+		if (InvincibleDelayCount == 0) isInvincible = false;
+		if (GainHealthDelayCount != 0)			//持續回血特效
+		{
+			GainHealthDelayCount--;
+			if (CurrentHP <= FullHP - 1)
+			{
+				CurrentHP += 1;
+			}
+			else if ((FullHP - 1 <= CurrentHP) && (CurrentHP <= FullHP))
+			{
+				CurrentHP = FullHP;
+			}
+		}
+		if (isMovingLeft)
+		*/
 		switch (heroDirection)
 		{
 		case game_framework::LEFT:
@@ -750,11 +845,11 @@ namespace game_framework {
 			currentWild->SetHeroXY(GetX1(), GetX2(), GetY1(), GetY2());
 			if (ShowGoldDelayCount > 0)
 			{
-				HeroGetCoin();
+				HeroGetItem();
 			}
 			else
 			{
-				GetGold = HeroGetCoin();   //重設顯示數字
+				GetGold = HeroGetItem();   //重設顯示數字
 			}
 			
 		}
@@ -889,9 +984,14 @@ namespace game_framework {
 		//處理UI的顯示
 		if (isInHome) currentVillage->OnShow();
 		else currentWild->OnShow();
-
-		LifeBarHead.SetTopLeft(currentMap->ScreenX(x-290), currentMap->ScreenY(y-205));
+		
+		LifeBarHead.SetTopLeft(currentMap->ScreenX(x-290), currentMap->ScreenY(y-205));	//顯示血條
 		LifeBarHead.ShowBitmap();  //顯示血條
+		if (GainHealthDelayCount != 0)
+		{
+			GainLifeUI.SetTopLeft(currentMap->ScreenX(x - 250), currentMap->ScreenY(y - 175));//顯示回血特效
+			GainLifeUI.ShowBitmap();
+		}
 		changeLifeBarLength();
 		ShowNumber(3, Gold, currentMap->ScreenX(x + 250), currentMap->ScreenY(y - 195));
 		Word_Gold.SetTopLeft(currentMap->ScreenX(x + 200), currentMap->ScreenY(y - 195));
@@ -919,193 +1019,35 @@ namespace game_framework {
 		}*/
 
 		//處理劍的顯示
-		/*
-		if (isAttacking)
-		{
-			if(heroDirection == RIGHT) //if (faceDirection == "right")
-			{
-				swordAttack.SetTopLeft(currentMap->ScreenX(x - 40), currentMap->ScreenY(y + 10));
-				swordAttack.OnShow();
-				if (SpecialEffect == 1)
-				{
-					FireSwordRightAnimation.SetTopLeft(currentMap->ScreenX(x - 50), currentMap->ScreenY(y - 10));
-					FireSwordRightAnimation.OnShow();
-				}
-			}
-			else
-			{
-				swordAttack1.SetTopLeft(currentMap->ScreenX(x - 95), currentMap->ScreenY(y + 10));
-				swordAttack1.OnShow();
-				if (SpecialEffect == 1)
-				{
-					FireSwordLeftAnimation.SetTopLeft(currentMap->ScreenX(x - 90), currentMap->ScreenY(y - 10));
-					FireSwordLeftAnimation.OnShow();
-				}
-			}
 
-			if (swordAttack.IsFinalBitmap() || swordAttack1.IsFinalBitmap())
-			{
-				isAttacking = false;
-			}
-		}
-		else if (isMovingRight)		// 向右走
+		if (SpecialEffect == 1)
 		{
-			if (!(PreviousMovement != 2 && DashColdDown == 0))
+			switch (SpecialEffectCount)
 			{
-				SwordDashRight.SetTopLeft(currentMap->ScreenX(x - 100), currentMap->ScreenY(y + 35));
-				SwordDashRight.OnShow();
+			case 3:
+				Fire1.SetTopLeft(currentMap->ScreenX(x - 30), currentMap->ScreenY(y));
+				Fire2.SetTopLeft(currentMap->ScreenX(x + 45), currentMap->ScreenY(y));
+				Fire3.SetTopLeft(currentMap->ScreenX(x + 10), currentMap->ScreenY(y - 45));
+				Fire1.OnShow();
+				Fire2.OnShow();
+				Fire3.OnShow();
+				break;
+			case 2:
+				Fire1.SetTopLeft(currentMap->ScreenX(x - 30), currentMap->ScreenY(y));
+				Fire2.SetTopLeft(currentMap->ScreenX(x + 45), currentMap->ScreenY(y));
+				Fire1.OnShow();
+				Fire2.OnShow();
+				break;
+			case 1:
+				Fire1.SetTopLeft(currentMap->ScreenX(x - 30), currentMap->ScreenY(y));
+				Fire1.OnShow();
+				break;
+			default:
+				break;
 			}
-			else
-			{
-				sword.SetTopLeft(currentMap->ScreenX(x - 80), currentMap->ScreenY(y + 30));
-				sword.OnShow();
-			}
+			FireCircle.SetTopLeft(currentMap->ScreenX(x), currentMap->ScreenY(y + 5));
+			FireCircle.OnShow();
 		}
-		else if (isMovingLeft)		// 向右走
-		{
-			if (!(PreviousMovement != 2 && DashColdDown == 0))
-			{
-				SwordDashLeft.SetTopLeft(currentMap->ScreenX(x + 43), currentMap->ScreenY(y + 35));
-				SwordDashLeft.OnShow();
-			}
-			else
-			{
-				sword1.SetTopLeft(currentMap->ScreenX(x + 17), currentMap->ScreenY(y + 30));
-				sword1.OnShow();
-			}
-		}
-		else if (isRolling)
-		{
-			if(heroDirection == RIGHT) //if (faceDirection == "right")
-			{
-				SwordRollRight.SetTopLeft(currentMap->ScreenX(x - 25), currentMap->ScreenY(y-5));
-				SwordRollRight.OnShow();
-			}
-			else
-			{
-				SwordRollLeft.SetTopLeft(currentMap->ScreenX(x - 20), currentMap->ScreenY(y - 5));
-				SwordRollLeft.OnShow();
-			}
-		}
-		else
-		{
-			if (heroDirection == RIGHT) //if (faceDirection == "right")   // 靜止向右看
-			{
-				sword.SetTopLeft(currentMap->ScreenX(x - 85), currentMap->ScreenY(y + 30));
-				sword.OnShow();
-			}
-			else							// 靜止向左看
-			{
-				sword1.SetTopLeft(currentMap->ScreenX(x + 17), currentMap->ScreenY(y + 30));
-				sword1.OnShow();
-			}
-		}
-		*/
-		//處理主角的顯示
-		/*	
-		if (isMovingUp)	// 往上跳
-		{
-			if (heroDirection == RIGHT) //if (faceDirection == "right")
-			{
-				jumpAnimation.SetTopLeft(currentMap->ScreenX(x), currentMap->ScreenY(y));
-				jumpAnimation.OnShow();
-				if (jumpAnimation.IsFinalBitmap())
-				{
-					isMovingUp = false;
-					jumpAnimation.Reset();
-				}
-			}
-			else
-			{
-				jumpAnimation1.SetTopLeft(currentMap->ScreenX(x), currentMap->ScreenY(y));
-				jumpAnimation1.OnShow();
-				if (jumpAnimation1.IsFinalBitmap())
-				{
-					isMovingUp = false;
-					jumpAnimation1.Reset();
-				}
-			}
-			
-		}
-		else if (isMovingRight)		// 向右走
-		{
-			if (PreviousMovement != 2 && DashColdDown == 0)
-			{
-				moveRightAnimation.SetTopLeft(currentMap->ScreenX(x), currentMap->ScreenY(y));
-				moveRightAnimation.OnShow();
-			}
-			else   //右衝刺
-			{
-				HeroDashRight.SetTopLeft(currentMap->ScreenX(x - 50), currentMap->ScreenY(y));
-				HeroDashRight.OnShow();
-				if(HeroDashRight.IsFinalBitmap())
-				{
-					DashColdDown = 0;    //動畫結束
-				}
-			}
-		}
-		else if (isMovingLeft)	// 向左走
-		{
-			if (PreviousMovement != 1 && DashColdDown==0)
-			{
-				moveLeftAnimation.SetTopLeft(currentMap->ScreenX(x), currentMap->ScreenY(y));
-				moveLeftAnimation.OnShow();
-			}
-			else     //左衝刺
-			{
-				HeroDashLeft.SetTopLeft(currentMap->ScreenX(x), currentMap->ScreenY(y));
-				HeroDashLeft.OnShow();
-				if (HeroDashLeft.IsFinalBitmap())
-				{
-					DashColdDown = 0;
-				}
-			}
-		}
-		else if (isRolling)
-		{
-			if (heroDirection == RIGHT) //if (faceDirection == "right")
-			{
-				HeroRollRight.SetTopLeft(currentMap->ScreenX(x), currentMap->ScreenY(y+15));
-				HeroRollRight.OnShow();
-			}
-			else
-			{
-				HeroRollLeft.SetTopLeft(currentMap->ScreenX(x), currentMap->ScreenY(y+15));
-				HeroRollLeft.OnShow();
-			}
-		}
-		else if (isAttacking)
-		{
-			if (heroDirection == RIGHT) //if (faceDirection == "right")
-			{
-				HeroAttackMovement.SetTopLeft(currentMap->ScreenX(x), currentMap->ScreenY(y));
-				HeroAttackMovement.OnShow();
-				//swordAttack.SetTopLeft(currentMap->ScreenX(x - 40), currentMap->ScreenY(y));
-				//swordAttack.OnShow();
-			}
-			else
-			{
-				HeroAttackMovement1.SetTopLeft(currentMap->ScreenX(x), currentMap->ScreenY(y));
-				HeroAttackMovement1.OnShow();
-				//swordAttack1.SetTopLeft(currentMap->ScreenX(x - 75), currentMap->ScreenY(y));
-				//swordAttack1.OnShow();
-			}
-		}
-		else
-		{
-			if (heroDirection == RIGHT) //if (faceDirection == "right")   // 靜止向右看
-			{
-				animation.SetTopLeft(currentMap->ScreenX(x), currentMap->ScreenY(y));
-				animation.OnShow();
-			}
-			else							// 靜止向左看
-			{
-				animation1.SetTopLeft(currentMap->ScreenX(x), currentMap->ScreenY(y));
-				animation1.OnShow();
-			}
-		}
-		*/
-
 
 		switch (heroActoin)
 		{
@@ -1127,6 +1069,11 @@ namespace game_framework {
 			StandOnShow();
 		default:
 			break;
+
+		if (GainLifeDelayCount != 0 || GainHealthDelayCount != 0)
+		{
+			gain_life.SetTopLeft(currentMap->ScreenX(x), currentMap->ScreenY(y + 25));
+			gain_life.OnShow();
 		}
 		
 		if (isInHome)
@@ -1147,6 +1094,7 @@ namespace game_framework {
 			QuitButton.SetTopLeft(currentMap->ScreenX(x + 100), currentMap->ScreenY(y + 170));
 			QuitButton.ShowBitmap();
 		}
+
 	}
 
 	void CHero::SetHeroHP(int inputHP)
@@ -1182,20 +1130,42 @@ namespace game_framework {
 
 		if (CurrentHP != hp)
 		{
+			if (SpecialEffectCount > 0)
+			{
+				SpecialEffectCount -= 1;
+				if (SpecialEffectCount == 0 && SpecialEffect == 1)   //火焰石效果消失
+				{
+					heroAttackDamage /= 2;   //回歸原本的攻擊力
+				}
+			}
 			isInvincible = true;
 			InvincibleDelayCount = 30;
 		}
 		return hp - CurrentHP;
 	}
 
-	int CHero::HeroGetCoin()
+	int CHero::HeroGetItem()
 	{
 		int Coin = Gold;
-		currentWild->HeroGetItem(&Gold, &SpecialEffect);
+		int SpecialEffectDectect = SpecialEffect;
+		int RecordedHP = CurrentHP;
+		currentWild->HeroGetItem(&Gold, &SpecialEffect, &SpecialEffectCount, &CurrentHP, FullHP);
+		if (RecordedHP < CurrentHP) GainLifeDelayCount = 45;
 		if (Coin < Gold && (Gold - Coin)>=10)
 		{
 			//TRACE("%d\n",Gold-Coin);
 			ShowGoldDelayCount = 30;
+		}
+		if (SpecialEffectDectect != SpecialEffect)			//取得特殊效果的道具
+		{
+			if (SpecialEffect == 1)
+			{
+				heroAttackDamage *= 2;  //火焰石攻擊力加倍
+			}
+			else if (SpecialEffect == 2)
+			{
+				GainHealthDelayCount = 1000;
+			}
 		}
 		return Gold - Coin;
 	}
@@ -1279,6 +1249,9 @@ namespace game_framework {
 		CurrentHP = FullHP;
 		isInHome = true;
 		SelectMap(0);
+		if (SpecialEffect == 1 && SpecialEffectCount != 0) heroAttackDamage /= 2;
+		SpecialEffect = 0;
+		SpecialEffectCount = 0;
 		x = 0;    
 		y = 0;
 	}
@@ -1325,5 +1298,76 @@ namespace game_framework {
 	bool CHero::GetHeroIsRolling()
 	{
 		return isRolling;
+	}
+
+	/////////////////////////////////////////////////////////////////////////////
+	// HeroBullet
+	/////////////////////////////////////////////////////////////////////////////
+	HeroBullet::HeroBullet(gameMap* point, int nx, int ny, int step)
+	{
+		x = nx;
+		y = ny;
+		currentMap = point;
+		distance = 0;
+		STEP_SIZE = step;
+		animation.SetDelayCount(2);
+	}
+
+	HeroBullet::~HeroBullet() {}
+
+	int HeroBullet::GetX1()
+	{
+		return x;
+	}
+
+	int HeroBullet::GetY1()
+	{
+		return y;
+	}
+
+	int HeroBullet::GetX2()
+	{
+		return x + animation.Width();
+	}
+
+	int HeroBullet::GetY2()
+	{
+		return y + animation.Height();
+	}
+
+	bool HeroBullet::isDelet()
+	{
+		if (distance > 500)
+		{
+			return true;
+		}
+
+		if (!currentMap->isSpace(GetX1(), GetY1()))  // 當x座標碰到牆
+		{
+			return true;
+		}
+
+		return false;
+	}
+
+	void HeroBullet::OnMove()
+	{
+		animation.OnMove();
+
+		x += STEP_SIZE;
+
+		if (STEP_SIZE > 0)
+		{
+			distance += STEP_SIZE;
+		}
+		else
+		{
+			distance -= STEP_SIZE;
+		}
+	}
+	void HeroBullet::OnShow()
+	{
+		animation.SetTopLeft(currentMap->ScreenX(x), currentMap->ScreenY(y));
+		animation.OnShow();
 	}
 }
