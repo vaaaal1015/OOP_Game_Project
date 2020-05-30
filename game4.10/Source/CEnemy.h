@@ -4,13 +4,13 @@ namespace game_framework {
 	// 看懂就可以改寫成自己的程式了
 	/////////////////////////////////////////////////////////////////////////////
 
-	enum ACTION
+	enum CEnemy_Action
 	{
-		STAND_LEFT, 
-		MOVE_LEFT, 
-		ATTACK_LEFT, 
-		STAND_RIGHT, 
-		MOVE_RIGHT, 
+		STAND_LEFT,
+		MOVE_LEFT,
+		ATTACK_LEFT,
+		STAND_RIGHT,
+		MOVE_RIGHT,
 		ATTACK_RIGHT,
 		GET_HIT,
 		DEAD
@@ -118,10 +118,10 @@ namespace game_framework {
 		int velocity;				// 目前的速度(點/次)
 		int enemyHP;					// 敵人生命值
 		int enemyAttackDamage;		//敵人攻擊力
-		ACTION DetectHero(ACTION state);		// 偵測英雄位置:  1:距離左邊200 2:距離左邊150 3:距離右邊150 4:距離右邊200
+		CEnemy_Action DetectHero(CEnemy_Action state);
 		int attackDelay;
 		int attackDelayCount;
-		ACTION state;
+		CEnemy_Action state;
 		vector<bullet_sunFlower*> allBullet;
 		int GetHitDelayCount = 0;
 		bool GetHit = false;

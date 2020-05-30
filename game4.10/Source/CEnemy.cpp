@@ -132,7 +132,7 @@ namespace game_framework {
 		}
 	}
 
-	ACTION CEnemy_sunFlower::DetectHero(ACTION state)
+	CEnemy_Action CEnemy_sunFlower::DetectHero(CEnemy_Action state)
 	{
 		if(attackDelayCount <= 0)
 		{

@@ -4,6 +4,21 @@ namespace game_framework {
 	// 看懂就可以改寫成自己的程式了
 	/////////////////////////////////////////////////////////////////////////////
 
+	enum Hero_Action
+	{
+		STAND,
+		WALK,
+		RUN,
+		ROLL,
+		ATTACK,
+		TALK
+	};
+	
+	enum Hero_Direction
+	{
+		LEFT, RIGHT
+	};
+
 	class CHero
 	{
 	public:
@@ -18,8 +33,7 @@ namespace game_framework {
 		int	 GetCenterX();				// 英雄正中央的 x 座標
 		int	 GetCenterY();				// 英雄正中央的 y 座標
 		void Initialize();				// 設定英雄為初始值
-		void LoadBitmap();				// 載入圖形
-		void setHeroDirection(string direction);	// 設定人物面對的方向		
+		void LoadBitmap();				// 載入圖形		
 		void OnMove();					// 移動英雄
 		void OnShow();					// 將英雄圖形貼到畫面
 		void SetMovingDown(bool flag);	// 設定是否正在往下移動
@@ -32,10 +46,9 @@ namespace game_framework {
 		void SetXY(int nx, int ny);		// 設定英雄左上角座標
 		void SetHeroHP(int inputHP);	// 設定主角HP值
 		bool isAttacking;				// 正在攻擊
-		//void SetMap(int index);			// 
 		int GetHeroFullHP();
 		int GetHeroCurrentHP();      
-		int AttackByEnemy();
+		int AttackByEnemy();			// 英雄被敵人攻擊
 		int HeroGetCoin();
 		void SetPreviousMove(int Movement);
 		int GetPreviousMove();          //取得上一個動作
@@ -58,8 +71,8 @@ namespace game_framework {
 		CAnimation moveLeftAnimation;   // 向左移動動畫
 		CAnimation jumpAnimation;		// 跳躍動畫(向右)
 		CAnimation jumpAnimation1;		// 跳躍動畫(向左)
-		CAnimation HeroAttackMovement;  // 英雄攻擊動畫<向右)
-		CAnimation HeroAttackMovement1;	// 英雄攻擊動畫<向左)
+		CAnimation HeroAttackMovement;  // 英雄攻擊動畫(向右)
+		CAnimation HeroAttackMovement1;	// 英雄攻擊動畫(向左)
 		CAnimation sword;				// 載入劍的動畫(向右)
 		CAnimation sword1;				// 載入劍的動畫(向左)
 		CAnimation swordAttack;			// 劍的攻擊動畫(向右)
@@ -93,7 +106,7 @@ namespace game_framework {
 		bool isMovingUp;				// 是否正在往上移動
 		bool isRolling;					// 是否正在翻滾
 		bool isInvincible;				// 是否為無敵(無法被攻擊)
-		string faceDirection;			// 人物面對的方向
+		//string faceDirection;			// 人物面對的方向
 		int Gold;						// 金幣
 		int floor;						// 地板的Y座標
 		bool rising;					// true表上升、false表下降
@@ -112,6 +125,8 @@ namespace game_framework {
 		int SpecialEffect = 0;			// 0:無效果;1:火焰
 		
 	private:
+		//Counter AttackDelayCounter;		// 攻擊延遲時間
+
 		gameMap_village* currentVillage;	// 紀錄目前的村莊
 		gameMap_wild* currentWild;			// 紀錄目前的野外
 		gameMap* currentMap;				// 紀錄目前的地圖
@@ -123,5 +138,21 @@ namespace game_framework {
 		bool isInHome;						// 是否在村莊
 		bool isSelectingMap;				// 是否正在選擇地圖
 		int AttackRange;
+		Hero_Action heroActoin;				// 英雄動作
+		Hero_Direction heroDirection;		// 英雄面對的方向
+		void setHeroAction();		// 設定英雄動作
+		void WalkOnMove();
+		void RollOnMove();
+		void StandOnMove();
+		void WalkOnShow();
+		void RollOnShow();
+		void StandOnShow();
+		void AttackOnMove();
+		void AttackOnShow();
+		void RunOnMove();
+		void RunOnShow();
+		void TalkOnMove();
+		//void TalkOnShow();
+		CAnimation currentAnimation;	// 目前的英雄動畫
 	};
 }

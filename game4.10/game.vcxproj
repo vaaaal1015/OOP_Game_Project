@@ -261,6 +261,7 @@
     <ClCompile Include="Source\audio.cpp" />
     <ClCompile Include="Source\CEnemy.cpp" />
     <ClCompile Include="Source\CHero.cpp" />
+    <ClCompile Include="Source\Counter.cpp" />
     <ClCompile Include="Source\game.cpp">
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
@@ -308,6 +309,7 @@
     <ClInclude Include="Source\audio.h" />
     <ClInclude Include="Source\CEnemy.h" />
     <ClInclude Include="Source\CHero.h" />
+    <ClInclude Include="Source\Counter.h" />
     <ClInclude Include="Source\game.h" />
     <ClInclude Include="Source\gameDoc.h" />
     <ClInclude Include="Source\gameMap.h" />
@@ -507,6 +509,8 @@
     <Image Include="RES\NPC\Old_Man\Old_Man_3.bmp" />
     <Image Include="res\numbers\bitmap3.bmp" />
     <Image Include="res\numbers\bitmap48.bmp" />
+    <Image Include="res\numbers\bitmap60.bmp" />
+    <Image Include="res\numbers\bmp00001.bmp" />
     <Image Include="RES\Numbers\NUM_0.bmp" />
     <Image Include="RES\Numbers\NUM_1.bmp" />
     <Image Include="RES\Numbers\NUM_2.bmp" />

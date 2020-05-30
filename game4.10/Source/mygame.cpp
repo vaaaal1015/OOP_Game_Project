@@ -305,10 +305,16 @@ void CGameStateRun::OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags)
 	const char KEY_F2 = 0x71;	 // keyboard F2
 	const char KEY_F3 = 0x72;	 // keyboard F3
 	const char KEY_Z = 0x5A;
+	if(nChar == KEY_LEFT)
+		hero.SetMovingLeft(true);
+	if (nChar == KEY_RIGHT)    //英雄不能取消翻滾動作
+		hero.SetMovingRight(true);
+	/*
 	if (nChar == KEY_LEFT && !hero.GetHeroIsRolling())     //英雄不能取消翻滾動作
 		hero.SetMovingLeft(true);
 	if (nChar == KEY_RIGHT && !hero.GetHeroIsRolling())    //英雄不能取消翻滾動作
 		hero.SetMovingRight(true);
+	*/
 	if (nChar == KEY_UP)
 		hero.SetMovingUp(true);
 	if (nChar == KEY_DOWN)
@@ -332,21 +338,25 @@ void CGameStateRun::OnKeyUp(UINT nChar, UINT nRepCnt, UINT nFlags)
 	if (nChar == KEY_LEFT)
 	{
 		hero.SetMovingLeft(false);
+		
+		/*
 		if (hero.GetPreviousMove() != 1)
 		{
 			hero.SetPreviousMove(1);
 			hero.SetMoveDelayCount(5);
 		}
-
+		*/
 	}
 	if (nChar == KEY_RIGHT)
 	{
 		hero.SetMovingRight(false);
+		/*
 		if (hero.GetPreviousMove() != 2)
 		{
 			hero.SetPreviousMove(2);
 			hero.SetMoveDelayCount(5);
 		}
+		*/
 	}
 	/*
 	if (nChar == KEY_UP)

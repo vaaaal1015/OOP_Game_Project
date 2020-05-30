@@ -668,6 +668,10 @@ IDB_FIRESWORDLEFT_5     BITMAP                  "..\\RES\\Special_Effect\\Left_M
 
 IDB_FIRESWORDLEFT_6     BITMAP                  "..\\RES\\Special_Effect\\Left_Mode_0\\Left_Mode_6.bmp"
 
+IDB_BIT_RED             BITMAP                  "..\\res\\numbers\\bitmap60.bmp"
+
+IDB_BIT_BIUE            BITMAP                  "..\\res\\numbers\\bmp00001.bmp"
+
 
 /////////////////////////////////////////////////////////////////////////////
 //

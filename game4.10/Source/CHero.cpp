@@ -5,6 +5,7 @@
 #include "audio.h"
 #include "gamelib.h"
 #include "gameMap.h"
+#include "Counter.h"
 #include "CHero.h"
 
 
@@ -12,7 +13,6 @@ namespace game_framework {
 	/////////////////////////////////////////////////////////////////////////////
 	// CEraser: Eraser class
 	/////////////////////////////////////////////////////////////////////////////
-
 	CHero::CHero()
 	{
 	
@@ -32,7 +32,6 @@ namespace game_framework {
 	{
 		delete currentVillage;
 		delete currentWild;
-		//for (vector<gameMap*>::iterator i = maps.begin(); i != maps.end(); i++) delete (*i);
 		for (vector<CMovingBitmap*>::iterator i = LifeBarRed.begin(); i != LifeBarRed.end(); i++) delete (*i);
 	}
 
@@ -80,7 +79,7 @@ namespace game_framework {
 
 	void CHero::Initialize()
 	{
-		const int X_POS = 0;
+		const int X_POS = 5;
 		const int Y_POS = 0;
 		x = X_POS;
 		y = Y_POS;
@@ -106,8 +105,8 @@ namespace game_framework {
 		jumpAnimation.SetDelayCount(4);
 		jumpAnimation1.SetDelayCount(4);
 		moveLeftAnimation.SetDelayCount(3);
-		HeroRollLeft.SetDelayCount(5);
-		HeroRollRight.SetDelayCount(5);
+		HeroRollLeft.SetDelayCount(3);
+		HeroRollRight.SetDelayCount(3);
 		SwordRollRight.SetDelayCount(5);
 		SwordRollLeft.SetDelayCount(5);
 		SwordDashLeft.SetDelayCount(3);
@@ -123,6 +122,9 @@ namespace game_framework {
 		AttackRange = 100;					// 主角攻擊範圍
 		isSelectingMap = false;
 		AttackRange = 150;
+		heroDirection = LEFT;
+		heroActoin = STAND;
+
 	}
 
 	void CHero::LoadBitmap()
@@ -283,7 +285,6 @@ namespace game_framework {
 		BlackMask.LoadBitmap(IDB_BLACKMASK, RGB(27, 36, 46));
 		Word_G.LoadBitmap(IDB_WORD_G, RGB(255, 255, 255));
 		Word_Gold.LoadBitmap(IDB_WORD_GOLD, RGB(255, 255, 255));
-		//DamageTaken.LoadBitmap();
 		for (vector<CMovingBitmap*>::iterator i = LifeBarRed.begin(); i != LifeBarRed.end(); i++) (*i)->LoadBitmap(IDB_LIFEBAR, RGB(255, 255, 255));
 
 		SelectMap(0);
@@ -304,6 +305,360 @@ namespace game_framework {
 		return PreviousMovement;
 	}
 
+	void CHero::setHeroAction()
+	{
+		//越下面權重越高
+		heroActoin = STAND;
+
+		if (isMovingLeft)
+		{
+			if(!isRolling)
+				heroDirection = LEFT;
+
+			heroActoin = WALK;
+		}
+
+		if (isMovingRight)
+		{
+			if(!isRolling)
+				heroDirection = RIGHT;
+
+			heroActoin = WALK;
+		}
+
+		if (isAttacking)
+		{
+			heroActoin = ATTACK;
+		}
+
+		if (isAttacking)
+		{
+			heroActoin = ATTACK;
+		}
+
+		if (isRolling)
+		{
+			isAttacking = false;
+			heroActoin = ROLL;
+		}
+
+
+		if (isTalkingToNPC && isInHome)
+		{
+			//heroActoin = TALK;
+			currentVillage->HeroTalkToNPC(true);
+		}
+		else
+		{
+			currentVillage->HeroTalkToNPC(false);
+		}
+	}
+
+	void CHero::StandOnMove()
+	{
+
+		switch (heroDirection)
+		{
+		case game_framework::LEFT:
+			animation1.OnMove();
+			animation.Reset();
+			sword1.OnMove();
+			sword.Reset();
+			break;
+		case game_framework::RIGHT:
+			animation1.Reset();
+			animation.OnMove();
+			sword1.Reset();
+			sword.OnMove();
+			break;
+		}
+
+		HeroAttackMovement.Reset();
+		HeroAttackMovement1.Reset();
+		swordAttack.Reset();
+		swordAttack1.Reset();
+		moveRightAnimation.Reset();
+		HeroDashLeft.Reset();
+		HeroDashRight.Reset();
+		moveLeftAnimation.Reset();
+		jumpAnimation.Reset();
+		jumpAnimation1.Reset();
+		HeroRollLeft.Reset();
+		HeroRollRight.Reset();
+		SwordRollRight.Reset();
+		SwordRollLeft.Reset();
+		SwordDashRight.Reset();
+		SwordDashLeft.Reset();
+		FireSwordRightAnimation.Reset();
+		FireSwordLeftAnimation.Reset();
+	}
+
+	void CHero::StandOnShow()
+	{
+		switch (heroDirection)
+		{
+		case game_framework::LEFT:
+			sword1.SetTopLeft(currentMap->ScreenX(x + 17), currentMap->ScreenY(y + 30));
+			sword1.OnShow();
+			animation1.SetTopLeft(currentMap->ScreenX(x), currentMap->ScreenY(y));
+			animation1.OnShow();
+			break;
+		case game_framework::RIGHT:
+			sword.SetTopLeft(currentMap->ScreenX(x - 85), currentMap->ScreenY(y + 30));
+			sword.OnShow();
+			animation.SetTopLeft(currentMap->ScreenX(x), currentMap->ScreenY(y));
+			animation.OnShow();
+			break;
+		}
+	}
+
+	void CHero::WalkOnMove()
+	{
+
+		switch (heroDirection)
+		{
+		case game_framework::LEFT:
+			moveLeftAnimation.OnMove();
+			moveRightAnimation.Reset();
+			sword.Reset();
+			sword1.OnMove();
+			break;
+		case game_framework::RIGHT:
+			moveLeftAnimation.Reset();
+			moveRightAnimation.OnMove();
+			sword.OnMove();
+			sword1.Reset();
+			break;
+		}
+
+
+		animation.Reset();
+		animation1.Reset();
+		HeroAttackMovement.Reset();
+		HeroAttackMovement1.Reset();
+		swordAttack.Reset();
+		swordAttack1.Reset();
+		HeroDashLeft.Reset();
+		HeroDashRight.Reset();
+		jumpAnimation.Reset();
+		jumpAnimation1.Reset();
+		HeroRollLeft.Reset();
+		HeroRollRight.Reset();
+		SwordRollRight.Reset();
+		SwordRollLeft.Reset();
+		SwordDashRight.Reset();
+		SwordDashLeft.Reset();
+		FireSwordRightAnimation.Reset();
+		FireSwordLeftAnimation.Reset();
+
+		const int STEP_SIZE = 10;
+
+		switch (heroDirection)
+		{
+		case game_framework::LEFT:
+			for (int i = 0; i < STEP_SIZE; i++) {
+				if (currentMap->isSpace(GetX1() - 1, GetY1()) && currentMap->isSpace(GetX1() - 1, GetY2())) // 當x座標還沒碰到牆
+				{
+					x -= 1;    //正常走
+				}
+			}
+			break;
+		case game_framework::RIGHT:
+			for (int i = 0; i < STEP_SIZE; i++)
+			{
+				if (currentMap->isSpace(GetX2() + 1, GetY1()) && currentMap->isSpace(GetX2() + 1, GetY2())) // 當x座標還沒碰到牆
+				{
+					x += 1;    //正常走
+				}
+			}
+			break;
+		}
+	}
+
+	void CHero::WalkOnShow()
+	{
+		switch (heroDirection)
+		{
+		case game_framework::LEFT:
+			sword1.SetTopLeft(currentMap->ScreenX(x + 17), currentMap->ScreenY(y + 30));
+			sword1.OnShow();
+			moveLeftAnimation.SetTopLeft(currentMap->ScreenX(x), currentMap->ScreenY(y));
+			moveLeftAnimation.OnShow();
+			break;
+		case game_framework::RIGHT:
+			sword.SetTopLeft(currentMap->ScreenX(x - 75), currentMap->ScreenY(y + 30));
+			sword.OnShow();
+			moveRightAnimation.SetTopLeft(currentMap->ScreenX(x), currentMap->ScreenY(y));
+			moveRightAnimation.OnShow();
+			break;
+		}
+	}
+
+
+
+	void CHero::RollOnMove()
+	{
+		const int STEP_SIZE = 15;
+
+		if (HeroRollLeft.IsFinalBitmap() || HeroRollRight.IsFinalBitmap())
+		{
+			isRolling = false;
+		}
+
+		switch (heroDirection)
+		{
+		case game_framework::LEFT:
+			for (int i = 0; i < STEP_SIZE; i++)
+			{
+				if (currentMap->isSpace(GetX1() - 1, GetY1()) && currentMap->isSpace(GetX1() - 1, GetY2())) // 當x座標還沒碰到牆
+				{
+					x -= 1;    //正常走
+				}
+			}
+			break;
+		case game_framework::RIGHT:
+			for (int i = 0; i < STEP_SIZE; i++)
+			{
+				if (currentMap->isSpace(GetX2() + 1, GetY1()) && currentMap->isSpace(GetX2() + 1, GetY2())) // 當x座標還沒碰到牆
+				{
+					x += 1;    //正常走
+				}
+			}
+			break;
+		}
+
+		switch (heroDirection)
+		{
+		case game_framework::LEFT:
+			HeroRollLeft.OnMove();
+			HeroRollRight.Reset();
+			SwordRollRight.Reset();
+			SwordRollLeft.OnMove();
+			break;
+		case game_framework::RIGHT:
+			HeroRollLeft.Reset();
+			HeroRollRight.OnMove();
+			SwordRollRight.OnMove();
+			SwordRollLeft.Reset();
+			break;
+		}
+
+		animation.Reset();
+		animation1.Reset();
+		sword.Reset();
+		sword1.Reset();
+		HeroAttackMovement.Reset();
+		HeroAttackMovement1.Reset();
+		swordAttack.Reset();
+		swordAttack1.Reset();
+		moveRightAnimation.Reset();
+		HeroDashLeft.Reset();
+		HeroDashRight.Reset();
+		moveLeftAnimation.Reset();
+		jumpAnimation.Reset();
+		jumpAnimation1.Reset();
+		SwordDashRight.Reset();
+		SwordDashLeft.Reset();
+		FireSwordRightAnimation.Reset();
+		FireSwordLeftAnimation.Reset();
+	}
+
+	void CHero::RollOnShow()
+	{
+		switch (heroDirection)
+		{
+		case game_framework::LEFT:
+			SwordRollLeft.SetTopLeft(currentMap->ScreenX(x - 20), currentMap->ScreenY(y - 5));
+			SwordRollLeft.OnShow();
+			HeroRollLeft.SetTopLeft(currentMap->ScreenX(x), currentMap->ScreenY(y));
+			HeroRollLeft.OnShow();
+			break;
+		case game_framework::RIGHT:
+			SwordRollRight.SetTopLeft(currentMap->ScreenX(x - 25), currentMap->ScreenY(y - 5));
+			SwordRollRight.OnShow();
+			HeroRollRight.SetTopLeft(currentMap->ScreenX(x), currentMap->ScreenY(y));
+			HeroRollRight.OnShow();
+			break;
+		}
+	}
+
+	void CHero::AttackOnMove()
+	{
+		if (HeroAttackMovement.IsFinalBitmap() || HeroAttackMovement1.IsFinalBitmap())
+		{
+			isAttacking = false;
+		}
+
+		if (!isInHome)
+		{
+			switch (heroDirection)
+			{
+			case game_framework::LEFT:
+				currentWild->SetHeroAttackRange(GetCenterX() - AttackRange - 50, GetCenterX() + AttackRange, GetCenterY() - 50, GetCenterY() + 50);
+				currentWild->SetHeroAttackRange(GetCenterX() - AttackRange, GetCenterX() + AttackRange + 50, GetCenterY() - 50, GetCenterY() + 50);
+				break;
+			case game_framework::RIGHT:
+				currentWild->SetHeroAttackRange(GetCenterX() - AttackRange, GetCenterX() + AttackRange + 50, GetCenterY() - 50, GetCenterY() + 50);
+				break;
+			}
+			currentWild->AttackByHero(heroAttackDamage);
+		}
+
+		switch (heroDirection)
+		{
+		case game_framework::LEFT:
+			HeroAttackMovement.Reset();
+			HeroAttackMovement1.OnMove();
+			swordAttack.Reset();
+			swordAttack1.OnMove();
+			break;
+		case game_framework::RIGHT:
+			HeroAttackMovement.OnMove();
+			HeroAttackMovement1.Reset();
+			swordAttack.OnMove();
+			swordAttack1.Reset();
+			break;
+		}
+
+		HeroRollRight.Reset();
+		SwordRollRight.Reset();
+		HeroRollLeft.Reset();
+		SwordRollLeft.Reset();
+		animation.Reset();
+		animation1.Reset();
+		sword.Reset();
+		sword1.Reset();
+		moveRightAnimation.Reset();
+		HeroDashLeft.Reset();
+		HeroDashRight.Reset();
+		moveLeftAnimation.Reset();
+		jumpAnimation.Reset();
+		jumpAnimation1.Reset();
+		SwordDashRight.Reset();
+		SwordDashLeft.Reset();
+		FireSwordRightAnimation.Reset();
+		FireSwordLeftAnimation.Reset();
+	}
+
+	void CHero::AttackOnShow()
+	{
+		switch (heroDirection)
+		{
+		case game_framework::LEFT:
+			swordAttack1.SetTopLeft(currentMap->ScreenX(x - 95), currentMap->ScreenY(y + 10));
+			swordAttack1.OnShow();
+			HeroAttackMovement1.SetTopLeft(currentMap->ScreenX(x), currentMap->ScreenY(y));
+			HeroAttackMovement1.OnShow();
+			break;
+		case game_framework::RIGHT:
+			swordAttack.SetTopLeft(currentMap->ScreenX(x - 40), currentMap->ScreenY(y + 10));
+			swordAttack.OnShow();
+			HeroAttackMovement.SetTopLeft(currentMap->ScreenX(x), currentMap->ScreenY(y));
+			HeroAttackMovement.OnShow();
+			break;
+		}
+	}
+
 	void CHero::OnMove()
 	{
 		if (isInHome)//在home時
@@ -316,28 +671,7 @@ namespace game_framework {
 		}
 
 		const int STEP_SIZE = 10;
-		animation.OnMove();
-		animation1.OnMove();
-		sword.OnMove();
-		sword1.OnMove();
-		HeroAttackMovement.OnMove();
-		HeroAttackMovement1.OnMove();
-		swordAttack.OnMove();
-		swordAttack1.OnMove();
-		moveRightAnimation.OnMove();
-		HeroDashLeft.OnMove();
-		HeroDashRight.OnMove();
-		moveLeftAnimation.OnMove();
-		jumpAnimation.OnMove();
-		jumpAnimation1.OnMove();
-		HeroRollLeft.OnMove();
-		HeroRollRight.OnMove();
-		SwordRollRight.OnMove();
-		SwordRollLeft.OnMove();
-		SwordDashRight.OnMove();
-		SwordDashLeft.OnMove();
-		FireSwordRightAnimation.OnMove();
-		FireSwordLeftAnimation.OnMove();
+
 		if (ShowGoldDelayCount > 0) ShowGoldDelayCount--;
 		if(AttackDelayCount !=0) AttackDelayCount--;    //攻速
 		if (RollDelayCount != 0) RollDelayCount--;		//翻滾
@@ -347,76 +681,30 @@ namespace game_framework {
 		if (MoveDelayCount == 0) SetPreviousMove(0);  //抹除上個動作紀錄
 		if (InvincibleDelayCount == 0) isInvincible = false;
 
-		if (isMovingLeft)
+		setHeroAction();
+	
+		switch (heroActoin)
 		{
-			setHeroDirection("left");   //角色向左看
-			if (currentMap->isSpace(GetX1(), GetY1()) && currentMap->isSpace(GetX1(), GetY2() - 10)) // 當x座標還沒碰到牆
-			{
-				if (PreviousMovement == 1 && DashColdDown==0)
-				{
-					x -= 80;    //衝刺距離
-					DashColdDown = 15;    // 衝刺冷卻時間
-					HeroDashLeft.Reset();  //重置動畫
-					SwordDashLeft.Reset();
-				}
-				else
-				{
-					x -= STEP_SIZE;    //正常走
-				}
-			}
+		case game_framework::STAND:
+			StandOnMove();
+			break;
+		case game_framework::WALK:
+			WalkOnMove();
+			break;
+		case game_framework::RUN:
+			break;
+		case game_framework::ROLL:
+			RollOnMove();
+			break;
+		case game_framework::ATTACK:
+			AttackOnMove();
+			break;
+		case game_framework::TALK:
+			StandOnMove();
+			break;
 		}
-		if (isMovingRight)
-		{
-			setHeroDirection("right");   //角色向右看
-			if (currentMap->isSpace(GetX2(), GetY1()) && currentMap->isSpace(GetX2(), GetY2()-10)) // 當y座標還沒碰到牆
-			{
-				if (PreviousMovement == 2 && DashColdDown == 0)
-				{
-					x += 80;     //衝刺距離
-					DashColdDown = 15;    // 衝刺冷卻時間
-					HeroDashRight.Reset();   //重置動畫
-					SwordDashRight.Reset();
-				}
-				else
-				{
-					x += STEP_SIZE;    //正常走
-				}
-			}
-		}
-		if (isRolling)
-		{
-			if (faceDirection == "right")
-			{
-				HeroRollRight.OnMove();
-				SwordRollRight.OnMove();
-				for (int i = 0; i < 15; i++)
-				{
-					if (currentMap->isSpace(GetX2(), GetY1()) && currentMap->isSpace(GetX2(), GetY2() - 10)) // 當y座標還沒碰到牆
-					{
-						x ++;
-					}
-				}
-				if (HeroRollRight.IsFinalBitmap()) isRolling = false;
-			}
-			else
-			{
-				HeroRollLeft.OnMove();
-				SwordRollLeft.OnMove();
 
-				for (int i = 0; i < 15; i++)
-				{
-					if (currentMap->isSpace(GetX2(), GetY1()) && currentMap->isSpace(GetX2(), GetY2() - 10)) // 當y座標還沒碰到牆
-					{
-						x --;
-					}
-				}
-				if (HeroRollLeft.IsFinalBitmap()) isRolling = false;
-			}
-		}
-		if (isMovingUp && y == (floor))
-		{
-			rising = true;						// 改為上升狀態
-		}
+		// 重力
 		if (rising) {							// 上升狀態
 			if (velocity > 0) {
 				y -= velocity;					// 當速度 > 0時，y軸上升(移動velocity個點，velocity的單位為 點/次)
@@ -433,30 +721,19 @@ namespace game_framework {
 			}
 		}
 		else {									// 下降狀態
-			if (currentMap->isSpace(GetX1(), GetY2()) && currentMap->isSpace(GetX2(), GetY2())) {  // 當y座標還沒碰到地板
+			if (currentMap->isSpace(GetX1(), GetY2() + 1) && currentMap->isSpace(GetX2(), GetY2() + 1)) {  // 當y座標還沒碰到地板
 				y += velocity;					// y軸下降(移動velocity個點，velocity的單位為 點/次)
 				velocity++;						// 受重力影響，下次的下降速度增加
 			}
 			else {
-				floor = currentMap->GetBlockY(GetY2()) - GetHeight();
-				y = floor;					// 當y座標低於地板，更正為地板上
+				isMovingUp = false;
+				floor = currentMap->GetBlockY(GetY2() + 1) - 1 - GetHeight();
+				y = floor;						// 當y座標低於地板，更正為地板上
 				velocity = initial_velocity;	// 重設上升初始速度
 			}
 		}
 
-		if (isAttacking && !isInHome)
-		{
-			if (faceDirection == "right")
-			{
-				currentWild->SetHeroAttackRange(GetCenterX() - AttackRange, GetCenterX() + AttackRange + 50, GetCenterY() - 50, GetCenterY() + 50);
-			}
-			else
-			{
-				currentWild->SetHeroAttackRange(GetCenterX() - AttackRange - 50, GetCenterX() + AttackRange, GetCenterY() - 50, GetCenterY() + 50);
-			}
-			currentWild->AttackByHero(heroAttackDamage);
-		}
-
+		/*
 		if (isTalkingToNPC && isInHome)
 		{
 			currentVillage->HeroTalkToNPC(true);
@@ -465,6 +742,7 @@ namespace game_framework {
 		{
 			currentVillage->HeroTalkToNPC(false);
 		}
+		*/
 
 		if (!isRolling && !isInvincible && !isInHome)
 		{
@@ -480,6 +758,7 @@ namespace game_framework {
 			}
 			
 		}
+
 		currentMap->SetSXSY(GetCenterX() - SIZE_X / 2, GetCenterY() - SIZE_Y / 2);
 		if (isInHome)
 		{
@@ -510,25 +789,33 @@ namespace game_framework {
 
 	void CHero::SetMovingUp(bool flag)
 	{
-		if (isMovingUp == false && flag == true)
+		if (isMovingUp == false && y == floor)
 		{
-			jumpAnimation.Reset();
-			jumpAnimation1.Reset();
-			isMovingUp = true;
-		}
+			isMovingUp = flag;
+			rising = true;
+		}  
 	}
 
 	void CHero::SetTalkingToNPC(bool flag)
 	{
-		isTalkingToNPC = flag;
+		if (isTalkingToNPC == false)
+		{
+			isTalkingToNPC = flag;
+		}
 	}
 
 	void CHero::SetEndTalking()
 	{
 		isTalkingToNPC = false;
 	}
+
 	void CHero::SetHeroAttack(bool flag)
 	{
+		if (isAttacking == false)
+		{
+			isAttacking = flag;
+		}
+		/*
 		if (AttackDelayCount == 0 && flag == true) {
 			swordAttack1.Reset();
 			swordAttack.Reset();
@@ -540,9 +827,16 @@ namespace game_framework {
 			AttackDelayCount = SetAttackDelayCount;
 			isMovingLeft = isMovingRight = isMovingUp = isMovingDown = isRolling = false;   //角色不能邊走邊攻擊
 		}
+		*/
 	}
 	void CHero::SetHeroRoll (bool flag)
 	{
+		if (isRolling == false)
+		{
+			isRolling = flag;
+		}
+
+		/*
 		if (RollDelayCount == 0 && flag == true && !rising) {
 			HeroRollLeft.Reset();
 			HeroRollRight.Reset();
@@ -551,6 +845,7 @@ namespace game_framework {
 			
 			isMovingLeft = isMovingRight = isMovingUp = isMovingDown = isAttacking = false;   //角色不能邊走邊攻擊
 		}
+		*/
 	}
 	void CHero::SetXY(int nx, int ny)
 	{
@@ -567,11 +862,12 @@ namespace game_framework {
 		MoveDelayCount = delay;
 	}
 
+	/*
 	void CHero::setHeroDirection(string direction)
 	{
 		faceDirection = direction;
 	}
-
+	*/
 
 	void CHero::changeLifeBarLength()
 	{
@@ -623,9 +919,10 @@ namespace game_framework {
 		}*/
 
 		//處理劍的顯示
+		/*
 		if (isAttacking)
 		{
-			if (faceDirection == "right")
+			if(heroDirection == RIGHT) //if (faceDirection == "right")
 			{
 				swordAttack.SetTopLeft(currentMap->ScreenX(x - 40), currentMap->ScreenY(y + 10));
 				swordAttack.OnShow();
@@ -679,7 +976,7 @@ namespace game_framework {
 		}
 		else if (isRolling)
 		{
-			if (faceDirection == "right")
+			if(heroDirection == RIGHT) //if (faceDirection == "right")
 			{
 				SwordRollRight.SetTopLeft(currentMap->ScreenX(x - 25), currentMap->ScreenY(y-5));
 				SwordRollRight.OnShow();
@@ -692,7 +989,7 @@ namespace game_framework {
 		}
 		else
 		{
-			if (faceDirection == "right")   // 靜止向右看
+			if (heroDirection == RIGHT) //if (faceDirection == "right")   // 靜止向右看
 			{
 				sword.SetTopLeft(currentMap->ScreenX(x - 85), currentMap->ScreenY(y + 30));
 				sword.OnShow();
@@ -703,11 +1000,12 @@ namespace game_framework {
 				sword1.OnShow();
 			}
 		}
-
+		*/
 		//處理主角的顯示
+		/*	
 		if (isMovingUp)	// 往上跳
 		{
-			if (faceDirection == "right")
+			if (heroDirection == RIGHT) //if (faceDirection == "right")
 			{
 				jumpAnimation.SetTopLeft(currentMap->ScreenX(x), currentMap->ScreenY(y));
 				jumpAnimation.OnShow();
@@ -765,7 +1063,7 @@ namespace game_framework {
 		}
 		else if (isRolling)
 		{
-			if (faceDirection == "right")
+			if (heroDirection == RIGHT) //if (faceDirection == "right")
 			{
 				HeroRollRight.SetTopLeft(currentMap->ScreenX(x), currentMap->ScreenY(y+15));
 				HeroRollRight.OnShow();
@@ -778,24 +1076,24 @@ namespace game_framework {
 		}
 		else if (isAttacking)
 		{
-			if (faceDirection == "right")
+			if (heroDirection == RIGHT) //if (faceDirection == "right")
 			{
 				HeroAttackMovement.SetTopLeft(currentMap->ScreenX(x), currentMap->ScreenY(y));
 				HeroAttackMovement.OnShow();
-				/*swordAttack.SetTopLeft(currentMap->ScreenX(x - 40), currentMap->ScreenY(y));
-				swordAttack.OnShow();*/
+				//swordAttack.SetTopLeft(currentMap->ScreenX(x - 40), currentMap->ScreenY(y));
+				//swordAttack.OnShow();
 			}
 			else
 			{
 				HeroAttackMovement1.SetTopLeft(currentMap->ScreenX(x), currentMap->ScreenY(y));
 				HeroAttackMovement1.OnShow();
-				/*swordAttack1.SetTopLeft(currentMap->ScreenX(x - 75), currentMap->ScreenY(y));
-				swordAttack1.OnShow();*/
+				//swordAttack1.SetTopLeft(currentMap->ScreenX(x - 75), currentMap->ScreenY(y));
+				//swordAttack1.OnShow();
 			}
 		}
 		else
 		{
-			if (faceDirection == "right")   // 靜止向右看
+			if (heroDirection == RIGHT) //if (faceDirection == "right")   // 靜止向右看
 			{
 				animation.SetTopLeft(currentMap->ScreenX(x), currentMap->ScreenY(y));
 				animation.OnShow();
@@ -806,7 +1104,30 @@ namespace game_framework {
 				animation1.OnShow();
 			}
 		}
+		*/
 
+
+		switch (heroActoin)
+		{
+		case game_framework::STAND:
+			StandOnShow();
+			break;
+		case game_framework::WALK:
+			WalkOnShow();
+			break;
+		case game_framework::RUN:
+			break;
+		case game_framework::ROLL:
+			RollOnShow();
+			break;
+		case game_framework::ATTACK:
+			AttackOnShow();
+			break;
+		case game_framework::TALK:
+			StandOnShow();
+		default:
+			break;
+		}
 		
 		if (isInHome)
 		{

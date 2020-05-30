@@ -71,7 +71,7 @@ namespace game_framework {
 	int gameMap::GetBlockY(int y)
 	{
 		int gy = y / MIN_MAP_SIZE;  // 轉換為格座標(整數除法)
-		return gy * MH;
+		return gy * MIN_MAP_SIZE;
 	}
 
 	int gameMap::ScreenX(int x) // x 為地圖的點座標
