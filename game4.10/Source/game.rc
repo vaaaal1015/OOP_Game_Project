@@ -730,6 +730,20 @@ IDB_HIT_3               BITMAP                  "..\\RES\\Special_Effect\\Hit\\H
 
 IDB_HIT_4               BITMAP                  "..\\RES\\Special_Effect\\Hit\\Hit_4.bmp"
 
+IDB_GAINLIFE_0          BITMAP                  "..\\RES\\Special_Effect\\GAIN_LIFE\\gain_life_0.bmp"
+
+IDB_GAINLIFE_1          BITMAP                  "..\\RES\\Special_Effect\\GAIN_LIFE\\gain_life_1.bmp"
+
+IDB_GAINLIFE_2          BITMAP                  "..\\RES\\Special_Effect\\GAIN_LIFE\\gain_life_2.bmp"
+
+IDB_GAINLIFE_3          BITMAP                  "..\\RES\\Special_Effect\\GAIN_LIFE\\gain_life_3.bmp"
+
+IDB_GAINLIFE_4          BITMAP                  "..\\RES\\Special_Effect\\GAIN_LIFE\\gain_life_4.bmp"
+
+IDB_REDSTONE            BITMAP                  "..\\RES\\Item\\RedStone_0.bmp"
+
+IDB_GAINLIFE_UI         BITMAP                  "..\\RES\\UI\\UI_Icons 1_30.bmp"
+
 
 /////////////////////////////////////////////////////////////////////////////
 //

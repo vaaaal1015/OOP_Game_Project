@@ -216,6 +216,8 @@ namespace game_framework {
 		allItem.back()->LoadBitmap();
 		allItem.push_back(new Item_RedPot_Full(this, 700, 350, ItemExistTime));
 		allItem.back()->LoadBitmap();
+		allItem.push_back(new Item_RedPot_Stone(this, 750, 450, ItemExistTime));
+		allItem.back()->LoadBitmap();
 	}
 
 	gameMap_Lv1::~gameMap_Lv1()
@@ -325,6 +327,11 @@ namespace game_framework {
 					delete *iter;
 					iter = allItem.erase(iter);
 					break;
+				case 9:						// ¬õ¥Û
+					*SpecialEffect = 2;
+					delete *iter;
+					iter = allItem.erase(iter);
+					break;
 				default:					//ª÷¹ô
 					*HeroCoin += (*iter)->GetItemValue();
 					delete *iter;
@@ -350,7 +357,7 @@ namespace game_framework {
 	void gameMap_Lv1::DropItem(int x, int y)
 	{
 		int num;
-		num = (rand() % 7);
+		num = (rand() % 8);
 		switch (num)
 		{
 		case 0:
@@ -375,6 +382,10 @@ namespace game_framework {
 			break;
 		case 5:
 			allItem.push_back(new Item_RedPot_Full(this, x, y, ItemExistTime));
+			allItem.back()->LoadBitmap();
+			break;
+		case 6:
+			allItem.push_back(new Item_RedPot_Stone(this, x, y, ItemExistTime));
 			allItem.back()->LoadBitmap();
 			break;
 		default:
@@ -532,8 +543,13 @@ namespace game_framework {
 					delete *iter;
 					iter = allItem.erase(iter);
 					break;
-				case 4:						// ¤¤¦å²~
+				case 4:						// ¤j¦å²~
 					*HeroHP = FullHP;
+					delete *iter;
+					iter = allItem.erase(iter);
+					break;
+				case 9:						// ¬õ¥Û
+					*SpecialEffect = 2;
 					delete *iter;
 					iter = allItem.erase(iter);
 					break;
@@ -552,7 +568,7 @@ namespace game_framework {
 	void gameMap_Lv2::DropItem(int x, int y)
 	{
 		int num;
-		num = (rand() % 7);
+		num = (rand() % 8);
 		switch (num)
 		{
 		case 0:
@@ -577,6 +593,10 @@ namespace game_framework {
 			break;
 		case 5:
 			allItem.push_back(new Item_RedPot_Full(this, x, y, ItemExistTime));
+			allItem.back()->LoadBitmap();
+			break;
+		case 6:
+			allItem.push_back(new Item_RedPot_Stone(this, x, y, ItemExistTime));
 			allItem.back()->LoadBitmap();
 			break;
 		default:
@@ -727,7 +747,22 @@ namespace game_framework {
 	{
 		return 1;
 	}
+	/////////////////////////////////////////////////////////////////////////////
+	// Item_Redpot_Stone : Item class
+	/////////////////////////////////////////////////////////////////////////////
+	Item_RedPot_Stone::Item_RedPot_Stone(gameMap* point, int nx, int ny, int ExistTime) : Item(point, nx, ny, ExistTime) {}
 
+	Item_RedPot_Stone::~Item_RedPot_Stone() {}
+
+	void Item_RedPot_Stone::LoadBitmap()
+	{
+		animation.AddBitmap(IDB_REDSTONE, RGB(63, 72, 204));
+	}
+
+	int Item_RedPot_Stone::GetItemValue()
+	{
+		return 9;
+	}
 
 	/////////////////////////////////////////////////////////////////////////////
 	// Item_RedPot_Small : Item class

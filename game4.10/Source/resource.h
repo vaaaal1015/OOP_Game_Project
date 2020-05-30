@@ -416,6 +416,16 @@
 #define IDB_HIT_3                       482
 #define IDB_BITMAP71                    483
 #define IDB_HIT_4                       483
+#define IDB_GAINLIFE_0                  484
+#define IDB_GAINLIFE_1                  485
+#define IDB_GAINLIFE_2                  486
+#define IDB_GAINLIFE_3                  487
+#define IDB_BITMAP72                    488
+#define IDB_GAINLIFE_4                  488
+#define IDB_BITMAP61                    489
+#define IDB_REDSTONE                    489
+#define IDB_BITMAP64                    490
+#define IDB_GAINLIFE_UI                 490
 #define IDC_README                      1001
 #define ID_FILE_PAUSE                   32771
 #define ID_TOGGLE_FULLSCREEN            32772
@@ -428,7 +438,7 @@
 #ifdef APSTUDIO_INVOKED
 #ifndef APSTUDIO_READONLY_SYMBOLS
 #define _APS_3D_CONTROLS                     1
-#define _APS_NEXT_RESOURCE_VALUE        484
+#define _APS_NEXT_RESOURCE_VALUE        491
 #define _APS_NEXT_COMMAND_VALUE         32776
 #define _APS_NEXT_CONTROL_VALUE         1003
 #define _APS_NEXT_SYMED_VALUE           101

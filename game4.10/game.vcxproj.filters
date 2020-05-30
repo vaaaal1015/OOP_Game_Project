@@ -1158,5 +1158,26 @@
     <Image Include="RES\Special_Effect\Hit\Hit_4.bmp">
       <Filter>Resource Files</Filter>
     </Image>
+    <Image Include="RES\Special_Effect\GAIN_LIFE\gain_life_0.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\Special_Effect\GAIN_LIFE\gain_life_1.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\Special_Effect\GAIN_LIFE\gain_life_2.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\Special_Effect\GAIN_LIFE\gain_life_3.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\Special_Effect\GAIN_LIFE\gain_life_4.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\Item\RedStone_0.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\UI\UI_Icons 1_30.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
   </ItemGroup>
 </Project>

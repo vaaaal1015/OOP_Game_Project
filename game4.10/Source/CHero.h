@@ -78,6 +78,7 @@ namespace game_framework {
 		CAnimation Fire1;
 		CAnimation Fire2;
 		CAnimation Fire3;
+		CAnimation gain_life;
 		CMovingBitmap LifeBarHead;		// 血條
 		CMovingBitmap StartGameBar;		// 開始按鈕
 		CMovingBitmap WorldMap_UI_1;	// 地圖_1
@@ -88,6 +89,7 @@ namespace game_framework {
 		CMovingBitmap Word_G;
 		CMovingBitmap Word_Gold;
 		CMovingBitmap Shield;
+		CMovingBitmap GainLifeUI;
 		//CInteger DamageTaken;			// 顯示承受傷害
 		vector<CMovingBitmap*> LifeBarRed;		// 血條
 		int x, y;						// 英雄左上角座標
@@ -108,14 +110,16 @@ namespace game_framework {
 		int AttackDelayCount;			// 攻擊延遲時間
 		int RollDelayCount;				// 翻滾延遲時間
 		int MoveDelayCount;				// 上個動作保存時間
+		int GainLifeDelayCount;			// 顯示回血特效長度
 		int PreviousMovement;			// 紀錄上一個動作  0:無動作; 1:向左走; 2:向右走
 		int DashColdDown;				// 衝刺冷卻時間
 		int InvincibleDelayCount;		// 無敵時間
 		int ShowGoldDelayCount;			// 金幣出現的時間
-		int bleed = 0;
+		int GainHealthDelayCount;		// 取得紅石後的回血時間長度
+		int bleed = 0;					// 偵測主角有無扣血
 		int GetGold = 0;				// 得到的金幣
-		int SpecialEffect = 0;			// 0:無效果;1:火焰
-		int SpecialEffectCount = 0;			
+		int SpecialEffect = 0;			// 0:無效果;1:火焰;2:持續回血
+		int SpecialEffectCount = 0;		// 偵測特殊效果
 		
 	private:
 		gameMap_village* currentVillage;	// 紀錄目前的村莊
@@ -129,5 +133,26 @@ namespace game_framework {
 		bool isInHome;						// 是否在村莊
 		bool isSelectingMap;				// 是否正在選擇地圖
 		int AttackRange;
+	};
+
+	class HeroBullet
+	{
+	public:
+		HeroBullet(gameMap* point, int nx, int ny, int step);
+		~HeroBullet();
+		int GetX1();					// 子彈左上角 x 座標
+		int GetY1();					// 子彈左上角 y 座標
+		int GetX2();					// 子彈右下角 x 座標
+		int GetY2();					// 子彈右下角 y 座標
+		void OnMove();					// 移動敵人
+		void OnShow();					// 將敵人圖形貼到畫面
+		bool isDelet();
+	protected:
+		CAnimation animation;
+		int x;
+		int y;
+		gameMap *currentMap;
+		int distance;
+		int STEP_SIZE;
 	};
 }

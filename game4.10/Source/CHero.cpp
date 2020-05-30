@@ -118,7 +118,10 @@ namespace game_framework {
 		Fire1.SetDelayCount(3);
 		Fire2.SetDelayCount(3);
 		Fire3.SetDelayCount(3);
+		gain_life.SetDelayCount(3);
 		SetAttackDelayCount = AttackDelayCount = DashColdDown = 15;
+		GainHealthDelayCount = 0;
+		GainLifeDelayCount = 0;
 		ShowGoldDelayCount = 0;
 		RollDelayCount = 15;
 		InvincibleDelayCount = 30;
@@ -305,7 +308,13 @@ namespace game_framework {
 		Fire3.AddBitmap(IDB_FIRE_4, RGB(63, 72, 204));
 		Fire3.AddBitmap(IDB_FIRE_5, RGB(63, 72, 204));
 
+		gain_life.AddBitmap(IDB_GAINLIFE_0, RGB(255, 255, 255));
+		gain_life.AddBitmap(IDB_GAINLIFE_1, RGB(255, 255, 255));
+		gain_life.AddBitmap(IDB_GAINLIFE_2, RGB(255, 255, 255));
+		gain_life.AddBitmap(IDB_GAINLIFE_3, RGB(255, 255, 255));
+		gain_life.AddBitmap(IDB_GAINLIFE_4, RGB(255, 255, 255));
 
+		GainLifeUI.LoadBitmapA(IDB_GAINLIFE_UI, RGB(255, 255, 255));
 		LifeBarHead.LoadBitmap(IDB_LIFEBARHEAD, RGB(255, 255, 255));
 		StartGameBar.LoadBitmap(IDB_UI_GAME_START);
 		WorldMap_UI_1.LoadBitmap(IDB_WORLDMAP_UI);
@@ -369,6 +378,7 @@ namespace game_framework {
 		SwordRollLeft.OnMove();
 		SwordDashRight.OnMove();
 		SwordDashLeft.OnMove();
+		gain_life.OnMove();
 		FireSwordRightAnimation.OnMove();
 		FireSwordLeftAnimation.OnMove();
 		FireCircle.OnMove();
@@ -383,8 +393,20 @@ namespace game_framework {
 		if (DashColdDown != 0) DashColdDown--;      //衝刺
 		if (MoveDelayCount != 0) MoveDelayCount--;   //紀錄上個動作的保持時間
 		if (MoveDelayCount == 0) SetPreviousMove(0);  //抹除上個動作紀錄
+		if (GainLifeDelayCount > 0) GainLifeDelayCount--;
 		if (InvincibleDelayCount == 0) isInvincible = false;
-
+		if (GainHealthDelayCount != 0)			//持續回血特效
+		{
+			GainHealthDelayCount--;
+			if (CurrentHP <= FullHP - 1)
+			{
+				CurrentHP += 1;
+			}
+			else if ((FullHP - 1 <= CurrentHP) && (CurrentHP <= FullHP))
+			{
+				CurrentHP = FullHP;
+			}
+		}
 		if (isMovingLeft)
 		{
 			setHeroDirection("left");   //角色向左看
@@ -634,6 +656,11 @@ namespace game_framework {
 		
 		LifeBarHead.SetTopLeft(currentMap->ScreenX(x-290), currentMap->ScreenY(y-205));
 		LifeBarHead.ShowBitmap();  //顯示血條
+		if (GainHealthDelayCount != 0)
+		{
+			GainLifeUI.SetTopLeft(currentMap->ScreenX(x - 290), currentMap->ScreenY(y - 175));
+			GainLifeUI.ShowBitmap();
+		}
 		changeLifeBarLength();
 		ShowNumber(3, Gold, currentMap->ScreenX(x + 250), currentMap->ScreenY(y - 195));
 		Word_Gold.SetTopLeft(currentMap->ScreenX(x + 200), currentMap->ScreenY(y - 195));
@@ -872,6 +899,11 @@ namespace game_framework {
 				animation1.OnShow();
 			}
 		}
+		if (GainLifeDelayCount != 0)
+		{
+			gain_life.SetTopLeft(currentMap->ScreenX(x), currentMap->ScreenY(y + 25));
+			gain_life.OnShow();
+		}
 		
 		if (isInHome)
 		{
@@ -945,13 +977,25 @@ namespace game_framework {
 	{
 		int Coin = Gold;
 		int SpecialEffectDectect = SpecialEffect;
+		int RecordedHP = CurrentHP;
 		currentWild->HeroGetItem(&Gold, &SpecialEffect, &SpecialEffectCount, &CurrentHP, FullHP);
+		if (RecordedHP < CurrentHP) GainLifeDelayCount = 45;
 		if (Coin < Gold && (Gold - Coin)>=10)
 		{
 			//TRACE("%d\n",Gold-Coin);
 			ShowGoldDelayCount = 30;
 		}
-		if (SpecialEffectDectect != SpecialEffect && SpecialEffect == 1) heroAttackDamage *= 2;  //火焰石攻擊力加倍
+		if (SpecialEffectDectect != SpecialEffect)			//取得特殊效果的道具
+		{
+			if (SpecialEffect == 1)
+			{
+				heroAttackDamage *= 2;  //火焰石攻擊力加倍
+			}
+			else if (SpecialEffect == 2)
+			{
+				GainHealthDelayCount = 1000;
+			}
+		}
 		return Gold - Coin;
 	}
 
@@ -1083,5 +1127,76 @@ namespace game_framework {
 	bool CHero::GetHeroIsRolling()
 	{
 		return isRolling;
+	}
+
+	/////////////////////////////////////////////////////////////////////////////
+	// HeroBullet
+	/////////////////////////////////////////////////////////////////////////////
+	HeroBullet::HeroBullet(gameMap* point, int nx, int ny, int step)
+	{
+		x = nx;
+		y = ny;
+		currentMap = point;
+		distance = 0;
+		STEP_SIZE = step;
+		animation.SetDelayCount(2);
+	}
+
+	HeroBullet::~HeroBullet() {}
+
+	int HeroBullet::GetX1()
+	{
+		return x;
+	}
+
+	int HeroBullet::GetY1()
+	{
+		return y;
+	}
+
+	int HeroBullet::GetX2()
+	{
+		return x + animation.Width();
+	}
+
+	int HeroBullet::GetY2()
+	{
+		return y + animation.Height();
+	}
+
+	bool HeroBullet::isDelet()
+	{
+		if (distance > 500)
+		{
+			return true;
+		}
+
+		if (!currentMap->isSpace(GetX1(), GetY1()))  // 當x座標碰到牆
+		{
+			return true;
+		}
+
+		return false;
+	}
+
+	void HeroBullet::OnMove()
+	{
+		animation.OnMove();
+
+		x += STEP_SIZE;
+
+		if (STEP_SIZE > 0)
+		{
+			distance += STEP_SIZE;
+		}
+		else
+		{
+			distance -= STEP_SIZE;
+		}
+	}
+	void HeroBullet::OnShow()
+	{
+		animation.SetTopLeft(currentMap->ScreenX(x), currentMap->ScreenY(y));
+		animation.OnShow();
 	}
 }

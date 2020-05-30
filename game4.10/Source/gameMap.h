@@ -216,6 +216,15 @@ namespace game_framework {
 		int GetItemValue();
 	};
 
+	class Item_RedPot_Stone : public Item
+	{
+	public:
+		Item_RedPot_Stone(gameMap* point, int nx, int ny, int ExistTime);
+		~Item_RedPot_Stone();
+		void LoadBitmap();				// ¸ü¤J¹Ï§Î
+		int GetItemValue();
+	};
+
 	class MapObject
 	{
 	public:
