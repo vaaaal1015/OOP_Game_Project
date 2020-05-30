@@ -748,6 +748,12 @@ IDB_ENEMYLIFEBAR_LONG   BITMAP                  "..\\RES\\UI\\Enemy_Life_Bar.bmp
 
 IDB_ENEMYLIFEBAR_0      BITMAP                  "..\\RES\\UI\\Enemy_Life_Bar_1.bmp"
 
+IDB_HEROBULLET_UI       BITMAP                  "..\\RES\\UI\\Daggers_0_0.bmp"
+
+IDB_SHURIKAN_0          BITMAP                  "..\\RES\\charactor\\Shurikan\\Shurikan_0.bmp"
+
+IDB_SHURIKAN_1          BITMAP                  "..\\RES\\charactor\\Shurikan\\Shurikan_1.bmp"
+
 
 /////////////////////////////////////////////////////////////////////////////
 //

@@ -133,11 +133,6 @@ namespace game_framework {
 			else
 				iter++;
 		}
-
-		if ((GetX2() >= hero["x1"]) && (hero["x2"] >= GetX1()) && (GetY2() >= hero["y1"]) && (hero["y2"] >= GetY1()))
-		{
-			//*heroHP -= enemyAttackDamage;
-		}
 	}
 
 	CEnemy_Action CEnemy_sunFlower::DetectHero(CEnemy_Action state)

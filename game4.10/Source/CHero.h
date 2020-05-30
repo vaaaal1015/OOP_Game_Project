@@ -165,6 +165,7 @@ namespace game_framework {
 		//void TalkOnShow();
 		CAnimation currentAnimation;	// 目前的英雄動畫
 		bool HasFireStone = false;
+		int Dagger1Number = 0;
 	};
 
 	class HeroBullet
@@ -186,5 +187,13 @@ namespace game_framework {
 		gameMap *currentMap;
 		int distance;
 		int STEP_SIZE;
+	};
+
+	class Shuriken : public HeroBullet
+	{
+	public:
+		Shuriken(gameMap* point, int nx, int ny, int step);
+		~Shuriken();
+		void LoadBitmap();				// 載入圖形
 	};
 }

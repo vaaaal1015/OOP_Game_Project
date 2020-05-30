@@ -716,7 +716,6 @@ namespace game_framework {
 
 	void CHero::OnMove()
 	{
-		TRACE("%d\n", heroAttackDamage);
 		if (isInHome)//¦bhome®É
 		{
 			CurrentHP = FullHP;
@@ -1356,5 +1355,19 @@ namespace game_framework {
 	{
 		animation.SetTopLeft(currentMap->ScreenX(x), currentMap->ScreenY(y));
 		animation.OnShow();
+	}
+	
+	/////////////////////////////////////////////////////////////////////////////
+	// Shuriken : HeroBullet class
+	/////////////////////////////////////////////////////////////////////////////
+	Shuriken::Shuriken(gameMap* point, int nx, int ny, int step) : HeroBullet(point, nx, ny, step) {}
+
+	Shuriken::~Shuriken() {}
+
+	void Shuriken::LoadBitmap()
+	{
+		animation.AddBitmap(IDB_SHURIKAN_0, RGB(63, 72, 204));
+		animation.AddBitmap(IDB_SHURIKAN_1, RGB(63, 72, 204));
+
 	}
 }
