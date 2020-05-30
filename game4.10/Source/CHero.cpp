@@ -354,7 +354,7 @@ namespace game_framework {
 
 		if (isMovingLeft)
 		{
-			if(!isRolling)
+			if(!isRolling && !isAttacking)
 				heroDirection = LEFT;
 
 			heroActoin = WALK;
@@ -362,7 +362,7 @@ namespace game_framework {
 
 		if (isMovingRight)
 		{
-			if(!isRolling)
+			if(!isRolling && !isAttacking)
 				heroDirection = RIGHT;
 
 			heroActoin = WALK;
@@ -431,8 +431,8 @@ namespace game_framework {
 		SwordRollLeft.Reset();
 		SwordDashRight.Reset();
 		SwordDashLeft.Reset();
-		//FireSwordRightAnimation.Reset();
-		//FireSwordLeftAnimation.Reset();
+		FireSwordRightAnimation.Reset();
+		FireSwordLeftAnimation.Reset();
 	}
 
 	void CHero::StandOnShow()
@@ -490,64 +490,11 @@ namespace game_framework {
 		SwordRollLeft.Reset();
 		SwordDashRight.Reset();
 		SwordDashLeft.Reset();
-		//FireSwordRightAnimation.Reset();
-		//FireSwordLeftAnimation.Reset();
+		FireSwordRightAnimation.Reset();
+		FireSwordLeftAnimation.Reset();
 
 		const int STEP_SIZE = 10;
 
-		//switch (heroDirection)
-		/*
-		animation.OnMove();
-		animation1.OnMove();
-		sword.OnMove();
-		sword1.OnMove();
-		HeroAttackMovement.OnMove();
-		HeroAttackMovement1.OnMove();
-		swordAttack.OnMove();
-		swordAttack1.OnMove();
-		moveRightAnimation.OnMove();
-		HeroDashLeft.OnMove();
-		HeroDashRight.OnMove();
-		moveLeftAnimation.OnMove();
-		jumpAnimation.OnMove();
-		jumpAnimation1.OnMove();
-		HeroRollLeft.OnMove();
-		HeroRollRight.OnMove();
-		SwordRollRight.OnMove();
-		SwordRollLeft.OnMove();
-		SwordDashRight.OnMove();
-		SwordDashLeft.OnMove();
-		gain_life.OnMove();
-		FireSwordRightAnimation.OnMove();
-		FireSwordLeftAnimation.OnMove();
-		FireCircle.OnMove();
-		Fire1.OnMove();
-		Fire2.OnMove();
-		Fire3.OnMove();
-		if (SpecialEffectCount == 0) SpecialEffect = 0;			//被攻擊3次後，特殊效果消失
-		if (ShowGoldDelayCount > 0) ShowGoldDelayCount--;
-		if(AttackDelayCount !=0) AttackDelayCount--;    //攻速
-		if (RollDelayCount != 0) RollDelayCount--;		//翻滾
-		if (InvincibleDelayCount != 0) InvincibleDelayCount--;  //無敵時間
-		if (DashColdDown != 0) DashColdDown--;      //衝刺
-		if (MoveDelayCount != 0) MoveDelayCount--;   //紀錄上個動作的保持時間
-		if (MoveDelayCount == 0) SetPreviousMove(0);  //抹除上個動作紀錄
-		if (GainLifeDelayCount > 0) GainLifeDelayCount--;
-		if (InvincibleDelayCount == 0) isInvincible = false;
-		if (GainHealthDelayCount != 0)			//持續回血特效
-		{
-			GainHealthDelayCount--;
-			if (CurrentHP <= FullHP - 1)
-			{
-				CurrentHP += 1;
-			}
-			else if ((FullHP - 1 <= CurrentHP) && (CurrentHP <= FullHP))
-			{
-				CurrentHP = FullHP;
-			}
-		}
-		if (isMovingLeft)
-		*/
 		switch (heroDirection)
 		{
 		case game_framework::LEFT:
@@ -654,8 +601,8 @@ namespace game_framework {
 		jumpAnimation1.Reset();
 		SwordDashRight.Reset();
 		SwordDashLeft.Reset();
-		//FireSwordRightAnimation.Reset();
-		//FireSwordLeftAnimation.Reset();
+		FireSwordRightAnimation.Reset();
+		FireSwordLeftAnimation.Reset();
 	}
 
 	void CHero::RollOnShow()
@@ -706,12 +653,16 @@ namespace game_framework {
 			HeroAttackMovement1.OnMove();
 			swordAttack.Reset();
 			swordAttack1.OnMove();
+			FireSwordLeftAnimation.OnMove();
+			FireSwordRightAnimation.Reset();
 			break;
 		case game_framework::RIGHT:
 			HeroAttackMovement.OnMove();
 			HeroAttackMovement1.Reset();
 			swordAttack.OnMove();
 			swordAttack1.Reset();
+			FireSwordRightAnimation.OnMove();
+			FireSwordLeftAnimation.Reset();
 			break;
 		}
 
@@ -731,8 +682,7 @@ namespace game_framework {
 		jumpAnimation1.Reset();
 		SwordDashRight.Reset();
 		SwordDashLeft.Reset();
-		//FireSwordRightAnimation.Reset();
-		//FireSwordLeftAnimation.Reset();
+
 	}
 
 	void CHero::AttackOnShow()
@@ -740,12 +690,22 @@ namespace game_framework {
 		switch (heroDirection)
 		{
 		case game_framework::LEFT:
+			if (SpecialEffect == 1)
+			{
+				FireSwordLeftAnimation.SetTopLeft(currentMap->ScreenX(x - 90), currentMap->ScreenY(y - 10));
+				FireSwordLeftAnimation.OnShow();
+			}
 			swordAttack1.SetTopLeft(currentMap->ScreenX(x - 95), currentMap->ScreenY(y + 10));
 			swordAttack1.OnShow();
 			HeroAttackMovement1.SetTopLeft(currentMap->ScreenX(x), currentMap->ScreenY(y));
 			HeroAttackMovement1.OnShow();
 			break;
 		case game_framework::RIGHT:
+			if (SpecialEffect == 1)
+			{
+				FireSwordRightAnimation.SetTopLeft(currentMap->ScreenX(x - 50), currentMap->ScreenY(y - 10));
+				FireSwordRightAnimation.OnShow();
+			}
 			swordAttack.SetTopLeft(currentMap->ScreenX(x - 40), currentMap->ScreenY(y + 10));
 			swordAttack.OnShow();
 			HeroAttackMovement.SetTopLeft(currentMap->ScreenX(x), currentMap->ScreenY(y));
@@ -756,6 +716,7 @@ namespace game_framework {
 
 	void CHero::OnMove()
 	{
+		TRACE("%d\n", heroAttackDamage);
 		if (isInHome)//在home時
 		{
 			CurrentHP = FullHP;
