@@ -1144,9 +1144,9 @@ namespace game_framework {
 			//TRACE("%d\n",Gold-Coin);
 			ShowGoldDelayCount = 30;
 		}
-		if (SpecialEffectDectect != SpecialEffect && !HasFireStone)			//取得特殊效果的道具
+		if (SpecialEffectDectect != SpecialEffect)			//取得特殊效果的道具
 		{
-			if (SpecialEffect == 1)
+			if (SpecialEffect == 1 && !HasFireStone)
 			{
 				heroAttackDamage *= 2;  //火焰石攻擊力加倍
 				HasFireStone = true;
