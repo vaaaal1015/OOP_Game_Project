@@ -62,7 +62,7 @@ namespace game_framework {
 	bool gameMap::isSpace(int x, int y)   // (x, y)為地圖的點座標
 	{
 		int gx = x / MIN_MAP_SIZE; // 轉換為格座標(整數除法)
-		int gy = y / MIN_MAP_SIZE;  // 轉換為格座標(整數除法) 
+		int gy = y / MIN_MAP_SIZE;  // 轉換為格座標(整數除法)
 
 		if (map[gy][gx] == 0) return true;
 		else return false;
@@ -154,10 +154,25 @@ namespace game_framework {
 		if (allNPC.size() != 0) HeroIsTalkingToNPC = allNPC[0]->isTalkingToHero;
 	}
 
-	void gameMap_village::HeroTalkToNPC(bool flag)
+	bool gameMap_village::HeroTalkToNPC()
+	{
+		bool success = false;
+		for (vector<NPC*>::iterator i = allNPC.begin(); i != allNPC.end(); i++)
+		{
+			if ((*i)->SetIsTalkingToHero())
+			{
+				success = true;
+			}
+		}
+		return success;
+	}
+
+	void gameMap_village::OnLButtonDown(int Mx, int My, bool *isTalkingToNPC)
 	{
 		for (vector<NPC*>::iterator i = allNPC.begin(); i != allNPC.end(); i++)
-			(*i)->SetIsTalkingToHero(flag);
+		{
+			(*i)->OnLButtonDown(Mx, My, isTalkingToNPC);
+		}
 	}
 
 	void gameMap_village::setHeroState(int x1, int x2, int y1, int y2, int HP, int Gold, int AttackDamage, int Level)
@@ -165,10 +180,12 @@ namespace game_framework {
 		for (vector<NPC*>::iterator i = allNPC.begin(); i != allNPC.end(); i++) (*i)->SetHeroState(x1, x2, y1, y2, HP, Gold, AttackDamage, Level);
 	}
 
+	/*
 	bool gameMap_village::GetHeroIsTalkingToNPC()
 	{
 		return HeroIsTalkingToNPC;
 	}
+	*/
 
 	/////////////////////////////////////////////////////////////////////////////
 	// gameMap_wild : gameMap_wild class

@@ -98,16 +98,32 @@ namespace game_framework {
 		else
 			return false;
 	}
-	void NPC_oldMan::SetIsTalkingToHero(bool flag)
+
+	bool NPC_oldMan::SetIsTalkingToHero()
 	{
-		if (isAroundHero() && flag == true)
+		if (isAroundHero())
 		{
 			isTalkingToHero = true;
+			return true;
 		}
-		else
+
+		return false;
+	}
+
+	void NPC_oldMan::OnLButtonDown(int Mx, int My, bool *isTalkingToNPC)
+	{
+		if ((Mx <= 630) && (My <= 50) && (Mx >= 609) && (My >= 28))
 		{
-			isTalkingToHero = false;
+			isTalkingToHero = false;   //¥k¤W¨¤xx
+			*isTalkingToNPC = false;
 		}
+		if ((Mx <= 625) && (My <= 216) && (Mx >= 561) && (My >= 199))
+		{
+			isTalkingToHero = false;  //cancel
+			*isTalkingToNPC = false;
+		}
+		TRACE("%d\n", isTalkingToHero);
+		//if ((Mx <= 619) && (My <= 184) && (Mx >= 524) && (My >= 144) && hero["Gold"] >= 10) HeroLevelUp();
 	}
 
 	/*

@@ -8,7 +8,8 @@ namespace game_framework {
 		virtual void LoadBitmap() = 0;				// 載入圖形
 		virtual void OnMove() = 0;					// 移動NPC
 		virtual void OnShow() = 0;					// 將NPC圖形貼到畫面
-		virtual void SetIsTalkingToHero(bool flag) = 0;
+		virtual bool SetIsTalkingToHero() = 0;
+		virtual void OnLButtonDown(int Mx, int My, bool *isTalkingToNPC) = 0;
 		bool isTalkingToHero = false;
 		//virtual void TouchedByHero(int x1, int x2, int y1, int y2);
 		void SetHeroState(int x1, int x2, int y1, int y2, int HP, int Gold, int AttackDamage, int Level);
@@ -32,11 +33,12 @@ namespace game_framework {
 		void LoadBitmap();				// 載入圖形
 		void OnMove();					// 移動NPC
 		void OnShow();					// 將NPC圖形貼到畫面
+		void OnLButtonDown(int Mx, int My, bool *isTalkingToNPC);
 	private:
 		CAnimation animation;			 // NPC的動畫
 		CAnimation InteractionBar;      //互動圖
 		
-		void SetIsTalkingToHero(bool flag);
+		bool SetIsTalkingToHero();
 		//void TouchedByHero(int x1, int x2, int y1, int y2);
 		CMovingBitmap LevelUpBar;
 		CMovingBitmap LevelUpInterface;
