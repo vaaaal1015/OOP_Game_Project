@@ -38,8 +38,9 @@ namespace game_framework {
 		void OnShow();		  //顯示地圖
 		void OnMove();
 		void setHeroState(int x1, int x2, int y1, int y2, int HP, int Gold, int AttackDamage, int Level);
-		void HeroTalkToNPC(bool flag);
-		bool GetHeroIsTalkingToNPC();
+		bool HeroTalkToNPC();
+		void OnLButtonDown(int Mx, int My, bool *isTalkingToNPC);
+		//bool GetHeroIsTalkingToNPC();
 
 	private:
 		vector<NPC*> allNPC;

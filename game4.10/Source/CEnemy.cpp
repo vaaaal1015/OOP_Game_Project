@@ -722,7 +722,7 @@ namespace game_framework {
 			CAudio::Instance()->Play(11, false);
 			GetHitDelayCount = 15;
 			GetHit = true;
-			enemyHP -= damage;
+			enemyHP -= FullHP / 3;
 			ShowLifeBarDelayCount = 150;
 		}
 	}

@@ -385,16 +385,19 @@ namespace game_framework {
 			heroActoin = ROLL;
 		}
 
+		
 
 		if (isTalkingToNPC && isInHome)
 		{
-			//heroActoin = TALK;
-			currentVillage->HeroTalkToNPC(true);
+			bool success = false;
+			success = currentVillage->HeroTalkToNPC();
+
+			if (success)
+				heroActoin = TALK;
+			else
+				isTalkingToNPC = false;
 		}
-		else
-		{
-			currentVillage->HeroTalkToNPC(false);
-		}
+
 	}
 
 	void CHero::StandOnMove()
@@ -983,7 +986,7 @@ namespace game_framework {
 		ShowNumber(3, Gold, currentMap->ScreenX(x + 250), currentMap->ScreenY(y - 195));
 		Word_Gold.SetTopLeft(currentMap->ScreenX(x + 200), currentMap->ScreenY(y - 195));
 		Word_Gold.ShowBitmap();
-		if (isInHome && currentVillage->GetHeroIsTalkingToNPC())
+		if (isInHome && heroActoin == TALK)
 		{
 			ShowNumber(1, Gold, currentMap->ScreenX(x + 190), currentMap->ScreenY(y - 175));
 			ShowNumber(1, HeroLevel, currentMap->ScreenX(x + 90), currentMap->ScreenY(y - 175));
@@ -1248,10 +1251,9 @@ namespace game_framework {
 
 	void CHero::OnLButtonDown(int Mx, int My)
 	{
-		if (isTalkingToNPC)
+		if (heroActoin == TALK)
 		{
-			if ((Mx <= 630) && (My <= 50) && (Mx >= 609) && (My >= 28)) SetEndTalking();   //¥k¤W¨¤xx
-			if ((Mx <= 625) && (My <= 216) && (Mx >= 561) && (My >= 199)) SetEndTalking();  //cancel
+			currentVillage->OnLButtonDown(Mx, My, &isTalkingToNPC);
 			if ((Mx <= 619) && (My <= 184) && (Mx >= 524) && (My >= 144) && Gold >= 10) HeroLevelUp();
 		}
 

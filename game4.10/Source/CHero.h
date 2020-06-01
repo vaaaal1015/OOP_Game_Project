@@ -160,8 +160,6 @@ namespace game_framework {
 		void StandOnShow();
 		void AttackOnMove();
 		void AttackOnShow();
-		void RunOnMove();
-		void RunOnShow();
 		void TalkOnMove();
 		//void TalkOnShow();
 		CAnimation currentAnimation;	// 目前的英雄動畫
