@@ -62,6 +62,7 @@ namespace game_framework {
 		virtual bool GetisStageClear() = 0;
 		virtual void SetHeroXY(int x1, int x2, int y1, int y2) = 0;				// 設定英雄位置
 		virtual void HeroGetItem(int *HeroGold, int *SpecialEffect, int *SpecialEffectCount, int *HeroHP, int FullHP, int *ShurikanNumber) = 0;
+
 	};
 
 	class gameMap_Lv1 : public gameMap_wild {

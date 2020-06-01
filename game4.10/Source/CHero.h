@@ -204,7 +204,7 @@ namespace game_framework {
 		//void TalkOnShow();
 		CAnimation currentAnimation;	// 目前的英雄動畫
 		bool HasFireStone = false;
-		int ShurikanNumber = 1;
+		int ShurikanNumber = 10;
 	};
 
 }

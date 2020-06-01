@@ -859,7 +859,13 @@ namespace game_framework {
 		}
 		for (vector<Shurikan*>::iterator i = allShurikan.begin(); i != allShurikan.end(); i++) (*i)->OnMove();
 
-
+		iter = allShurikan.begin();
+		while (iter != allShurikan.end())
+		{
+			currentWild->SetHeroAttackRange((*iter)->GetX1(),(*iter)->GetX2(),(*iter)->GetY1(),(*iter)->GetY2());
+			currentWild->AttackByHero(heroAttackDamage);
+			iter++;
+		}
 
 		if (GainHealthDelayCount != 0)			//持續回血特效
 		{
@@ -1372,6 +1378,7 @@ namespace game_framework {
 		HasFireStone = false;
 		SpecialEffect = 0;
 		SpecialEffectCount = 0;
+		ShurikanNumber = 10;
 		x = 0;    
 		y = 0;
 	}
