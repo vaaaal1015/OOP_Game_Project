@@ -11,7 +11,8 @@ namespace game_framework {
 		RUN,
 		ROLL,
 		ATTACK,
-		TALK
+		TALK,
+		THROW
 	};
 	
 	enum Hero_Direction
@@ -85,6 +86,8 @@ namespace game_framework {
 		CAnimation SwordRollLeft;
 		CAnimation HeroRollRight;		// 向右翻滾
 		CAnimation SwordRollRight;
+		CAnimation ThrowingLeft;
+		CAnimation ThrowingRight;
 		CAnimation FireSwordRightAnimation;
 		CAnimation FireSwordLeftAnimation;
 		CAnimation FireCircle;
@@ -114,6 +117,7 @@ namespace game_framework {
 		bool isMovingUp;				// 是否正在往上移動
 		bool isRolling;					// 是否正在翻滾
 		bool isInvincible;				// 是否為無敵(無法被攻擊)
+		bool isThrowing;
 		//string faceDirection;			// 人物面對的方向
 		int Gold;						// 金幣
 		int floor;						// 地板的Y座標

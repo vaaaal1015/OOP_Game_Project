@@ -805,7 +805,6 @@ namespace game_framework {
 		{
 			if (xMove + counter <= xMove + lengthOfLifeBar)
 			{
-
 				(*i)->SetTopLeft(xMove + counter, yMove);
 				(*i)->ShowBitmap();
 			}

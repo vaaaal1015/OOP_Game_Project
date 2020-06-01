@@ -433,6 +433,17 @@
 #define IDB_SHURIKAN_0                  494
 #define IDB_BITMAP73                    495
 #define IDB_SHURIKAN_1                  495
+#define IDB_BITMAP65                    496
+#define IDB_ITEMSHURIKAN                496
+#define IDB_HEROTHROWLEFT_0             497
+#define IDB_HEROTHROWLEFT_1             498
+#define IDB_HEROTHROWLEFT_2             499
+#define IDB_HEROTHROWLEFT_3             500
+#define IDB_HEROTHROWRIGHT_0            501
+#define IDB_HEROTHROWRIGHT_1            502
+#define IDB_HEROTHROWRIGHT_2            503
+#define IDB_BITMAP79                    504
+#define IDB_HEROTHROWRIGHT_3            504
 #define IDC_README                      1001
 #define ID_FILE_PAUSE                   32771
 #define ID_TOGGLE_FULLSCREEN            32772
@@ -445,7 +456,7 @@
 #ifdef APSTUDIO_INVOKED
 #ifndef APSTUDIO_READONLY_SYMBOLS
 #define _APS_3D_CONTROLS                     1
-#define _APS_NEXT_RESOURCE_VALUE        496
+#define _APS_NEXT_RESOURCE_VALUE        505
 #define _APS_NEXT_COMMAND_VALUE         32776
 #define _APS_NEXT_CONTROL_VALUE         1003
 #define _APS_NEXT_SYMED_VALUE           101

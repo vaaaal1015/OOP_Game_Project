@@ -646,7 +646,6 @@ namespace game_framework {
 			}
 			currentWild->AttackByHero(heroAttackDamage);
 		}
-
 		switch (heroDirection)
 		{
 		case game_framework::LEFT:
@@ -1137,7 +1136,7 @@ namespace game_framework {
 		int Coin = Gold;
 		int SpecialEffectDectect = SpecialEffect;
 		int RecordedHP = CurrentHP;
-		currentWild->HeroGetItem(&Gold, &SpecialEffect, &SpecialEffectCount, &CurrentHP, FullHP);
+		currentWild->HeroGetItem(&Gold, &SpecialEffect, &SpecialEffectCount, &CurrentHP, FullHP, &ShurikanNumber);
 		if (RecordedHP < CurrentHP) GainLifeDelayCount = 45;
 		if (Coin < Gold && (Gold - Coin)>=10)
 		{

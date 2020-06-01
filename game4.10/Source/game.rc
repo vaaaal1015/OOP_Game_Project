@@ -754,6 +754,24 @@ IDB_SHURIKAN_0          BITMAP                  "..\\RES\\charactor\\Shurikan\\S
 
 IDB_SHURIKAN_1          BITMAP                  "..\\RES\\charactor\\Shurikan\\Shurikan_1.bmp"
 
+IDB_ITEMSHURIKAN        BITMAP                  "..\\RES\\Item\\Daggers_0_0.bmp"
+
+IDB_HEROTHROWLEFT_0     BITMAP                  "..\\RES\\charactor\\ThrowingLeft\\throwing_0.bmp"
+
+IDB_HEROTHROWLEFT_1     BITMAP                  "..\\RES\\charactor\\ThrowingLeft\\throwing_1.bmp"
+
+IDB_HEROTHROWLEFT_2     BITMAP                  "..\\RES\\charactor\\ThrowingLeft\\throwing_2.bmp"
+
+IDB_HEROTHROWLEFT_3     BITMAP                  "..\\RES\\charactor\\ThrowingLeft\\throwing_3.bmp"
+
+IDB_HEROTHROWRIGHT_0    BITMAP                  "..\\RES\\charactor\\ThrowingRight\\throwing_0.bmp"
+
+IDB_HEROTHROWRIGHT_1    BITMAP                  "..\\RES\\charactor\\ThrowingRight\\throwing_1.bmp"
+
+IDB_HEROTHROWRIGHT_2    BITMAP                  "..\\RES\\charactor\\ThrowingRight\\throwing_2.bmp"
+
+IDB_HEROTHROWRIGHT_3    BITMAP                  "..\\RES\\charactor\\ThrowingRight\\throwing_3.bmp"
+
 
 /////////////////////////////////////////////////////////////////////////////
 //
