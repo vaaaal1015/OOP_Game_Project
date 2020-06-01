@@ -11,12 +11,43 @@ namespace game_framework {
 		RUN,
 		ROLL,
 		ATTACK,
-		TALK
+		TALK,
+		THROW
 	};
 	
 	enum Hero_Direction
 	{
 		LEFT, RIGHT
+	};
+
+
+	class HeroBullet
+	{
+	public:
+		HeroBullet(gameMap* point, int nx, int ny, int step);
+		~HeroBullet();
+		int GetX1();					// 子彈左上角 x 座標
+		int GetY1();					// 子彈左上角 y 座標
+		int GetX2();					// 子彈右下角 x 座標
+		int GetY2();					// 子彈右下角 y 座標
+		void OnMove();					// 移動敵人
+		void OnShow();					// 將敵人圖形貼到畫面
+		bool isDelet();
+	protected:
+		CAnimation animation;
+		int x;
+		int y;
+		gameMap *currentMap;
+		int distance;
+		int STEP_SIZE;
+	};
+
+	class Shurikan : public HeroBullet
+	{
+	public:
+		Shurikan(gameMap* point, int nx, int ny, int step);
+		~Shurikan();
+		void LoadBitmap();				// 載入圖形
 	};
 
 	class CHero
@@ -43,6 +74,7 @@ namespace game_framework {
 		void SetTalkingToNPC(bool flag);// 和NPC對話
 		void SetHeroRoll(bool flag);	// 翻滾
 		void SetHeroAttack(bool flag);	// 設定是否正在往上移動
+		void SetHeroThrow(bool flag);
 		void SetXY(int nx, int ny);		// 設定英雄左上角座標
 		void SetHeroHP(int inputHP);	// 設定主角HP值
 		bool isAttacking;				// 正在攻擊
@@ -85,6 +117,8 @@ namespace game_framework {
 		CAnimation SwordRollLeft;
 		CAnimation HeroRollRight;		// 向右翻滾
 		CAnimation SwordRollRight;
+		CAnimation ThrowingLeft;
+		CAnimation ThrowingRight;
 		CAnimation FireSwordRightAnimation;
 		CAnimation FireSwordLeftAnimation;
 		CAnimation FireCircle;
@@ -114,6 +148,7 @@ namespace game_framework {
 		bool isMovingUp;				// 是否正在往上移動
 		bool isRolling;					// 是否正在翻滾
 		bool isInvincible;				// 是否為無敵(無法被攻擊)
+		bool isThrowing;
 		//string faceDirection;			// 人物面對的方向
 		int Gold;						// 金幣
 		int floor;						// 地板的Y座標
@@ -143,6 +178,7 @@ namespace game_framework {
 		gameMap* currentMap;				// 紀錄目前的地圖
 		CMovingBitmap BlackMask;			// 黑色遮罩
 		CMovingBitmap QuitButton;			// 離開按鈕
+		vector<Shurikan*> allShurikan;
 		int FullHP;							// 主角總血量
 		int CurrentHP;						// 主角目前的血量
 		void changeLifeBarLength();			// 改變生命條的長度
@@ -160,6 +196,10 @@ namespace game_framework {
 		void StandOnShow();
 		void AttackOnMove();
 		void AttackOnShow();
+		void ThrowOnMove();
+		void ThrowOnShow();
+		void RunOnMove();
+		void RunOnShow();
 		void TalkOnMove();
 		//void TalkOnShow();
 		CAnimation currentAnimation;	// 目前的英雄動畫
@@ -167,32 +207,4 @@ namespace game_framework {
 		int ShurikanNumber = 1;
 	};
 
-	class HeroBullet
-	{
-	public:
-		HeroBullet(gameMap* point, int nx, int ny, int step);
-		~HeroBullet();
-		int GetX1();					// 子彈左上角 x 座標
-		int GetY1();					// 子彈左上角 y 座標
-		int GetX2();					// 子彈右下角 x 座標
-		int GetY2();					// 子彈右下角 y 座標
-		void OnMove();					// 移動敵人
-		void OnShow();					// 將敵人圖形貼到畫面
-		bool isDelet();
-	protected:
-		CAnimation animation;
-		int x;
-		int y;
-		gameMap *currentMap;
-		int distance;
-		int STEP_SIZE;
-	};
-
-	class Shuriken : public HeroBullet
-	{
-	public:
-		Shuriken(gameMap* point, int nx, int ny, int step);
-		~Shuriken();
-		void LoadBitmap();				// 載入圖形
-	};
 }

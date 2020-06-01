@@ -1206,5 +1206,32 @@
     <Image Include="RES\charactor\Shurikan\Shurikan_1.bmp">
       <Filter>Resource Files</Filter>
     </Image>
+    <Image Include="RES\Item\Daggers_0_0.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\charactor\ThrowingLeft\throwing_0.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\charactor\ThrowingLeft\throwing_1.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\charactor\ThrowingLeft\throwing_2.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\charactor\ThrowingLeft\throwing_3.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\charactor\ThrowingRight\throwing_0.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\charactor\ThrowingRight\throwing_1.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\charactor\ThrowingRight\throwing_2.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\charactor\ThrowingRight\throwing_3.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
   </ItemGroup>
 </Project>

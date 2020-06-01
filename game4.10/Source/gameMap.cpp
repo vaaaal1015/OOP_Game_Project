@@ -235,6 +235,8 @@ namespace game_framework {
 		allItem.back()->LoadBitmap();
 		allItem.push_back(new Item_RedPot_Stone(this, 750, 450, ItemExistTime));
 		allItem.back()->LoadBitmap();
+		allItem.push_back(new Item_Shurikan(this, 650, 450, ItemExistTime));
+		allItem.back()->LoadBitmap();
 	}
 
 	gameMap_Lv1::~gameMap_Lv1()
@@ -311,7 +313,7 @@ namespace game_framework {
 		for (vector<MapObject*>::iterator i = allObject.begin(); i != allObject.end(); i++) (*i)->AttackByObject(HeroX1, HeroY1, HeroX2, HeroY2, heroHP);
 	}
 
-	void gameMap_Lv1::HeroGetItem(int *HeroCoin, int *SpecialEffect, int *SpecialEffectCount, int *HeroHP,int FullHP)
+	void gameMap_Lv1::HeroGetItem(int *HeroCoin, int *SpecialEffect, int *SpecialEffectCount, int *HeroHP,int FullHP, int *ShurikanNumber)
 	{
 		vector<Item*>::iterator iter = allItem.begin();
 		while (iter != allItem.end())
@@ -341,6 +343,11 @@ namespace game_framework {
 					break;
 				case 4:						// 大血瓶
 					*HeroHP = FullHP;
+					delete *iter;
+					iter = allItem.erase(iter);
+					break;
+				case 5:						// 手裡劍
+					*ShurikanNumber += 10;
 					delete *iter;
 					iter = allItem.erase(iter);
 					break;
@@ -374,7 +381,7 @@ namespace game_framework {
 	void gameMap_Lv1::DropItem(int x, int y)
 	{
 		int num;
-		num = (rand() % 8);
+		num = (rand() % 9);
 		switch (num)
 		{
 		case 0:
@@ -403,6 +410,10 @@ namespace game_framework {
 			break;
 		case 6:
 			allItem.push_back(new Item_RedPot_Stone(this, x, y, ItemExistTime));
+			allItem.back()->LoadBitmap();
+			break;
+		case 7:
+			allItem.push_back(new Item_Shurikan(this, x, y, ItemExistTime));
 			allItem.back()->LoadBitmap();
 			break;
 		default:
@@ -532,7 +543,7 @@ namespace game_framework {
 		HeroX2 = x2;
 		HeroY2 = y2;
 	}
-	void gameMap_Lv2::HeroGetItem(int *HeroCoin, int *SpecialEffect, int *SpecialEffectCount, int *HeroHP, int FullHP)
+	void gameMap_Lv2::HeroGetItem(int *HeroCoin, int *SpecialEffect, int *SpecialEffectCount, int *HeroHP, int FullHP, int *ShurikanNumber)
 	{
 		vector<Item*>::iterator iter = allItem.begin();
 		while (iter != allItem.end())
@@ -565,6 +576,11 @@ namespace game_framework {
 					delete *iter;
 					iter = allItem.erase(iter);
 					break;
+				case 5:						// 手裡劍
+					*ShurikanNumber += 10;
+					delete *iter;
+					iter = allItem.erase(iter);
+					break;
 				case 9:						// 紅石
 					*SpecialEffect = 2;
 					delete *iter;
@@ -585,7 +601,7 @@ namespace game_framework {
 	void gameMap_Lv2::DropItem(int x, int y)
 	{
 		int num;
-		num = (rand() % 8);
+		num = (rand() % 9);
 		switch (num)
 		{
 		case 0:
@@ -614,6 +630,10 @@ namespace game_framework {
 			break;
 		case 6:
 			allItem.push_back(new Item_RedPot_Stone(this, x, y, ItemExistTime));
+			allItem.back()->LoadBitmap();
+			break;
+		case 7:
+			allItem.push_back(new Item_Shurikan(this, x, y, ItemExistTime));
 			allItem.back()->LoadBitmap();
 			break;
 		default:
@@ -830,6 +850,23 @@ namespace game_framework {
 	int Item_RedPot_Full::GetItemValue()
 	{
 		return 4;
+	}
+
+	/////////////////////////////////////////////////////////////////////////////
+	// Item_Shurikan : Item class
+	/////////////////////////////////////////////////////////////////////////////
+	Item_Shurikan::Item_Shurikan(gameMap* point, int nx, int ny, int ExistTime) : Item(point, nx, ny, ExistTime) {}
+
+	Item_Shurikan::~Item_Shurikan() {}
+
+	void Item_Shurikan::LoadBitmap()
+	{
+		animation.AddBitmap(IDB_ITEMSHURIKAN, RGB(63, 72, 204));
+	}
+
+	int Item_Shurikan::GetItemValue()
+	{
+		return 5;
 	}
 
 	/////////////////////////////////////////////////////////////////////////////

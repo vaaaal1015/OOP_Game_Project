@@ -60,8 +60,8 @@ namespace game_framework {
 		virtual void AttackByEnemy(int *heroHP) = 0;
 		virtual void SetHeroAttackRange(int x1, int x2, int y1, int y2) = 0;
 		virtual bool GetisStageClear() = 0;
-		virtual void HeroGetItem(int *HeroGold ,int *SpecialEffect, int *SpecialEffectCount, int *HeroHP, int FullHP) = 0;
 		virtual void SetHeroXY(int x1, int x2, int y1, int y2) = 0;				// 設定英雄位置
+		virtual void HeroGetItem(int *HeroGold, int *SpecialEffect, int *SpecialEffectCount, int *HeroHP, int FullHP, int *ShurikanNumber) = 0;
 	};
 
 	class gameMap_Lv1 : public gameMap_wild {
@@ -77,7 +77,7 @@ namespace game_framework {
 		void AttackByEnemy(int *heroHP);
 		void SetHeroAttackRange(int x1, int x2, int y1, int y2);
 		bool GetisStageClear();
-		void HeroGetItem(int *HeroGold, int *SpecialEffect, int *SpecialEffectCount, int *HeroHP, int FullHP);
+		void HeroGetItem(int *HeroGold, int *SpecialEffect, int *SpecialEffectCount, int *HeroHP, int FullHP, int *ShurikanNumber);
 		void SetHeroXY(int x1, int x2, int y1, int y2);
 	protected:
 		int HeroX1;
@@ -110,7 +110,7 @@ namespace game_framework {
 		void AttackByEnemy(int *heroHP);
 		void SetHeroAttackRange(int x1, int x2, int y1, int y2);
 		bool GetisStageClear();
-		void HeroGetItem(int *HeroGold, int *SpecialEffect, int *SpecialEffectCount, int *HeroHP, int FullHP);
+		void HeroGetItem(int *HeroGold, int *SpecialEffect, int *SpecialEffectCount, int *HeroHP, int FullHP, int *ShurikanNumber);
 		void SetHeroXY(int x1, int x2, int y1, int y2);
 	protected:
 		int HeroX1;
@@ -222,6 +222,15 @@ namespace game_framework {
 	public:
 		Item_RedPot_Stone(gameMap* point, int nx, int ny, int ExistTime);
 		~Item_RedPot_Stone();
+		void LoadBitmap();				// 載入圖形
+		int GetItemValue();
+	};
+
+	class Item_Shurikan : public Item
+	{
+	public:
+		Item_Shurikan(gameMap* point, int nx, int ny, int ExistTime);
+		~Item_Shurikan();
 		void LoadBitmap();				// 載入圖形
 		int GetItemValue();
 	};

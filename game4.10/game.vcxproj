@@ -394,6 +394,14 @@
     <Image Include="RES\charactor\Roll_Right\Hero_Roll_Right_6.bmp" />
     <Image Include="RES\charactor\Shurikan\Shurikan_0.bmp" />
     <Image Include="RES\charactor\Shurikan\Shurikan_1.bmp" />
+    <Image Include="RES\charactor\ThrowingLeft\throwing_0.bmp" />
+    <Image Include="RES\charactor\ThrowingLeft\throwing_1.bmp" />
+    <Image Include="RES\charactor\ThrowingLeft\throwing_2.bmp" />
+    <Image Include="RES\charactor\ThrowingLeft\throwing_3.bmp" />
+    <Image Include="RES\charactor\ThrowingRight\throwing_0.bmp" />
+    <Image Include="RES\charactor\ThrowingRight\throwing_1.bmp" />
+    <Image Include="RES\charactor\ThrowingRight\throwing_2.bmp" />
+    <Image Include="RES\charactor\ThrowingRight\throwing_3.bmp" />
     <Image Include="RES\Enemy\Cactus\Attack\Cactus_Attack_0.bmp" />
     <Image Include="RES\Enemy\Cactus\Attack\Cactus_Attack_1.bmp" />
     <Image Include="RES\Enemy\Cactus\Attack\Cactus_Attack_2.bmp" />
@@ -480,6 +488,7 @@
     <Image Include="RES\Item\Bronze Coin_1.bmp" />
     <Image Include="RES\Item\Bronze Coin_2.bmp" />
     <Image Include="RES\Item\Bronze Coin_3.bmp" />
+    <Image Include="RES\Item\Daggers_0_0.bmp" />
     <Image Include="RES\Item\Gold_Coin_0.bmp" />
     <Image Include="RES\Item\Gold_Coin_1.bmp" />
     <Image Include="RES\Item\Gold_Coin_2.bmp" />

@@ -83,7 +83,7 @@ namespace game_framework {
 		const int Y_POS = 0;
 		x = X_POS;
 		y = Y_POS;
-		isMovingLeft = isMovingRight = isMovingUp = isMovingDown = isAttacking = isRolling = isInvincible = isTalkingToNPC = false;
+		isMovingLeft = isMovingRight = isMovingUp = isMovingDown = isAttacking = isRolling = isInvincible = isTalkingToNPC = isThrowing = false;
 		PreviousMovement = 0;			//紀錄上一個動作
 		const int INITIAL_VELOCITY = 15;	// 初始上升速度
 		const int FLOOR = 100;				// 地板座標
@@ -118,6 +118,8 @@ namespace game_framework {
 		Fire2.SetDelayCount(3);
 		Fire3.SetDelayCount(3);
 		gain_life.SetDelayCount(3);
+		ThrowingLeft.SetDelayCount(3);
+		ThrowingRight.SetDelayCount(3);
 		SetAttackDelayCount = AttackDelayCount = DashColdDown = 15;
 		GainHealthDelayCount = 0;
 		GainLifeDelayCount = 0;
@@ -316,6 +318,16 @@ namespace game_framework {
 		gain_life.AddBitmap(IDB_GAINLIFE_3, RGB(255, 255, 255));
 		gain_life.AddBitmap(IDB_GAINLIFE_4, RGB(255, 255, 255));
 
+		ThrowingLeft.AddBitmap(IDB_HEROTHROWLEFT_0, RGB(255, 255, 255));
+		ThrowingLeft.AddBitmap(IDB_HEROTHROWLEFT_1, RGB(255, 255, 255));
+		ThrowingLeft.AddBitmap(IDB_HEROTHROWLEFT_2, RGB(255, 255, 255));
+		ThrowingLeft.AddBitmap(IDB_HEROTHROWLEFT_3, RGB(255, 255, 255));
+
+		ThrowingRight.AddBitmap(IDB_HEROTHROWRIGHT_0, RGB(255, 255, 255));
+		ThrowingRight.AddBitmap(IDB_HEROTHROWRIGHT_1, RGB(255, 255, 255));
+		ThrowingRight.AddBitmap(IDB_HEROTHROWRIGHT_2, RGB(255, 255, 255));
+		ThrowingRight.AddBitmap(IDB_HEROTHROWRIGHT_3, RGB(255, 255, 255));
+
 		GainLifeUI.LoadBitmapA(IDB_GAINLIFE_UI, RGB(255, 255, 255));
 		LifeBarHead.LoadBitmap(IDB_LIFEBARHEAD, RGB(255, 255, 255));
 		StartGameBar.LoadBitmap(IDB_UI_GAME_START);
@@ -369,9 +381,9 @@ namespace game_framework {
 			heroActoin = WALK;
 		}
 
-		if (isAttacking)
+		if (isThrowing && !isAttacking)
 		{
-			heroActoin = ATTACK;
+			heroActoin = THROW;
 		}
 
 		if (isAttacking)
@@ -437,6 +449,8 @@ namespace game_framework {
 		SwordDashLeft.Reset();
 		FireSwordRightAnimation.Reset();
 		FireSwordLeftAnimation.Reset();
+		ThrowingLeft.Reset();
+		ThrowingRight.Reset();
 	}
 
 	void CHero::StandOnShow()
@@ -496,7 +510,8 @@ namespace game_framework {
 		SwordDashLeft.Reset();
 		FireSwordRightAnimation.Reset();
 		FireSwordLeftAnimation.Reset();
-
+		ThrowingLeft.Reset();
+		ThrowingRight.Reset();
 		const int STEP_SIZE = 10;
 
 		switch (heroDirection)
@@ -607,6 +622,8 @@ namespace game_framework {
 		SwordDashLeft.Reset();
 		FireSwordRightAnimation.Reset();
 		FireSwordLeftAnimation.Reset();
+		ThrowingLeft.Reset();
+		ThrowingRight.Reset();
 	}
 
 	void CHero::RollOnShow()
@@ -649,7 +666,6 @@ namespace game_framework {
 			}
 			currentWild->AttackByHero(heroAttackDamage);
 		}
-
 		switch (heroDirection)
 		{
 		case game_framework::LEFT:
@@ -686,7 +702,8 @@ namespace game_framework {
 		jumpAnimation1.Reset();
 		SwordDashRight.Reset();
 		SwordDashLeft.Reset();
-
+		ThrowingLeft.Reset();
+		ThrowingRight.Reset();
 	}
 
 	void CHero::AttackOnShow()
@@ -718,6 +735,84 @@ namespace game_framework {
 		}
 	}
 
+	void CHero::ThrowOnMove()
+	{
+		if (ThrowingLeft.IsFinalBitmap() || ThrowingRight.IsFinalBitmap())
+		{
+			isThrowing = false;
+		}
+
+		if (!isInHome)
+		{
+			switch (heroDirection)
+			{
+			case game_framework::LEFT:
+				if (ThrowingLeft.IsFinalBitmap() && ShurikanNumber > 0)
+				{
+					allShurikan.push_back(new Shurikan(currentMap, GetX1() - 10, GetY1() + 40, -15));
+					allShurikan.back()->LoadBitmap();
+					ShurikanNumber -= 1;
+				}
+				break;
+			case game_framework::RIGHT:
+				if (ThrowingRight.IsFinalBitmap() && ShurikanNumber > 0)
+				{
+					allShurikan.push_back(new Shurikan(currentMap, GetX2(), GetY1() + 40, 15));
+					allShurikan.back()->LoadBitmap();
+					ShurikanNumber -= 1;
+				}
+				break;
+			}
+		}
+		switch (heroDirection)
+		{
+		case game_framework::LEFT:
+			ThrowingRight.Reset();
+			ThrowingLeft.OnMove();
+			break;
+		case game_framework::RIGHT:
+			ThrowingRight.OnMove();
+			ThrowingLeft.Reset();
+			break;
+		}
+		HeroAttackMovement.Reset();
+		HeroAttackMovement1.Reset();
+		HeroRollRight.Reset();
+		SwordRollRight.Reset();
+		HeroRollLeft.Reset();
+		SwordRollLeft.Reset();
+		animation.Reset();
+		animation1.Reset();
+		sword.Reset();
+		sword1.Reset();
+		moveRightAnimation.Reset();
+		HeroDashLeft.Reset();
+		HeroDashRight.Reset();
+		moveLeftAnimation.Reset();
+		jumpAnimation.Reset();
+		jumpAnimation1.Reset();
+		SwordDashRight.Reset();
+		SwordDashLeft.Reset();
+		swordAttack.Reset();
+		FireSwordRightAnimation.Reset();
+		swordAttack1.Reset();
+		FireSwordLeftAnimation.Reset();
+	}
+
+	void CHero::ThrowOnShow()
+	{
+		switch (heroDirection)
+		{
+		case game_framework::LEFT:
+			ThrowingLeft.SetTopLeft(currentMap->ScreenX(x - 30), currentMap->ScreenY(y + 10));
+			ThrowingLeft.OnShow();
+			break;
+		case game_framework::RIGHT:
+			ThrowingRight.SetTopLeft(currentMap->ScreenX(x - 40), currentMap->ScreenY(y + 10));
+			ThrowingRight.OnShow();
+			break;
+		}
+	}
 	void CHero::OnMove()
 	{
 		if (isInHome)//在home時
@@ -750,6 +845,21 @@ namespace game_framework {
 		if (GainLifeDelayCount > 0) GainLifeDelayCount--;
 		if (InvincibleDelayCount == 0) isInvincible = false;
 		
+		vector<Shurikan*>::iterator iter = allShurikan.begin();    //手裡劍
+		while (iter != allShurikan.end())
+		{
+			if ((*iter)->isDelet())
+			{
+				delete *iter;
+				iter = allShurikan.erase(iter);
+			}
+			else
+				iter++;
+		}
+		for (vector<Shurikan*>::iterator i = allShurikan.begin(); i != allShurikan.end(); i++) (*i)->OnMove();
+
+
+
 		if (GainHealthDelayCount != 0)			//持續回血特效
 		{
 			GainHealthDelayCount--;
@@ -780,6 +890,9 @@ namespace game_framework {
 			break;
 		case game_framework::ATTACK:
 			AttackOnMove();
+			break;
+		case game_framework::THROW:
+			ThrowOnMove();
 			break;
 		case game_framework::TALK:
 			StandOnMove();
@@ -929,6 +1042,15 @@ namespace game_framework {
 		}
 		*/
 	}
+
+	void CHero::SetHeroThrow(bool flag)
+	{
+		if (isThrowing == false)
+		{
+			isThrowing = flag;
+		}
+	}
+
 	void CHero::SetXY(int nx, int ny)
 	{
 		x = nx; y = ny;
@@ -971,7 +1093,8 @@ namespace game_framework {
 		//處理UI的顯示
 		if (isInHome) currentVillage->OnShow();
 		else currentWild->OnShow();
-		
+		for (vector<Shurikan*>::iterator i = allShurikan.begin(); i != allShurikan.end(); i++)
+			(*i)->OnShow();
 		LifeBarHead.SetTopLeft(currentMap->ScreenX(x-290), currentMap->ScreenY(y-205));	//顯示血條
 		LifeBarHead.ShowBitmap();  //顯示血條
 		ShurikanUI.SetTopLeft(currentMap->ScreenX(x - 290), currentMap->ScreenY(y - 155));
@@ -1054,6 +1177,9 @@ namespace game_framework {
 			break;
 		case game_framework::ATTACK:
 			AttackOnShow();
+			break;
+		case game_framework::THROW:
+			ThrowOnShow();
 			break;
 		case game_framework::TALK:
 			StandOnShow();
@@ -1140,7 +1266,7 @@ namespace game_framework {
 		int Coin = Gold;
 		int SpecialEffectDectect = SpecialEffect;
 		int RecordedHP = CurrentHP;
-		currentWild->HeroGetItem(&Gold, &SpecialEffect, &SpecialEffectCount, &CurrentHP, FullHP);
+		currentWild->HeroGetItem(&Gold, &SpecialEffect, &SpecialEffectCount, &CurrentHP, FullHP, &ShurikanNumber);
 		if (RecordedHP < CurrentHP) GainLifeDelayCount = 45;
 		if (Coin < Gold && (Gold - Coin)>=10)
 		{
@@ -1364,13 +1490,13 @@ namespace game_framework {
 	}
 	
 	/////////////////////////////////////////////////////////////////////////////
-	// Shuriken : HeroBullet class
+	// Shurikan : HeroBullet class
 	/////////////////////////////////////////////////////////////////////////////
-	Shuriken::Shuriken(gameMap* point, int nx, int ny, int step) : HeroBullet(point, nx, ny, step) {}
+	Shurikan::Shurikan(gameMap* point, int nx, int ny, int step) : HeroBullet(point, nx, ny, step) {}
 
-	Shuriken::~Shuriken() {}
+	Shurikan::~Shurikan() {}
 
-	void Shuriken::LoadBitmap()
+	void Shurikan::LoadBitmap()
 	{
 		animation.AddBitmap(IDB_SHURIKAN_0, RGB(63, 72, 204));
 		animation.AddBitmap(IDB_SHURIKAN_1, RGB(63, 72, 204));
