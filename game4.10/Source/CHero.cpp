@@ -33,6 +33,7 @@ namespace game_framework {
 		delete currentVillage;
 		delete currentWild;
 		for (vector<CMovingBitmap*>::iterator i = LifeBarRed.begin(); i != LifeBarRed.end(); i++) delete (*i);
+		for (vector<Shurikan*>::iterator i = allShurikan.begin(); i != allShurikan.end(); i++) delete *i;
 	}
 
 	int CHero::GetX1()
