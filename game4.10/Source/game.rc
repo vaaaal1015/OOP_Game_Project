@@ -786,8 +786,6 @@ IDB_LIGHTNING_5         BITMAP                  "..\\RES\\Enemy\\CloudBoss\\Clou
 
 IDB_LIGHTNING_6         BITMAP                  "..\\RES\\Enemy\\CloudBoss\\Cloud_6.bmp"
 
-IDB_LIGHTNING_7         BITMAP                  "..\\RES\\Enemy\\CloudBoss\\Cloud_7.bmp"
-
 IDB_LIGHTNING_8         BITMAP                  "..\\RES\\Enemy\\CloudBoss\\Cloud_8.bmp"
 
 IDB_LIGHTNING_9         BITMAP                  "..\\RES\\Enemy\\CloudBoss\\Cloud_9.bmp"
@@ -831,6 +829,86 @@ IDB_CLOUDBOSS_LEFT_5    BITMAP                  "..\\RES\\Enemy\\CloudBoss\\Clou
 IDB_CLOUDBOSS_LEFT_6    BITMAP                  "..\\RES\\Enemy\\CloudBoss\\Cloudy_Left_6.bmp"
 
 IDB_CLOUDBOSS_LEFT_7    BITMAP                  "..\\RES\\Enemy\\CloudBoss\\Cloudy_Left_7.bmp"
+
+IDB_CLOUDWALKRIGHT_0    BITMAP                  "..\\RES\\Enemy\\CloudBoss\\Walk_Right\\Cloud_0.bmp"
+
+IDB_CLOUDWALKRIGHT_1    BITMAP                  "..\\RES\\Enemy\\CloudBoss\\Walk_Right\\Cloud_1.bmp"
+
+IDB_CLOUDWALKRIGHT_2    BITMAP                  "..\\RES\\Enemy\\CloudBoss\\Walk_Right\\Cloud_2.bmp"
+
+IDB_CLOUDWALKRIGHT_3    BITMAP                  "..\\RES\\Enemy\\CloudBoss\\Walk_Right\\Cloud_3.bmp"
+
+IDB_CLOUDWALKRIGHT_4    BITMAP                  "..\\RES\\Enemy\\CloudBoss\\Walk_Right\\Cloud_4.bmp"
+
+IDB_CLOUDWALKRIGHT_5    BITMAP                  "..\\RES\\Enemy\\CloudBoss\\Walk_Right\\Cloud_5.bmp"
+
+IDB_CLOUDWALKRIGHT_6    BITMAP                  "..\\RES\\Enemy\\CloudBoss\\Walk_Right\\Cloud_6.bmp"
+
+IDB_CLOUDWALKLEFT_0     BITMAP                  "..\\RES\\Enemy\\CloudBoss\\Walk_Left\\Cloud_0.bmp"
+
+IDB_CLOUDWALKLEFT_1     BITMAP                  "..\\RES\\Enemy\\CloudBoss\\Walk_Left\\Cloud_1.bmp"
+
+IDB_CLOUDWALKLEFT_2     BITMAP                  "..\\RES\\Enemy\\CloudBoss\\Walk_Left\\Cloud_2.bmp"
+
+IDB_CLOUDWALKLEFT_3     BITMAP                  "..\\RES\\Enemy\\CloudBoss\\Walk_Left\\Cloud_3.bmp"
+
+IDB_CLOUDWALKLEFT_4     BITMAP                  "..\\RES\\Enemy\\CloudBoss\\Walk_Left\\Cloud_4.bmp"
+
+IDB_CLOUDWALKLEFT_5     BITMAP                  "..\\RES\\Enemy\\CloudBoss\\Walk_Left\\Cloud_5.bmp"
+
+IDB_CLOUDWALKLEFT_6     BITMAP                  "..\\RES\\Enemy\\CloudBoss\\Walk_Left\\Cloud_6.bmp"
+
+IDB_CLOUDYATTACKRIGHT_0 BITMAP                  "..\\RES\\Enemy\\CloudBoss\\Attack_Right\\Cloud_0.bmp"
+
+IDB_CLOUDYATTACKRIGHT_1 BITMAP                  "..\\RES\\Enemy\\CloudBoss\\Attack_Right\\Cloud_1.bmp"
+
+IDB_CLOUDYATTACKRIGHT_2 BITMAP                  "..\\RES\\Enemy\\CloudBoss\\Attack_Right\\Cloud_2.bmp"
+
+IDB_CLOUDYATTACKRIGHT_3 BITMAP                  "..\\RES\\Enemy\\CloudBoss\\Attack_Right\\Cloud_3.bmp"
+
+IDB_CLOUDYATTACKRIGHT_4 BITMAP                  "..\\RES\\Enemy\\CloudBoss\\Attack_Right\\Cloud_4.bmp"
+
+IDB_CLOUDYATTACKRIGHT_5 BITMAP                  "..\\RES\\Enemy\\CloudBoss\\Attack_Right\\Cloud_5.bmp"
+
+IDB_CLOUDYATTACKRIGHT_6 BITMAP                  "..\\RES\\Enemy\\CloudBoss\\Attack_Right\\Cloud_6.bmp"
+
+IDB_CLOUDYATTACKRIGHT_7 BITMAP                  "..\\RES\\Enemy\\CloudBoss\\Attack_Right\\Cloud_7.bmp"
+
+IDB_CLOUDYATTACKRIGHT_8 BITMAP                  "..\\RES\\Enemy\\CloudBoss\\Attack_Right\\Cloud_8.bmp"
+
+IDB_CLOUDYATTACKRIGHT_9 BITMAP                  "..\\RES\\Enemy\\CloudBoss\\Attack_Right\\Cloud_9.bmp"
+
+IDB_CLOUDYATTACKLEFT_0  BITMAP                  "..\\RES\\Enemy\\CloudBoss\\Attack_Left\\Cloud_0.bmp"
+
+IDB_CLOUDYATTACKLEFT_1  BITMAP                  "..\\RES\\Enemy\\CloudBoss\\Attack_Left\\Cloud_1.bmp"
+
+IDB_CLOUDYATTACKLEFT_2  BITMAP                  "..\\RES\\Enemy\\CloudBoss\\Attack_Left\\Cloud_2.bmp"
+
+IDB_CLOUDYATTACKLEFT_3  BITMAP                  "..\\RES\\Enemy\\CloudBoss\\Attack_Left\\Cloud_3.bmp"
+
+IDB_CLOUDYATTACKLEFT_4  BITMAP                  "..\\RES\\Enemy\\CloudBoss\\Attack_Left\\Cloud_4.bmp"
+
+IDB_CLOUDYATTACKLEFT_5  BITMAP                  "..\\RES\\Enemy\\CloudBoss\\Attack_Left\\Cloud_5.bmp"
+
+IDB_CLOUDYATTACKLEFT_6  BITMAP                  "..\\RES\\Enemy\\CloudBoss\\Attack_Left\\Cloud_6.bmp"
+
+IDB_CLOUDYATTACKLEFT_7  BITMAP                  "..\\RES\\Enemy\\CloudBoss\\Attack_Left\\Cloud_7.bmp"
+
+IDB_CLOUDYATTACKLEFT_8  BITMAP                  "..\\RES\\Enemy\\CloudBoss\\Attack_Left\\Cloud_8.bmp"
+
+IDB_CLOUDYATTACKLEFT_9  BITMAP                  "..\\RES\\Enemy\\CloudBoss\\Attack_Left\\Cloud_9.bmp"
+
+IDB_CLOUDYDEAD_0        BITMAP                  "..\\RES\\Enemy\\CloudBoss\\Dead\\Cloud_0.bmp"
+
+IDB_CLOUDYDEAD_1        BITMAP                  "..\\RES\\Enemy\\CloudBoss\\Dead\\Cloud_1.bmp"
+
+IDB_CLOUDYDEAD_2        BITMAP                  "..\\RES\\Enemy\\CloudBoss\\Dead\\Cloud_2.bmp"
+
+IDB_CLOUDYDEAD_3        BITMAP                  "..\\RES\\Enemy\\CloudBoss\\Dead\\Cloud_3.bmp"
+
+IDB_CLOUDYDEAD_4        BITMAP                  "..\\RES\\Enemy\\CloudBoss\\Dead\\Cloud_4.bmp"
+
+IDB_CLOUDYDEAD_5        BITMAP                  "..\\RES\\Enemy\\CloudBoss\\Dead\\Cloud_5.bmp"
 
 
 /////////////////////////////////////////////////////////////////////////////

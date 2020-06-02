@@ -448,16 +448,10 @@ namespace game_framework {
 	/////////////////////////////////////////////////////////////////////////////
 	gameMap_Lv2::gameMap_Lv2() : gameMap_wild("level_2.txt")
 	{
-		allEnemy.push_back(new CEnemy_sunFlower(this, 1000, 350));
 		allEnemy.push_back(new CEnemy_Statue(this, 2950, 290));
-		allObject.push_back(new Switch(this, 300, 420, true, 1));
-		allObject.push_back(new Spike(this, 400, 460, true, -1));
-		allObject.push_back(new Spike(this, 420, 460, true, -1));
-		allObject.push_back(new Spike(this, 440, 460, true, -1));
-		allObject.push_back(new Spike(this, 460, 460, true, -1));
-		allObject.push_back(new Spike(this, 480, 460, true, -1));
-		allObject.push_back(new Spike(this, 500, 460, true, -1));
-		allObject.push_back(new Spike(this, 520, 460, true, -1));
+		allEnemy.push_back(new CEnemy_Cloud(this, 600, 250));
+		allItem.push_back(new Item_Fire_Stone(this, 300, 350, ItemExistTime));
+		allItem.back()->LoadBitmap();
 	}
 
 	gameMap_Lv2::~gameMap_Lv2()
