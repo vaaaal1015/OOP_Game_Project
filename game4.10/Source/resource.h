@@ -444,6 +444,37 @@
 #define IDB_HEROTHROWRIGHT_2            503
 #define IDB_BITMAP79                    504
 #define IDB_HEROTHROWRIGHT_3            504
+#define IDB_LIGHTNING_0                 505
+#define IDB_LIGHTNING_2                 506
+#define IDB_LIGHTNING_3                 507
+#define IDB_LIGHTNING_1                 508
+#define IDB_LIGHTNING_4                 509
+#define IDB_LIGHTNING_5                 510
+#define IDB_LIGHTNING_6                 511
+#define IDB_LIGHTNING_7                 512
+#define IDB_LIGHTNING_8                 513
+#define IDB_LIGHTNING_9                 514
+#define IDB_LIGHTNING_10                515
+#define IDB_LIGHTNING_11                516
+#define IDB_LIGHTNING_12                517
+#define IDB_LIGHTNING_13                518
+#define IDB_CLOUDBOSS_0                 519
+#define IDB_CLOUDBOSS_1                 520
+#define IDB_CLOUDBOSS_2                 521
+#define IDB_CLOUDBOSS_3                 522
+#define IDB_CLOUDBOSS_4                 523
+#define IDB_CLOUDBOSS_5                 524
+#define IDB_CLOUDBOSS_6                 525
+#define IDB_CLOUDBOSS_7                 526
+#define IDB_CLOUDBOSS_LEFT_0            527
+#define IDB_CLOUDBOSS_LEFT_1            528
+#define IDB_CLOUDBOSS_LEFT_2            529
+#define IDB_CLOUDBOSS_LEFT_3            530
+#define IDB_CLOUDBOSS_LEFT_4            531
+#define IDB_CLOUDBOSS_LEFT_5            532
+#define IDB_CLOUDBOSS_LEFT_6            533
+#define IDB_BITMAP84                    534
+#define IDB_CLOUDBOSS_LEFT_7            534
 #define IDC_README                      1001
 #define ID_FILE_PAUSE                   32771
 #define ID_TOGGLE_FULLSCREEN            32772
@@ -456,7 +487,7 @@
 #ifdef APSTUDIO_INVOKED
 #ifndef APSTUDIO_READONLY_SYMBOLS
 #define _APS_3D_CONTROLS                     1
-#define _APS_NEXT_RESOURCE_VALUE        505
+#define _APS_NEXT_RESOURCE_VALUE        535
 #define _APS_NEXT_COMMAND_VALUE         32776
 #define _APS_NEXT_CONTROL_VALUE         1003
 #define _APS_NEXT_SYMED_VALUE           101
