@@ -191,12 +191,12 @@ namespace game_framework {
 		int HeroXTrackCounter = 0;
 		int SetHeroXTrackCounter = 120;
 		int TrackLightningDelayCount;
-		int SetTrackLightningDelayCount = 160;
+		int SetTrackLightningDelayCount = 80;
 		void ResetTrackLightningCloudAnimation(int CloudNumber);
 		void ShowTrackLightningCloud(int CloudNumber);
 		void OnMoveTrackLightningCloud(int CloudNumber);
 		bool LightningActivated = false;
-		int LightningStrikeDelayCount = 30;
+		int LightningStrikeDelayCount = 10;
 		int ShowLightningCloudNumber = 0;
 	};
 

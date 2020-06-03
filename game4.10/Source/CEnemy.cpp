@@ -771,7 +771,7 @@ namespace game_framework {
 			//ResetTrackLightningCloudAnimation();
 			TrackLightningDelayCount--;
 			
-			if (TrackLightningDelayCount % 40 == 0)			//每40個畫面寫入陣列
+			if (TrackLightningDelayCount % 20 == 0)			//每40個畫面寫入陣列
 			{
 				SetHeroXArray(HeroXCounter, hero["x1"]);		//Array[HeroCounter] = hero[x1]
 				//TrackLightningCloud1.Reset();
@@ -785,7 +785,10 @@ namespace game_framework {
 				HeroXCounter = 0;
 			}
 		}
-		
+		else if (LightningActivated)
+		{
+			if (LightningStrikeDelayCount > 0) LightningStrikeDelayCount--;
+		}
 		if (LightningCloud.IsFinalBitmap() || LightningCloud.GetCurrentBitmapNumber()==0)
 		{
 			state = DetectHero(state);
@@ -861,7 +864,7 @@ namespace game_framework {
 	{
 		TRACE("%d\n", ShowLightningCloudNumber);
 
-		if (state != DEAD && LightningActivated)
+		if (state != DEAD && LightningActivated && LightningStrikeDelayCount == 0)
 		{
 			ShowTrackLightningCloud(ShowLightningCloudNumber);
 		}
@@ -999,12 +1002,14 @@ namespace game_framework {
 			if (ShowLightningCloudNumber <= 2)
 			{
 				ShowLightningCloudNumber += 1;
+				LightningStrikeDelayCount = 10;
 			}
 			else
 			{
 				ShowLightningCloudNumber = 0;
+				LightningActivated = false;
 			}
-			LightningActivated = false;
+			
 		}
 	}
 
