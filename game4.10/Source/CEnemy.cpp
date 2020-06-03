@@ -528,6 +528,7 @@ namespace game_framework {
 
 	CEnemy_Action CEnemy_Cloud::DetectHero(CEnemy_Action state)
 	{
+		//TRACE("%d\n", LightningCloud.GetCurrentBitmapNumber());
 		if (attackDelayCount <= 0)
 		{
 			if ((GetX2() - GetWidth() / 2 >= hero["x1"]) && (hero["x2"] >= GetX1() - 200) && (GetY2() + 100 >= hero["y1"]) && (hero["y2"] >= GetY1() - 100))
@@ -675,7 +676,7 @@ namespace game_framework {
 	void CEnemy_Cloud::OnMove()
 	{
 		const int STEP_SIZE = 2;
-
+		TRACE("%d\n", attackDelayCount);
 		animation.OnMove();
 		animationLeft.OnMove();
 		moveRightAnimation.OnMove();
@@ -687,8 +688,13 @@ namespace game_framework {
 		else if (GetHitDelayCount == 0) HitAnimation.Reset();
 		if (attackDelayCount > 0) attackDelayCount--;
 
-		state = DetectHero(state);
-
+		if (LightningCloud.IsFinalBitmap() || LightningCloud.GetCurrentBitmapNumber()==0)
+		{
+			state = DetectHero(state);
+		}
+			
+		
+		//TRACE("%d\n", state);
 		if (state == MOVE_LEFT)
 		{
 			if (currentMap->isSpace(GetX1(), GetY1()) && currentMap->isSpace(GetX1(), GetY2() - 10)) // 當座標還沒碰到牆
@@ -776,16 +782,16 @@ namespace game_framework {
 			moveLeftAnimation.OnShow();
 			break;
 		case ATTACK_LEFT:
-			if (AttackLeftAnimation.IsFinalBitmap()) attackDelayCount = attackDelay;
-			LightningCloud.SetTopLeft(currentMap->ScreenX(x - 200), currentMap->ScreenY(y - 140));
+			if (LightningCloud.GetCurrentBitmapNumber() == 7) attackDelayCount = attackDelay;
+			LightningCloud.SetTopLeft(currentMap->ScreenX(x - 200), currentMap->ScreenY(y - 72));
 			LightningCloud.OnShow();
-			LightningCloud.SetTopLeft(currentMap->ScreenX(x - 100), currentMap->ScreenY(y - 140));
+			LightningCloud.SetTopLeft(currentMap->ScreenX(x - 100), currentMap->ScreenY(y - 72));
 			LightningCloud.OnShow();
-			LightningCloud.SetTopLeft(currentMap->ScreenX(x), currentMap->ScreenY(y - 140));
+			LightningCloud.SetTopLeft(currentMap->ScreenX(x), currentMap->ScreenY(y - 72));
 			LightningCloud.OnShow();
-			LightningCloud.SetTopLeft(currentMap->ScreenX(x + 100), currentMap->ScreenY(y - 140));
+			LightningCloud.SetTopLeft(currentMap->ScreenX(x + 100), currentMap->ScreenY(y - 72));
 			LightningCloud.OnShow();
-			LightningCloud.SetTopLeft(currentMap->ScreenX(x + 200), currentMap->ScreenY(y - 140));
+			LightningCloud.SetTopLeft(currentMap->ScreenX(x + 200), currentMap->ScreenY(y - 72));
 			LightningCloud.OnShow();
 			AttackLeftAnimation.SetTopLeft(currentMap->ScreenX(x), currentMap->ScreenY(y));
 			AttackLeftAnimation.OnShow();
@@ -795,16 +801,16 @@ namespace game_framework {
 			moveRightAnimation.OnShow();
 			break;
 		case ATTACK_RIGHT:
-			if (AttackRightAnimation.IsFinalBitmap())attackDelayCount = attackDelay;
-			LightningCloud.SetTopLeft(currentMap->ScreenX(x - 200), currentMap->ScreenY(y - 140));
+			if (LightningCloud.GetCurrentBitmapNumber() == 7)attackDelayCount = attackDelay;
+			LightningCloud.SetTopLeft(currentMap->ScreenX(x - 200), currentMap->ScreenY(y - 72));
 			LightningCloud.OnShow();
-			LightningCloud.SetTopLeft(currentMap->ScreenX(x - 100), currentMap->ScreenY(y - 140));
+			LightningCloud.SetTopLeft(currentMap->ScreenX(x - 100), currentMap->ScreenY(y - 72));
 			LightningCloud.OnShow();
-			LightningCloud.SetTopLeft(currentMap->ScreenX(x), currentMap->ScreenY(y - 140));
+			LightningCloud.SetTopLeft(currentMap->ScreenX(x), currentMap->ScreenY(y - 72));
 			LightningCloud.OnShow();
-			LightningCloud.SetTopLeft(currentMap->ScreenX(x + 100), currentMap->ScreenY(y - 140));
+			LightningCloud.SetTopLeft(currentMap->ScreenX(x + 100), currentMap->ScreenY(y - 72));
 			LightningCloud.OnShow();
-			LightningCloud.SetTopLeft(currentMap->ScreenX(x + 200), currentMap->ScreenY(y - 140));
+			LightningCloud.SetTopLeft(currentMap->ScreenX(x + 200), currentMap->ScreenY(y - 72));
 			LightningCloud.OnShow();
 			AttackRightAnimation.SetTopLeft(currentMap->ScreenX(x), currentMap->ScreenY(y));
 			AttackRightAnimation.OnShow();
