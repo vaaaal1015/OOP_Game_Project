@@ -180,6 +180,12 @@ namespace game_framework {
 		bool GetHit = false;
 		void changeLifeBarLength();			// 改變生命條的長度
 		int AttackFlag = false;
+		int HeroXArray[5];
+		void SetHeroXArray(int ArrayNumber, int ArrayValue);
+		int HeroXCounter = 0;
+		int HeroXTrackCounter = 0;
+		int SetHeroXTrackCounter = 120;
+		void AttackMode_2Clock();
 	};
 
 	class CEnemy_Cactus : public CEnemy

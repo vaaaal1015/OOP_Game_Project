@@ -466,10 +466,12 @@ namespace game_framework {
 		floor = FLOOR;
 		initial_velocity = INITIAL_VELOCITY;
 		attackDelayCount = attackDelay = 150;
+		HeroXTrackCounter = SetHeroXTrackCounter;
 		velocity = initial_velocity;
 		state = STAND_LEFT;
 		ShowLifeBarDelayCount = 0;
 		for (int i = 0; i < 100; i++) LifeBar_1.push_back(new CMovingBitmap);    //100個血條圖片
+		for (int i = 0; i < 5; i++) HeroXArray[i] = 0;          //初始化array
 	}
 
 	CEnemy_Cloud::~CEnemy_Cloud()
@@ -676,7 +678,6 @@ namespace game_framework {
 	void CEnemy_Cloud::OnMove()
 	{
 		const int STEP_SIZE = 2;
-		TRACE("%d\n", attackDelayCount);
 		animation.OnMove();
 		animationLeft.OnMove();
 		moveRightAnimation.OnMove();
@@ -687,7 +688,8 @@ namespace game_framework {
 		if (GetHitDelayCount > 0) GetHitDelayCount--;
 		else if (GetHitDelayCount == 0) HitAnimation.Reset();
 		if (attackDelayCount > 0) attackDelayCount--;
-
+		AttackMode_2Clock();
+		
 		if (LightningCloud.IsFinalBitmap() || LightningCloud.GetCurrentBitmapNumber()==0)
 		{
 			state = DetectHero(state);
@@ -857,6 +859,27 @@ namespace game_framework {
 		}
 	}
 
+	void CEnemy_Cloud::SetHeroXArray(int ArrayNumber, int ArrayValue)
+	{
+		HeroXArray[ArrayNumber] = ArrayValue;
+	}
+	
+	void CEnemy_Cloud::AttackMode_2Clock()
+	{
+		if (HeroXTrackCounter % 30 == 0)			//每40個畫面寫入陣列
+		{
+			SetHeroXArray(HeroXCounter, hero["x1"]);		//Array[HeroCounter] = hero[x1]
+			TRACE("%d, %d, %d\n", HeroXArray[HeroXCounter], HeroXCounter, HeroXTrackCounter);
+			HeroXCounter++;						//changeArrayNumber
+		}
+
+		if (HeroXTrackCounter > 0)HeroXTrackCounter--;   //count
+		else if (HeroXTrackCounter == 0)					//reset
+		{
+			HeroXTrackCounter = SetHeroXTrackCounter;		//resetDelayCount
+			HeroXCounter = 0;								//resetArrayNumber
+		}
+	}
 	/////////////////////////////////////////////////////////////////////////////
 	// CEnemy_Cactus: Enemy Cactus class
 	/////////////////////////////////////////////////////////////////////////////
