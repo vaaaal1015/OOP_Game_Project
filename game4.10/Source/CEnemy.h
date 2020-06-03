@@ -162,6 +162,11 @@ namespace game_framework {
 		CAnimation DeadAnimation;		// 死亡動畫
 		CAnimation HitAnimation;		// 打擊效果
 		CAnimation LightningCloud;
+		CAnimation TrackLightningCloud1;
+		CAnimation TrackLightningCloud2;
+		CAnimation TrackLightningCloud3;
+		CAnimation TrackLightningCloud4;
+		CAnimation TrackLightningCloud5;
 		string EnemyType = "Cloud Boss";
 		bool isMovingDown;			// 是否正在往下移動
 		bool isMovingLeft;			// 是否正在往左移動
@@ -180,12 +185,19 @@ namespace game_framework {
 		bool GetHit = false;
 		void changeLifeBarLength();			// 改變生命條的長度
 		int AttackFlag = false;
-		int HeroXArray[5];
+		int HeroXArray[4];
 		void SetHeroXArray(int ArrayNumber, int ArrayValue);
 		int HeroXCounter = 0;
 		int HeroXTrackCounter = 0;
 		int SetHeroXTrackCounter = 120;
-		void AttackMode_2Clock();
+		int TrackLightningDelayCount;
+		int SetTrackLightningDelayCount = 160;
+		void ResetTrackLightningCloudAnimation(int CloudNumber);
+		void ShowTrackLightningCloud(int CloudNumber);
+		void OnMoveTrackLightningCloud(int CloudNumber);
+		bool LightningActivated = false;
+		int LightningStrikeDelayCount = 30;
+		int ShowLightningCloudNumber = 0;
 	};
 
 	class CEnemy_Cactus : public CEnemy

@@ -459,6 +459,11 @@ namespace game_framework {
 		AttackLeftAnimation.SetDelayCount(4);
 		AttackRightAnimation.SetDelayCount(4);
 		LightningCloud.SetDelayCount(3);
+		TrackLightningCloud1.SetDelayCount(3);
+		TrackLightningCloud2.SetDelayCount(3);
+		TrackLightningCloud3.SetDelayCount(3);
+		TrackLightningCloud4.SetDelayCount(3);
+		TrackLightningCloud5.SetDelayCount(3);
 		HitAnimation.SetDelayCount(2);
 		enemyHP = 1500;	//敵人預設生命值
 		FullHP = enemyHP;
@@ -467,11 +472,12 @@ namespace game_framework {
 		initial_velocity = INITIAL_VELOCITY;
 		attackDelayCount = attackDelay = 150;
 		HeroXTrackCounter = SetHeroXTrackCounter;
+		TrackLightningDelayCount = SetTrackLightningDelayCount;
 		velocity = initial_velocity;
 		state = STAND_LEFT;
 		ShowLifeBarDelayCount = 0;
 		for (int i = 0; i < 100; i++) LifeBar_1.push_back(new CMovingBitmap);    //100個血條圖片
-		for (int i = 0; i < 5; i++) HeroXArray[i] = 0;          //初始化array
+		for (int i = 0; i < 4; i++) HeroXArray[i] = 0;          //初始化array
 	}
 
 	CEnemy_Cloud::~CEnemy_Cloud()
@@ -667,6 +673,77 @@ namespace game_framework {
 		LightningCloud.AddBitmap(IDB_LIGHTNING_12, RGB(63, 72, 204));
 		LightningCloud.AddBitmap(IDB_LIGHTNING_13, RGB(63, 72, 204));
 
+		TrackLightningCloud1.AddBitmap(IDB_LIGHTNING_0, RGB(63, 72, 204));
+		TrackLightningCloud1.AddBitmap(IDB_LIGHTNING_1, RGB(63, 72, 204));
+		TrackLightningCloud1.AddBitmap(IDB_LIGHTNING_2, RGB(63, 72, 204));
+		TrackLightningCloud1.AddBitmap(IDB_LIGHTNING_3, RGB(63, 72, 204));
+		TrackLightningCloud1.AddBitmap(IDB_LIGHTNING_4, RGB(63, 72, 204));
+		TrackLightningCloud1.AddBitmap(IDB_LIGHTNING_5, RGB(63, 72, 204));
+		TrackLightningCloud1.AddBitmap(IDB_LIGHTNING_6, RGB(63, 72, 204));
+		TrackLightningCloud1.AddBitmap(IDB_LIGHTNING_8, RGB(63, 72, 204));
+		TrackLightningCloud1.AddBitmap(IDB_LIGHTNING_9, RGB(63, 72, 204));
+		TrackLightningCloud1.AddBitmap(IDB_LIGHTNING_10, RGB(63, 72, 204));
+		TrackLightningCloud1.AddBitmap(IDB_LIGHTNING_11, RGB(63, 72, 204));
+		TrackLightningCloud1.AddBitmap(IDB_LIGHTNING_12, RGB(63, 72, 204));
+		TrackLightningCloud1.AddBitmap(IDB_LIGHTNING_13, RGB(63, 72, 204));
+
+		TrackLightningCloud2.AddBitmap(IDB_LIGHTNING_0, RGB(63, 72, 204));
+		TrackLightningCloud2.AddBitmap(IDB_LIGHTNING_1, RGB(63, 72, 204));
+		TrackLightningCloud2.AddBitmap(IDB_LIGHTNING_2, RGB(63, 72, 204));
+		TrackLightningCloud2.AddBitmap(IDB_LIGHTNING_3, RGB(63, 72, 204));
+		TrackLightningCloud2.AddBitmap(IDB_LIGHTNING_4, RGB(63, 72, 204));
+		TrackLightningCloud2.AddBitmap(IDB_LIGHTNING_5, RGB(63, 72, 204));
+		TrackLightningCloud2.AddBitmap(IDB_LIGHTNING_6, RGB(63, 72, 204));
+		TrackLightningCloud2.AddBitmap(IDB_LIGHTNING_8, RGB(63, 72, 204));
+		TrackLightningCloud2.AddBitmap(IDB_LIGHTNING_9, RGB(63, 72, 204));
+		TrackLightningCloud2.AddBitmap(IDB_LIGHTNING_10, RGB(63, 72, 204));
+		TrackLightningCloud2.AddBitmap(IDB_LIGHTNING_11, RGB(63, 72, 204));
+		TrackLightningCloud2.AddBitmap(IDB_LIGHTNING_12, RGB(63, 72, 204));
+		TrackLightningCloud2.AddBitmap(IDB_LIGHTNING_13, RGB(63, 72, 204));
+
+		TrackLightningCloud3.AddBitmap(IDB_LIGHTNING_0, RGB(63, 72, 204));
+		TrackLightningCloud3.AddBitmap(IDB_LIGHTNING_1, RGB(63, 72, 204));
+		TrackLightningCloud3.AddBitmap(IDB_LIGHTNING_2, RGB(63, 72, 204));
+		TrackLightningCloud3.AddBitmap(IDB_LIGHTNING_3, RGB(63, 72, 204));
+		TrackLightningCloud3.AddBitmap(IDB_LIGHTNING_4, RGB(63, 72, 204));
+		TrackLightningCloud3.AddBitmap(IDB_LIGHTNING_5, RGB(63, 72, 204));
+		TrackLightningCloud3.AddBitmap(IDB_LIGHTNING_6, RGB(63, 72, 204));
+		TrackLightningCloud3.AddBitmap(IDB_LIGHTNING_8, RGB(63, 72, 204));
+		TrackLightningCloud3.AddBitmap(IDB_LIGHTNING_9, RGB(63, 72, 204));
+		TrackLightningCloud3.AddBitmap(IDB_LIGHTNING_10, RGB(63, 72, 204));
+		TrackLightningCloud3.AddBitmap(IDB_LIGHTNING_11, RGB(63, 72, 204));
+		TrackLightningCloud3.AddBitmap(IDB_LIGHTNING_12, RGB(63, 72, 204));
+		TrackLightningCloud3.AddBitmap(IDB_LIGHTNING_13, RGB(63, 72, 204));
+
+		TrackLightningCloud4.AddBitmap(IDB_LIGHTNING_0, RGB(63, 72, 204));
+		TrackLightningCloud4.AddBitmap(IDB_LIGHTNING_1, RGB(63, 72, 204));
+		TrackLightningCloud4.AddBitmap(IDB_LIGHTNING_2, RGB(63, 72, 204));
+		TrackLightningCloud4.AddBitmap(IDB_LIGHTNING_3, RGB(63, 72, 204));
+		TrackLightningCloud4.AddBitmap(IDB_LIGHTNING_4, RGB(63, 72, 204));
+		TrackLightningCloud4.AddBitmap(IDB_LIGHTNING_5, RGB(63, 72, 204));
+		TrackLightningCloud4.AddBitmap(IDB_LIGHTNING_6, RGB(63, 72, 204));
+		TrackLightningCloud4.AddBitmap(IDB_LIGHTNING_8, RGB(63, 72, 204));
+		TrackLightningCloud4.AddBitmap(IDB_LIGHTNING_9, RGB(63, 72, 204));
+		TrackLightningCloud4.AddBitmap(IDB_LIGHTNING_10, RGB(63, 72, 204));
+		TrackLightningCloud4.AddBitmap(IDB_LIGHTNING_11, RGB(63, 72, 204));
+		TrackLightningCloud4.AddBitmap(IDB_LIGHTNING_12, RGB(63, 72, 204));
+		TrackLightningCloud4.AddBitmap(IDB_LIGHTNING_13, RGB(63, 72, 204));
+
+		TrackLightningCloud5.AddBitmap(IDB_LIGHTNING_0, RGB(63, 72, 204));
+		TrackLightningCloud5.AddBitmap(IDB_LIGHTNING_1, RGB(63, 72, 204));
+		TrackLightningCloud5.AddBitmap(IDB_LIGHTNING_2, RGB(63, 72, 204));
+		TrackLightningCloud5.AddBitmap(IDB_LIGHTNING_3, RGB(63, 72, 204));
+		TrackLightningCloud5.AddBitmap(IDB_LIGHTNING_4, RGB(63, 72, 204));
+		TrackLightningCloud5.AddBitmap(IDB_LIGHTNING_5, RGB(63, 72, 204));
+		TrackLightningCloud5.AddBitmap(IDB_LIGHTNING_6, RGB(63, 72, 204));
+		TrackLightningCloud5.AddBitmap(IDB_LIGHTNING_8, RGB(63, 72, 204));
+		TrackLightningCloud5.AddBitmap(IDB_LIGHTNING_9, RGB(63, 72, 204));
+		TrackLightningCloud5.AddBitmap(IDB_LIGHTNING_10, RGB(63, 72, 204));
+		TrackLightningCloud5.AddBitmap(IDB_LIGHTNING_11, RGB(63, 72, 204));
+		TrackLightningCloud5.AddBitmap(IDB_LIGHTNING_12, RGB(63, 72, 204));
+		TrackLightningCloud5.AddBitmap(IDB_LIGHTNING_13, RGB(63, 72, 204));
+
+
 		HitAnimation.AddBitmap(IDB_HIT_0, RGB(63, 72, 204));
 		HitAnimation.AddBitmap(IDB_HIT_1, RGB(63, 72, 204));
 		HitAnimation.AddBitmap(IDB_HIT_2, RGB(63, 72, 204));
@@ -684,11 +761,30 @@ namespace game_framework {
 		moveLeftAnimation.OnMove();
 		AttackLeftAnimation.OnMove();
 		AttackRightAnimation.OnMove();
+		TrackLightningCloud1.OnMove();
 		if (ShowLifeBarDelayCount > 0) ShowLifeBarDelayCount--;
 		if (GetHitDelayCount > 0) GetHitDelayCount--;
 		else if (GetHitDelayCount == 0) HitAnimation.Reset();
 		if (attackDelayCount > 0) attackDelayCount--;
-		AttackMode_2Clock();
+		if (TrackLightningDelayCount > 0 && !LightningActivated)
+		{
+			//ResetTrackLightningCloudAnimation();
+			TrackLightningDelayCount--;
+			
+			if (TrackLightningDelayCount % 40 == 0)			//每40個畫面寫入陣列
+			{
+				SetHeroXArray(HeroXCounter, hero["x1"]);		//Array[HeroCounter] = hero[x1]
+				//TrackLightningCloud1.Reset();
+				//OnMoveTrackLightningCloud(HeroXCounter);
+				HeroXCounter++;						//changeArrayNumber
+			}
+			if (TrackLightningDelayCount == 0)
+			{
+				LightningActivated = true;
+				TrackLightningDelayCount = SetTrackLightningDelayCount;
+				HeroXCounter = 0;
+			}
+		}
 		
 		if (LightningCloud.IsFinalBitmap() || LightningCloud.GetCurrentBitmapNumber()==0)
 		{
@@ -763,6 +859,12 @@ namespace game_framework {
 
 	void CEnemy_Cloud::OnShow()
 	{
+		TRACE("%d\n", ShowLightningCloudNumber);
+
+		if (state != DEAD && LightningActivated)
+		{
+			ShowTrackLightningCloud(ShowLightningCloudNumber);
+		}
 		if (ShowLifeBarDelayCount != 0)
 		{
 			LifeBar_0.SetTopLeft(currentMap->ScreenX(x), currentMap->ScreenY(y - 5));
@@ -864,22 +966,69 @@ namespace game_framework {
 		HeroXArray[ArrayNumber] = ArrayValue;
 	}
 	
-	void CEnemy_Cloud::AttackMode_2Clock()
+	void CEnemy_Cloud::ResetTrackLightningCloudAnimation(int CloudNumber)
 	{
-		if (HeroXTrackCounter % 30 == 0)			//每40個畫面寫入陣列
+		switch (CloudNumber)
 		{
-			SetHeroXArray(HeroXCounter, hero["x1"]);		//Array[HeroCounter] = hero[x1]
-			TRACE("%d, %d, %d\n", HeroXArray[HeroXCounter], HeroXCounter, HeroXTrackCounter);
-			HeroXCounter++;						//changeArrayNumber
-		}
-
-		if (HeroXTrackCounter > 0)HeroXTrackCounter--;   //count
-		else if (HeroXTrackCounter == 0)					//reset
-		{
-			HeroXTrackCounter = SetHeroXTrackCounter;		//resetDelayCount
-			HeroXCounter = 0;								//resetArrayNumber
+		case 0:
+			TrackLightningCloud1.Reset();
+			break;
+		case 1:
+			TrackLightningCloud2.Reset();
+			break;
+		case 2:
+			TrackLightningCloud3.Reset();
+			break;
+		case 3:
+			TrackLightningCloud4.Reset();
+			break;
+		default:
+			break;
 		}
 	}
+
+	void CEnemy_Cloud::ShowTrackLightningCloud(int CloudNumber)
+	{
+		if (!TrackLightningCloud1.IsFinalBitmap())
+		{
+			TrackLightningCloud1.SetTopLeft(currentMap->ScreenX(HeroXArray[CloudNumber] - 50), currentMap->ScreenY(y - 72));
+			TrackLightningCloud1.OnShow();
+		}
+		else
+		{
+			if (ShowLightningCloudNumber <= 2)
+			{
+				ShowLightningCloudNumber += 1;
+			}
+			else
+			{
+				ShowLightningCloudNumber = 0;
+			}
+			LightningActivated = false;
+		}
+	}
+
+	void CEnemy_Cloud::OnMoveTrackLightningCloud(int CloudNumber)
+	{
+		if (CloudNumber > 0)
+		{
+			TrackLightningCloud1.OnMove();
+		}
+		if (CloudNumber > 1)
+		{
+			TrackLightningCloud2.OnMove();
+		}
+		if (CloudNumber > 2)
+		{
+			TrackLightningCloud3.OnMove();
+		}
+		if (CloudNumber > 3)
+		{
+			TrackLightningCloud4.OnMove();
+		}
+	}
+
+
 	/////////////////////////////////////////////////////////////////////////////
 	// CEnemy_Cactus: Enemy Cactus class
 	/////////////////////////////////////////////////////////////////////////////
