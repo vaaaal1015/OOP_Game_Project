@@ -163,10 +163,6 @@ namespace game_framework {
 		CAnimation HitAnimation;		// 打擊效果
 		CAnimation LightningCloud;
 		CAnimation TrackLightningCloud1;
-		CAnimation TrackLightningCloud2;
-		CAnimation TrackLightningCloud3;
-		CAnimation TrackLightningCloud4;
-		CAnimation TrackLightningCloud5;
 		string EnemyType = "Cloud Boss";
 		bool isMovingDown;			// 是否正在往下移動
 		bool isMovingLeft;			// 是否正在往左移動
@@ -198,6 +194,7 @@ namespace game_framework {
 		bool LightningActivated = false;
 		int LightningStrikeDelayCount = 10;
 		int ShowLightningCloudNumber = 0;
+		bool LightningStrike = false;
 	};
 
 	class CEnemy_Cactus : public CEnemy
