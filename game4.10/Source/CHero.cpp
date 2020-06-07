@@ -80,7 +80,7 @@ namespace game_framework {
 
 	void CHero::Initialize()
 	{
-		const int X_POS = 5;
+		const int X_POS = 35;
 		const int Y_POS = 0;
 		x = X_POS;
 		y = Y_POS;
@@ -1362,9 +1362,8 @@ namespace game_framework {
 			currentMap = currentWild;
 			break;
 		}
-		x = 0;
+		x = 35;
 		y = 0;
-
 	}
 
 	void CHero::ResetHeroState()
@@ -1379,7 +1378,7 @@ namespace game_framework {
 		SpecialEffect = 0;
 		SpecialEffectCount = 0;
 		ShurikanNumber = 10;
-		x = 0;    
+		x = 35;    
 		y = 0;
 	}
 

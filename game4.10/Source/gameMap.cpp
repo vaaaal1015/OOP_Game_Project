@@ -14,6 +14,8 @@
 #include <ctime>
 using namespace std;
 
+
+
 namespace game_framework {
 	/////////////////////////////////////////////////////////////////////////////
 	// gameMap : gameMap base class
@@ -22,6 +24,15 @@ namespace game_framework {
 	{
 		fstream mapFile;
 		string mapLocation = "Map\\" + fileName;
+
+		for (int i = 0; i < 32; i++)
+		{
+			for (int j = 0; j < 96; j++)
+			{
+				map[i][j] = 0;
+			}
+		}
+
 		mapFile.open(mapLocation, ios::in);
 		if (!mapFile) cout << "error";
 		int i = 0;
@@ -35,12 +46,14 @@ namespace game_framework {
 			{
 				if (buffer[j] == ',')
 				{
+					count++;
 					j++;
 				}
 				else
 				{
-					map[i][count] = (int)buffer[j] - (int)48;
-					count++;
+					map[i][count] = map[i][count] * 10;
+					map[i][count] += (int)(buffer[j] - '0');
+					//count++;
 					j++;
 				}
 			}
@@ -64,8 +77,8 @@ namespace game_framework {
 		int gx = x / MIN_MAP_SIZE; // 轉換為格座標(整數除法)
 		int gy = y / MIN_MAP_SIZE;  // 轉換為格座標(整數除法)
 
-		if (map[gy][gx] == 0) return true;
-		else return false;
+		if (map[gy][gx] == 1 || map[gy][gx] == 2 || map[gy][gx] == 3 || map[gy][gx] == 4 || map[gy][gx] == 8) return false;
+		return true;
 	}
 
 	int gameMap::GetBlockY(int y)
@@ -118,6 +131,8 @@ namespace game_framework {
 					ground.ShowBitmap();    //顯示草地圖案
 					break;
 				case 0:
+					break;
+				default:
 					break;
 				}
 			}
@@ -202,6 +217,44 @@ namespace game_framework {
 		unsigned seed;
 		seed = (unsigned)time(NULL);
 		srand(seed);
+
+		for (int i = 0; i < 32; i++) {
+			for (int j = 0; j < 96; j++) {
+				int x = j * MW - sx; // 算出第(i, j)這一格的 x 螢幕座標
+				int y = i * MH - sy; // 算出第(i, j)這一格的 y 螢幕座標
+
+				if (map[i][j] / 10 == 2)
+				{
+					allObject.push_back(new Switch(this, x, y, true, map[i][j] % 10));
+				}
+
+				if (map[i][j] / 10 == 3)
+				{
+					allObject.push_back(new Spike(this, x, y + 10, true, map[i][j] % 10 * (-1)));
+					allObject.push_back(new Spike(this, x + 10, y + 10, true, map[i][j] % 10 * (-1)));
+				}
+
+				switch (map[i][j])
+				{
+				case 9:
+					allEnemy.push_back(new CEnemy_Statue(this, x, y));
+					break;
+				case 10:
+					allEnemy.push_back(new CEnemy_Cloud(this, x, y));
+					break;
+				case 40:
+					allEnemy.push_back(new CEnemy_sunFlower(this, x, y));
+					break;
+				case 41:
+					allEnemy.push_back(new CEnemy_Cactus(this, x, y));
+					break;
+				default:
+					break;
+				}
+			}
+		}
+
+		/*
 		allEnemy.push_back(new CEnemy_sunFlower(this, 300, 350));
 		allEnemy.push_back(new CEnemy_Cactus(this, 500, 280));
 		allEnemy.push_back(new CEnemy_Cactus(this, 1000, 210));
@@ -225,6 +278,8 @@ namespace game_framework {
 		allObject.push_back(new Spike(this, 1120, 350, true, -2));
 		allObject.push_back(new Spike(this, 1140, 350, true, -2));
 		allObject.push_back(new Spike(this, 1160, 350, true, -2));
+		*/
+		
 		allItem.push_back(new Item_Fire_Stone(this, 300, 350, ItemExistTime));
 		allItem.back()->LoadBitmap();
 		allItem.push_back(new Item_RedPot_Small(this, 500, 350, ItemExistTime));
@@ -448,8 +503,39 @@ namespace game_framework {
 	/////////////////////////////////////////////////////////////////////////////
 	gameMap_Lv2::gameMap_Lv2() : gameMap_wild("level_2.txt")
 	{
-		allEnemy.push_back(new CEnemy_Statue(this, 2950, 290));
-		allEnemy.push_back(new CEnemy_Cloud(this, 600, 250));
+
+		for (int i = 0; i < 32; i++) {
+			for (int j = 0; j < 96; j++) {
+				int x = j * MW - sx; // 算出第(i, j)這一格的 x 螢幕座標
+				int y = i * MH - sy; // 算出第(i, j)這一格的 y 螢幕座標
+				
+				if (map[i][j] / 10 == 2)
+				{
+					allObject.push_back(new Switch(this, x, y, true, map[i][j] % 10));
+				}
+
+				if (map[i][j] / 10 == 3)
+				{
+					allObject.push_back(new Spike(this, x, y + 10, true, map[i][j] % 10 * (-1)));
+					allObject.push_back(new Spike(this, x + 10, y + 10, true, map[i][j] % 10 * (-1)));
+				}
+
+				switch (map[i][j])
+				{
+				case 9:
+					allEnemy.push_back(new CEnemy_Statue(this, x, y));
+					break;
+				case 10:
+					allEnemy.push_back(new CEnemy_Cloud(this, x, y));
+					break;
+				default:
+					break;
+				}
+			}
+		}
+
+		//allEnemy.push_back(new CEnemy_Statue(this, 2950, 290));
+		//allEnemy.push_back(new CEnemy_Cloud(this, 600, 250));
 		allItem.push_back(new Item_Fire_Stone(this, 300, 350, ItemExistTime));
 		allItem.back()->LoadBitmap();
 	}
