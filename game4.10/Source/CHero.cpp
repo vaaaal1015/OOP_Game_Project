@@ -1346,7 +1346,7 @@ namespace game_framework {
 			
 			if(currentWild!=NULL)
 				delete currentWild;
-			currentWild = new gameMap_Lv1();
+			currentWild = new gameMap_wild("level_1.txt");
 			currentWild->LoadBitmap();
 			CAudio::Instance()->Play(6, false);
 			currentMap = currentWild;
@@ -1356,7 +1356,7 @@ namespace game_framework {
 			
 			if(currentWild!=NULL)
 				delete currentWild;
-			currentWild = new gameMap_Lv2();
+			currentWild = new gameMap_wild("level_2.txt");
 			currentWild->LoadBitmap();
 			CAudio::Instance()->Play(6, false);
 			currentMap = currentWild;

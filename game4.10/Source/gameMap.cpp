@@ -205,14 +205,7 @@ namespace game_framework {
 	/////////////////////////////////////////////////////////////////////////////
 	// gameMap_wild : gameMap_wild class
 	/////////////////////////////////////////////////////////////////////////////
-	gameMap_wild::gameMap_wild(string fileName) : gameMap(fileName) {}
-
-	
-
-	/////////////////////////////////////////////////////////////////////////////
-	// gameMap_Lv1 : gameMap_Lv1 class
-	/////////////////////////////////////////////////////////////////////////////
-	gameMap_Lv1::gameMap_Lv1() : gameMap_wild("level_1.txt")
+	gameMap_wild::gameMap_wild(string fileName) : gameMap(fileName)
 	{
 		unsigned seed;
 		seed = (unsigned)time(NULL);
@@ -279,6 +272,298 @@ namespace game_framework {
 		allObject.push_back(new Spike(this, 1140, 350, true, -2));
 		allObject.push_back(new Spike(this, 1160, 350, true, -2));
 		*/
+		/*
+		allItem.push_back(new Item_Fire_Stone(this, 300, 350, ItemExistTime));
+		allItem.back()->LoadBitmap();
+		allItem.push_back(new Item_RedPot_Small(this, 500, 350, ItemExistTime));
+		allItem.back()->LoadBitmap();
+		allItem.push_back(new Item_RedPot_Medium(this, 600, 350, ItemExistTime));
+		allItem.back()->LoadBitmap();
+		allItem.push_back(new Item_RedPot_Full(this, 700, 350, ItemExistTime));
+		allItem.back()->LoadBitmap();
+		allItem.push_back(new Item_RedPot_Stone(this, 750, 450, ItemExistTime));
+		allItem.back()->LoadBitmap();
+		allItem.push_back(new Item_Shurikan(this, 650, 450, ItemExistTime));
+		allItem.back()->LoadBitmap();
+		*/
+	}
+
+	gameMap_wild::~gameMap_wild()
+	{
+		for (vector<CEnemy*>::iterator i = allEnemy.begin(); i != allEnemy.end(); i++) delete (*i);
+		for (vector<Item*>::iterator i = allItem.begin(); i != allItem.end(); i++) delete (*i);
+		for (vector<MapObject*>::iterator i = allObject.begin(); i != allObject.end(); i++) delete(*i);
+	}
+
+	void gameMap_wild::LoadBitmap()
+	{
+		gameMap::LoadBitmap();
+		for (vector<CEnemy*>::iterator i = allEnemy.begin(); i != allEnemy.end(); i++) (*i)->LoadBitmap();
+		for (vector<MapObject*>::iterator i = allObject.begin(); i != allObject.end(); i++) (*i)->LoadBitmap();
+	}
+
+	void gameMap_wild::OnShow()
+	{
+		gameMap::OnShow();
+		for (vector<CEnemy*>::iterator i = allEnemy.begin(); i != allEnemy.end(); i++) (*i)->OnShow();
+		for (vector<Item*>::iterator i = allItem.begin(); i != allItem.end(); i++) (*i)->OnShow();
+		for (vector<MapObject*>::iterator i = allObject.begin(); i != allObject.end(); i++) (*i)->OnShow();
+
+	}
+
+	void gameMap_wild::OnMove() {
+		vector<CEnemy*>::iterator iter = allEnemy.begin();
+		MapObjectInteration();
+		while (iter != allEnemy.end())         //敵人死亡會從vector裡被刪除
+		{
+			if ((*iter)->isDead() && (*iter)->GetEnemyType() == "Statue")
+			{
+				//CAudio::Instance()->Play(7, false);
+				isStageClear = true;   //通關完成
+			}
+			if ((*iter)->isDead() && (*iter)->GetEnemyType() != "Statue")   //雕像以外的敵人被打死
+			{
+				DropItem(((*iter)->GetX1() + (*iter)->GetX2()) / 2, ((*iter)->GetY1() + (*iter)->GetY2()) / 2);
+				delete *iter;
+				iter = allEnemy.erase(iter);
+				//isStageClear = true;   //通關完成
+			}
+			else
+				iter++;
+		}
+		for (vector<Item*>::iterator i = allItem.begin(); i != allItem.end(); i++) (*i)->OnMove();
+		for (vector<CEnemy*>::iterator i = allEnemy.begin(); i != allEnemy.end(); i++) (*i)->OnMove();
+		for (vector<MapObject*>::iterator i = allObject.begin(); i != allObject.end(); i++) (*i)->OnMove();
+	}
+
+	void gameMap_wild::setHeroState(int x1, int x2, int y1, int y2, int HP, int Gold, int AttackDamage, int Level)
+	{
+		for (vector<CEnemy*>::iterator i = allEnemy.begin(); i != allEnemy.end(); i++) (*i)->SetHeroXY(x1, x2, y1, y2);
+	}
+
+	void gameMap_wild::SetHeroAttackRange(int x1, int x2, int y1, int y2)
+	{
+		HeroAttackX1 = x1;
+		HeroAttackY1 = y1;
+		HeroAttackX2 = x2;
+		HeroAttackY2 = y2;
+		for (vector<CEnemy*>::iterator i = allEnemy.begin(); i != allEnemy.end(); i++) (*i)->SetHeroAttackRange(x1, x2, y1, y2);
+	}
+
+	void gameMap_wild::AttackByHero(const int damage)		// 攻擊
+	{
+		for (vector<CEnemy*>::iterator i = allEnemy.begin(); i != allEnemy.end(); i++) (*i)->GetAttack(damage);
+		for (vector<MapObject*>::iterator i = allObject.begin(); i != allObject.end(); i++) (*i)->GetAttack(HeroAttackX1, HeroAttackY1, HeroAttackX2, HeroAttackY2);
+	}
+
+	void gameMap_wild::AttackByEnemy(int *heroHP)
+	{
+		for (vector<CEnemy*>::iterator i = allEnemy.begin(); i != allEnemy.end(); i++) (*i)->AttackByEnemy(heroHP);
+		for (vector<MapObject*>::iterator i = allObject.begin(); i != allObject.end(); i++) (*i)->AttackByObject(HeroX1, HeroY1, HeroX2, HeroY2, heroHP);
+	}
+
+	void gameMap_wild::HeroGetItem(int *HeroCoin, int *SpecialEffect, int *SpecialEffectCount, int *HeroHP, int FullHP, int *ShurikanNumber)
+	{
+		vector<Item*>::iterator iter = allItem.begin();
+		while (iter != allItem.end())
+		{
+			if (((*iter)->GetX2() >= HeroX1) && (HeroX2 >= (*iter)->GetX1()) && ((*iter)->GetY2() >= HeroY1) && (HeroY2 >= (*iter)->GetY1()))
+			{
+				CAudio::Instance()->Play(5, false);
+				switch ((*iter)->GetItemValue())
+				{
+				case 1:						//火焰石
+					*SpecialEffect = 1;
+					*SpecialEffectCount = 3;
+					delete *iter;
+					iter = allItem.erase(iter);
+					break;
+				case 2:						// 小血瓶
+					if (*HeroHP + 30 >= FullHP) *HeroHP = FullHP;
+					else *HeroHP += 30;
+					delete *iter;
+					iter = allItem.erase(iter);
+					break;
+				case 3:						// 中血瓶
+					if (*HeroHP + 50 >= FullHP) *HeroHP = FullHP;
+					else *HeroHP += 50;
+					delete *iter;
+					iter = allItem.erase(iter);
+					break;
+				case 4:						// 大血瓶
+					*HeroHP = FullHP;
+					delete *iter;
+					iter = allItem.erase(iter);
+					break;
+				case 5:						// 手裡劍
+					*ShurikanNumber += 10;
+					delete *iter;
+					iter = allItem.erase(iter);
+					break;
+				case 9:						// 紅石
+					*SpecialEffect = 2;
+					delete *iter;
+					iter = allItem.erase(iter);
+					break;
+				default:					//金幣
+					*HeroCoin += (*iter)->GetItemValue();
+					delete *iter;
+					iter = allItem.erase(iter);
+					break;
+				}
+			}
+			else if ((*iter)->isDelete())
+			{
+				delete *iter;
+				iter = allItem.erase(iter);
+			}
+			else
+				iter++;
+		}
+	}
+
+	bool gameMap_wild::GetisStageClear()
+	{
+		return isStageClear;
+	}
+
+	void gameMap_wild::DropItem(int x, int y)
+	{
+		int num;
+		num = (rand() % 9);
+		switch (num)
+		{
+		case 0:
+			allItem.push_back(new Item_Bronze_Coin(this, x, y, ItemExistTime));
+			allItem.back()->LoadBitmap();
+			break;
+		case 1:
+			allItem.push_back(new Item_Silver_Coin(this, x, y, ItemExistTime));
+			allItem.back()->LoadBitmap();
+			break;
+		case 2:
+			allItem.push_back(new Item_Golden_Coin(this, x, y, ItemExistTime));
+			allItem.back()->LoadBitmap();
+			break;
+		case 3:
+			allItem.push_back(new Item_Fire_Stone(this, x, y, ItemExistTime));
+			allItem.back()->LoadBitmap();
+			break;
+		case 4:
+			allItem.push_back(new Item_RedPot_Small(this, x, y, ItemExistTime));
+			allItem.back()->LoadBitmap();
+			break;
+		case 5:
+			allItem.push_back(new Item_RedPot_Full(this, x, y, ItemExistTime));
+			allItem.back()->LoadBitmap();
+			break;
+		case 6:
+			allItem.push_back(new Item_RedPot_Stone(this, x, y, ItemExistTime));
+			allItem.back()->LoadBitmap();
+			break;
+		case 7:
+			allItem.push_back(new Item_Shurikan(this, x, y, ItemExistTime));
+			allItem.back()->LoadBitmap();
+			break;
+		default:
+			break;
+		}
+
+	}
+
+	void gameMap_wild::SetHeroXY(int x1, int x2, int y1, int y2)
+	{
+		HeroX1 = x1;
+		HeroY1 = y1;
+		HeroX2 = x2;
+		HeroY2 = y2;
+	}
+
+	void gameMap_wild::MapObjectInteration()
+	{
+		for (vector<MapObject*>::iterator i = allObject.begin(); i != allObject.end(); i++)
+		{
+			for (vector<MapObject*>::iterator j = i; j != allObject.end(); j++)
+			{
+				if ((*i)->GetInterationCode() == ((-1)*(*j)->GetInterationCode()))
+				{
+					(*j)->SetState((*i)->GetState());
+				}
+			}
+		}
+	}
+	
+	/*
+	/////////////////////////////////////////////////////////////////////////////
+	// gameMap_Lv1 : gameMap_Lv1 class
+	/////////////////////////////////////////////////////////////////////////////
+	gameMap_Lv1::gameMap_Lv1() : gameMap_wild("level_1.txt")
+	{
+		unsigned seed;
+		seed = (unsigned)time(NULL);
+		srand(seed);
+
+		for (int i = 0; i < 32; i++) {
+			for (int j = 0; j < 96; j++) {
+				int x = j * MW - sx; // 算出第(i, j)這一格的 x 螢幕座標
+				int y = i * MH - sy; // 算出第(i, j)這一格的 y 螢幕座標
+
+				if (map[i][j] / 10 == 2)
+				{
+					allObject.push_back(new Switch(this, x, y, true, map[i][j] % 10));
+				}
+
+				if (map[i][j] / 10 == 3)
+				{
+					allObject.push_back(new Spike(this, x, y + 10, true, map[i][j] % 10 * (-1)));
+					allObject.push_back(new Spike(this, x + 10, y + 10, true, map[i][j] % 10 * (-1)));
+				}
+
+				switch (map[i][j])
+				{
+				case 9:
+					allEnemy.push_back(new CEnemy_Statue(this, x, y));
+					break;
+				case 10:
+					allEnemy.push_back(new CEnemy_Cloud(this, x, y));
+					break;
+				case 40:
+					allEnemy.push_back(new CEnemy_sunFlower(this, x, y));
+					break;
+				case 41:
+					allEnemy.push_back(new CEnemy_Cactus(this, x, y));
+					break;
+				default:
+					break;
+				}
+			}
+		}
+
+		
+		allEnemy.push_back(new CEnemy_sunFlower(this, 300, 350));
+		allEnemy.push_back(new CEnemy_Cactus(this, 500, 280));
+		allEnemy.push_back(new CEnemy_Cactus(this, 1000, 210));
+		allEnemy.push_back(new CEnemy_sunFlower(this, 1500, 350));
+		allEnemy.push_back(new CEnemy_Cactus(this, 1650, 20));
+		allEnemy.push_back(new CEnemy_sunFlower(this, 1650, 20));
+		allEnemy.push_back(new CEnemy_sunFlower(this, 400, 350));
+		allEnemy.push_back(new CEnemy_sunFlower(this, 1550, 350));
+		allEnemy.push_back(new CEnemy_Statue(this, 2950, 325));
+		allEnemy.push_back(new CEnemy_sunFlower(this, 2150, 20));
+		allEnemy.push_back(new CEnemy_sunFlower(this, 1950, 20));
+		allEnemy.push_back(new CEnemy_Cactus(this, 2400, 405));
+		allEnemy.push_back(new CEnemy_Cactus(this, 2550, 405));
+		allObject.push_back(new Switch(this, 600, 350, true, 1));
+		allObject.push_back(new Spike(this, 800, 350, true, -1));
+		allObject.push_back(new Spike(this, 820, 350, true, -1));
+		allObject.push_back(new Spike(this, 840, 350, true, -1));
+		allObject.push_back(new Spike(this, 860, 350, true, -1));
+		allObject.push_back(new Switch(this, 1000, 350, true, 2));
+		allObject.push_back(new Spike(this, 1100, 350, true, -2));
+		allObject.push_back(new Spike(this, 1120, 350, true, -2));
+		allObject.push_back(new Spike(this, 1140, 350, true, -2));
+		allObject.push_back(new Spike(this, 1160, 350, true, -2));
+
 		
 		allItem.push_back(new Item_Fire_Stone(this, 300, 350, ItemExistTime));
 		allItem.back()->LoadBitmap();
@@ -293,7 +578,7 @@ namespace game_framework {
 		allItem.push_back(new Item_Shurikan(this, 650, 450, ItemExistTime));
 		allItem.back()->LoadBitmap();
 	}
-
+	
 	gameMap_Lv1::~gameMap_Lv1()
 	{
 		for (vector<CEnemy*>::iterator i = allEnemy.begin(); i != allEnemy.end(); i++) delete (*i);
@@ -734,6 +1019,8 @@ namespace game_framework {
 			}
 		}
 	}
+	*/
+
 	/////////////////////////////////////////////////////////////////////////////
 	// Item: Item base class
 	/////////////////////////////////////////////////////////////////////////////

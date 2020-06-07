@@ -50,21 +50,38 @@ namespace game_framework {
 	class gameMap_wild : public gameMap {
 	public:
 		gameMap_wild(string fileName);
-		virtual ~gameMap_wild() = default;
+		virtual ~gameMap_wild();
 
-		virtual void LoadBitmap() = 0;    //載入地圖
-		virtual void OnShow() = 0;		  //顯示地圖
-		virtual void OnMove() = 0;
-		virtual void setHeroState(int x1, int x2, int y1, int y2, int HP, int Gold, int AttackDamage, int Level) = 0;
-		virtual void AttackByHero(const int damage) = 0;		// 攻擊
-		virtual void AttackByEnemy(int *heroHP) = 0;
-		virtual void SetHeroAttackRange(int x1, int x2, int y1, int y2) = 0;
-		virtual bool GetisStageClear() = 0;
-		virtual void SetHeroXY(int x1, int x2, int y1, int y2) = 0;				// 設定英雄位置
-		virtual void HeroGetItem(int *HeroGold, int *SpecialEffect, int *SpecialEffectCount, int *HeroHP, int FullHP, int *ShurikanNumber) = 0;
-
+		virtual void LoadBitmap();    //載入地圖
+		virtual void OnShow();		  //顯示地圖
+		virtual void OnMove();
+		virtual void setHeroState(int x1, int x2, int y1, int y2, int HP, int Gold, int AttackDamage, int Level);
+		virtual void AttackByHero(const int damage);		// 攻擊
+		virtual void AttackByEnemy(int *heroHP);
+		virtual void SetHeroAttackRange(int x1, int x2, int y1, int y2);
+		virtual bool GetisStageClear();
+		virtual void SetHeroXY(int x1, int x2, int y1, int y2);				// 設定英雄位置
+		virtual void HeroGetItem(int *HeroGold, int *SpecialEffect, int *SpecialEffectCount, int *HeroHP, int FullHP, int *ShurikanNumber);
+	protected:
+		int HeroX1;
+		int HeroY1;
+		int HeroX2;
+		int HeroY2;
+		int HeroAttackX1;
+		int HeroAttackY1;
+		int HeroAttackX2;
+		int HeroAttackY2;
+		int ItemExistTime = 300;
+	private:
+		vector<CEnemy*> allEnemy;
+		vector<Item*> allItem;
+		vector<MapObject*> allObject;
+		bool isStageClear = false;
+		void DropItem(int x, int y);
+		void MapObjectInteration();
 	};
 
+	/*
 	class gameMap_Lv1 : public gameMap_wild {
 	public:
 		gameMap_Lv1();
@@ -131,6 +148,7 @@ namespace game_framework {
 		void DropItem(int x, int y);
 		void MapObjectInteration();
 	};
+	*/
 
 	class Item
 	{
