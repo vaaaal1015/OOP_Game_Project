@@ -740,6 +740,7 @@
     <Image Include="RES\UI\LifeBar.bmp" />
     <Image Include="RES\UI\LifeBarHead.bmp" />
     <Image Include="RES\UI\Quit_Button.bmp" />
+    <Image Include="RES\UI\UI_Icons 1_27.bmp" />
     <Image Include="RES\UI\UI_Icons 1_30.bmp" />
     <Image Include="RES\UI\UI_Pause.bmp" />
     <Image Include="RES\UI\white.bmp" />

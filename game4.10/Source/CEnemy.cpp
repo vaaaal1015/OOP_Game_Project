@@ -711,14 +711,14 @@ namespace game_framework {
 		if (GetHitDelayCount > 0) GetHitDelayCount--;
 		else if (GetHitDelayCount == 0) HitAnimation.Reset();
 		if (attackDelayCount > 0) attackDelayCount--;
-		if (TrackLightningDelayCount > 0 && !LightningActivated)
+		if (TrackLightningDelayCount > 0 && !LightningActivated)		//追蹤閃電計數部分
 		{
 			//ResetTrackLightningCloudAnimation();
 			TrackLightningDelayCount--;
 			
 			if (TrackLightningDelayCount % 20 == 0)			//每40個畫面寫入陣列
 			{
-				SetHeroXArray(HeroXCounter, hero["x1"]);		//Array[HeroCounter] = hero[x1]
+				SetHeroXArray(HeroXCounter, hero["x1"]);		//Array[HeroCounter] = hero[x1]  //紀錄英雄位置
 				//TrackLightningCloud1.Reset();
 				//OnMoveTrackLightningCloud(HeroXCounter);
 				HeroXCounter++;						//changeArrayNumber
@@ -734,7 +734,7 @@ namespace game_framework {
 		{
 			if (LightningStrikeDelayCount > 0) LightningStrikeDelayCount--;
 		}
-		if (LightningCloud.IsFinalBitmap() || LightningCloud.GetCurrentBitmapNumber()==0)
+		if (LightningCloud.IsFinalBitmap() || LightningCloud.GetCurrentBitmapNumber()==0)			//無法取消攻擊動作
 		{
 			state = DetectHero(state);
 		}

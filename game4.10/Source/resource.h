@@ -518,6 +518,8 @@
 #define IDB_CLOUDYDEAD_4                573
 #define IDB_BITMAP81                    574
 #define IDB_CLOUDYDEAD_5                574
+#define IDB_BITMAP74                    575
+#define IDB_INFECTED_UI                 575
 #define IDC_README                      1001
 #define ID_FILE_PAUSE                   32771
 #define ID_TOGGLE_FULLSCREEN            32772
@@ -530,7 +532,7 @@
 #ifdef APSTUDIO_INVOKED
 #ifndef APSTUDIO_READONLY_SYMBOLS
 #define _APS_3D_CONTROLS                     1
-#define _APS_NEXT_RESOURCE_VALUE        575
+#define _APS_NEXT_RESOURCE_VALUE        576
 #define _APS_NEXT_COMMAND_VALUE         32776
 #define _APS_NEXT_CONTROL_VALUE         1003
 #define _APS_NEXT_SYMED_VALUE           101

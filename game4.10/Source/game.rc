@@ -910,6 +910,8 @@ IDB_CLOUDYDEAD_4        BITMAP                  "..\\RES\\Enemy\\CloudBoss\\Dead
 
 IDB_CLOUDYDEAD_5        BITMAP                  "..\\RES\\Enemy\\CloudBoss\\Dead\\Cloud_5.bmp"
 
+IDB_INFECTED_UI         BITMAP                  "..\\RES\\UI\\UI_Icons 1_27.bmp"
+
 
 /////////////////////////////////////////////////////////////////////////////
 //

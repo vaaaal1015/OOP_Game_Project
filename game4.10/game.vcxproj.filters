@@ -1443,5 +1443,8 @@
     <Image Include="RES\Enemy\CloudBoss\Dead\Cloud_5.bmp">
       <Filter>Resource Files</Filter>
     </Image>
+    <Image Include="RES\UI\UI_Icons 1_27.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
   </ItemGroup>
 </Project>
