@@ -78,7 +78,7 @@ namespace game_framework {
 		vector<MapObject*> allObject;
 		bool isStageClear = false;
 		void DropItem(int x, int y);
-		void MapObjectInteration();
+		void MapObjectInteration();				//改變相對應的地圖物件狀態
 	};
 
 	/*
@@ -325,5 +325,27 @@ namespace game_framework {
 		CMovingBitmap SpikeDown;
 		int GetHitDelayCount = 0;
 		int SpikeDamage = 20;
+	};
+
+	class Door : public MapObject
+	{
+	public:
+		Door(gameMap* point, int nx, int ny, bool InitialState, int SetInterationCode);
+		~Door();
+		int GetX1();
+		int GetY1();
+		int GetX2();
+		int GetY2();
+		void OnMove();
+		void OnShow();
+		void LoadBitmap();
+		void GetAttack(int HeroX1, int HeroY1, int HeroX2, int HeroY2);
+		int GetInterationCode();
+		void SetState(bool State);
+		bool GetState();
+		void AttackByObject(int HeroX1, int HeroY1, int HeroX2, int HeroY2, int *heroHP);
+	private:
+		CMovingBitmap DoorPicture;
+
 	};
 }

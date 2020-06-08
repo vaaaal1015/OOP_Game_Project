@@ -541,13 +541,13 @@ namespace game_framework {
 	{
 		switch (heroDirection)
 		{
-		case game_framework::LEFT:
+		case game_framework::LEFT:		//向左走
 			sword1.SetTopLeft(currentMap->ScreenX(x + 17), currentMap->ScreenY(y + 30));
 			sword1.OnShow();
 			moveLeftAnimation.SetTopLeft(currentMap->ScreenX(x), currentMap->ScreenY(y));
 			moveLeftAnimation.OnShow();
 			break;
-		case game_framework::RIGHT:
+		case game_framework::RIGHT:		//向右走
 			sword.SetTopLeft(currentMap->ScreenX(x - 75), currentMap->ScreenY(y + 30));
 			sword.OnShow();
 			moveRightAnimation.SetTopLeft(currentMap->ScreenX(x), currentMap->ScreenY(y));
