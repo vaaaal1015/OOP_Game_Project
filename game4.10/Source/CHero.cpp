@@ -329,6 +329,7 @@ namespace game_framework {
 		ThrowingRight.AddBitmap(IDB_HEROTHROWRIGHT_2, RGB(255, 255, 255));
 		ThrowingRight.AddBitmap(IDB_HEROTHROWRIGHT_3, RGB(255, 255, 255));
 
+		Infected_UI.LoadBitmap(IDB_INFECTED_UI, RGB(63, 72, 204));
 		GainLifeUI.LoadBitmapA(IDB_GAINLIFE_UI, RGB(255, 255, 255));
 		LifeBarHead.LoadBitmap(IDB_LIFEBARHEAD, RGB(255, 255, 255));
 		StartGameBar.LoadBitmap(IDB_UI_GAME_START);
@@ -844,6 +845,12 @@ namespace game_framework {
 		if (MoveDelayCount != 0) MoveDelayCount--;   //紀錄上個動作的保持時間
 		if (MoveDelayCount == 0) SetPreviousMove(0);  //抹除上個動作紀錄
 		if (GainLifeDelayCount > 0) GainLifeDelayCount--;
+		if (PoisonDelayCount != 0)
+		{
+			if (PoisonDelayCount % 6 == 0) CurrentHP -= 1;
+			PoisonDelayCount--;
+		}
+		else Poison = false;
 		if (InvincibleDelayCount == 0) isInvincible = false;
 		
 		vector<Shurikan*>::iterator iter = allShurikan.begin();    //手裡劍
@@ -1107,10 +1114,15 @@ namespace game_framework {
 		ShurikanUI.SetTopLeft(currentMap->ScreenX(x - 290), currentMap->ScreenY(y - 155));
 		ShurikanUI.ShowBitmap();
 		ShowNumber(1, ShurikanNumber, currentMap->ScreenX(x - 240), currentMap->ScreenY(y - 145));
-		if (GainHealthDelayCount != 0)
+		if (GainHealthDelayCount != 0)//顯示回血特效
 		{
-			GainLifeUI.SetTopLeft(currentMap->ScreenX(x - 250), currentMap->ScreenY(y - 175));//顯示回血特效
+			GainLifeUI.SetTopLeft(currentMap->ScreenX(x - 250), currentMap->ScreenY(y - 175));
 			GainLifeUI.ShowBitmap();
+		}
+		if (PoisonDelayCount != 0)
+		{
+			Infected_UI.SetTopLeft(currentMap->ScreenX(x - 220), currentMap->ScreenY(y - 175));
+			Infected_UI.ShowBitmap();
 		}
 		changeLifeBarLength();
 		ShowNumber(3, Gold, currentMap->ScreenX(x + 250), currentMap->ScreenY(y - 195));
@@ -1249,8 +1261,9 @@ namespace game_framework {
 	int CHero::AttackByEnemy()
 	{
 		int hp = CurrentHP;
-		currentWild->AttackByEnemy(&CurrentHP);
-
+		bool RecordedPoison = Poison;
+		currentWild->AttackByEnemy(&CurrentHP, &Poison);
+		TRACE("%d\n", Poison);
 		if (CurrentHP != hp)
 		{
 			if (SpecialEffectCount > 0)
@@ -1264,6 +1277,10 @@ namespace game_framework {
 			}
 			isInvincible = true;
 			InvincibleDelayCount = 30;
+		}
+		if (RecordedPoison != Poison)
+		{
+			PoisonDelayCount = 300;
 		}
 		return hp - CurrentHP;
 	}
@@ -1378,6 +1395,8 @@ namespace game_framework {
 		SpecialEffect = 0;
 		SpecialEffectCount = 0;
 		ShurikanNumber = 10;
+		Poison = false;
+		PoisonDelayCount = 0;
 		x = 35;    
 		y = 0;
 	}

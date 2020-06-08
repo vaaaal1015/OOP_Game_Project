@@ -912,6 +912,72 @@ IDB_CLOUDYDEAD_5        BITMAP                  "..\\RES\\Enemy\\CloudBoss\\Dead
 
 IDB_INFECTED_UI         BITMAP                  "..\\RES\\UI\\UI_Icons 1_27.bmp"
 
+IDB_GASROBOTSTANDRIGHT_0 BITMAP                  "..\\RES\\Enemy\\GasRobot\\Stand_Right\\Gas Robot_0.bmp"
+
+IDB_GASROBOTSTANDRIGHT_1 BITMAP                  "..\\RES\\Enemy\\GasRobot\\Stand_Right\\Gas Robot_1.bmp"
+
+IDB_GASROBOTSTANDRIGHT_2 BITMAP                  "..\\RES\\Enemy\\GasRobot\\Stand_Right\\Gas Robot_2.bmp"
+
+IDB_GASROBOTSTANDRIGHT_3 BITMAP                  "..\\RES\\Enemy\\GasRobot\\Stand_Right\\Gas Robot_3.bmp"
+
+IDB_GASROBOTSTANDLEFT_0 BITMAP                  "..\\RES\\Enemy\\GasRobot\\Stand_Left\\Gas Robot_0.bmp"
+
+IDB_GASROBOTSTANDLEFT_1 BITMAP                  "..\\RES\\Enemy\\GasRobot\\Stand_Left\\Gas Robot_1.bmp"
+
+IDB_GASROBOTSTANDLEFT_2 BITMAP                  "..\\RES\\Enemy\\GasRobot\\Stand_Left\\Gas Robot_2.bmp"
+
+IDB_GASROBOTSTANDLEFT_3 BITMAP                  "..\\RES\\Enemy\\GasRobot\\Stand_Left\\Gas Robot_3.bmp"
+
+IDB_GASROBOTFIRERIGHT_0 BITMAP                  "..\\RES\\Enemy\\GasRobot\\Fire_Right\\Gas Robot_14.bmp"
+
+IDB_GASROBOTFIRERIGHT_1 BITMAP                  "..\\RES\\Enemy\\GasRobot\\Fire_Right\\Gas Robot_15.bmp"
+
+IDB_GASROBOTFIRELEFT_0  BITMAP                  "..\\RES\\Enemy\\GasRobot\\Fire_Left\\Gas Robot_14.bmp"
+
+IDB_GASROBOTFIRELEFT_1  BITMAP                  "..\\RES\\Enemy\\GasRobot\\Fire_Left\\Gas Robot_15.bmp"
+
+IDB_GASROBOTATTACKRIGHT_0 BITMAP                  "..\\RES\\Enemy\\GasRobot\\Attack_Right\\Gas Robot_0.bmp"
+
+IDB_GASROBOTATTACKRIGHT_1 BITMAP                  "..\\RES\\Enemy\\GasRobot\\Attack_Right\\Gas Robot_1.bmp"
+
+IDB_GASROBOTATTACKRIGHT_2 BITMAP                  "..\\RES\\Enemy\\GasRobot\\Attack_Right\\Gas Robot_2.bmp"
+
+IDB_GASROBOTATTACKRIGHT_3 BITMAP                  "..\\RES\\Enemy\\GasRobot\\Attack_Right\\Gas Robot_3.bmp"
+
+IDB_GASROBOTATTACKRIGHT_4 BITMAP                  "..\\RES\\Enemy\\GasRobot\\Attack_Right\\Gas Robot_4.bmp"
+
+IDB_GASROBOTATTACKRIGHT_5 BITMAP                  "..\\RES\\Enemy\\GasRobot\\Attack_Right\\Gas Robot_5.bmp"
+
+IDB_GASROBOTATTACKRIGHT_6 BITMAP                  "..\\RES\\Enemy\\GasRobot\\Attack_Right\\Gas Robot_6.bmp"
+
+IDB_GASROBOTATTACKLEFT_0 BITMAP                  "..\\RES\\Enemy\\GasRobot\\Attack_Left\\Gas Robot_0.bmp"
+
+IDB_GASROBOTATTACKLEFT_1 BITMAP                  "..\\RES\\Enemy\\GasRobot\\Attack_Left\\Gas Robot_1.bmp"
+
+IDB_GASROBOTATTACKLEFT_2 BITMAP                  "..\\RES\\Enemy\\GasRobot\\Attack_Left\\Gas Robot_2.bmp"
+
+IDB_GASROBOTATTACKLEFT_3 BITMAP                  "..\\RES\\Enemy\\GasRobot\\Attack_Left\\Gas Robot_3.bmp"
+
+IDB_GASROBOTATTACKLEFT_4 BITMAP                  "..\\RES\\Enemy\\GasRobot\\Attack_Left\\Gas Robot_4.bmp"
+
+IDB_GASROBOTATTACKLEFT_5 BITMAP                  "..\\RES\\Enemy\\GasRobot\\Attack_Left\\Gas Robot_5.bmp"
+
+IDB_GASROBOTATTACKLEFT_6 BITMAP                  "..\\RES\\Enemy\\GasRobot\\Attack_Left\\Gas Robot_6.bmp"
+
+IDB_GASROBOTDEAD_0      BITMAP                  "..\\RES\\Enemy\\GasRobot\\Dead\\Gas Robot_0.bmp"
+
+IDB_GASROBOTDEAD_1      BITMAP                  "..\\RES\\Enemy\\GasRobot\\Dead\\Gas Robot_1.bmp"
+
+IDB_GAS_0               BITMAP                  "..\\RES\\Enemy\\GasRobot\\Gas\\Gas_0.bmp"
+
+IDB_GAS_1               BITMAP                  "..\\RES\\Enemy\\GasRobot\\Gas\\Gas_1.bmp"
+
+IDB_GAS_2               BITMAP                  "..\\RES\\Enemy\\GasRobot\\Gas\\Gas_2.bmp"
+
+IDB_GAS_3               BITMAP                  "..\\RES\\Enemy\\GasRobot\\Gas\\Gas_3.bmp"
+
+IDB_GAS_4               BITMAP                  "..\\RES\\Enemy\\GasRobot\\Gas\\Gas_4.bmp"
+
 
 /////////////////////////////////////////////////////////////////////////////
 //

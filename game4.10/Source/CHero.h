@@ -126,6 +126,7 @@ namespace game_framework {
 		CAnimation Fire2;
 		CAnimation Fire3;
 		CAnimation gain_life;
+		CMovingBitmap Infected_UI;
 		CMovingBitmap LifeBarHead;		// 血條
 		CMovingBitmap StartGameBar;		// 開始按鈕
 		CMovingBitmap WorldMap_UI_1;	// 地圖_1
@@ -205,6 +206,8 @@ namespace game_framework {
 		CAnimation currentAnimation;	// 目前的英雄動畫
 		bool HasFireStone = false;
 		int ShurikanNumber = 10;
+		bool Poison = false;
+		int PoisonDelayCount = 0;
 	};
 
 }

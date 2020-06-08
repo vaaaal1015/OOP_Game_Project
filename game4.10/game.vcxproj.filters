@@ -1446,5 +1446,104 @@
     <Image Include="RES\UI\UI_Icons 1_27.bmp">
       <Filter>Resource Files</Filter>
     </Image>
+    <Image Include="RES\Enemy\GasRobot\Stand_Right\Gas Robot_0.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\Enemy\GasRobot\Stand_Right\Gas Robot_1.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\Enemy\GasRobot\Stand_Right\Gas Robot_2.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\Enemy\GasRobot\Stand_Right\Gas Robot_3.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\Enemy\GasRobot\Stand_Left\Gas Robot_0.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\Enemy\GasRobot\Stand_Left\Gas Robot_1.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\Enemy\GasRobot\Stand_Left\Gas Robot_2.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\Enemy\GasRobot\Stand_Left\Gas Robot_3.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\Enemy\GasRobot\Fire_Right\Gas Robot_14.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\Enemy\GasRobot\Fire_Right\Gas Robot_15.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\Enemy\GasRobot\Fire_Left\Gas Robot_14.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\Enemy\GasRobot\Fire_Left\Gas Robot_15.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\Enemy\GasRobot\Attack_Right\Gas Robot_0.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\Enemy\GasRobot\Attack_Right\Gas Robot_1.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\Enemy\GasRobot\Attack_Right\Gas Robot_2.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\Enemy\GasRobot\Attack_Right\Gas Robot_3.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\Enemy\GasRobot\Attack_Right\Gas Robot_4.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\Enemy\GasRobot\Attack_Right\Gas Robot_5.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\Enemy\GasRobot\Attack_Right\Gas Robot_6.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\Enemy\GasRobot\Attack_Left\Gas Robot_0.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\Enemy\GasRobot\Attack_Left\Gas Robot_1.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\Enemy\GasRobot\Attack_Left\Gas Robot_2.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\Enemy\GasRobot\Attack_Left\Gas Robot_3.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\Enemy\GasRobot\Attack_Left\Gas Robot_4.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\Enemy\GasRobot\Attack_Left\Gas Robot_5.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\Enemy\GasRobot\Attack_Left\Gas Robot_6.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\Enemy\GasRobot\Dead\Gas Robot_0.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\Enemy\GasRobot\Dead\Gas Robot_1.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\Enemy\GasRobot\Gas\Gas_0.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\Enemy\GasRobot\Gas\Gas_1.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\Enemy\GasRobot\Gas\Gas_2.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\Enemy\GasRobot\Gas\Gas_3.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\Enemy\GasRobot\Gas\Gas_4.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
   </ItemGroup>
 </Project>

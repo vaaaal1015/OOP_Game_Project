@@ -119,7 +119,7 @@ namespace game_framework {
 		}
 	}
 
-	void CEnemy_sunFlower::AttackByEnemy(int *heroHP)
+	void CEnemy_sunFlower::AttackByEnemy(int *heroHP, bool *Poison)
 	{
 		vector<bullet_sunFlower*>::iterator iter = allBullet.begin();
 		while (iter != allBullet.end())
@@ -522,7 +522,7 @@ namespace game_framework {
 		}
 	}
 
-	void CEnemy_Cloud::AttackByEnemy(int *heroHP)
+	void CEnemy_Cloud::AttackByEnemy(int *heroHP, bool *Poison)
 	{
 		if ((GetX2() + 150 >= hero["x1"]) && (hero["x2"] >= GetX1() - 200) && (GetY2() >= hero["y1"]) && (hero["y2"] >= GetY1() - 100) && AttackFlag)
 		{
@@ -593,8 +593,6 @@ namespace game_framework {
 
 	void CEnemy_Cloud::LoadBitmap()
 	{
-
-
 		animation.AddBitmap(IDB_CLOUDBOSS_0, RGB(63, 72, 204));
 		animation.AddBitmap(IDB_CLOUDBOSS_1, RGB(63, 72, 204));
 		animation.AddBitmap(IDB_CLOUDBOSS_2, RGB(63, 72, 204));
@@ -962,6 +960,418 @@ namespace game_framework {
 		}
 	}
 
+	/////////////////////////////////////////////////////////////////////////////
+	// CEnemy_GasRobot: Enemy class
+	/////////////////////////////////////////////////////////////////////////////
+	CEnemy_GasRobot::CEnemy_GasRobot(gameMap* pointer, int x, int y) : CEnemy(pointer, x, y)
+	{
+		const int INITIAL_VELOCITY = 15;		// 初始上升速度
+		const int FLOOR = 100;					// 地板座標
+		isMovingRight = true;
+		rising = false;
+		animation.SetDelayCount(5);
+		animationLeft.SetDelayCount(5);
+		GasRobotFireRightAnimation.SetDelayCount(1);
+		GasRobotFireLeftAnimation.SetDelayCount(1);
+		GasAnimation.SetDelayCount(2);
+		moveRightAnimation.SetDelayCount(3);
+		moveLeftAnimation.SetDelayCount(3);
+		DeadAnimation.SetDelayCount(3);
+		AttackLeftAnimation.SetDelayCount(2);
+		AttackRightAnimation.SetDelayCount(2);
+		HitAnimation.SetDelayCount(2);
+		enemyHP = 150;	//敵人預設生命值
+		FullHP = enemyHP;
+		enemyAttackDamage = 10;					//敵人預設攻擊力
+		floor = FLOOR;
+		initial_velocity = INITIAL_VELOCITY;
+		attackDelayCount = attackDelay = 150;
+		velocity = initial_velocity;
+		state = STAND_LEFT;
+		ShowLifeBarDelayCount = 0;
+		for (int i = 0; i < 100; i++) LifeBar_1.push_back(new CMovingBitmap);    //100個血條圖片
+	}
+
+	CEnemy_GasRobot::~CEnemy_GasRobot()
+	{
+		//for (vector<CMovingBitmap*>::iterator i = LifeBar_1.begin(); i != LifeBar_1.end(); i++) delete *i;
+	}
+
+	int CEnemy_GasRobot::GetX1()
+	{
+		return x;
+	}
+
+	int CEnemy_GasRobot::GetY1()
+	{
+		return y;
+	}
+
+	int CEnemy_GasRobot::GetX2()
+	{
+		return x + animation.Width();
+	}
+
+	int CEnemy_GasRobot::GetY2()
+	{
+		return y + animation.Height();
+	}
+
+	int CEnemy_GasRobot::GetWidth()
+	{
+		return animation.Width();
+	}
+
+	int CEnemy_GasRobot::GetHeight()
+	{
+		return animation.Height();
+	}
+
+	void CEnemy_GasRobot::GetAttack(const int damage)
+	{
+		if ((GetX2() >= heroAttackRange["x1"]) && (heroAttackRange["x2"] >= GetX1()) && (GetY2() >= heroAttackRange["y1"]) && (heroAttackRange["y2"] >= GetY1()) && GetHitDelayCount == 0)
+		{
+			CAudio::Instance()->Play(11, false);
+			GetHitDelayCount = 15;
+			enemyHP -= damage;
+			state = GET_HIT;
+			ShowLifeBarDelayCount = 150;
+		}
+	}
+
+	void CEnemy_GasRobot::AttackByEnemy(int *heroHP, bool *Poison)
+	{
+		if ((GetX2() + 50 >= hero["x1"]) && (hero["x2"] >= GetX1() - 50) && (GetY2() >= hero["y1"]) && (hero["y2"] >= GetY1()) && AttackFlag)
+		{
+			*Poison = true;
+		}
+	}
+
+	CEnemy_Action CEnemy_GasRobot::DetectHero(CEnemy_Action state)
+	{
+		if (attackDelayCount <= 0)
+		{
+			if ((GetX2() - GetWidth() / 2 >= hero["x1"]) && (hero["x2"] >= GetX1() - 200) && (GetY2() + 100 >= hero["y1"]) && (hero["y2"] >= GetY1() - 100))
+			{
+				if (state != ATTACK_LEFT)
+					AttackLeftAnimation.Reset();
+				return ATTACK_LEFT;
+			}
+			if ((GetX2() + 200 >= hero["x1"]) && (hero["x2"] >= GetX1() + GetWidth() / 2) && (GetY2() + 100 >= hero["y1"]) && (hero["y2"] >= GetY1() - 100))
+			{
+				if (state != ATTACK_RIGHT)
+					AttackRightAnimation.Reset();
+				return ATTACK_RIGHT;
+			}
+		}
+
+		if ((GetX1() - 190 >= hero["x1"]) && (hero["x2"] >= GetX1() - 270) && (GetY2() + 100 >= hero["y1"]) && (hero["y2"] >= GetY1() - 100))
+		{
+			return MOVE_LEFT;
+		}
+		if ((GetX2() + 270 >= hero["x1"]) && (hero["x2"] >= GetX2() + 190) && (GetY2() + 100 >= hero["y1"]) && (hero["y2"] >= GetY1() - 100))
+		{
+			return MOVE_RIGHT;
+		}
+
+		if (state == MOVE_LEFT || state == ATTACK_LEFT || state == STAND_LEFT)
+		{
+			return STAND_LEFT;
+		}
+		if (state == MOVE_RIGHT || state == ATTACK_RIGHT || state == STAND_RIGHT)
+		{
+			return STAND_RIGHT;
+		}
+
+		if (state == GET_HIT)
+		{
+			return GET_HIT;
+		}
+
+		return STAND_LEFT;
+	}
+
+	string CEnemy_GasRobot::GetEnemyType()
+	{
+		return EnemyType;
+	}
+
+	void CEnemy_GasRobot::LoadBitmap()
+	{
+		animation.AddBitmap(IDB_GASROBOTSTANDRIGHT_0, RGB(63, 72, 204));
+		animation.AddBitmap(IDB_GASROBOTSTANDRIGHT_1, RGB(63, 72, 204));
+		animation.AddBitmap(IDB_GASROBOTSTANDRIGHT_2, RGB(63, 72, 204));
+		animation.AddBitmap(IDB_GASROBOTSTANDRIGHT_3, RGB(63, 72, 204));
+
+		animationLeft.AddBitmap(IDB_GASROBOTSTANDLEFT_0, RGB(63, 72, 204));
+		animationLeft.AddBitmap(IDB_GASROBOTSTANDLEFT_1, RGB(63, 72, 204));
+		animationLeft.AddBitmap(IDB_GASROBOTSTANDLEFT_2, RGB(63, 72, 204));
+		animationLeft.AddBitmap(IDB_GASROBOTSTANDLEFT_3, RGB(63, 72, 204));
+
+
+		moveRightAnimation.AddBitmap(IDB_GASROBOTSTANDRIGHT_0, RGB(63, 72, 204));
+		moveRightAnimation.AddBitmap(IDB_GASROBOTSTANDRIGHT_1, RGB(63, 72, 204));
+		moveRightAnimation.AddBitmap(IDB_GASROBOTSTANDRIGHT_2, RGB(63, 72, 204));
+		moveRightAnimation.AddBitmap(IDB_GASROBOTSTANDRIGHT_3, RGB(63, 72, 204));
+
+		moveLeftAnimation.AddBitmap(IDB_GASROBOTSTANDLEFT_0, RGB(63, 72, 204));
+		moveLeftAnimation.AddBitmap(IDB_GASROBOTSTANDLEFT_1, RGB(63, 72, 204));
+		moveLeftAnimation.AddBitmap(IDB_GASROBOTSTANDLEFT_2, RGB(63, 72, 204));
+		moveLeftAnimation.AddBitmap(IDB_GASROBOTSTANDLEFT_3, RGB(63, 72, 204));
+
+		AttackRightAnimation.AddBitmap(IDB_GASROBOTATTACKRIGHT_0, RGB(63, 72, 204));
+		AttackRightAnimation.AddBitmap(IDB_GASROBOTATTACKRIGHT_0, RGB(63, 72, 204));
+		AttackRightAnimation.AddBitmap(IDB_GASROBOTATTACKRIGHT_0, RGB(63, 72, 204));
+		AttackRightAnimation.AddBitmap(IDB_GASROBOTATTACKRIGHT_0, RGB(63, 72, 204));
+		AttackRightAnimation.AddBitmap(IDB_GASROBOTATTACKRIGHT_0, RGB(63, 72, 204));
+		AttackRightAnimation.AddBitmap(IDB_GASROBOTATTACKRIGHT_1, RGB(63, 72, 204));
+		AttackRightAnimation.AddBitmap(IDB_GASROBOTATTACKRIGHT_2, RGB(63, 72, 204));
+		AttackRightAnimation.AddBitmap(IDB_GASROBOTATTACKRIGHT_3, RGB(63, 72, 204));
+		AttackRightAnimation.AddBitmap(IDB_GASROBOTATTACKRIGHT_4, RGB(63, 72, 204));
+		AttackRightAnimation.AddBitmap(IDB_GASROBOTATTACKRIGHT_5, RGB(63, 72, 204));
+		AttackRightAnimation.AddBitmap(IDB_GASROBOTATTACKRIGHT_6, RGB(63, 72, 204));
+		AttackRightAnimation.AddBitmap(IDB_GASROBOTATTACKRIGHT_6, RGB(63, 72, 204));
+
+		AttackLeftAnimation.AddBitmap(IDB_GASROBOTATTACKLEFT_0, RGB(63, 72, 204));
+		AttackLeftAnimation.AddBitmap(IDB_GASROBOTATTACKLEFT_0, RGB(63, 72, 204));
+		AttackLeftAnimation.AddBitmap(IDB_GASROBOTATTACKLEFT_0, RGB(63, 72, 204));
+		AttackLeftAnimation.AddBitmap(IDB_GASROBOTATTACKLEFT_0, RGB(63, 72, 204));
+		AttackLeftAnimation.AddBitmap(IDB_GASROBOTATTACKLEFT_0, RGB(63, 72, 204));
+		AttackLeftAnimation.AddBitmap(IDB_GASROBOTATTACKLEFT_1, RGB(63, 72, 204));
+		AttackLeftAnimation.AddBitmap(IDB_GASROBOTATTACKLEFT_2, RGB(63, 72, 204));
+		AttackLeftAnimation.AddBitmap(IDB_GASROBOTATTACKLEFT_3, RGB(63, 72, 204));
+		AttackLeftAnimation.AddBitmap(IDB_GASROBOTATTACKLEFT_4, RGB(63, 72, 204));
+		AttackLeftAnimation.AddBitmap(IDB_GASROBOTATTACKLEFT_5, RGB(63, 72, 204));
+		AttackLeftAnimation.AddBitmap(IDB_GASROBOTATTACKLEFT_6, RGB(63, 72, 204));
+		AttackLeftAnimation.AddBitmap(IDB_GASROBOTATTACKLEFT_6, RGB(63, 72, 204));
+
+		DeadAnimation.AddBitmap(IDB_GASROBOTDEAD_0, RGB(63, 72, 204));
+		DeadAnimation.AddBitmap(IDB_GASROBOTDEAD_1, RGB(63, 72, 204));
+		
+		GasRobotFireRightAnimation.AddBitmap(IDB_GASROBOTFIRERIGHT_0, RGB(63, 72, 204));
+		GasRobotFireRightAnimation.AddBitmap(IDB_GASROBOTFIRERIGHT_1, RGB(63, 72, 204));
+		
+		GasRobotFireLeftAnimation.AddBitmap(IDB_GASROBOTFIRELEFT_0, RGB(63, 72, 204));
+		GasRobotFireLeftAnimation.AddBitmap(IDB_GASROBOTFIRELEFT_1, RGB(63, 72, 204));
+
+		GasAnimation.AddBitmap(IDB_GAS_0, RGB(63, 72, 204));
+		GasAnimation.AddBitmap(IDB_GAS_1, RGB(63, 72, 204));
+		GasAnimation.AddBitmap(IDB_GAS_2, RGB(63, 72, 204));
+		GasAnimation.AddBitmap(IDB_GAS_3, RGB(63, 72, 204));
+		GasAnimation.AddBitmap(IDB_GAS_4, RGB(63, 72, 204));
+
+		HitAnimation.AddBitmap(IDB_HIT_0, RGB(63, 72, 204));
+		HitAnimation.AddBitmap(IDB_HIT_1, RGB(63, 72, 204));
+		HitAnimation.AddBitmap(IDB_HIT_2, RGB(63, 72, 204));
+
+		LifeBar_0.LoadBitmap(IDB_ENEMYLIFEBAR_LONG);
+		for (vector<CMovingBitmap*>::iterator i = LifeBar_1.begin(); i != LifeBar_1.end(); i++) (*i)->LoadBitmap(IDB_ENEMYLIFEBAR_0);
+	}
+
+	void CEnemy_GasRobot::OnMove()
+	{
+		const int STEP_SIZE = 2;
+
+		animation.OnMove();
+		animationLeft.OnMove();
+		GasRobotFireRightAnimation.OnMove();
+		GasRobotFireLeftAnimation.OnMove();
+		moveRightAnimation.OnMove();
+		moveLeftAnimation.OnMove();
+		AttackLeftAnimation.OnMove();
+		AttackRightAnimation.OnMove();
+		GasAnimation.OnMove();
+		if (ShowLifeBarDelayCount > 0) ShowLifeBarDelayCount--;
+		if (GetHitDelayCount > 0) GetHitDelayCount--;
+		else if (GetHitDelayCount == 0) HitAnimation.Reset();
+
+		if (attackDelayCount > 0) attackDelayCount--;
+		state = DetectHero(state);
+
+		if (state == MOVE_LEFT)
+		{
+			if (currentMap->isSpace(GetX1(), GetY1()) && currentMap->isSpace(GetX1(), GetY2() - 10)) // 當座標還沒碰到牆
+				x -= STEP_SIZE;
+		}
+
+		if (state == MOVE_RIGHT)
+		{
+			if (currentMap->isSpace(GetX2(), GetY1()) && currentMap->isSpace(GetX2(), GetY2() - 10)) // 當座標還沒碰到牆
+				x += STEP_SIZE;
+		}
+
+		if (state == GET_HIT  && !HitAnimation.IsFinalBitmap())
+		{
+			state = GET_HIT;
+			HitAnimation.OnMove();
+		}
+
+		if (enemyHP <= 0 && !DeadAnimation.IsFinalBitmap())
+		{
+			state = DEAD;
+			DeadAnimation.OnMove();
+		}
+
+		if (rising) {							// 上升狀態
+			if (velocity > 0) {
+				y -= velocity;					// 當速度 > 0時，y軸上升(移動velocity個點，velocity的單位為 點/次)
+				velocity--;						// 受重力影響，下次的上升速度降低
+				if (!currentMap->isSpace(GetX1(), GetY1()) || !currentMap->isSpace(GetX2(), GetY1()))  // 當x座標碰到天花板
+				{
+					rising = false;
+					velocity = 1;
+				}
+			}
+			else {
+				rising = false;					// 當速度 <= 0，上升終止，下次改為下降
+				velocity = 1;					// 下降的初速(velocity)為1
+			}
+		}
+		else {									// 下降狀態
+			if (currentMap->isSpace(GetX1(), GetY2()) && currentMap->isSpace(GetX2(), GetY2())) {  // 當y座標還沒碰到地板
+				y += velocity;					// y軸下降(移動velocity個點，velocity的單位為 點/次)
+				velocity++;						// 受重力影響，下次的下降速度增加
+			}
+			else {
+				floor = currentMap->GetBlockY(GetY2()) - GetHeight();
+				y = floor;					// 當y座標低於地板，更正為地板上
+				velocity = initial_velocity;	// 重設上升初始速度
+			}
+		}
+	}
+
+	void CEnemy_GasRobot::OnShow()
+	{
+		if (ShowLifeBarDelayCount != 0)
+		{
+			LifeBar_0.SetTopLeft(currentMap->ScreenX(x), currentMap->ScreenY(y - 5));
+			LifeBar_0.ShowBitmap();
+			changeLifeBarLength();
+		}
+		
+		switch (state)
+		{
+		case STAND_LEFT:
+			animationLeft.SetTopLeft(currentMap->ScreenX(x), currentMap->ScreenY(y));
+			animationLeft.OnShow();
+			GasRobotFireLeftAnimation.SetTopLeft(currentMap->ScreenX(x), currentMap->ScreenY(y + 80));
+			GasRobotFireLeftAnimation.OnShow();
+			break;
+		case STAND_RIGHT:
+			animation.SetTopLeft(currentMap->ScreenX(x), currentMap->ScreenY(y));
+			animation.OnShow();
+			GasRobotFireRightAnimation.SetTopLeft(currentMap->ScreenX(x), currentMap->ScreenY(y + 80));
+			GasRobotFireRightAnimation.OnShow();
+			break;
+		case MOVE_LEFT:
+			moveLeftAnimation.SetTopLeft(currentMap->ScreenX(x), currentMap->ScreenY(y));
+			moveLeftAnimation.OnShow();
+			GasRobotFireLeftAnimation.SetTopLeft(currentMap->ScreenX(x), currentMap->ScreenY(y + 80));
+			GasRobotFireLeftAnimation.OnShow();
+			break;
+		case ATTACK_LEFT:
+			if (AttackLeftAnimation.IsFinalBitmap() && !ShowGas)
+			{
+				ShowGas = true;
+				GasAnimation.Reset();
+				AttackFlag = true;
+			}
+			if (AttackLeftAnimation.IsFinalBitmap())
+			{
+				attackDelayCount = attackDelay;
+			}
+			AttackLeftAnimation.SetTopLeft(currentMap->ScreenX(x), currentMap->ScreenY(y));
+			AttackLeftAnimation.OnShow();
+			GasRobotFireLeftAnimation.SetTopLeft(currentMap->ScreenX(x), currentMap->ScreenY(y + 80));
+			GasRobotFireLeftAnimation.OnShow();
+			break;
+		case MOVE_RIGHT:
+			moveRightAnimation.SetTopLeft(currentMap->ScreenX(x), currentMap->ScreenY(y));
+			moveRightAnimation.OnShow();
+			GasRobotFireRightAnimation.SetTopLeft(currentMap->ScreenX(x), currentMap->ScreenY(y + 80));
+			GasRobotFireRightAnimation.OnShow();
+			break;
+		case ATTACK_RIGHT:
+			if (AttackLeftAnimation.IsFinalBitmap() && !ShowGas)
+			{
+				ShowGas = true;
+				GasAnimation.Reset();
+				AttackFlag = true;
+			}
+			if (AttackRightAnimation.IsFinalBitmap())
+			{
+				attackDelayCount = attackDelay;
+			}
+			AttackRightAnimation.SetTopLeft(currentMap->ScreenX(x), currentMap->ScreenY(y));
+			AttackRightAnimation.OnShow();
+			GasRobotFireRightAnimation.SetTopLeft(currentMap->ScreenX(x), currentMap->ScreenY(y + 80));
+			GasRobotFireRightAnimation.OnShow();
+			break;
+		case GET_HIT:
+			animationLeft.SetTopLeft(currentMap->ScreenX(x), currentMap->ScreenY(y));
+			animationLeft.OnShow();
+			GasRobotFireLeftAnimation.SetTopLeft(currentMap->ScreenX(x), currentMap->ScreenY(y + 80));
+			GasRobotFireLeftAnimation.OnShow();
+			if (!HitAnimation.IsFinalBitmap())
+			{
+				HitAnimation.SetTopLeft(currentMap->ScreenX(x), currentMap->ScreenY(y));
+				HitAnimation.OnShow();
+			}
+			//if (GetHitAnimation.IsFinalBitmap()) GetHit = false;
+			break;
+		case DEAD:
+			if (enemyHP <= 0)
+			{
+				if (!DeadAnimation.IsFinalBitmap())
+				{
+					DeadAnimation.SetTopLeft(currentMap->ScreenX(x), currentMap->ScreenY(y));
+					DeadAnimation.OnShow();
+				}
+			}
+			break;
+		}
+		/*else if (GetHit)
+		{
+		GetHitAnimation.SetTopLeft(currentMap->ScreenX(x), currentMap->ScreenY(y));
+		GetHitAnimation.OnShow();
+		if (GetHitAnimation.IsFinalBitmap()) GetHit = false;
+		}*/
+		if (ShowGas)
+		{
+			GasAnimation.SetTopLeft(currentMap->ScreenX(x - 80), currentMap->ScreenY(y - 50));
+			GasAnimation.OnShow();
+			if (GasAnimation.IsFinalBitmap())
+			{
+				ShowGas = false;
+				AttackFlag = false;
+			}
+		}
+	}
+
+	bool CEnemy_GasRobot::isDead()
+	{
+		if (enemyHP <= 0 && DeadAnimation.IsFinalBitmap()) return true;
+		else return false;
+	}
+
+	void CEnemy_GasRobot::changeLifeBarLength()
+	{
+		int xMove = currentMap->ScreenX(x);
+		int yMove = currentMap->ScreenY(y - 3);
+		int counter = 0;
+		float lengthOfLifeBar = ((float)enemyHP / (float)FullHP) * 100;  //重新計算血條長度
+
+		for (vector<CMovingBitmap*>::iterator i = LifeBar_1.begin(); i != LifeBar_1.end(); i++)
+		{
+			if (xMove + counter < xMove + lengthOfLifeBar)
+			{
+				(*i)->SetTopLeft(xMove + counter, yMove);
+				(*i)->ShowBitmap();
+			}
+			counter += 1;
+		}
+	}
+
 
 	/////////////////////////////////////////////////////////////////////////////
 	// CEnemy_Cactus: Enemy Cactus class
@@ -1141,7 +1551,7 @@ namespace game_framework {
 		}
 	}
 
-	void CEnemy_Cactus::AttackByEnemy(int *heroHP)
+	void CEnemy_Cactus::AttackByEnemy(int *heroHP, bool *Poison)
 	{
 		if ((GetX2() >= hero["x1"]) && (hero["x2"] >= GetX1()) && (GetY2() >= hero["y1"]) && (hero["y2"] >= GetY1()) &&(AttackDelayCount==0))
 		{
@@ -1299,7 +1709,7 @@ namespace game_framework {
 		}
 	}
 
-	void CEnemy_Statue::AttackByEnemy(int *heroHP)
+	void CEnemy_Statue::AttackByEnemy(int *heroHP, bool *Poison)
 	{
 		if ((GetX2() >= hero["x1"]) && (hero["x2"] >= GetX1()) && (GetY2() >= hero["y1"]) && (hero["y2"] >= GetY1()))
 		{

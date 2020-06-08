@@ -57,7 +57,7 @@ namespace game_framework {
 		virtual void OnMove();
 		virtual void setHeroState(int x1, int x2, int y1, int y2, int HP, int Gold, int AttackDamage, int Level);
 		virtual void AttackByHero(const int damage);		// 攻擊
-		virtual void AttackByEnemy(int *heroHP);
+		virtual void AttackByEnemy(int *heroHP, bool *Poison);
 		virtual void SetHeroAttackRange(int x1, int x2, int y1, int y2);
 		virtual bool GetisStageClear();
 		virtual void SetHeroXY(int x1, int x2, int y1, int y2);				// 設定英雄位置

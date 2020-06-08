@@ -246,6 +246,9 @@ namespace game_framework {
 				case 41:
 					allEnemy.push_back(new CEnemy_Cactus(this, x, y));
 					break;
+				case 42:
+					allEnemy.push_back(new CEnemy_GasRobot(this, x, y));
+					break;
 				default:
 					break;
 				}
@@ -361,9 +364,9 @@ namespace game_framework {
 		for (vector<MapObject*>::iterator i = allObject.begin(); i != allObject.end(); i++) (*i)->GetAttack(HeroAttackX1, HeroAttackY1, HeroAttackX2, HeroAttackY2);
 	}
 
-	void gameMap_wild::AttackByEnemy(int *heroHP)
+	void gameMap_wild::AttackByEnemy(int *heroHP, bool *Poison)
 	{
-		for (vector<CEnemy*>::iterator i = allEnemy.begin(); i != allEnemy.end(); i++) (*i)->AttackByEnemy(heroHP);
+		for (vector<CEnemy*>::iterator i = allEnemy.begin(); i != allEnemy.end(); i++) (*i)->AttackByEnemy(heroHP, Poison);
 		for (vector<MapObject*>::iterator i = allObject.begin(); i != allObject.end(); i++) (*i)->AttackByObject(HeroX1, HeroY1, HeroX2, HeroY2, heroHP);
 	}
 
