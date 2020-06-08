@@ -226,6 +226,12 @@ namespace game_framework {
 					allObject.push_back(new Spike(this, x, y + 10, true, map[i][j] % 10 * (-1)));
 					allObject.push_back(new Spike(this, x + 10, y + 10, true, map[i][j] % 10 * (-1)));
 				}
+
+				if (map[i][j] / 10 == 5)
+				{
+					allObject.push_back(new Door(this, x, y + 10, true, map[i][j] % 10 * (-1)));
+				}
+
 				switch (map[i][j])
 				{
 				case 9:
@@ -1398,5 +1404,78 @@ namespace game_framework {
 		{
 			*heroHP -= SpikeDamage;
 		}
+	}
+
+	/////////////////////////////////////////////////////////////////////////////
+	// class Door : class MapObject
+	/////////////////////////////////////////////////////////////////////////////
+	Door::Door(gameMap* point, int nx, int ny, bool InitialState, int SetInterationCode) : MapObject(point, nx, ny, InitialState, SetInterationCode) 
+	{
+		InitialY = ny;
+	}
+
+	Door::~Door() {}
+
+	int Door::GetX1()
+	{
+		return x;
+	}
+
+	int Door::GetY1()
+	{
+		return y;
+	}
+
+	int Door::GetX2()
+	{
+		return x + DoorPicture.Width();
+	}
+
+	int Door::GetY2()
+	{
+		return y + DoorPicture.Height();
+	}
+
+	void Door::LoadBitmap()
+	{
+		DoorPicture.LoadBitmap(IDB_DOOR, RGB(255, 255, 255));
+	}
+
+	void Door::OnMove()
+	{
+		if (ObjectState)
+		{
+			y = InitialY;
+		}
+		else
+		{
+			y = InitialY - 100;
+		}
+	}
+
+	void Door::OnShow()
+	{
+		DoorPicture.SetTopLeft(currentMap->ScreenX(x), currentMap->ScreenY(y));
+		DoorPicture.ShowBitmap();
+	}
+	void Door::GetAttack(int HeroX1, int HeroY1, int HeroX2, int HeroY2)
+	{
+	}
+	int Door::GetInterationCode()
+	{
+		return InterationCode;
+	}
+
+	void Door::SetState(bool State)
+	{
+		ObjectState = State;
+	}
+
+	bool Door::GetState()
+	{
+		return ObjectState;
+	}
+	void Door::AttackByObject(int HeroX1, int HeroY1, int HeroX2, int HeroY2, int *heroHP)
+	{
 	}
 }
