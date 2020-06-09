@@ -228,6 +228,7 @@ namespace game_framework {
 		CAnimation GasRobotFireRightAnimation;
 		CAnimation GasRobotFireLeftAnimation;
 		CAnimation HitAnimation;		// 打擊效果
+		CAnimation CountDownNumber;
 		string EnemyType = "RobotA";
 		bool isMovingDown;			// 是否正在往下移動
 		bool isMovingLeft;			// 是否正在往左移動

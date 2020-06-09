@@ -979,6 +979,7 @@ namespace game_framework {
 		DeadAnimation.SetDelayCount(3);
 		AttackLeftAnimation.SetDelayCount(2);
 		AttackRightAnimation.SetDelayCount(2);
+		CountDownNumber.SetDelayCount(10);
 		HitAnimation.SetDelayCount(2);
 		enemyHP = 150;	//敵人預設生命值
 		FullHP = enemyHP;
@@ -1147,15 +1148,7 @@ namespace game_framework {
 
 		DeadAnimation.AddBitmap(IDB_GASROBOTDEAD_0, RGB(63, 72, 204));
 		DeadAnimation.AddBitmap(IDB_GASROBOTDEAD_1, RGB(63, 72, 204));
-		DeadAnimation.AddBitmap(IDB_GASROBOTDEAD_0, RGB(63, 72, 204));
-		DeadAnimation.AddBitmap(IDB_GASROBOTDEAD_1, RGB(63, 72, 204));
-		DeadAnimation.AddBitmap(IDB_GASROBOTDEAD_0, RGB(63, 72, 204));
-		DeadAnimation.AddBitmap(IDB_GASROBOTDEAD_1, RGB(63, 72, 204));
-		DeadAnimation.AddBitmap(IDB_GASROBOTDEAD_0, RGB(63, 72, 204));
-		DeadAnimation.AddBitmap(IDB_GASROBOTDEAD_1, RGB(63, 72, 204));
-		DeadAnimation.AddBitmap(IDB_GASROBOTDEAD_0, RGB(63, 72, 204));
-		DeadAnimation.AddBitmap(IDB_GASROBOTDEAD_1, RGB(63, 72, 204));
-		
+
 		GasRobotFireRightAnimation.AddBitmap(IDB_GASROBOTFIRERIGHT_0, RGB(63, 72, 204));
 		GasRobotFireRightAnimation.AddBitmap(IDB_GASROBOTFIRERIGHT_1, RGB(63, 72, 204));
 		
@@ -1172,6 +1165,15 @@ namespace game_framework {
 		HitAnimation.AddBitmap(IDB_HIT_1, RGB(63, 72, 204));
 		HitAnimation.AddBitmap(IDB_HIT_2, RGB(63, 72, 204));
 
+		CountDownNumber.AddBitmap(IDB_COUNTDOWN_5, RGB(255, 255, 255));
+		CountDownNumber.AddBitmap(IDB_COUNTDOWN_4, RGB(255, 255, 255));
+		CountDownNumber.AddBitmap(IDB_COUNTDOWN_3, RGB(255, 255, 255));
+		CountDownNumber.AddBitmap(IDB_COUNTDOWN_2, RGB(255, 255, 255));
+		CountDownNumber.AddBitmap(IDB_COUNTDOWN_1, RGB(255, 255, 255));
+		CountDownNumber.AddBitmap(IDB_COUNTDOWN_0, RGB(255, 255, 255));
+		CountDownNumber.AddBitmap(IDB_COUNTDOWN_0, RGB(255, 255, 255));
+
+
 		LifeBar_0.LoadBitmap(IDB_ENEMYLIFEBAR_LONG);
 		for (vector<CMovingBitmap*>::iterator i = LifeBar_1.begin(); i != LifeBar_1.end(); i++) (*i)->LoadBitmap(IDB_ENEMYLIFEBAR_0);
 	}
@@ -1179,7 +1181,6 @@ namespace game_framework {
 	void CEnemy_GasRobot::OnMove()
 	{
 		const int STEP_SIZE = 2;
-
 		animation.OnMove();
 		animationLeft.OnMove();
 		GasRobotFireRightAnimation.OnMove();
@@ -1214,12 +1215,12 @@ namespace game_framework {
 			HitAnimation.OnMove();
 		}
 
-		if (enemyHP <= 0 && !DeadAnimation.IsFinalBitmap())
+		if (enemyHP <= 0 && !CountDownNumber.IsFinalBitmap())
 		{
 			state = DEAD;
 			DeadAnimation.OnMove();
+			CountDownNumber.OnMove();
 		}
-
 		if (rising) {							// 上升狀態
 			if (velocity > 0) {
 				y -= velocity;					// 當速度 > 0時，y軸上升(移動velocity個點，velocity的單位為 點/次)
@@ -1330,10 +1331,12 @@ namespace game_framework {
 		case DEAD:
 			if (enemyHP <= 0)
 			{
-				if (!DeadAnimation.IsFinalBitmap())
+				if (!CountDownNumber.IsFinalBitmap())
 				{
 					DeadAnimation.SetTopLeft(currentMap->ScreenX(x), currentMap->ScreenY(y));
 					DeadAnimation.OnShow();
+					CountDownNumber.SetTopLeft(currentMap->ScreenX(x + 70), currentMap->ScreenY(y + 65));
+					CountDownNumber.OnShow();
 				}
 			}
 			break;
@@ -1358,7 +1361,7 @@ namespace game_framework {
 
 	bool CEnemy_GasRobot::isDead()
 	{
-		if (enemyHP <= 0 && DeadAnimation.IsFinalBitmap()) return true;
+		if (enemyHP <= 0 && CountDownNumber.IsFinalBitmap()) return true;
 		else return false;
 	}
 
@@ -1590,6 +1593,8 @@ namespace game_framework {
 		HitAnimation.AddBitmap(IDB_HIT_1, RGB(63, 72, 204));
 		HitAnimation.AddBitmap(IDB_HIT_2, RGB(63, 72, 204));
 
+	
+
 		LifeBar_0.LoadBitmap(IDB_ENEMYLIFEBAR_LONG);
 		for (vector<CMovingBitmap*>::iterator i = LifeBar_1.begin(); i != LifeBar_1.end(); i++) (*i)->LoadBitmap(IDB_ENEMYLIFEBAR_0);
 	}
@@ -1602,7 +1607,6 @@ namespace game_framework {
 		animationLeft.OnMove();
 		moveRightAnimation.OnMove();
 		moveLeftAnimation.OnMove();
-		TRACE("%d,%d\n", AttackLeftAnimation.GetCurrentBitmapNumber(), AttackRightAnimation.GetCurrentBitmapNumber());
 		if (ShowLifeBarDelayCount > 0) ShowLifeBarDelayCount--;
 		if (GetHitDelayCount > 0) GetHitDelayCount--;
 		else if (GetHitDelayCount == 0) HitAnimation.Reset();

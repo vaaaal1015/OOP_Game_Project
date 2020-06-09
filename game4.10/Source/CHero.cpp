@@ -493,7 +493,6 @@ namespace game_framework {
 			break;
 		}
 
-
 		animation.Reset();
 		animation1.Reset();
 		HeroAttackMovement.Reset();

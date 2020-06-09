@@ -1090,6 +1090,36 @@ IDB_ROBOTDEAD_0         BITMAP                  "..\\RES\\Enemy\\Robot_A\\Dead\\
 
 IDB_ROBOTDEAD_1         BITMAP                  "..\\RES\\Enemy\\Robot_A\\Dead\\Robot_1.bmp"
 
+IDB_EXPLOSION_0         BITMAP                  "..\\RES\\Explode_Animation\\explode_0.bmp"
+
+IDB_EXPLOSION_1         BITMAP                  "..\\RES\\Explode_Animation\\explode_1.bmp"
+
+IDB_EXPLOSION_2         BITMAP                  "..\\RES\\Explode_Animation\\explode_2.bmp"
+
+IDB_EXPLOSION_3         BITMAP                  "..\\RES\\Explode_Animation\\explode_3.bmp"
+
+IDB_EXPLOSION_4         BITMAP                  "..\\RES\\Explode_Animation\\explode_4.bmp"
+
+IDB_EXPLOSION_5         BITMAP                  "..\\RES\\Explode_Animation\\explode_5.bmp"
+
+IDB_EXPLOSION_6         BITMAP                  "..\\RES\\Explode_Animation\\explode_6.bmp"
+
+IDB_EXPLOSION_7         BITMAP                  "..\\RES\\Explode_Animation\\explode_7.bmp"
+
+IDB_EXPLOSION_8         BITMAP                  "..\\RES\\Explode_Animation\\explode_8.bmp"
+
+IDB_COUNTDOWN_0         BITMAP                  "..\\RES\\Numbers\\0.bmp"
+
+IDB_COUNTDOWN_1         BITMAP                  "..\\RES\\Numbers\\1.bmp"
+
+IDB_COUNTDOWN_2         BITMAP                  "..\\RES\\Numbers\\2.bmp"
+
+IDB_COUNTDOWN_3         BITMAP                  "..\\RES\\Numbers\\3.bmp"
+
+IDB_COUNTDOWN_4         BITMAP                  "..\\RES\\Numbers\\4.bmp"
+
+IDB_COUNTDOWN_5         BITMAP                  "..\\RES\\Numbers\\5.bmp"
+
 
 /////////////////////////////////////////////////////////////////////////////
 //

@@ -612,6 +612,22 @@
 #define IDB_ROBOTDEAD_0                 663
 #define IDB_BITMAP78                    664
 #define IDB_ROBOTDEAD_1                 664
+#define IDB_EXPLOSION_0                 665
+#define IDB_EXPLOSION_1                 666
+#define IDB_EXPLOSION_2                 667
+#define IDB_EXPLOSION_3                 668
+#define IDB_EXPLOSION_4                 669
+#define IDB_EXPLOSION_5                 670
+#define IDB_EXPLOSION_6                 671
+#define IDB_EXPLOSION_7                 672
+#define IDB_EXPLOSION_8                 673
+#define IDB_COUNTDOWN_0                 674
+#define IDB_COUNTDOWN_1                 675
+#define IDB_COUNTDOWN_2                 676
+#define IDB_COUNTDOWN_3                 677
+#define IDB_COUNTDOWN_4                 678
+#define IDB_BITMAP89                    679
+#define IDB_COUNTDOWN_5                 679
 #define IDC_README                      1001
 #define ID_FILE_PAUSE                   32771
 #define ID_TOGGLE_FULLSCREEN            32772
@@ -624,7 +640,7 @@
 #ifdef APSTUDIO_INVOKED
 #ifndef APSTUDIO_READONLY_SYMBOLS
 #define _APS_3D_CONTROLS                     1
-#define _APS_NEXT_RESOURCE_VALUE        665
+#define _APS_NEXT_RESOURCE_VALUE        680
 #define _APS_NEXT_COMMAND_VALUE         32776
 #define _APS_NEXT_CONTROL_VALUE         1003
 #define _APS_NEXT_SYMED_VALUE           101

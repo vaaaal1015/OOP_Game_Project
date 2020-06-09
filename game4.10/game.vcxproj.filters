@@ -1713,5 +1713,50 @@
     <Image Include="RES\Enemy\Robot_A\Dead\Robot_1.bmp">
       <Filter>Resource Files</Filter>
     </Image>
+    <Image Include="RES\Explode_Animation\explode_0.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\Explode_Animation\explode_1.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\Explode_Animation\explode_2.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\Explode_Animation\explode_3.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\Explode_Animation\explode_4.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\Explode_Animation\explode_5.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\Explode_Animation\explode_6.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\Explode_Animation\explode_7.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\Explode_Animation\explode_8.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\Numbers\0.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\Numbers\1.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\Numbers\2.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\Numbers\3.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\Numbers\4.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\Numbers\5.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
   </ItemGroup>
 </Project>
