@@ -1455,7 +1455,6 @@ namespace game_framework {
 			CAudio::Instance()->Play(11, false);
 			GetHitDelayCount = 15;
 			enemyHP -= damage;
-			state = GET_HIT;
 			ShowLifeBarDelayCount = 150;
 		}
 	}
