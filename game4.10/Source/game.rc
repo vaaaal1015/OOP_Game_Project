@@ -978,6 +978,118 @@ IDB_GAS_3               BITMAP                  "..\\RES\\Enemy\\GasRobot\\Gas\\
 
 IDB_GAS_4               BITMAP                  "..\\RES\\Enemy\\GasRobot\\Gas\\Gas_4.bmp"
 
+IDB_ROBOTSTANDRIGHT_0   BITMAP                  "..\\RES\\Enemy\\Robot_A\\Stand_Right\\Robot_0.bmp"
+
+IDB_ROBOTSTANDRIGHT_1   BITMAP                  "..\\RES\\Enemy\\Robot_A\\Stand_Right\\Robot_1.bmp"
+
+IDB_ROBOTSTANDRIGHT_2   BITMAP                  "..\\RES\\Enemy\\Robot_A\\Stand_Right\\Robot_2.bmp"
+
+IDB_ROBOTSTANDLEFT_0    BITMAP                  "..\\RES\\Enemy\\Robot_A\\Stand_Left\\Robot_0.bmp"
+
+IDB_ROBOTSTANDLEFT_1    BITMAP                  "..\\RES\\Enemy\\Robot_A\\Stand_Left\\Robot_1.bmp"
+
+IDB_ROBOTSTANDLEFT_2    BITMAP                  "..\\RES\\Enemy\\Robot_A\\Stand_Left\\Robot_2.bmp"
+
+IDB_ROBOTMOVERIGHT_0    BITMAP                  "..\\RES\\Enemy\\Robot_A\\Move_Right\\Robot_0.bmp"
+
+IDB_ROBOTMOVERIGHT_1    BITMAP                  "..\\RES\\Enemy\\Robot_A\\Move_Right\\Robot_1.bmp"
+
+IDB_ROBOTMOVERIGHT_2    BITMAP                  "..\\RES\\Enemy\\Robot_A\\Move_Right\\Robot_2.bmp"
+
+IDB_ROBOTMOVERIGHT_3    BITMAP                  "..\\RES\\Enemy\\Robot_A\\Move_Right\\Robot_3.bmp"
+
+IDB_ROBOTMOVELEFT_0     BITMAP                  "..\\RES\\Enemy\\Robot_A\\Move_Left\\Robot_0.bmp"
+
+IDB_ROBOTMOVELEFT_1     BITMAP                  "..\\RES\\Enemy\\Robot_A\\Move_Left\\Robot_1.bmp"
+
+IDB_ROBOTMOVELEFT_2     BITMAP                  "..\\RES\\Enemy\\Robot_A\\Move_Left\\Robot_2.bmp"
+
+IDB_ROBOTMOVELEFT_3     BITMAP                  "..\\RES\\Enemy\\Robot_A\\Move_Left\\Robot_3.bmp"
+
+IDB_ROBOTATTACKRIGHT_0  BITMAP                  "..\\RES\\Enemy\\Robot_A\\Attack_Right\\Robot_0.bmp"
+
+IDB_ROBOTATTACKRIGHT_1  BITMAP                  "..\\RES\\Enemy\\Robot_A\\Attack_Right\\Robot_1.bmp"
+
+IDB_ROBOTATTACKRIGHT_2  BITMAP                  "..\\RES\\Enemy\\Robot_A\\Attack_Right\\Robot_2.bmp"
+
+IDB_ROBOTATTACKRIGHT_3  BITMAP                  "..\\RES\\Enemy\\Robot_A\\Attack_Right\\Robot_3.bmp"
+
+IDB_ROBOTATTACKRIGHT_4  BITMAP                  "..\\RES\\Enemy\\Robot_A\\Attack_Right\\Robot_4.bmp"
+
+IDB_ROBOTATTACKRIGHT_5  BITMAP                  "..\\RES\\Enemy\\Robot_A\\Attack_Right\\Robot_5.bmp"
+
+IDB_ROBOTATTACKRIGHT_6  BITMAP                  "..\\RES\\Enemy\\Robot_A\\Attack_Right\\Robot_6.bmp"
+
+IDB_ROBOTATTACKRIGHT_7  BITMAP                  "..\\RES\\Enemy\\Robot_A\\Attack_Right\\Robot_7.bmp"
+
+IDB_ROBOTATTACKRIGHT_8  BITMAP                  "..\\RES\\Enemy\\Robot_A\\Attack_Right\\Robot_8.bmp"
+
+IDB_ROBOTATTACKRIGHT_9  BITMAP                  "..\\RES\\Enemy\\Robot_A\\Attack_Right\\Robot_9.bmp"
+
+IDB_ROBOTATTACKRIGHT_10 BITMAP                  "..\\RES\\Enemy\\Robot_A\\Attack_Right\\Robot_10.bmp"
+
+IDB_ROBOTATTACKRIGHT_11 BITMAP                  "..\\RES\\Enemy\\Robot_A\\Attack_Right\\Robot_11.bmp"
+
+IDB_ROBOTATTACKRIGHT_12 BITMAP                  "..\\RES\\Enemy\\Robot_A\\Attack_Right\\Robot_12.bmp"
+
+IDB_ROBOTATTACKRIGHT_13 BITMAP                  "..\\RES\\Enemy\\Robot_A\\Attack_Right\\Robot_13.bmp"
+
+IDB_ROBOTATTACKLEFT_0   BITMAP                  "..\\RES\\Enemy\\Robot_A\\Attack_Left\\Robot_0.bmp"
+
+IDB_ROBOTATTACKLEFT_1   BITMAP                  "..\\RES\\Enemy\\Robot_A\\Attack_Left\\Robot_1.bmp"
+
+IDB_ROBOTATTACKLEFT_2   BITMAP                  "..\\RES\\Enemy\\Robot_A\\Attack_Left\\Robot_2.bmp"
+
+IDB_ROBOTATTACKLEFT_3   BITMAP                  "..\\RES\\Enemy\\Robot_A\\Attack_Left\\Robot_3.bmp"
+
+IDB_ROBOTATTACKLEFT_4   BITMAP                  "..\\RES\\Enemy\\Robot_A\\Attack_Left\\Robot_4.bmp"
+
+IDB_ROBOTATTACKLEFT_5   BITMAP                  "..\\RES\\Enemy\\Robot_A\\Attack_Left\\Robot_5.bmp"
+
+IDB_ROBOTATTACKLEFT_6   BITMAP                  "..\\RES\\Enemy\\Robot_A\\Attack_Left\\Robot_6.bmp"
+
+IDB_ROBOTATTACKLEFT_7   BITMAP                  "..\\RES\\Enemy\\Robot_A\\Attack_Left\\Robot_7.bmp"
+
+IDB_ROBOTATTACKLEFT_8   BITMAP                  "..\\RES\\Enemy\\Robot_A\\Attack_Left\\Robot_8.bmp"
+
+IDB_ROBOTATTACKLEFT_9   BITMAP                  "..\\RES\\Enemy\\Robot_A\\Attack_Left\\Robot_9.bmp"
+
+IDB_ROBOTATTACKLEFT_10  BITMAP                  "..\\RES\\Enemy\\Robot_A\\Attack_Left\\Robot_10.bmp"
+
+IDB_ROBOTATTACKLEFT_11  BITMAP                  "..\\RES\\Enemy\\Robot_A\\Attack_Left\\Robot_11.bmp"
+
+IDB_ROBOTATTACKLEFT_12  BITMAP                  "..\\RES\\Enemy\\Robot_A\\Attack_Left\\Robot_12.bmp"
+
+IDB_ROBOTATTACKLEFT_13  BITMAP                  "..\\RES\\Enemy\\Robot_A\\Attack_Left\\Robot_13.bmp"
+
+IDB_ROBOTATTACKVRFXRIGHT_0 BITMAP                  "..\\RES\\Enemy\\Robot_A\\Attack_Vrfx_Right\\vrfx_0.bmp"
+
+IDB_ROBOTATTACKVRFXRIGHT_1 BITMAP                  "..\\RES\\Enemy\\Robot_A\\Attack_Vrfx_Right\\vrfx_1.bmp"
+
+IDB_ROBOTATTACKVRFXRIGHT_2 BITMAP                  "..\\RES\\Enemy\\Robot_A\\Attack_Vrfx_Right\\vrfx_2.bmp"
+
+IDB_ROBOTATTACKVRFXRIGHT_3 BITMAP                  "..\\RES\\Enemy\\Robot_A\\Attack_Vrfx_Right\\vrfx_3.bmp"
+
+IDB_ROBOTATTACKVRFXRIGHT_4 BITMAP                  "..\\RES\\Enemy\\Robot_A\\Attack_Vrfx_Right\\vrfx_4.bmp"
+
+IDB_ROBOTATTACKVRFXRIGHT_5 BITMAP                  "..\\RES\\Enemy\\Robot_A\\Attack_Vrfx_Right\\vrfx_5.bmp"
+
+IDB_ROBOTATTACKVRFXLEFT_0 BITMAP                  "..\\RES\\Enemy\\Robot_A\\Attack_Vrfx_Left\\vrfx_0.bmp"
+
+IDB_ROBOTATTACKVRFXLEFT_1 BITMAP                  "..\\RES\\Enemy\\Robot_A\\Attack_Vrfx_Left\\vrfx_1.bmp"
+
+IDB_ROBOTATTACKVRFXLEFT_2 BITMAP                  "..\\RES\\Enemy\\Robot_A\\Attack_Vrfx_Left\\vrfx_2.bmp"
+
+IDB_ROBOTATTACKVRFXLEFT_3 BITMAP                  "..\\RES\\Enemy\\Robot_A\\Attack_Vrfx_Left\\vrfx_3.bmp"
+
+IDB_ROBOTATTACKVRFXLEFT_4 BITMAP                  "..\\RES\\Enemy\\Robot_A\\Attack_Vrfx_Left\\vrfx_4.bmp"
+
+IDB_ROBOTATTACKVRFXLEFT_5 BITMAP                  "..\\RES\\Enemy\\Robot_A\\Attack_Vrfx_Left\\vrfx_5.bmp"
+
+IDB_ROBOTDEAD_0         BITMAP                  "..\\RES\\Enemy\\Robot_A\\Dead\\Robot_0.bmp"
+
+IDB_ROBOTDEAD_1         BITMAP                  "..\\RES\\Enemy\\Robot_A\\Dead\\Robot_1.bmp"
+
 
 /////////////////////////////////////////////////////////////////////////////
 //
