@@ -278,6 +278,8 @@ namespace game_framework {
 		CAnimation DeadAnimation;		// 死亡動畫
 		CAnimation GetHitAnimation;		// 被打到的動畫
 		CAnimation HitAnimation;		// 打擊效果
+		CAnimation AttackVrfxRight;
+		CAnimation AttackVrfxLeft;
 		string EnemyType = "RobotA";
 		bool isMovingDown;			// 是否正在往下移動
 		bool isMovingLeft;			// 是否正在往左移動
@@ -292,7 +294,6 @@ namespace game_framework {
 		int attackDelay;
 		int attackDelayCount;
 		CEnemy_Action state;
-		vector<bullet_sunFlower*> allBullet;
 		int GetHitDelayCount = 0;
 		bool GetHit = false;
 		void changeLifeBarLength();			// 改變生命條的長度

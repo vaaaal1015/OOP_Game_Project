@@ -276,6 +276,9 @@ namespace game_framework {
 				case 42:
 					allEnemy.push_back(new CEnemy_GasRobot(this, x, y));
 					break;
+				case 43:
+					allEnemy.push_back(new CEnemy_RobotA(this, x, y));
+					break;
 				default:
 					break;
 				}
@@ -958,7 +961,6 @@ namespace game_framework {
 
 	void Door::OnMove()
 	{
-		TRACE("%d,%d\n", ObjectState, InterationCode);
 		if (ObjectState)
 		{
 			y = InitialY;
