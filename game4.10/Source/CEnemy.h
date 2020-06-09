@@ -297,6 +297,8 @@ namespace game_framework {
 		int GetHitDelayCount = 0;
 		bool GetHit = false;
 		void changeLifeBarLength();			// 改變生命條的長度
+		const int DASH_SIZE = 100;
+		bool AttackFlag = false;
 	};
 
 
