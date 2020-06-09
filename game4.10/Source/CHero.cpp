@@ -520,7 +520,7 @@ namespace game_framework {
 		{
 		case game_framework::LEFT:
 			for (int i = 0; i < STEP_SIZE; i++) {
-				if (currentMap->isSpace(GetX1() - 1, GetY1()) && currentMap->isSpace(GetX1() - 1, GetY2())) // 當x座標還沒碰到牆
+				if (currentMap->isSpace(GetX1() - 1, GetY1()) && currentMap->isSpace(GetX1() - 1, GetY2()) && !currentMap->isDoor(GetX1() - 1, GetY1()) && !currentMap->isDoor(GetX1() - 1, GetY2())) // 當x座標還沒碰到牆
 				{
 					x -= 1;    //正常走
 				}
@@ -529,7 +529,7 @@ namespace game_framework {
 		case game_framework::RIGHT:
 			for (int i = 0; i < STEP_SIZE; i++)
 			{
-				if (currentMap->isSpace(GetX2() + 1, GetY1()) && currentMap->isSpace(GetX2() + 1, GetY2())) // 當x座標還沒碰到牆
+				if (currentMap->isSpace(GetX2() + 1, GetY1()) && currentMap->isSpace(GetX2() + 1, GetY2()) && !currentMap->isDoor(GetX2() + 1, GetY1()) && !currentMap->isDoor(GetX2() + 1, GetY2())) // 當x座標還沒碰到牆
 				{
 					x += 1;    //正常走
 				}
@@ -573,7 +573,7 @@ namespace game_framework {
 		case game_framework::LEFT:
 			for (int i = 0; i < STEP_SIZE; i++)
 			{
-				if (currentMap->isSpace(GetX1() - 1, GetY1()) && currentMap->isSpace(GetX1() - 1, GetY2())) // 當x座標還沒碰到牆
+				if (currentMap->isSpace(GetX1() - 1, GetY1()) && currentMap->isSpace(GetX1() - 1, GetY2()) && !currentMap->isDoor(GetX1() - 1, GetY1()) && !currentMap->isDoor(GetX1() - 1, GetY2())) // 當x座標還沒碰到牆
 				{
 					x -= 1;    //正常走
 				}
@@ -582,7 +582,7 @@ namespace game_framework {
 		case game_framework::RIGHT:
 			for (int i = 0; i < STEP_SIZE; i++)
 			{
-				if (currentMap->isSpace(GetX2() + 1, GetY1()) && currentMap->isSpace(GetX2() + 1, GetY2())) // 當x座標還沒碰到牆
+				if (currentMap->isSpace(GetX2() + 1, GetY1()) && currentMap->isSpace(GetX2() + 1, GetY2()) && !currentMap->isDoor(GetX2() + 1, GetY1()) && !currentMap->isDoor(GetX2() + 1, GetY2())) // 當x座標還沒碰到牆
 				{
 					x += 1;    //正常走
 				}
@@ -1096,7 +1096,6 @@ namespace game_framework {
 
 		for (vector<CMovingBitmap*>::iterator i = LifeBarRed.begin(); i != LifeBarRed.end(); i++)
 		{
-			//TRACE("%d\n", xMove);
 			(*i)->SetTopLeft(xMove, yMove);
 			if((*i)->Left() < 45+lengthOfLifeBar) (*i)->ShowBitmap();
 			xMove += 3;
@@ -1137,7 +1136,6 @@ namespace game_framework {
 		}
 		ShowNumber(2, CurrentHP, currentMap->ScreenX(x - 280), currentMap->ScreenY(y - 170));
 		if(bleed != 0 && InvincibleDelayCount!= 0) ShowNumber(2,bleed, currentMap->ScreenX(x - 50), currentMap->ScreenY(y - 50));
-		//TRACE("%d\n", GetGold);
 		if (ShowGoldDelayCount > 0)
 		{
 			ShowNumber(3, GetGold, currentMap->ScreenX(x - 50), currentMap->ScreenY(y - 30));
@@ -1263,7 +1261,6 @@ namespace game_framework {
 		int hp = CurrentHP;
 		bool RecordedPoison = Poison;
 		currentWild->AttackByEnemy(&CurrentHP, &Poison);
-		TRACE("%d\n", Poison);
 		if (CurrentHP != hp)
 		{
 			if (SpecialEffectCount > 0)
@@ -1294,7 +1291,6 @@ namespace game_framework {
 		if (RecordedHP < CurrentHP) GainLifeDelayCount = 45;
 		if (Coin < Gold && (Gold - Coin)>=10)
 		{
-			//TRACE("%d\n",Gold-Coin);
 			ShowGoldDelayCount = 30;
 		}
 		if (SpecialEffectDectect != SpecialEffect)			//取得特殊效果的道具

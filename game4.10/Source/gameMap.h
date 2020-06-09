@@ -15,17 +15,22 @@ namespace game_framework {
 		void SetSXSY(int x, int y);   //設定(sx, sy)為螢幕(的左上角)在地圖上的點座標
 		void LoadBitmap();    //載入地圖
 		void OnShow();		  //顯示地圖
-
-
+		bool isDoor(int x, int y);
+		void SetHeroXY(int x1, int x2, int y1, int y2);				// 設定英雄位置
 	protected:
 		CMovingBitmap ground; //建立草地圖案
 		CMovingBitmap ground1; //建立土地圖案
 		CMovingBitmap ground2; //建立斜坡1圖案
 		CMovingBitmap ground3; //建立斜坡2圖案
+		vector<MapObject*> allObject;
 		int map[32][96];    //建立一個地圖矩陣的index;
 		const int X, Y;		  //大地圖左上角x,y座標
 		const int MW, MH;	  //每張小地圖的寬高度
 		int sx, sy;			  //(sx, sy)為螢幕(的左上角)在地圖上的點座標
+		int HeroX1;
+		int HeroY1;
+		int HeroX2;
+		int HeroY2;
 	};
 
 
@@ -60,13 +65,10 @@ namespace game_framework {
 		virtual void AttackByEnemy(int *heroHP, bool *Poison);
 		virtual void SetHeroAttackRange(int x1, int x2, int y1, int y2);
 		virtual bool GetisStageClear();
-		virtual void SetHeroXY(int x1, int x2, int y1, int y2);				// 設定英雄位置
 		virtual void HeroGetItem(int *HeroGold, int *SpecialEffect, int *SpecialEffectCount, int *HeroHP, int FullHP, int *ShurikanNumber);
+		
 	protected:
-		int HeroX1;
-		int HeroY1;
-		int HeroX2;
-		int HeroY2;
+		
 		int HeroAttackX1;
 		int HeroAttackY1;
 		int HeroAttackX2;
@@ -75,7 +77,6 @@ namespace game_framework {
 	private:
 		vector<CEnemy*> allEnemy;
 		vector<Item*> allItem;
-		vector<MapObject*> allObject;
 		bool isStageClear = false;
 		void DropItem(int x, int y);
 		void MapObjectInteration();				//改變相對應的地圖物件狀態
@@ -271,12 +272,16 @@ namespace game_framework {
 		virtual void SetState(bool State) = 0;
 		virtual bool GetState() = 0;
 		virtual void AttackByObject(int HeroX1, int HeroY1, int HeroX2, int HeroY2, int *heroHP) = 0;
+		int GetObjectType();			//0:switch,1:spike,2:door
+		bool GetControl();
 	protected:
 		int x;
 		int y;
 		bool ObjectState;
 		gameMap *currentMap;
 		int InterationCode = 0;			// 預設為0,用於跟其他地圖物件互動ex:-1 to 1 ;-5 to 5
+		int ObjectType;
+		bool Control;			//true:可控制其他物件,false:不可控制其他物件
 	};
 
 	class Switch : public MapObject

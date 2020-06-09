@@ -138,6 +138,33 @@ namespace game_framework {
 			}
 		}
 	}
+
+	bool gameMap::isDoor(int x, int y)
+	{
+		for (vector<MapObject*>::iterator i = allObject.begin(); i != allObject.end(); i++)
+		{
+			if ((*i)->GetObjectType() == 2)
+			{
+				/*if (((*i)->GetX2() >= HeroX1) && (HeroX2 >= (*i)->GetX1()) && ((*i)->GetY2() >= HeroY1) && (HeroY2 >= (*i)->GetY1()))
+				{
+					return true;
+				}*/
+				if ((x <= (*i)->GetX2()) && (x>=(*i)->GetX1()) && (y>=(*i)->GetY1() && y<=(*i)->GetY2()))
+				{
+					return true;
+				}
+			}
+		}
+		return false;
+	}
+
+	void gameMap::SetHeroXY(int x1, int x2, int y1, int y2)
+	{
+		HeroX1 = x1;
+		HeroY1 = y1;
+		HeroX2 = x2;
+		HeroY2 = y2;
+	}
 	/////////////////////////////////////////////////////////////////////////////
 	// gameMap_village : gameMap_village class
 	/////////////////////////////////////////////////////////////////////////////
@@ -479,21 +506,14 @@ namespace game_framework {
 
 	}
 
-	void gameMap_wild::SetHeroXY(int x1, int x2, int y1, int y2)
-	{
-		HeroX1 = x1;
-		HeroY1 = y1;
-		HeroX2 = x2;
-		HeroY2 = y2;
-	}
-
+	
 	void gameMap_wild::MapObjectInteration()
 	{
 		for (vector<MapObject*>::iterator i = allObject.begin(); i != allObject.end(); i++)
 		{
 			for (vector<MapObject*>::iterator j = i; j != allObject.end(); j++)
 			{
-				if ((*i)->GetInterationCode() == ((-1)*(*j)->GetInterationCode()))
+				if (((*i)->GetInterationCode() == ((-1)*(*j)->GetInterationCode())) && (*i)->GetControl())
 				{
 					(*j)->SetState((*i)->GetState());
 				}
@@ -501,6 +521,11 @@ namespace game_framework {
 		}
 	}
 	
+	
+		/*if ((GetX2() + 50 >= hero["x1"]) && (hero["x2"] >= GetX1() - 50) && (GetY2() >= hero["y1"]) && (hero["y2"] >= GetY1()) && AttackFlag)
+		{
+			*Poison = true;
+		}*/
 	/*
 	/////////////////////////////////////////////////////////////////////////////
 	// gameMap_Lv1 : gameMap_Lv1 class
@@ -1256,10 +1281,23 @@ namespace game_framework {
 		ObjectState = InitialState;
 	}
 
+	int MapObject::GetObjectType()
+	{
+		return ObjectType;
+	}
+
+	bool MapObject::GetControl()
+	{
+		return Control;
+	}
 	/////////////////////////////////////////////////////////////////////////////
 	// class Switch : class MapObject
 	/////////////////////////////////////////////////////////////////////////////
-	Switch::Switch(gameMap* point, int nx, int ny, bool InitialState , int SetInterationCode) : MapObject(point, nx, ny, InitialState, SetInterationCode) {}
+	Switch::Switch(gameMap* point, int nx, int ny, bool InitialState , int SetInterationCode) : MapObject(point, nx, ny, InitialState, SetInterationCode) 
+	{
+		ObjectType = 0;
+		Control = true;
+	}
 	
 	Switch::~Switch(){}
 
@@ -1337,7 +1375,11 @@ namespace game_framework {
 	/////////////////////////////////////////////////////////////////////////////
 	// class Spike : class MapObject
 	/////////////////////////////////////////////////////////////////////////////
-	Spike::Spike(gameMap* point, int nx, int ny, bool InitialState , int SetInterationCode) : MapObject(point, nx, ny, InitialState, SetInterationCode) {}
+	Spike::Spike(gameMap* point, int nx, int ny, bool InitialState , int SetInterationCode) : MapObject(point, nx, ny, InitialState, SetInterationCode) 
+	{
+		ObjectType = 1;
+		Control = false;
+	}
 
 	Spike::~Spike() {}
 
@@ -1415,6 +1457,8 @@ namespace game_framework {
 	Door::Door(gameMap* point, int nx, int ny, bool InitialState, int SetInterationCode) : MapObject(point, nx, ny, InitialState, SetInterationCode) 
 	{
 		InitialY = ny;
+		ObjectType = 2;
+		Control = false;
 	}
 
 	Door::~Door() {}
@@ -1446,6 +1490,7 @@ namespace game_framework {
 
 	void Door::OnMove()
 	{
+		TRACE("%d,%d\n", ObjectState, InterationCode);
 		if (ObjectState)
 		{
 			y = InitialY;
