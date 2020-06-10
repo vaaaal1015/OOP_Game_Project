@@ -1973,9 +1973,29 @@ namespace game_framework {
 		moveLeftAnimation.AddBitmap(IDB_PIGEONMOVELEFT_2, RGB(63, 72, 204));
 
 		AttackRightAnimation.AddBitmap(IDB_PIGEONATTACKRIGHT, RGB(63, 72, 204));
-		
 
 		AttackLeftAnimation.AddBitmap(IDB_PIGEONATTACKLEFT, RGB(63, 72, 204));
+
+		AttackVrfx.AddBitmap(IDB_PIGEONATTACKVFX_0, RGB(63, 72, 204));
+		AttackVrfx.AddBitmap(IDB_PIGEONATTACKVFX_1, RGB(63, 72, 204));
+		AttackVrfx.AddBitmap(IDB_PIGEONATTACKVFX_2, RGB(63, 72, 204));
+		AttackVrfx.AddBitmap(IDB_PIGEONATTACKVFX_3, RGB(63, 72, 204));
+		AttackVrfx.AddBitmap(IDB_PIGEONATTACKVFX_4, RGB(63, 72, 204));
+		AttackVrfx.AddBitmap(IDB_PIGEONATTACKVFX_5, RGB(63, 72, 204));
+		AttackVrfx.AddBitmap(IDB_PIGEONATTACKVFX_6, RGB(63, 72, 204));
+		AttackVrfx.AddBitmap(IDB_PIGEONATTACKVFX_7, RGB(63, 72, 204));
+		AttackVrfx.AddBitmap(IDB_PIGEONATTACKVFX_8, RGB(63, 72, 204));
+		AttackVrfx.AddBitmap(IDB_PIGEONATTACKVFX_9, RGB(63, 72, 204));
+		AttackVrfx.AddBitmap(IDB_PIGEONATTACKVFX_10, RGB(63, 72, 204));
+		AttackVrfx.AddBitmap(IDB_PIGEONATTACKVFX_11, RGB(63, 72, 204));
+		AttackVrfx.AddBitmap(IDB_PIGEONATTACKVFX_12, RGB(63, 72, 204));
+		AttackVrfx.AddBitmap(IDB_PIGEONATTACKVFX_13, RGB(63, 72, 204));
+		AttackVrfx.AddBitmap(IDB_PIGEONATTACKVFX_14, RGB(63, 72, 204));
+		AttackVrfx.AddBitmap(IDB_PIGEONATTACKVFX_15, RGB(63, 72, 204));
+		AttackVrfx.AddBitmap(IDB_PIGEONATTACKVFX_16, RGB(63, 72, 204));
+		AttackVrfx.AddBitmap(IDB_PIGEONATTACKVFX_17, RGB(63, 72, 204));
+		AttackVrfx.AddBitmap(IDB_PIGEONATTACKVFX_18, RGB(63, 72, 204));
+		AttackVrfx.AddBitmap(IDB_PIGEONATTACKVFX_19, RGB(63, 72, 204));
 
 		DeadAnimation.AddBitmap(IDB_PIGEONDEAD_0, RGB(63, 72, 204));
 		DeadAnimation.AddBitmap(IDB_PIGEONDEAD_1, RGB(63, 72, 204));
@@ -2003,7 +2023,7 @@ namespace game_framework {
 		else if (GetHitDelayCount == 0) HitAnimation.Reset();
 
 		if (attackDelayCount > 0) attackDelayCount--;
-		if (AttackLeftAnimation.GetCurrentBitmapNumber() == 0 && AttackRightAnimation.GetCurrentBitmapNumber() == 0)
+		if (AttackVrfx.GetCurrentBitmapNumber()==0)
 		{
 			state = DetectHero(state);
 		}
@@ -2022,19 +2042,10 @@ namespace game_framework {
 		if (state == ATTACK_LEFT)
 		{
 			AttackLeftAnimation.OnMove();
-			if (AttackLeftAnimation.GetCurrentBitmapNumber() >= 9)
+			AttackVrfx.OnMove();
+			if (AttackVrfx.GetCurrentBitmapNumber() > 9 && AttackVrfx.GetCurrentBitmapNumber() < 15)
 			{
 				AttackFlag = true;
-				if (AttackLeftAnimation.GetCurrentBitmapNumber() == 9)
-				{
-					for (int i = 0; i < DASH_SIZE; i++) {
-						if (currentMap->isSpace(GetX1() - 1, GetY1()) && currentMap->isSpace(GetX1() - 1, GetY2() - 10) && !currentMap->isDoor(GetX1() - 1, GetY1()) && !currentMap->isDoor(GetX1() - 1, GetY2())) // 當x座標還沒碰到牆
-						{
-							x -= 1;    //正常走
-						}
-					}
-				}
-				AttackVrfx.OnMove();
 			}
 			else
 			{
@@ -2046,20 +2057,10 @@ namespace game_framework {
 		if (state == ATTACK_RIGHT)
 		{
 			AttackRightAnimation.OnMove();
-			if (AttackRightAnimation.GetCurrentBitmapNumber() >= 9)
+			AttackVrfx.OnMove();
+			if (AttackVrfx.GetCurrentBitmapNumber() > 9 && AttackVrfx.GetCurrentBitmapNumber() < 15)
 			{
 				AttackFlag = true;
-				if (AttackRightAnimation.GetCurrentBitmapNumber() == 9)
-				{
-					for (int i = 0; i < DASH_SIZE; i++)
-					{
-						if (currentMap->isSpace(GetX2() + 1, GetY1()) && currentMap->isSpace(GetX2() + 1, GetY2() - 10) && !currentMap->isDoor(GetX2() + 1, GetY1()) && !currentMap->isDoor(GetX2() + 1, GetY2())) // 當x座標還沒碰到牆
-						{
-							x += 1;    //正常走
-						}
-					}
-				}
-				AttackVrfx.OnMove();
 			}
 			else
 			{
@@ -2125,9 +2126,10 @@ namespace game_framework {
 			moveLeftAnimation.OnShow();
 			break;
 		case ATTACK_LEFT:
-			if (AttackLeftAnimation.IsFinalBitmap())
+			if (AttackVrfx.IsFinalBitmap())
 			{
 				AttackLeftAnimation.Reset();
+				AttackVrfx.Reset();
 				attackDelayCount = attackDelay;
 				AttackFlag = false;
 			}
@@ -2139,23 +2141,16 @@ namespace game_framework {
 			moveRightAnimation.OnShow();
 			break;
 		case ATTACK_RIGHT:
-			if (AttackRightAnimation.IsFinalBitmap())
+			if (AttackVrfx.IsFinalBitmap())
 			{
 				AttackRightAnimation.Reset();
+				AttackVrfx.Reset();
 				attackDelayCount = attackDelay;
 				AttackFlag = false;
 			}
 			AttackRightAnimation.SetTopLeft(currentMap->ScreenX(x), currentMap->ScreenY(y));
 			AttackRightAnimation.OnShow();
 			break;
-		case GET_HIT:
-			GetHitAnimation.SetTopLeft(currentMap->ScreenX(x), currentMap->ScreenY(y));
-			GetHitAnimation.OnShow();
-			if (!HitAnimation.IsFinalBitmap())
-			{
-				HitAnimation.SetTopLeft(currentMap->ScreenX(x), currentMap->ScreenY(y));
-				HitAnimation.OnShow();
-			}
 
 			//if (GetHitAnimation.IsFinalBitmap()) GetHit = false;
 			break;
