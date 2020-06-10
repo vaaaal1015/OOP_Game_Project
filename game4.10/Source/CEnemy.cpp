@@ -463,7 +463,7 @@ namespace game_framework {
 		HitAnimation.SetDelayCount(2);
 		enemyHP = 1500;	//敵人預設生命值
 		FullHP = enemyHP;
-		enemyAttackDamage = 10;					//敵人預設攻擊力
+		enemyAttackDamage = 30;					//敵人預設攻擊力
 		floor = FLOOR;
 		initial_velocity = INITIAL_VELOCITY;
 		attackDelayCount = attackDelay = 150;
@@ -734,6 +734,7 @@ namespace game_framework {
 		}
 		if (LightningCloud.IsFinalBitmap() || LightningCloud.GetCurrentBitmapNumber()==0)			//無法取消攻擊動作
 		{
+			AttackAudio_1 = false;
 			state = DetectHero(state);
 		}
 		
@@ -751,6 +752,11 @@ namespace game_framework {
 		if (state == ATTACK_LEFT || state == ATTACK_RIGHT)
 		{
 			LightningCloud.OnMove();
+			if (LightningCloud.GetCurrentBitmapNumber() >= 7 && !AttackAudio_1)
+			{
+				CAudio::Instance()->Play(16, false);
+				AttackAudio_1 = true;
+			}
 			if (LightningCloud.GetCurrentBitmapNumber() == 7)
 			{
 				AttackFlag = true;
@@ -925,6 +931,11 @@ namespace game_framework {
 	{
 		if (!TrackLightningCloud1.IsFinalBitmap())
 		{
+			if (TrackLightningCloud1.GetCurrentBitmapNumber() >= 7 && !AttackAudio_2)
+			{
+				CAudio::Instance()->Play(16, false);
+				AttackAudio_2 = true;
+			}
 			if (TrackLightningCloud1.GetCurrentBitmapNumber()==7)
 			{
 				LightningStrike = true;
@@ -938,6 +949,7 @@ namespace game_framework {
 		}
 		else
 		{
+			AttackAudio_2 = false;
 			if (ShowLightningCloudNumber <= 2)
 			{
 				ShowLightningCloudNumber += 1;
@@ -2090,10 +2102,20 @@ namespace game_framework {
 		}
 		if (state == ATTACK_LEFT)
 		{
+			if (!FireBall_Audio_1)
+			{
+				CAudio::Instance()->Play(17, false);
+				FireBall_Audio_1 = true;
+			}
 			AttackLeftAnimation.OnMove();
 			AttackVrfx.OnMove();
 			if (AttackVrfx.GetCurrentBitmapNumber() > 9 && AttackVrfx.GetCurrentBitmapNumber() < 15)
 			{
+				if (!FireBall_Audio_2)
+				{
+					CAudio::Instance()->Play(18, false);
+					FireBall_Audio_2 = true;
+				}
 				AttackFlag = true;
 			}
 			else
@@ -2105,10 +2127,20 @@ namespace game_framework {
 
 		if (state == ATTACK_RIGHT)
 		{
+			if (!FireBall_Audio_1)
+			{
+				CAudio::Instance()->Play(17, false);
+				FireBall_Audio_1 = true;
+			}
 			AttackRightAnimation.OnMove();
 			AttackVrfx.OnMove();
 			if (AttackVrfx.GetCurrentBitmapNumber() > 9 && AttackVrfx.GetCurrentBitmapNumber() < 15)
 			{
+				if (!FireBall_Audio_2)
+				{
+					CAudio::Instance()->Play(18, false);
+					FireBall_Audio_2 = true;
+				}
 				AttackFlag = true;
 			}
 			else
@@ -2181,6 +2213,8 @@ namespace game_framework {
 				attackDelayCount = attackDelay;
 				AttackFlag = false;
 				recorded = false;
+				FireBall_Audio_1 = false;
+				FireBall_Audio_2 = false;
 			}
 			AttackLeftAnimation.SetTopLeft(currentMap->ScreenX(x), currentMap->ScreenY(y));
 			AttackLeftAnimation.OnShow();
@@ -2199,6 +2233,8 @@ namespace game_framework {
 				attackDelayCount = attackDelay;
 				AttackFlag = false;
 				recorded = false;
+				FireBall_Audio_1 = false;
+				FireBall_Audio_2 = false;
 			}
 			AttackRightAnimation.SetTopLeft(currentMap->ScreenX(x), currentMap->ScreenY(y));
 			AttackRightAnimation.OnShow();
@@ -2266,7 +2302,6 @@ namespace game_framework {
 		AttackDelayCount = 0;					// 設定攻擊頻率
 		AttackFlag = false;		
 		ReadyToAttack = false;
-		enemyHP = 150;
 		enemyAttackDamage = 40;
 		AttackAnimation.SetDelayCount(4);
 		DeadAnimation.SetDelayCount(3);
@@ -2274,7 +2309,7 @@ namespace game_framework {
 		GetHitAnimation.SetDelayCount(3);
 		HitAnimation.SetDelayCount(3);
 		ShowLifeBarDelayCount = 0;
-		enemyHP = 500;
+		enemyHP = 300;
 		FullHP = enemyHP;
 		for (int i = 0; i < 100; i++) LifeBar_1.push_back(new CMovingBitmap);    //100個血條圖片
 	}

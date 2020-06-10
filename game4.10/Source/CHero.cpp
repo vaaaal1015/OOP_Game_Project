@@ -1417,15 +1417,21 @@ namespace game_framework {
 		{
 			if (isSelectingMap)   //按GAME_START後選擇地圖畫面
 			{
+				TRACE("%d,%d\n", Mx, My);
 				if ((Mx <= 612) && (My <= 87) && (Mx >= 570) && (My >= 48)) isSelectingMap = false;   //右上角xx
 				if ((Mx <= 222) && (My <= 260) && (Mx >= 187) && (My >= 222))   //第一章地圖
 				{
 					SelectMap(1);
 					isSelectingMap = false;
 				}
-				if ((Mx <= 300) && (My <= 261) && (Mx >= 259) && (My >= 219))   //第一章地圖
+				if ((Mx <= 300) && (My <= 261) && (Mx >= 259) && (My >= 219))   //第二章地圖
 				{
 					SelectMap(2);
+					isSelectingMap = false;
+				}
+				if ((Mx <= 377) && (My <= 253) && (Mx >= 321) && (My >= 204))   //第三章地圖
+				{
+					SelectMap(3);
 					isSelectingMap = false;
 				}
 			}

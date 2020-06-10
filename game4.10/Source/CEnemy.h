@@ -195,6 +195,8 @@ namespace game_framework {
 		int LightningStrikeDelayCount = 10;
 		int ShowLightningCloudNumber = 0;
 		bool LightningStrike = false;
+		bool AttackAudio_1 = false;
+		bool AttackAudio_2 = false;
 	};
 
 	class CEnemy_GasRobot : public CEnemy
@@ -358,6 +360,8 @@ namespace game_framework {
 		bool recorded = false;
 		int RecordedX1;
 		int RecordedY1;
+		bool FireBall_Audio_1 = false;
+		bool FireBall_Audio_2 = false;
 	};
 
 	class CEnemy_Cactus : public CEnemy

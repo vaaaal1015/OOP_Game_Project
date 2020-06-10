@@ -55,7 +55,10 @@ enum AUDIO_ID {				// 定義各種音效的編號
 	AUDIO_HIT_10,			// 12
 	AUDIO_ROBOT_DAMAGE,		// 13
 	AUDIO_ROBOT_A_ATTACK,	// 14
-	AUDIO_ROBOT_DIE			// 15
+	AUDIO_ROBOT_DIE,		// 15
+	AUDIO_CLOUD_ATTACK,		// 16
+	AUDIO_PIGEON_ATTACK_1,	// 17
+	AUDIO_PIGEON_ATTACK_2	// 18
 };
 namespace game_framework {
 	/////////////////////////////////////////////////////////////////////////////
