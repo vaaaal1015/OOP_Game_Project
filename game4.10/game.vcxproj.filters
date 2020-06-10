@@ -1758,5 +1758,128 @@
     <Image Include="RES\Numbers\5.bmp">
       <Filter>Resource Files</Filter>
     </Image>
+    <Image Include="RES\Enemy\Pigeon_Wizard\Stand_Right\Pigeon_Wizard_0.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\Enemy\Pigeon_Wizard\Stand_Right\Pigeon_Wizard_1.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\Enemy\Pigeon_Wizard\Stand_Right\Pigeon_Wizard_2.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\Enemy\Pigeon_Wizard\Stand_Left\Pigeon_Wizard_0.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\Enemy\Pigeon_Wizard\Stand_Left\Pigeon_Wizard_1.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\Enemy\Pigeon_Wizard\Stand_Left\Pigeon_Wizard_2.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\Enemy\Pigeon_Wizard\Move_Right\Pigeon_Wizard_0.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\Enemy\Pigeon_Wizard\Move_Right\Pigeon_Wizard_1.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\Enemy\Pigeon_Wizard\Move_Right\Pigeon_Wizard_2.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\Enemy\Pigeon_Wizard\Move_Left\Pigeon_Wizard_0.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\Enemy\Pigeon_Wizard\Move_Left\Pigeon_Wizard_1.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\Enemy\Pigeon_Wizard\Move_Left\Pigeon_Wizard_2.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\Enemy\Pigeon_Wizard\Attack_Right\Pigeon_Wizard_6.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\Enemy\Pigeon_Wizard\Attack_Left\Pigeon_Wizard_6.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\Enemy\Pigeon_Wizard\Dead\0.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\Enemy\Pigeon_Wizard\Dead\1.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\Enemy\Pigeon_Wizard\Dead\2.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\Enemy\Pigeon_Wizard\Dead\3.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\Enemy\Pigeon_Wizard\Dead\4.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\Enemy\Pigeon_Wizard\Dead\5.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\Enemy\Pigeon_Wizard\Dead\6.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\Enemy\Pigeon_Wizard\Attack_Vrfx\0.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\Enemy\Pigeon_Wizard\Attack_Vrfx\1.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\Enemy\Pigeon_Wizard\Attack_Vrfx\2.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\Enemy\Pigeon_Wizard\Attack_Vrfx\3.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\Enemy\Pigeon_Wizard\Attack_Vrfx\4.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\Enemy\Pigeon_Wizard\Attack_Vrfx\5.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\Enemy\Pigeon_Wizard\Attack_Vrfx\6.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\Enemy\Pigeon_Wizard\Attack_Vrfx\7.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\Enemy\Pigeon_Wizard\Attack_Vrfx\8.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\Enemy\Pigeon_Wizard\Attack_Vrfx\9.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\Enemy\Pigeon_Wizard\Attack_Vrfx\10.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\Enemy\Pigeon_Wizard\Attack_Vrfx\11.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\Enemy\Pigeon_Wizard\Attack_Vrfx\12.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\Enemy\Pigeon_Wizard\Attack_Vrfx\13.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\Enemy\Pigeon_Wizard\Attack_Vrfx\14.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\Enemy\Pigeon_Wizard\Attack_Vrfx\15.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\Enemy\Pigeon_Wizard\Attack_Vrfx\16.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\Enemy\Pigeon_Wizard\Attack_Vrfx\17.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\Enemy\Pigeon_Wizard\Attack_Vrfx\18.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\Enemy\Pigeon_Wizard\Attack_Vrfx\19.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
   </ItemGroup>
 </Project>

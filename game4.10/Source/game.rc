@@ -1120,6 +1120,88 @@ IDB_COUNTDOWN_4         BITMAP                  "..\\RES\\Numbers\\4.bmp"
 
 IDB_COUNTDOWN_5         BITMAP                  "..\\RES\\Numbers\\5.bmp"
 
+IDB_PIGEONSTANDRIGHT_0  BITMAP                  "..\\RES\\Enemy\\Pigeon_Wizard\\Stand_Right\\Pigeon_Wizard_0.bmp"
+
+IDB_PIGEONSTANDRIGHT_1  BITMAP                  "..\\RES\\Enemy\\Pigeon_Wizard\\Stand_Right\\Pigeon_Wizard_1.bmp"
+
+IDB_PIGEONSTANDRIGHT_2  BITMAP                  "..\\RES\\Enemy\\Pigeon_Wizard\\Stand_Right\\Pigeon_Wizard_2.bmp"
+
+IDB_PIGEONSTANDLEFT_0   BITMAP                  "..\\RES\\Enemy\\Pigeon_Wizard\\Stand_Left\\Pigeon_Wizard_0.bmp"
+
+IDB_PIGEONSTANDLEFT_1   BITMAP                  "..\\RES\\Enemy\\Pigeon_Wizard\\Stand_Left\\Pigeon_Wizard_1.bmp"
+
+IDB_PIGEONSTANDLEFT_2   BITMAP                  "..\\RES\\Enemy\\Pigeon_Wizard\\Stand_Left\\Pigeon_Wizard_2.bmp"
+
+IDB_PIGEONMOVERIGHT_0   BITMAP                  "..\\RES\\Enemy\\Pigeon_Wizard\\Move_Right\\Pigeon_Wizard_0.bmp"
+
+IDB_PIGEONMOVERIGHT_1   BITMAP                  "..\\RES\\Enemy\\Pigeon_Wizard\\Move_Right\\Pigeon_Wizard_1.bmp"
+
+IDB_PIGEONMOVERIGHT_2   BITMAP                  "..\\RES\\Enemy\\Pigeon_Wizard\\Move_Right\\Pigeon_Wizard_2.bmp"
+
+IDB_PIGEONMOVELEFT_0    BITMAP                  "..\\RES\\Enemy\\Pigeon_Wizard\\Move_Left\\Pigeon_Wizard_0.bmp"
+
+IDB_PIGEONMOVELEFT_1    BITMAP                  "..\\RES\\Enemy\\Pigeon_Wizard\\Move_Left\\Pigeon_Wizard_1.bmp"
+
+IDB_PIGEONMOVELEFT_2    BITMAP                  "..\\RES\\Enemy\\Pigeon_Wizard\\Move_Left\\Pigeon_Wizard_2.bmp"
+
+IDB_PIGEONATTACKRIGHT   BITMAP                  "..\\RES\\Enemy\\Pigeon_Wizard\\Attack_Right\\Pigeon_Wizard_6.bmp"
+
+IDB_PIGEONATTACKLEFT    BITMAP                  "..\\RES\\Enemy\\Pigeon_Wizard\\Attack_Left\\Pigeon_Wizard_6.bmp"
+
+IDB_PIGEONDEAD_0        BITMAP                  "..\\RES\\Enemy\\Pigeon_Wizard\\Dead\\0.bmp"
+
+IDB_PIGEONDEAD_1        BITMAP                  "..\\RES\\Enemy\\Pigeon_Wizard\\Dead\\1.bmp"
+
+IDB_PIGEONDEAD_2        BITMAP                  "..\\RES\\Enemy\\Pigeon_Wizard\\Dead\\2.bmp"
+
+IDB_PIGEONDEAD_3        BITMAP                  "..\\RES\\Enemy\\Pigeon_Wizard\\Dead\\3.bmp"
+
+IDB_PIGEONDEAD_4        BITMAP                  "..\\RES\\Enemy\\Pigeon_Wizard\\Dead\\4.bmp"
+
+IDB_PIGEONDEAD_5        BITMAP                  "..\\RES\\Enemy\\Pigeon_Wizard\\Dead\\5.bmp"
+
+IDB_PIGEONDEAD_6        BITMAP                  "..\\RES\\Enemy\\Pigeon_Wizard\\Dead\\6.bmp"
+
+IDB_PIGEONATTACKVFX_0   BITMAP                  "..\\RES\\Enemy\\Pigeon_Wizard\\Attack_Vrfx\\0.bmp"
+
+IDB_PIGEONATTACKVFX_1   BITMAP                  "..\\RES\\Enemy\\Pigeon_Wizard\\Attack_Vrfx\\1.bmp"
+
+IDB_PIGEONATTACKVFX_2   BITMAP                  "..\\RES\\Enemy\\Pigeon_Wizard\\Attack_Vrfx\\2.bmp"
+
+IDB_PIGEONATTACKVFX_3   BITMAP                  "..\\RES\\Enemy\\Pigeon_Wizard\\Attack_Vrfx\\3.bmp"
+
+IDB_PIGEONATTACKVFX_4   BITMAP                  "..\\RES\\Enemy\\Pigeon_Wizard\\Attack_Vrfx\\4.bmp"
+
+IDB_PIGEONATTACKVFX_5   BITMAP                  "..\\RES\\Enemy\\Pigeon_Wizard\\Attack_Vrfx\\5.bmp"
+
+IDB_PIGEONATTACKVFX_6   BITMAP                  "..\\RES\\Enemy\\Pigeon_Wizard\\Attack_Vrfx\\6.bmp"
+
+IDB_PIGEONATTACKVFX_7   BITMAP                  "..\\RES\\Enemy\\Pigeon_Wizard\\Attack_Vrfx\\7.bmp"
+
+IDB_PIGEONATTACKVFX_8   BITMAP                  "..\\RES\\Enemy\\Pigeon_Wizard\\Attack_Vrfx\\8.bmp"
+
+IDB_PIGEONATTACKVFX_9   BITMAP                  "..\\RES\\Enemy\\Pigeon_Wizard\\Attack_Vrfx\\9.bmp"
+
+IDB_PIGEONATTACKVFX_10  BITMAP                  "..\\RES\\Enemy\\Pigeon_Wizard\\Attack_Vrfx\\10.bmp"
+
+IDB_PIGEONATTACKVFX_11  BITMAP                  "..\\RES\\Enemy\\Pigeon_Wizard\\Attack_Vrfx\\11.bmp"
+
+IDB_PIGEONATTACKVFX_12  BITMAP                  "..\\RES\\Enemy\\Pigeon_Wizard\\Attack_Vrfx\\12.bmp"
+
+IDB_PIGEONATTACKVFX_13  BITMAP                  "..\\RES\\Enemy\\Pigeon_Wizard\\Attack_Vrfx\\13.bmp"
+
+IDB_PIGEONATTACKVFX_14  BITMAP                  "..\\RES\\Enemy\\Pigeon_Wizard\\Attack_Vrfx\\14.bmp"
+
+IDB_PIGEONATTACKVFX_15  BITMAP                  "..\\RES\\Enemy\\Pigeon_Wizard\\Attack_Vrfx\\15.bmp"
+
+IDB_PIGEONATTACKVFX_16  BITMAP                  "..\\RES\\Enemy\\Pigeon_Wizard\\Attack_Vrfx\\16.bmp"
+
+IDB_PIGEONATTACKVFX_17  BITMAP                  "..\\RES\\Enemy\\Pigeon_Wizard\\Attack_Vrfx\\17.bmp"
+
+IDB_PIGEONATTACKVFX_18  BITMAP                  "..\\RES\\Enemy\\Pigeon_Wizard\\Attack_Vrfx\\18.bmp"
+
+IDB_PIGEONATTACKVFX_19  BITMAP                  "..\\RES\\Enemy\\Pigeon_Wizard\\Attack_Vrfx\\19.bmp"
+
 
 /////////////////////////////////////////////////////////////////////////////
 //
