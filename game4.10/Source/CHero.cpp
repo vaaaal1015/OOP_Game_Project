@@ -22,7 +22,7 @@ namespace game_framework {
 
 		for (int i = 0; i < 100; i++) LifeBarRed.push_back(new CMovingBitmap);    //100個血條圖片
 
-		FullHP = 200;				// 主角預設血量為100
+		FullHP = 1200;				// 主角預設血量為100
 		heroAttackDamage = 20;		// 主角預設攻擊力為20
 		Gold = 1000;
 		Initialize();
@@ -1365,7 +1365,6 @@ namespace game_framework {
 			break;
 			
 		case 2:
-			
 			if(currentWild!=NULL)
 				delete currentWild;
 			currentWild = new gameMap_wild("level_2.txt");
@@ -1373,7 +1372,17 @@ namespace game_framework {
 			CAudio::Instance()->Play(6, false);
 			currentMap = currentWild;
 			break;
+		case 3:
+
+			if (currentWild != NULL)
+				delete currentWild;
+			currentWild = new gameMap_wild("level_3.txt");
+			currentWild->LoadBitmap();
+			CAudio::Instance()->Play(6, false);
+			currentMap = currentWild;
+			break;
 		}
+
 		x = 35;
 		y = 0;
 	}

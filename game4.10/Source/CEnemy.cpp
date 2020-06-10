@@ -1032,7 +1032,7 @@ namespace game_framework {
 	{
 		if ((GetX2() >= heroAttackRange["x1"]) && (heroAttackRange["x2"] >= GetX1()) && (GetY2() >= heroAttackRange["y1"]) && (heroAttackRange["y2"] >= GetY1()) && GetHitDelayCount == 0)
 		{
-			CAudio::Instance()->Play(11, false);
+			CAudio::Instance()->Play(13, false);
 			GetHitDelayCount = 15;
 			enemyHP -= damage;
 			state = GET_HIT;
@@ -1220,6 +1220,11 @@ namespace game_framework {
 			state = DEAD;
 			DeadAnimation.OnMove();
 			CountDownNumber.OnMove();
+			if (!DeadAudio)
+			{
+				CAudio::Instance()->Play(15, false);
+				DeadAudio = true;
+			}
 		}
 		if (rising) {							// ¤W¤Éª¬ºA
 			if (velocity > 0) {
@@ -1455,7 +1460,7 @@ namespace game_framework {
 		if ((GetX2() >= heroAttackRange["x1"]) && (heroAttackRange["x2"] >= GetX1()) && (GetY2() >= heroAttackRange["y1"]) && (heroAttackRange["y2"] >= GetY1()) && GetHitDelayCount == 0)
 		{
 			GetHitAnimation.Reset();
-			CAudio::Instance()->Play(11, false);
+			CAudio::Instance()->Play(13, false);
 			GetHitDelayCount = 15;
 			enemyHP -= damage;
 			ShowLifeBarDelayCount = 150;
@@ -1584,6 +1589,20 @@ namespace game_framework {
 
 		DeadAnimation.AddBitmap(IDB_ROBOTDEAD_0, RGB(63, 72, 204));
 		DeadAnimation.AddBitmap(IDB_ROBOTDEAD_1, RGB(63, 72, 204));
+		DeadAnimation.AddBitmap(IDB_ROBOTDEAD_0, RGB(63, 72, 204));
+		DeadAnimation.AddBitmap(IDB_ROBOTDEAD_1, RGB(63, 72, 204));
+		DeadAnimation.AddBitmap(IDB_ROBOTDEAD_0, RGB(63, 72, 204));
+		DeadAnimation.AddBitmap(IDB_ROBOTDEAD_1, RGB(63, 72, 204));
+		DeadAnimation.AddBitmap(IDB_ROBOTDEAD_0, RGB(63, 72, 204));
+		DeadAnimation.AddBitmap(IDB_ROBOTDEAD_1, RGB(63, 72, 204));
+		DeadAnimation.AddBitmap(IDB_ROBOTDEAD_0, RGB(63, 72, 204));
+		DeadAnimation.AddBitmap(IDB_ROBOTDEAD_1, RGB(63, 72, 204));
+		DeadAnimation.AddBitmap(IDB_ROBOTDEAD_0, RGB(63, 72, 204));
+		DeadAnimation.AddBitmap(IDB_ROBOTDEAD_1, RGB(63, 72, 204));
+		DeadAnimation.AddBitmap(IDB_ROBOTDEAD_0, RGB(63, 72, 204));
+		DeadAnimation.AddBitmap(IDB_ROBOTDEAD_1, RGB(63, 72, 204));
+		DeadAnimation.AddBitmap(IDB_ROBOTDEAD_0, RGB(63, 72, 204));
+		DeadAnimation.AddBitmap(IDB_ROBOTDEAD_1, RGB(63, 72, 204));
 
 		GetHitAnimation.AddBitmap(IDB_ROBOTSTANDLEFT_0, RGB(63, 72, 204));
 		GetHitAnimation.AddBitmap(IDB_ROBOTSTANDLEFT_1, RGB(63, 72, 204));
@@ -1631,6 +1650,14 @@ namespace game_framework {
 		if (state == ATTACK_LEFT)
 		{
 			AttackLeftAnimation.OnMove();
+			if (AttackLeftAnimation.GetCurrentBitmapNumber() >= 7)
+			{
+				if (!AttackAudio)
+				{
+					CAudio::Instance()->Play(14, false);
+					AttackAudio = true;
+				}
+			}
 			if (AttackLeftAnimation.GetCurrentBitmapNumber() >= 9)
 			{
 				AttackFlag = true;
@@ -1655,6 +1682,14 @@ namespace game_framework {
 		if (state == ATTACK_RIGHT)
 		{
 			AttackRightAnimation.OnMove();
+			if (AttackRightAnimation.GetCurrentBitmapNumber() >= 7)
+			{
+				if (!AttackAudio)
+				{
+					CAudio::Instance()->Play(14, false);
+					AttackAudio = true;
+				}
+			}
 			if (AttackRightAnimation.GetCurrentBitmapNumber() >= 9)
 			{
 				AttackFlag = true;
@@ -1681,6 +1716,11 @@ namespace game_framework {
 		{
 			state = DEAD;
 			DeadAnimation.OnMove();
+			if (!DeadAudio)
+			{
+				CAudio::Instance()->Play(15, false);
+				DeadAudio = true;
+			}
 		}
 
 		if (rising) {							// ¤W¤Éª¬ºA
@@ -1739,6 +1779,7 @@ namespace game_framework {
 				AttackLeftAnimation.Reset();
 				attackDelayCount = attackDelay;
 				AttackFlag = false;
+				AttackAudio = false;
 			}
 			AttackLeftAnimation.SetTopLeft(currentMap->ScreenX(x), currentMap->ScreenY(y));
 			AttackLeftAnimation.OnShow();
@@ -1758,6 +1799,7 @@ namespace game_framework {
 				AttackRightAnimation.Reset();
 				attackDelayCount = attackDelay;
 				AttackFlag = false;
+				AttackAudio = false;
 			}
 			AttackRightAnimation.SetTopLeft(currentMap->ScreenX(x), currentMap->ScreenY(y));
 			AttackRightAnimation.OnShow();

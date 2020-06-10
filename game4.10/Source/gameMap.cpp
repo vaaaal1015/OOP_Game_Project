@@ -261,7 +261,7 @@ namespace game_framework {
 
 				if (map[i][j] / 10 == 5)
 				{
-					allObject.push_back(new Door(this, x, y + 10, true, map[i][j] % 10 * (-1)));
+					allObject.push_back(new Door(this, x, y, true, map[i][j] % 10 * (-1)));
 				}
 
 				switch (map[i][j])
@@ -286,6 +286,42 @@ namespace game_framework {
 					break;
 				case 44:
 					allEnemy.push_back(new CEnemy_Pigeon(this, x, y));
+					break;
+				case 90:
+					allItem.push_back(new Item_Bronze_Coin(this, x, y, ItemExistTime));
+					allItem.back()->LoadBitmap();
+					break;
+				case 91:
+					allItem.push_back(new Item_Silver_Coin(this, x, y, ItemExistTime));
+					allItem.back()->LoadBitmap();
+					break;
+				case 92:
+					allItem.push_back(new Item_Golden_Coin(this, x, y, ItemExistTime));
+					allItem.back()->LoadBitmap();
+					break;
+				case 93:
+					allItem.push_back(new Item_Fire_Stone(this, x, y, ItemExistTime));
+					allItem.back()->LoadBitmap();
+					break;
+				case 94:
+					allItem.push_back(new Item_RedPot_Small(this, x, y, ItemExistTime));
+					allItem.back()->LoadBitmap();
+					break;
+				case 95:
+					allItem.push_back(new Item_RedPot_Medium(this, x, y, ItemExistTime));
+					allItem.back()->LoadBitmap();
+					break;
+				case 96:
+					allItem.push_back(new Item_RedPot_Full(this, x, y, ItemExistTime));
+					allItem.back()->LoadBitmap();
+					break;
+				case 97:
+					allItem.push_back(new Item_RedPot_Stone(this, x, y, ItemExistTime));
+					allItem.back()->LoadBitmap();
+					break;
+				case 98:
+					allItem.push_back(new Item_Shurikan(this, x, y, ItemExistTime));
+					allItem.back()->LoadBitmap();
 					break;
 				default:
 					break;
@@ -917,8 +953,9 @@ namespace game_framework {
 			if (ObjectState)
 			{
 				ObjectState = false;
+				CAudio::Instance()->Play(11, false);
 			}
-			CAudio::Instance()->Play(11, false);
+			
 			GetHitDelayCount = 15;
 		}
 	}
