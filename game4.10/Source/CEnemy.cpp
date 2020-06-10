@@ -1839,7 +1839,6 @@ namespace game_framework {
 		AttackLeftAnimation.SetDelayCount(3);
 		AttackRightAnimation.SetDelayCount(3);
 		HitAnimation.SetDelayCount(2);
-		GetHitAnimation.SetDelayCount(3);
 		AttackVrfx.SetDelayCount(3);
 		enemyHP = 150;	//敵人預設生命值
 		FullHP = enemyHP;
@@ -1850,6 +1849,8 @@ namespace game_framework {
 		velocity = initial_velocity;
 		state = STAND_LEFT;
 		ShowLifeBarDelayCount = 0;
+		RecordedX1 = 0;
+		RecordedY1 = 0;
 		for (int i = 0; i < 100; i++) LifeBar_1.push_back(new CMovingBitmap);    //100個血條圖片
 	}
 
@@ -1892,7 +1893,6 @@ namespace game_framework {
 	{
 		if ((GetX2() >= heroAttackRange["x1"]) && (heroAttackRange["x2"] >= GetX1()) && (GetY2() >= heroAttackRange["y1"]) && (heroAttackRange["y2"] >= GetY1()) && GetHitDelayCount == 0)
 		{
-			GetHitAnimation.Reset();
 			CAudio::Instance()->Play(11, false);
 			GetHitDelayCount = 15;
 			enemyHP -= damage;
@@ -1902,7 +1902,7 @@ namespace game_framework {
 
 	void CEnemy_Pigeon::AttackByEnemy(int *heroHP, bool *Poison)
 	{
-		if ((GetX2() >= hero["x1"]) && (hero["x2"] >= GetX1()) && (GetY2() >= hero["y1"]) && (hero["y2"] >= GetY1()) && AttackFlag)
+		if ((RecordedX1 - 60 + AttackVrfx.Width() >= hero["x1"]) && (hero["x2"] >= RecordedX1 - 60) && (RecordedY1 - 50 + AttackVrfx.Height() >= hero["y1"]) && (hero["y2"] >= RecordedY1 - 50) && AttackFlag)
 		{
 			*heroHP -= enemyAttackDamage;
 		}
@@ -2023,6 +2023,13 @@ namespace game_framework {
 		else if (GetHitDelayCount == 0) HitAnimation.Reset();
 
 		if (attackDelayCount > 0) attackDelayCount--;
+		else if (attackDelayCount == 0 && !recorded)		//攻擊前且尚未紀錄主角位置
+		{
+			RecordedX1 = hero["x1"];
+			RecordedY1 = hero["y1"];
+			recorded = true;
+		}
+		TRACE("%d,%d,%d,%d\n", AttackVrfx.GetCurrentBitmapNumber(),recorded, attackDelayCount, AttackFlag);
 		if (AttackVrfx.GetCurrentBitmapNumber()==0)
 		{
 			state = DetectHero(state);
@@ -2050,8 +2057,8 @@ namespace game_framework {
 			else
 			{
 				AttackFlag = false;
-				AttackVrfx.Reset();
 			}
+
 		}
 
 		if (state == ATTACK_RIGHT)
@@ -2065,7 +2072,6 @@ namespace game_framework {
 			else
 			{
 				AttackFlag = false;
-				AttackVrfx.Reset();
 			}
 		}
 
@@ -2132,9 +2138,12 @@ namespace game_framework {
 				AttackVrfx.Reset();
 				attackDelayCount = attackDelay;
 				AttackFlag = false;
+				recorded = false;
 			}
 			AttackLeftAnimation.SetTopLeft(currentMap->ScreenX(x), currentMap->ScreenY(y));
 			AttackLeftAnimation.OnShow();
+			AttackVrfx.SetTopLeft(currentMap->ScreenX(RecordedX1 - 60), currentMap->ScreenY(RecordedY1 - 50));
+			AttackVrfx.OnShow();
 			break;
 		case MOVE_RIGHT:
 			moveRightAnimation.SetTopLeft(currentMap->ScreenX(x), currentMap->ScreenY(y));
@@ -2147,9 +2156,12 @@ namespace game_framework {
 				AttackVrfx.Reset();
 				attackDelayCount = attackDelay;
 				AttackFlag = false;
+				recorded = false;
 			}
 			AttackRightAnimation.SetTopLeft(currentMap->ScreenX(x), currentMap->ScreenY(y));
 			AttackRightAnimation.OnShow();
+			AttackVrfx.SetTopLeft(currentMap->ScreenX(RecordedX1 - 60), currentMap->ScreenY(RecordedY1 - 50));
+			AttackVrfx.OnShow();
 			break;
 
 			//if (GetHitAnimation.IsFinalBitmap()) GetHit = false;

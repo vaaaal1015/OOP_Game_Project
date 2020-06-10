@@ -351,6 +351,9 @@ namespace game_framework {
 		void changeLifeBarLength();			// 改變生命條的長度
 		const int DASH_SIZE = 100;
 		bool AttackFlag = false;
+		bool recorded = false;
+		int RecordedX1;
+		int RecordedY1;
 	};
 
 	class CEnemy_Cactus : public CEnemy

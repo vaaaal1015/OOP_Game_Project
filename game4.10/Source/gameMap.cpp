@@ -279,6 +279,9 @@ namespace game_framework {
 				case 43:
 					allEnemy.push_back(new CEnemy_RobotA(this, x, y));
 					break;
+				case 44:
+					allEnemy.push_back(new CEnemy_Pigeon(this, x, y));
+					break;
 				default:
 					break;
 				}
