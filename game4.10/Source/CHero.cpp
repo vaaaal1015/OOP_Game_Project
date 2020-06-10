@@ -1481,11 +1481,6 @@ namespace game_framework {
 			return true;
 		}
 
-		if (!currentMap->isSpace(GetX1(), GetY1()))  // ·íx®y¼Ğ¸I¨ìÀğ
-		{
-			return true;
-		}
-
 		return false;
 	}
 

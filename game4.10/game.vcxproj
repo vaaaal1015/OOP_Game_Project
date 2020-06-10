@@ -719,6 +719,9 @@
     <Image Include="RES\map_background.bmp" />
     <Image Include="RES\Map_Object\Box.bmp" />
     <Image Include="RES\Map_Object\Door.bmp" />
+    <Image Include="RES\Map_Object\Monitor_Off_0.bmp" />
+    <Image Include="RES\Map_Object\Monitor_On_0.bmp" />
+    <Image Include="RES\Map_Object\Monitor_On_1.bmp" />
     <Image Include="RES\Map_Object\Pop-Up Spike_0.bmp" />
     <Image Include="RES\Map_Object\Pop-Up Spike_1.bmp" />
     <Image Include="RES\Map_Object\Pop-Up Spike_2.bmp" />

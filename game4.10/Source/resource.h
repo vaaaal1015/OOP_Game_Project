@@ -670,6 +670,10 @@
 #define IDB_PIGEONATTACKVFX_18          719
 #define IDB_BITMAP105                   720
 #define IDB_PIGEONATTACKVFX_19          720
+#define IDB_MONITOR_OFF                 721
+#define IDB_MONITOR_ON_1                722
+#define IDB_BITMAP82                    723
+#define IDB_MONITOR_ON_0                723
 #define IDC_README                      1001
 #define ID_FILE_PAUSE                   32771
 #define ID_TOGGLE_FULLSCREEN            32772
@@ -682,7 +686,7 @@
 #ifdef APSTUDIO_INVOKED
 #ifndef APSTUDIO_READONLY_SYMBOLS
 #define _APS_3D_CONTROLS                     1
-#define _APS_NEXT_RESOURCE_VALUE        721
+#define _APS_NEXT_RESOURCE_VALUE        724
 #define _APS_NEXT_COMMAND_VALUE         32776
 #define _APS_NEXT_CONTROL_VALUE         1003
 #define _APS_NEXT_SYMED_VALUE           101

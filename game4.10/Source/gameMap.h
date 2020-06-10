@@ -82,75 +82,6 @@ namespace game_framework {
 		void MapObjectInteration();				//改變相對應的地圖物件狀態
 	};
 
-	/*
-	class gameMap_Lv1 : public gameMap_wild {
-	public:
-		gameMap_Lv1();
-		~gameMap_Lv1();
-
-		void LoadBitmap();    //載入地圖
-		void OnShow();		  //顯示地圖
-		void OnMove();
-		void setHeroState(int x1, int x2, int y1, int y2, int HP, int Gold, int AttackDamage, int Level);
-		void AttackByHero(const int damage);		// 攻擊
-		void AttackByEnemy(int *heroHP);
-		void SetHeroAttackRange(int x1, int x2, int y1, int y2);
-		bool GetisStageClear();
-		void HeroGetItem(int *HeroGold, int *SpecialEffect, int *SpecialEffectCount, int *HeroHP, int FullHP, int *ShurikanNumber);
-		void SetHeroXY(int x1, int x2, int y1, int y2);
-	protected:
-		int HeroX1;
-		int HeroY1;
-		int HeroX2;
-		int HeroY2;
-		int HeroAttackX1;
-		int HeroAttackY1;
-		int HeroAttackX2;
-		int HeroAttackY2;
-		int ItemExistTime = 300;
-	private:
-		vector<CEnemy*> allEnemy;
-		vector<Item*> allItem;
-		vector<MapObject*> allObject;
-		bool isStageClear = false;
-		void DropItem(int x, int y);
-		void MapObjectInteration();
-	};
-
-	class gameMap_Lv2 : public gameMap_wild {
-	public:
-		gameMap_Lv2();
-		~gameMap_Lv2();
-		void LoadBitmap();    //載入地圖
-		void OnShow();		  //顯示地圖
-		void OnMove();
-		void setHeroState(int x1, int x2, int y1, int y2, int HP, int Gold, int AttackDamage, int Level);
-		void AttackByHero(const int damage);		// 攻擊
-		void AttackByEnemy(int *heroHP);
-		void SetHeroAttackRange(int x1, int x2, int y1, int y2);
-		bool GetisStageClear();
-		void HeroGetItem(int *HeroGold, int *SpecialEffect, int *SpecialEffectCount, int *HeroHP, int FullHP, int *ShurikanNumber);
-		void SetHeroXY(int x1, int x2, int y1, int y2);
-	protected:
-		int HeroX1;
-		int HeroY1;
-		int HeroX2;
-		int HeroY2;
-		int HeroAttackX1;
-		int HeroAttackY1;
-		int HeroAttackX2;
-		int HeroAttackY2;
-		int ItemExistTime = 300;
-	private:
-		vector<CEnemy*> allEnemy;
-		bool isStageClear = false;
-		vector<MapObject*> allObject;
-		vector<Item*> allItem;
-		void DropItem(int x, int y);
-		void MapObjectInteration();
-	};
-	*/
-
 	class Item
 	{
 	public:
@@ -306,6 +237,30 @@ namespace game_framework {
 		CMovingBitmap SwitchOff;
 		int GetHitDelayCount = 0;
 		
+	};
+
+	class Monitor : public MapObject
+	{
+	public:
+		Monitor(gameMap* point, int nx, int ny, bool InitialState, int SetInterationCode);
+		~Monitor();
+		int GetX1();
+		int GetY1();
+		int GetX2();
+		int GetY2();
+		void OnMove();
+		void OnShow();
+		void LoadBitmap();
+		void GetAttack(int HeroX1, int HeroY1, int HeroX2, int HeroY2);
+		int GetInterationCode();
+		void SetState(bool State);
+		bool GetState();
+		void AttackByObject(int HeroX1, int HeroY1, int HeroX2, int HeroY2, int *heroHP);
+	private:
+		CAnimation MonitorOn;
+		CAnimation MonitorOff;
+		int GetHitDelayCount = 0;
+
 	};
 
 	class Spike : public MapObject

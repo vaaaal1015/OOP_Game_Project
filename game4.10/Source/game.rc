@@ -1202,6 +1202,12 @@ IDB_PIGEONATTACKVFX_18  BITMAP                  "..\\RES\\Enemy\\Pigeon_Wizard\\
 
 IDB_PIGEONATTACKVFX_19  BITMAP                  "..\\RES\\Enemy\\Pigeon_Wizard\\Attack_Vrfx\\19.bmp"
 
+IDB_MONITOR_OFF         BITMAP                  "..\\RES\\Map_Object\\Monitor_Off_0.bmp"
+
+IDB_MONITOR_ON_1        BITMAP                  "..\\RES\\Map_Object\\Monitor_On_0.bmp"
+
+IDB_MONITOR_ON_0        BITMAP                  "..\\RES\\Map_Object\\Monitor_On_1.bmp"
+
 
 /////////////////////////////////////////////////////////////////////////////
 //

@@ -1881,5 +1881,14 @@
     <Image Include="RES\Enemy\Pigeon_Wizard\Attack_Vrfx\19.bmp">
       <Filter>Resource Files</Filter>
     </Image>
+    <Image Include="RES\Map_Object\Monitor_Off_0.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\Map_Object\Monitor_On_0.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\Map_Object\Monitor_On_1.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
   </ItemGroup>
 </Project>

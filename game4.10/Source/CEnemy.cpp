@@ -2029,7 +2029,7 @@ namespace game_framework {
 			RecordedY1 = hero["y1"];
 			recorded = true;
 		}
-		TRACE("%d,%d,%d,%d\n", AttackVrfx.GetCurrentBitmapNumber(),recorded, attackDelayCount, AttackFlag);
+	
 		if (AttackVrfx.GetCurrentBitmapNumber()==0)
 		{
 			state = DetectHero(state);

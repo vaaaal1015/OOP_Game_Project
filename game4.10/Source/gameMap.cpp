@@ -248,6 +248,11 @@ namespace game_framework {
 					allObject.push_back(new Switch(this, x, y, true, map[i][j] % 10));
 				}
 
+				if (map[i][j] / 10 == 6)
+				{
+					allObject.push_back(new Monitor(this, x, y, true, map[i][j] % 10));
+				}
+
 				if (map[i][j] / 10 == 3)
 				{
 					allObject.push_back(new Spike(this, x, y + 10, true, map[i][j] % 10 * (-1)));
@@ -517,7 +522,7 @@ namespace game_framework {
 	{
 		for (vector<MapObject*>::iterator i = allObject.begin(); i != allObject.end(); i++)
 		{
-			for (vector<MapObject*>::iterator j = i; j != allObject.end(); j++)
+			for (vector<MapObject*>::iterator j = allObject.begin(); j != allObject.end(); j++)
 			{
 				if (((*i)->GetInterationCode() == ((-1)*(*j)->GetInterationCode())) && (*i)->GetControl())
 				{
@@ -846,6 +851,96 @@ namespace game_framework {
 	void Switch::AttackByObject(int HeroX1, int HeroY1, int HeroX2, int HeroY2, int *heroHP)
 	{
 	}
+
+	/////////////////////////////////////////////////////////////////////////////
+	// class Monitor : class MapObject
+	/////////////////////////////////////////////////////////////////////////////
+	Monitor::Monitor(gameMap* point, int nx, int ny, bool InitialState, int SetInterationCode) : MapObject(point, nx, ny, InitialState, SetInterationCode)
+	{
+		ObjectType = 3;
+		Control = true;
+	}
+
+	Monitor::~Monitor() {}
+
+	int Monitor::GetX1()
+	{
+		return x;
+	}
+
+	int Monitor::GetY1()
+	{
+		return y;
+	}
+
+	int Monitor::GetX2()
+	{
+		return x + MonitorOff.Width();
+	}
+
+	int Monitor::GetY2()
+	{
+		return y + MonitorOff.Height();
+	}
+
+	void Monitor::LoadBitmap()
+	{
+		MonitorOff.AddBitmap(IDB_MONITOR_OFF, RGB(63,72,204));
+		MonitorOn.AddBitmap(IDB_MONITOR_ON_0, RGB(63, 72, 204));
+		MonitorOn.AddBitmap(IDB_MONITOR_ON_1, RGB(63, 72, 204));
+	}
+
+	void Monitor::OnMove()
+	{
+		if (GetHitDelayCount > 0) GetHitDelayCount--;
+		MonitorOn.OnMove();
+		MonitorOff.OnMove();
+	}
+
+	void Monitor::OnShow()
+	{
+		if (ObjectState)
+		{
+			MonitorOn.SetTopLeft(currentMap->ScreenX(x), currentMap->ScreenY(y));
+			MonitorOn.OnShow();
+		}
+		else
+		{
+			MonitorOff.SetTopLeft(currentMap->ScreenX(x), currentMap->ScreenY(y));
+			MonitorOff.OnShow();
+		}
+	}
+	void Monitor::GetAttack(int HeroX1, int HeroY1, int HeroX2, int HeroY2)
+	{
+		if ((GetX2() >= HeroX1) && (HeroX2 >= GetX1()) && (GetY2() >= HeroY1) && (HeroY2 >= GetY1()) && GetHitDelayCount == 0)
+		{
+			if (ObjectState)
+			{
+				ObjectState = false;
+			}
+			CAudio::Instance()->Play(11, false);
+			GetHitDelayCount = 15;
+		}
+	}
+	int Monitor::GetInterationCode()
+	{
+		return InterationCode;
+	}
+
+	void Monitor::SetState(bool State)
+	{
+		ObjectState = State;
+	}
+
+	bool Monitor::GetState()
+	{
+		return ObjectState;
+	}
+
+	void Monitor::AttackByObject(int HeroX1, int HeroY1, int HeroX2, int HeroY2, int *heroHP)
+	{
+	}
+
 	/////////////////////////////////////////////////////////////////////////////
 	// class Spike : class MapObject
 	/////////////////////////////////////////////////////////////////////////////
