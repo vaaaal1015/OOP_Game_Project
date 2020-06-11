@@ -364,11 +364,11 @@ namespace game_framework {
 		bool FireBall_Audio_2 = false;
 	};
 	
-	class CEnemy_Scorpin : public CEnemy
+	class CEnemy_Scorpoin : public CEnemy
 	{
 	public:
-		CEnemy_Scorpin(gameMap* pointer, int x, int y);
-		~CEnemy_Scorpin();
+		CEnemy_Scorpoin(gameMap* pointer, int x, int y);
+		~CEnemy_Scorpoin();
 		int  GetX1();					// 敵人左上角 x 座標
 		int  GetY1();					// 敵人左上角 y 座標
 		int  GetX2();					// 敵人右下角 x 座標
@@ -393,7 +393,7 @@ namespace game_framework {
 		CAnimation DeadAnimation;		// 死亡動畫
 		CAnimation HitAnimation;		// 打擊效果
 		CAnimation CountDownNumber;
-		string EnemyType = "Scorpin";
+		string EnemyType = "Scorpoin";
 		bool isMovingDown;			// 是否正在往下移動
 		bool isMovingLeft;			// 是否正在往左移動
 		bool isMovingRight;			// 是否正在往右移動

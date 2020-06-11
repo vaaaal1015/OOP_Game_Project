@@ -2291,7 +2291,7 @@ namespace game_framework {
 	/////////////////////////////////////////////////////////////////////////////
 	// CEnemy_Scorpin: Enemy class
 	/////////////////////////////////////////////////////////////////////////////
-	CEnemy_Scorpin::CEnemy_Scorpin(gameMap* pointer, int x, int y) : CEnemy(pointer, x, y)
+	CEnemy_Scorpoin::CEnemy_Scorpoin(gameMap* pointer, int x, int y) : CEnemy(pointer, x, y)
 	{
 		const int INITIAL_VELOCITY = 15;		// 初始上升速度
 		const int FLOOR = 100;					// 地板座標
@@ -2318,42 +2318,42 @@ namespace game_framework {
 		for (int i = 0; i < 100; i++) LifeBar_1.push_back(new CMovingBitmap);    //100個血條圖片
 	}
 
-	CEnemy_Scorpin::~CEnemy_Scorpin()
+	CEnemy_Scorpoin::~CEnemy_Scorpoin()
 	{
 		//for (vector<CMovingBitmap*>::iterator i = LifeBar_1.begin(); i != LifeBar_1.end(); i++) delete *i;
 	}
 
-	int CEnemy_Scorpin::GetX1()
+	int CEnemy_Scorpoin::GetX1()
 	{
 		return x;
 	}
 
-	int CEnemy_Scorpin::GetY1()
+	int CEnemy_Scorpoin::GetY1()
 	{
 		return y;
 	}
 
-	int CEnemy_Scorpin::GetX2()
+	int CEnemy_Scorpoin::GetX2()
 	{
 		return x + animation.Width();
 	}
 
-	int CEnemy_Scorpin::GetY2()
+	int CEnemy_Scorpoin::GetY2()
 	{
 		return y + animation.Height();
 	}
 
-	int CEnemy_Scorpin::GetWidth()
+	int CEnemy_Scorpoin::GetWidth()
 	{
 		return animation.Width();
 	}
 
-	int CEnemy_Scorpin::GetHeight()
+	int CEnemy_Scorpoin::GetHeight()
 	{
 		return animation.Height();
 	}
 
-	void CEnemy_Scorpin::GetAttack(const int damage)
+	void CEnemy_Scorpoin::GetAttack(const int damage)
 	{
 		if ((GetX2() >= heroAttackRange["x1"]) && (heroAttackRange["x2"] >= GetX1()) && (GetY2() >= heroAttackRange["y1"]) && (heroAttackRange["y2"] >= GetY1()) && GetHitDelayCount == 0)
 		{
@@ -2365,7 +2365,7 @@ namespace game_framework {
 		}
 	}
 
-	void CEnemy_Scorpin::AttackByEnemy(int *heroHP, bool *Poison)
+	void CEnemy_Scorpoin::AttackByEnemy(int *heroHP, bool *Poison)
 	{
 		if ((GetX2() + 50 >= hero["x1"]) && (hero["x2"] >= GetX1() - 50) && (GetY2() >= hero["y1"]) && (hero["y2"] >= GetY1()) && AttackFlag)
 		{
@@ -2373,7 +2373,7 @@ namespace game_framework {
 		}
 	}
 
-	CEnemy_Action CEnemy_Scorpin::DetectHero(CEnemy_Action state)
+	CEnemy_Action CEnemy_Scorpoin::DetectHero(CEnemy_Action state)
 	{
 		if (attackDelayCount <= 0)
 		{
@@ -2417,12 +2417,12 @@ namespace game_framework {
 		return STAND_LEFT;
 	}
 
-	string CEnemy_Scorpin::GetEnemyType()
+	string CEnemy_Scorpoin::GetEnemyType()
 	{
 		return EnemyType;
 	}
 
-	void CEnemy_Scorpin::LoadBitmap()
+	void CEnemy_Scorpoin::LoadBitmap()
 	{
 		animation.AddBitmap(IDB_GASROBOTSTANDRIGHT_0, RGB(63, 72, 204));
 		animation.AddBitmap(IDB_GASROBOTSTANDRIGHT_1, RGB(63, 72, 204));
@@ -2491,7 +2491,7 @@ namespace game_framework {
 		for (vector<CMovingBitmap*>::iterator i = LifeBar_1.begin(); i != LifeBar_1.end(); i++) (*i)->LoadBitmap(IDB_ENEMYLIFEBAR_0);
 	}
 
-	void CEnemy_Scorpin::OnMove()
+	void CEnemy_Scorpoin::OnMove()
 	{
 		const int STEP_SIZE = 2;
 		animation.OnMove();
@@ -2564,7 +2564,7 @@ namespace game_framework {
 		}
 	}
 
-	void CEnemy_Scorpin::OnShow()
+	void CEnemy_Scorpoin::OnShow()
 	{
 		if (ShowLifeBarDelayCount != 0)
 		{
@@ -2646,13 +2646,13 @@ namespace game_framework {
 		}*/
 	}
 
-	bool CEnemy_Scorpin::isDead()
+	bool CEnemy_Scorpoin::isDead()
 	{
 		if (enemyHP <= 0 && CountDownNumber.IsFinalBitmap()) return true;
 		else return false;
 	}
 
-	void CEnemy_Scorpin::changeLifeBarLength()
+	void CEnemy_Scorpoin::changeLifeBarLength()
 	{
 		int xMove = currentMap->ScreenX(x);
 		int yMove = currentMap->ScreenY(y - 3);

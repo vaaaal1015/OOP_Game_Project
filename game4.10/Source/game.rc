@@ -1208,6 +1208,124 @@ IDB_MONITOR_ON_1        BITMAP                  "..\\RES\\Map_Object\\Monitor_On
 
 IDB_MONITOR_ON_0        BITMAP                  "..\\RES\\Map_Object\\Monitor_On_1.bmp"
 
+IDB_SCORPOINSTANDRIGHT_0 BITMAP                  "..\\RES\\Enemy\\Scorpoin\\Stand_Right\\0.bmp"
+
+IDB_SCORPOINSTANDRIGHT_1 BITMAP                  "..\\RES\\Enemy\\Scorpoin\\Stand_Right\\1.bmp"
+
+IDB_SCORPOINSTANDRIGHT_2 BITMAP                  "..\\RES\\Enemy\\Scorpoin\\Stand_Right\\2.bmp"
+
+IDB_SCORPOINSTANDLEFT_0 BITMAP                  "..\\RES\\Enemy\\Scorpoin\\Stand_Left\\0.bmp"
+
+IDB_SCORPOINSTANDLEFT_1 BITMAP                  "..\\RES\\Enemy\\Scorpoin\\Stand_Left\\1.bmp"
+
+IDB_SCORPOINSTANDLEFT_2 BITMAP                  "..\\RES\\Enemy\\Scorpoin\\Stand_Left\\2.bmp"
+
+IDB_SCORPOINMOVERIGHT_0 BITMAP                  "..\\RES\\Enemy\\Scorpoin\\Move_Right\\0.bmp"
+
+IDB_SCORPOINMOVERIGHT_1 BITMAP                  "..\\RES\\Enemy\\Scorpoin\\Move_Right\\1.bmp"
+
+IDB_SCORPOINMOVERIGHT_2 BITMAP                  "..\\RES\\Enemy\\Scorpoin\\Move_Right\\2.bmp"
+
+IDB_SCORPOINMOVERIGHT_3 BITMAP                  "..\\RES\\Enemy\\Scorpoin\\Move_Right\\3.bmp"
+
+IDB_SCORPOINMOVERIGHT_4 BITMAP                  "..\\RES\\Enemy\\Scorpoin\\Move_Right\\4.bmp"
+
+IDB_SCORPOINMOVERIGHT_5 BITMAP                  "..\\RES\\Enemy\\Scorpoin\\Move_Right\\5.bmp"
+
+IDB_SCORPOINMOVERIGHT_6 BITMAP                  "..\\RES\\Enemy\\Scorpoin\\Move_Right\\6.bmp"
+
+IDB_SCORPOINMOVERIGHT_7 BITMAP                  "..\\RES\\Enemy\\Scorpoin\\Move_Right\\7.bmp"
+
+IDB_SCORPOINMOVELEFT_0  BITMAP                  "..\\RES\\Enemy\\Scorpoin\\Move_Left\\0.bmp"
+
+IDB_SCORPOINMOVELEFT_1  BITMAP                  "..\\RES\\Enemy\\Scorpoin\\Move_Left\\1.bmp"
+
+IDB_SCORPOINMOVELEFT_2  BITMAP                  "..\\RES\\Enemy\\Scorpoin\\Move_Left\\2.bmp"
+
+IDB_SCORPOINMOVELEFT_3  BITMAP                  "..\\RES\\Enemy\\Scorpoin\\Move_Left\\3.bmp"
+
+IDB_SCORPOINMOVELEFT_4  BITMAP                  "..\\RES\\Enemy\\Scorpoin\\Move_Left\\4.bmp"
+
+IDB_SCORPOINMOVELEFT_5  BITMAP                  "..\\RES\\Enemy\\Scorpoin\\Move_Left\\5.bmp"
+
+IDB_SCORPOINMOVELEFT_6  BITMAP                  "..\\RES\\Enemy\\Scorpoin\\Move_Left\\6.bmp"
+
+IDB_SCORPOINMOVELEFT_7  BITMAP                  "..\\RES\\Enemy\\Scorpoin\\Move_Left\\7.bmp"
+
+IDB_SCORPOINATTAACKRIGHT_0 BITMAP                  "..\\RES\\Enemy\\Scorpoin\\Attack_Right\\0.bmp"
+
+IDB_SCORPOINATTAACKRIGHT_1 BITMAP                  "..\\RES\\Enemy\\Scorpoin\\Attack_Right\\1.bmp"
+
+IDB_SCORPOINATTAACKRIGHT_2 BITMAP                  "..\\RES\\Enemy\\Scorpoin\\Attack_Right\\2.bmp"
+
+IDB_SCORPOINATTAACKRIGHT_3 BITMAP                  "..\\RES\\Enemy\\Scorpoin\\Attack_Right\\3.bmp"
+
+IDB_SCORPOINATTAACKRIGHT_4 BITMAP                  "..\\RES\\Enemy\\Scorpoin\\Attack_Right\\4.bmp"
+
+IDB_SCORPOINATTAACKRIGHT_5 BITMAP                  "..\\RES\\Enemy\\Scorpoin\\Attack_Right\\5.bmp"
+
+IDB_SCORPOINATTAACKRIGHT_6 BITMAP                  "..\\RES\\Enemy\\Scorpoin\\Attack_Right\\6.bmp"
+
+IDB_SCORPOINATTAACKRIGHT_7 BITMAP                  "..\\RES\\Enemy\\Scorpoin\\Attack_Right\\7.bmp"
+
+IDB_SCORPOINATTAACKRIGHT_8 BITMAP                  "..\\RES\\Enemy\\Scorpoin\\Attack_Right\\8.bmp"
+
+IDB_SCORPOINATTAACKRIGHT_9 BITMAP                  "..\\RES\\Enemy\\Scorpoin\\Attack_Right\\9.bmp"
+
+IDB_SCORPOINATTAACKRIGHT_10 BITMAP                  "..\\RES\\Enemy\\Scorpoin\\Attack_Right\\10.bmp"
+
+IDB_SCORPOINATTAACKRIGHT_11 BITMAP                  "..\\RES\\Enemy\\Scorpoin\\Attack_Right\\11.bmp"
+
+IDB_SCORPOINATTAACKRIGHT_12 BITMAP                  "..\\RES\\Enemy\\Scorpoin\\Attack_Right\\12.bmp"
+
+IDB_SCORPOINATTAACKRIGHT_13 BITMAP                  "..\\RES\\Enemy\\Scorpoin\\Attack_Right\\13.bmp"
+
+IDB_SCORPOINATTAACKRIGHT_14 BITMAP                  "..\\RES\\Enemy\\Scorpoin\\Attack_Right\\14.bmp"
+
+IDB_SCORPOINATTAACKRIGHT_15 BITMAP                  "..\\RES\\Enemy\\Scorpoin\\Attack_Right\\15.bmp"
+
+IDB_SCORPOINATTAACKLEFT_0 BITMAP                  "..\\RES\\Enemy\\Scorpoin\\Attack_Left\\0.bmp"
+
+IDB_SCORPOINATTAACKLEFT_1 BITMAP                  "..\\RES\\Enemy\\Scorpoin\\Attack_Left\\1.bmp"
+
+IDB_SCORPOINATTAACKLEFT_2 BITMAP                  "..\\RES\\Enemy\\Scorpoin\\Attack_Left\\2.bmp"
+
+IDB_SCORPOINATTAACKLEFT_3 BITMAP                  "..\\RES\\Enemy\\Scorpoin\\Attack_Left\\3.bmp"
+
+IDB_SCORPOINATTAACKLEFT_4 BITMAP                  "..\\RES\\Enemy\\Scorpoin\\Attack_Left\\4.bmp"
+
+IDB_SCORPOINATTAACKLEFT_5 BITMAP                  "..\\RES\\Enemy\\Scorpoin\\Attack_Left\\5.bmp"
+
+IDB_SCORPOINATTAACKLEFT_6 BITMAP                  "..\\RES\\Enemy\\Scorpoin\\Attack_Left\\6.bmp"
+
+IDB_SCORPOINATTAACKLEFT_7 BITMAP                  "..\\RES\\Enemy\\Scorpoin\\Attack_Left\\7.bmp"
+
+IDB_SCORPOINATTAACKLEFT_8 BITMAP                  "..\\RES\\Enemy\\Scorpoin\\Attack_Left\\8.bmp"
+
+IDB_SCORPOINATTAACKLEFT_9 BITMAP                  "..\\RES\\Enemy\\Scorpoin\\Attack_Left\\9.bmp"
+
+IDB_SCORPOINATTAACKLEFT_10 BITMAP                  "..\\RES\\Enemy\\Scorpoin\\Attack_Left\\10.bmp"
+
+IDB_SCORPOINATTAACKLEFT_11 BITMAP                  "..\\RES\\Enemy\\Scorpoin\\Attack_Left\\11.bmp"
+
+IDB_SCORPOINATTAACKLEFT_12 BITMAP                  "..\\RES\\Enemy\\Scorpoin\\Attack_Left\\12.bmp"
+
+IDB_SCORPOINATTAACKLEFT_13 BITMAP                  "..\\RES\\Enemy\\Scorpoin\\Attack_Left\\13.bmp"
+
+IDB_SCORPOINATTAACKLEFT_14 BITMAP                  "..\\RES\\Enemy\\Scorpoin\\Attack_Left\\14.bmp"
+
+IDB_SCORPOINATTAACKLEFT_15 BITMAP                  "..\\RES\\Enemy\\Scorpoin\\Attack_Left\\15.bmp"
+
+IDB_SCORPOINDEAD_0      BITMAP                  "..\\RES\\Enemy\\Scorpoin\\Dead\\0.bmp"
+
+IDB_SCORPOINDEAD_1      BITMAP                  "..\\RES\\Enemy\\Scorpoin\\Dead\\1.bmp"
+
+IDB_SCORPOINDEAD_2      BITMAP                  "..\\RES\\Enemy\\Scorpoin\\Dead\\2.bmp"
+
+IDB_SCORPOINDEAD_3      BITMAP                  "..\\RES\\Enemy\\Scorpoin\\Dead\\3.bmp"
+
+IDB_SCORPOINDEAD_4      BITMAP                  "..\\RES\\Enemy\\Scorpoin\\Dead\\4.bmp"
+
 
 /////////////////////////////////////////////////////////////////////////////
 //
