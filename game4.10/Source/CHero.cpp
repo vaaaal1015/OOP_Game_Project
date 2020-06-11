@@ -1417,7 +1417,6 @@ namespace game_framework {
 		{
 			if (isSelectingMap)   //按GAME_START後選擇地圖畫面
 			{
-				TRACE("%d,%d\n", Mx, My);
 				if ((Mx <= 612) && (My <= 87) && (Mx >= 570) && (My >= 48)) isSelectingMap = false;   //右上角xx
 				if ((Mx <= 222) && (My <= 260) && (Mx >= 187) && (My >= 222))   //第一章地圖
 				{

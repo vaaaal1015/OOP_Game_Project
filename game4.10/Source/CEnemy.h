@@ -363,6 +363,56 @@ namespace game_framework {
 		bool FireBall_Audio_1 = false;
 		bool FireBall_Audio_2 = false;
 	};
+	
+	class CEnemy_Scorpin : public CEnemy
+	{
+	public:
+		CEnemy_Scorpin(gameMap* pointer, int x, int y);
+		~CEnemy_Scorpin();
+		int  GetX1();					// 敵人左上角 x 座標
+		int  GetY1();					// 敵人左上角 y 座標
+		int  GetX2();					// 敵人右下角 x 座標
+		int  GetY2();					// 敵人右下角 y 座標
+		int  GetWidth();				// 
+		int  GetHeight();
+		void LoadBitmap();				// 載入圖形
+		void OnMove();					// 移動敵人
+		void OnShow();					// 將敵人圖形貼到畫面
+		void GetAttack(const int damage);		// 被攻擊
+		void AttackByEnemy(int* heroHP, bool *Poison);
+		bool isDead();
+		string GetEnemyType();
+	private:
+		CAnimation animation;			// 敵人的動畫
+		CAnimation animationLeft;		// 敵人的動畫(左)
+		CAnimation moveRightAnimation;  // 向右移動動畫
+		CAnimation moveLeftAnimation;   // 向左移動動畫
+		CAnimation AttackRightAnimation;// 攻擊右邊
+		CAnimation AttackLeftAnimation; // 攻擊左邊
+		CAnimation jumpAnimation;		// 跳躍動畫
+		CAnimation DeadAnimation;		// 死亡動畫
+		CAnimation HitAnimation;		// 打擊效果
+		CAnimation CountDownNumber;
+		string EnemyType = "Scorpin";
+		bool isMovingDown;			// 是否正在往下移動
+		bool isMovingLeft;			// 是否正在往左移動
+		bool isMovingRight;			// 是否正在往右移動
+		bool isMovingUp;			// 是否正在往上移動
+		int floor;				// 地板的Y座標
+		bool rising;				// true表上升、false表下降
+		int initial_velocity;		// 初始速度
+		int velocity;				// 目前的速度(點/次)
+		int enemyAttackDamage;		//敵人攻擊力
+		CEnemy_Action DetectHero(CEnemy_Action state);
+		int attackDelay;
+		int attackDelayCount;
+		CEnemy_Action state;
+		int GetHitDelayCount = 0;
+		bool GetHit = false;
+		void changeLifeBarLength();			// 改變生命條的長度
+		bool AttackFlag = false;
+		bool DeadAudio = false;
+	};
 
 	class CEnemy_Cactus : public CEnemy
 	{
