@@ -287,6 +287,9 @@ namespace game_framework {
 				case 44:
 					allEnemy.push_back(new CEnemy_Pigeon(this, x, y));
 					break;
+				case 45:
+					allEnemy.push_back(new CEnemy_Scorpoin(this, x, y));
+					break;
 				case 90:
 					allItem.push_back(new Item_Bronze_Coin(this, x, y, ItemExistTime));
 					allItem.back()->LoadBitmap();

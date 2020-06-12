@@ -14,6 +14,7 @@
 42:GasRobot
 43:Robot
 44:Pigeon
+45:Scorpoin
 
 90:Bronze_Coin
 91:Silver_Coin

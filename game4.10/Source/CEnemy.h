@@ -410,6 +410,7 @@ namespace game_framework {
 		bool GetHit = false;
 		void changeLifeBarLength();			// 改變生命條的長度
 		bool AttackFlag = false;
+		bool AttackFlag_2 = false;
 		bool DeadAudio = false;
 	};
 

@@ -2302,8 +2302,8 @@ namespace game_framework {
 		moveRightAnimation.SetDelayCount(3);
 		moveLeftAnimation.SetDelayCount(3);
 		DeadAnimation.SetDelayCount(3);
-		AttackLeftAnimation.SetDelayCount(2);
-		AttackRightAnimation.SetDelayCount(2);
+		AttackLeftAnimation.SetDelayCount(4);
+		AttackRightAnimation.SetDelayCount(4);
 		HitAnimation.SetDelayCount(2);
 		enemyHP = 150;	//敵人預設生命值
 		FullHP = enemyHP;
@@ -2366,9 +2366,27 @@ namespace game_framework {
 
 	void CEnemy_Scorpoin::AttackByEnemy(int *heroHP, bool *Poison)
 	{
-		if ((GetX2() + 50 >= hero["x1"]) && (hero["x2"] >= GetX1() - 50) && (GetY2() >= hero["y1"]) && (hero["y2"] >= GetY1()) && AttackFlag)
+		if (state == ATTACK_RIGHT)
 		{
-			*Poison = true;
+			if ((GetX2() + 50 >= hero["x1"]) && (hero["x2"] >= GetX2() - 30) && (GetY2() >= hero["y1"]) && (hero["y2"] >= GetY1()) && AttackFlag_2)
+			{
+				*Poison = true;
+			}
+			if ((GetX2() + 50 >= hero["x1"]) && (hero["x2"] >= GetX2() - 30) && (GetY2() >= hero["y1"]) && (hero["y2"] >= GetY1()) && AttackFlag)
+			{
+				*heroHP -= enemyAttackDamage;
+			}
+		}
+		if (state == ATTACK_LEFT)
+		{
+			if ((GetX1() + 30 >= hero["x1"]) && (hero["x2"] >= GetX1() - 50) && (GetY2() >= hero["y1"]) && (hero["y2"] >= GetY1()) && AttackFlag_2)
+			{
+				*Poison = true;
+			}
+			if ((GetX1() + 30 >= hero["x1"]) && (hero["x2"] >= GetX1() - 50) && (GetY2() >= hero["y1"]) && (hero["y2"] >= GetY1()) && AttackFlag)
+			{
+				*heroHP -= enemyAttackDamage;
+			}
 		}
 	}
 
@@ -2538,7 +2556,6 @@ namespace game_framework {
 			DeadAnimation.OnMove();
 			if (!DeadAudio)
 			{
-				CAudio::Instance()->Play(15, false);
 				DeadAudio = true;
 			}
 		}
@@ -2594,9 +2611,18 @@ namespace game_framework {
 			moveLeftAnimation.OnShow();
 			break;
 		case ATTACK_LEFT:
-			if (AttackLeftAnimation.IsFinalBitmap())
+			if (AttackLeftAnimation.GetCurrentBitmapNumber() == 5 || AttackLeftAnimation.GetCurrentBitmapNumber() == 6)
 			{
 				AttackFlag = true;
+			}
+			else if (AttackLeftAnimation.GetCurrentBitmapNumber() == 11 || AttackLeftAnimation.GetCurrentBitmapNumber() == 12)
+			{
+				AttackFlag_2 = true;
+			}
+			else
+			{
+				AttackFlag = false;
+				AttackFlag_2 = false;
 			}
 			if (AttackLeftAnimation.IsFinalBitmap())
 			{
@@ -2610,9 +2636,18 @@ namespace game_framework {
 			moveRightAnimation.OnShow();
 			break;
 		case ATTACK_RIGHT:
-			if (AttackLeftAnimation.IsFinalBitmap())
+			if (AttackLeftAnimation.GetCurrentBitmapNumber() == 5 || AttackLeftAnimation.GetCurrentBitmapNumber() == 6)
 			{
 				AttackFlag = true;
+			}
+			else if (AttackLeftAnimation.GetCurrentBitmapNumber() == 11 || AttackLeftAnimation.GetCurrentBitmapNumber() == 12)
+			{
+				AttackFlag_2 = true;
+			}
+			else
+			{
+				AttackFlag = false;
+				AttackFlag_2 = false;
 			}
 			if (AttackRightAnimation.IsFinalBitmap())
 			{
