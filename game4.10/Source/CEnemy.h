@@ -231,6 +231,7 @@ namespace game_framework {
 		CAnimation GasRobotFireLeftAnimation;
 		CAnimation HitAnimation;		// 打擊效果
 		CAnimation CountDownNumber;
+		CAnimation ExplosionAnimation;
 		string EnemyType = "RobotA";
 		bool isMovingDown;			// 是否正在往下移動
 		bool isMovingLeft;			// 是否正在往左移動
@@ -252,6 +253,7 @@ namespace game_framework {
 		bool ShowGas = false;
 		bool AttackAudio = false;
 		bool DeadAudio = false;
+		bool ExplosionAudio = false;
 	};
 
 	class CEnemy_RobotA : public CEnemy
@@ -306,6 +308,7 @@ namespace game_framework {
 		bool AttackFlag = false;
 		bool AttackAudio = false;
 		bool DeadAudio = false;
+		bool ExplosionAudio = false;
 	};
 
 	class CEnemy_Pigeon : public CEnemy

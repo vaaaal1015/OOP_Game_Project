@@ -294,6 +294,7 @@ void CGameStateRun::OnInit()  								// 遊戲的初值及圖形設定
 	CAudio::Instance()->Load(AUDIO_CLOUD_ATTACK, "sounds\\cloudy_cloud_attack.wav");
 	CAudio::Instance()->Load(AUDIO_PIGEON_ATTACK_1, "sounds\\pigeon_fireball_enable.wav");
 	CAudio::Instance()->Load(AUDIO_PIGEON_ATTACK_2, "sounds\\pigeon_fireball_disable.wav");
+	CAudio::Instance()->Load(AUDIO_BOMB, "sounds\\bomb.wav");
 	//
 	// 此OnInit動作會接到CGameStaterOver::OnInit()，所以進度還沒到100%
 	//
