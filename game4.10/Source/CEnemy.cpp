@@ -2359,7 +2359,6 @@ namespace game_framework {
 			CAudio::Instance()->Play(13, false);
 			GetHitDelayCount = 15;
 			enemyHP -= damage;
-			state = GET_HIT;
 			ShowLifeBarDelayCount = 150;
 		}
 	}
@@ -2485,6 +2484,7 @@ namespace game_framework {
 		AttackRightAnimation.AddBitmap(IDB_SCORPOINATTAACKRIGHT_13, RGB(255, 255, 255));
 		AttackRightAnimation.AddBitmap(IDB_SCORPOINATTAACKRIGHT_14, RGB(255, 255, 255));
 		AttackRightAnimation.AddBitmap(IDB_SCORPOINATTAACKRIGHT_15, RGB(255, 255, 255));
+		AttackRightAnimation.AddBitmap(IDB_SCORPOINATTAACKRIGHT_15, RGB(255, 255, 255));
 
 		AttackLeftAnimation.AddBitmap(IDB_SCORPOINATTAACKLEFT_0, RGB(255, 255, 255));
 		AttackLeftAnimation.AddBitmap(IDB_SCORPOINATTAACKLEFT_1, RGB(255, 255, 255));
@@ -2501,6 +2501,7 @@ namespace game_framework {
 		AttackLeftAnimation.AddBitmap(IDB_SCORPOINATTAACKLEFT_12, RGB(255, 255, 255));
 		AttackLeftAnimation.AddBitmap(IDB_SCORPOINATTAACKLEFT_13, RGB(255, 255, 255));
 		AttackLeftAnimation.AddBitmap(IDB_SCORPOINATTAACKLEFT_14, RGB(255, 255, 255));
+		AttackLeftAnimation.AddBitmap(IDB_SCORPOINATTAACKLEFT_15, RGB(255, 255, 255));
 		AttackLeftAnimation.AddBitmap(IDB_SCORPOINATTAACKLEFT_15, RGB(255, 255, 255));
 
 		DeadAnimation.AddBitmap(IDB_SCORPOINDEAD_0, RGB(255, 255, 255));
@@ -2523,15 +2524,17 @@ namespace game_framework {
 		animationLeft.OnMove();
 		moveRightAnimation.OnMove();
 		moveLeftAnimation.OnMove();
-		AttackLeftAnimation.OnMove();
-		AttackRightAnimation.OnMove();
+		
 		if (ShowLifeBarDelayCount > 0) ShowLifeBarDelayCount--;
 		if (GetHitDelayCount > 0) GetHitDelayCount--;
 		else if (GetHitDelayCount == 0) HitAnimation.Reset();
 
 		if (attackDelayCount > 0) attackDelayCount--;
-		state = DetectHero(state);
 
+		if (AttackRightAnimation.GetCurrentBitmapNumber() == 0 && AttackLeftAnimation.GetCurrentBitmapNumber() == 0)		//攻擊中無法取消攻擊動作
+		{
+			state = DetectHero(state);
+		}
 		if (state == MOVE_LEFT)
 		{
 			if (currentMap->isSpace(GetX1(), GetY1()) && currentMap->isSpace(GetX1(), GetY2() - 10) && !currentMap->isDoor(GetX1(), GetY1()) && !currentMap->isDoor(GetX1(), GetY2() - 10)) // 當座標還沒碰到牆
@@ -2544,11 +2547,52 @@ namespace game_framework {
 				x += STEP_SIZE;
 		}
 
-		if (state == GET_HIT && !HitAnimation.IsFinalBitmap())
+		if (state == ATTACK_RIGHT)
 		{
-			state = GET_HIT;
-			HitAnimation.OnMove();
+			AttackRightAnimation.OnMove();
+			if (AttackLeftAnimation.GetCurrentBitmapNumber() == 5 || AttackLeftAnimation.GetCurrentBitmapNumber() == 6)
+			{
+				AttackFlag = true;
+			}
+			else if (AttackLeftAnimation.GetCurrentBitmapNumber() == 11 || AttackLeftAnimation.GetCurrentBitmapNumber() == 12)
+			{
+				AttackFlag_2 = true;
+			}
+			else
+			{
+				AttackFlag = false;
+				AttackFlag_2 = false;
+			}
+			if (AttackRightAnimation.IsFinalBitmap())
+			{
+				attackDelayCount = attackDelay;
+				AttackRightAnimation.Reset();
+			}
 		}
+		
+		if (state == ATTACK_LEFT)
+		{
+			AttackLeftAnimation.OnMove();
+			if (AttackLeftAnimation.GetCurrentBitmapNumber() == 5 || AttackLeftAnimation.GetCurrentBitmapNumber() == 6)
+			{
+				AttackFlag = true;
+			}
+			else if (AttackLeftAnimation.GetCurrentBitmapNumber() == 11 || AttackLeftAnimation.GetCurrentBitmapNumber() == 12)
+			{
+				AttackFlag_2 = true;
+			}
+			else
+			{
+				AttackFlag = false;
+				AttackFlag_2 = false;
+			}
+			if (AttackLeftAnimation.IsFinalBitmap())
+			{
+				attackDelayCount = attackDelay;
+				AttackLeftAnimation.Reset();
+			}
+		}
+
 
 		if (enemyHP <= 0 && !DeadAnimation.IsFinalBitmap())
 		{
@@ -2611,23 +2655,7 @@ namespace game_framework {
 			moveLeftAnimation.OnShow();
 			break;
 		case ATTACK_LEFT:
-			if (AttackLeftAnimation.GetCurrentBitmapNumber() == 5 || AttackLeftAnimation.GetCurrentBitmapNumber() == 6)
-			{
-				AttackFlag = true;
-			}
-			else if (AttackLeftAnimation.GetCurrentBitmapNumber() == 11 || AttackLeftAnimation.GetCurrentBitmapNumber() == 12)
-			{
-				AttackFlag_2 = true;
-			}
-			else
-			{
-				AttackFlag = false;
-				AttackFlag_2 = false;
-			}
-			if (AttackLeftAnimation.IsFinalBitmap())
-			{
-				attackDelayCount = attackDelay;
-			}
+			
 			AttackLeftAnimation.SetTopLeft(currentMap->ScreenX(x), currentMap->ScreenY(y));
 			AttackLeftAnimation.OnShow();
 			break;
@@ -2636,36 +2664,10 @@ namespace game_framework {
 			moveRightAnimation.OnShow();
 			break;
 		case ATTACK_RIGHT:
-			if (AttackLeftAnimation.GetCurrentBitmapNumber() == 5 || AttackLeftAnimation.GetCurrentBitmapNumber() == 6)
-			{
-				AttackFlag = true;
-			}
-			else if (AttackLeftAnimation.GetCurrentBitmapNumber() == 11 || AttackLeftAnimation.GetCurrentBitmapNumber() == 12)
-			{
-				AttackFlag_2 = true;
-			}
-			else
-			{
-				AttackFlag = false;
-				AttackFlag_2 = false;
-			}
-			if (AttackRightAnimation.IsFinalBitmap())
-			{
-				attackDelayCount = attackDelay;
-			}
+			
 			AttackRightAnimation.SetTopLeft(currentMap->ScreenX(x), currentMap->ScreenY(y));
 			AttackRightAnimation.OnShow();
-			break;
-		case GET_HIT:
-			animationLeft.SetTopLeft(currentMap->ScreenX(x), currentMap->ScreenY(y));
-			animationLeft.OnShow();
-			if (!HitAnimation.IsFinalBitmap())
-			{
-				HitAnimation.SetTopLeft(currentMap->ScreenX(x), currentMap->ScreenY(y));
-				HitAnimation.OnShow();
-			}
-			//if (GetHitAnimation.IsFinalBitmap()) GetHit = false;
-			break;
+			break;;
 		case DEAD:
 			if (enemyHP <= 0)
 			{
