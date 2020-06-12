@@ -2304,7 +2304,6 @@ namespace game_framework {
 		DeadAnimation.SetDelayCount(3);
 		AttackLeftAnimation.SetDelayCount(2);
 		AttackRightAnimation.SetDelayCount(2);
-		CountDownNumber.SetDelayCount(10);
 		HitAnimation.SetDelayCount(2);
 		enemyHP = 150;	//敵人預設生命值
 		FullHP = enemyHP;
@@ -2424,69 +2423,77 @@ namespace game_framework {
 
 	void CEnemy_Scorpoin::LoadBitmap()
 	{
-		animation.AddBitmap(IDB_GASROBOTSTANDRIGHT_0, RGB(63, 72, 204));
-		animation.AddBitmap(IDB_GASROBOTSTANDRIGHT_1, RGB(63, 72, 204));
-		animation.AddBitmap(IDB_GASROBOTSTANDRIGHT_2, RGB(63, 72, 204));
-		animation.AddBitmap(IDB_GASROBOTSTANDRIGHT_3, RGB(63, 72, 204));
+		animation.AddBitmap(IDB_SCORPOINSTANDRIGHT_0, RGB(255, 255, 255));
+		animation.AddBitmap(IDB_SCORPOINSTANDRIGHT_1, RGB(255, 255, 255));
+		animation.AddBitmap(IDB_SCORPOINSTANDRIGHT_2, RGB(255, 255, 255));
 
-		animationLeft.AddBitmap(IDB_GASROBOTSTANDLEFT_0, RGB(63, 72, 204));
-		animationLeft.AddBitmap(IDB_GASROBOTSTANDLEFT_1, RGB(63, 72, 204));
-		animationLeft.AddBitmap(IDB_GASROBOTSTANDLEFT_2, RGB(63, 72, 204));
-		animationLeft.AddBitmap(IDB_GASROBOTSTANDLEFT_3, RGB(63, 72, 204));
+		animationLeft.AddBitmap(IDB_SCORPOINSTANDLEFT_0, RGB(255, 255, 255));
+		animationLeft.AddBitmap(IDB_SCORPOINSTANDLEFT_1, RGB(255, 255, 255));
+		animationLeft.AddBitmap(IDB_SCORPOINSTANDLEFT_2, RGB(255, 255, 255));
 
 
-		moveRightAnimation.AddBitmap(IDB_GASROBOTSTANDRIGHT_0, RGB(63, 72, 204));
-		moveRightAnimation.AddBitmap(IDB_GASROBOTSTANDRIGHT_1, RGB(63, 72, 204));
-		moveRightAnimation.AddBitmap(IDB_GASROBOTSTANDRIGHT_2, RGB(63, 72, 204));
-		moveRightAnimation.AddBitmap(IDB_GASROBOTSTANDRIGHT_3, RGB(63, 72, 204));
+		moveRightAnimation.AddBitmap(IDB_SCORPOINMOVERIGHT_0, RGB(255, 255, 255));
+		moveRightAnimation.AddBitmap(IDB_SCORPOINMOVERIGHT_1, RGB(255, 255, 255));
+		moveRightAnimation.AddBitmap(IDB_SCORPOINMOVERIGHT_2, RGB(255, 255, 255));
+		moveRightAnimation.AddBitmap(IDB_SCORPOINMOVERIGHT_3, RGB(255, 255, 255));
+		moveRightAnimation.AddBitmap(IDB_SCORPOINMOVERIGHT_4, RGB(255, 255, 255));
+		moveRightAnimation.AddBitmap(IDB_SCORPOINMOVERIGHT_5, RGB(255, 255, 255));
+		moveRightAnimation.AddBitmap(IDB_SCORPOINMOVERIGHT_6, RGB(255, 255, 255));
+		moveRightAnimation.AddBitmap(IDB_SCORPOINMOVERIGHT_7, RGB(255, 255, 255));
 
-		moveLeftAnimation.AddBitmap(IDB_GASROBOTSTANDLEFT_0, RGB(63, 72, 204));
-		moveLeftAnimation.AddBitmap(IDB_GASROBOTSTANDLEFT_1, RGB(63, 72, 204));
-		moveLeftAnimation.AddBitmap(IDB_GASROBOTSTANDLEFT_2, RGB(63, 72, 204));
-		moveLeftAnimation.AddBitmap(IDB_GASROBOTSTANDLEFT_3, RGB(63, 72, 204));
+		moveLeftAnimation.AddBitmap(IDB_SCORPOINMOVELEFT_0, RGB(255, 255, 255));
+		moveLeftAnimation.AddBitmap(IDB_SCORPOINMOVELEFT_1, RGB(255, 255, 255));
+		moveLeftAnimation.AddBitmap(IDB_SCORPOINMOVELEFT_2, RGB(255, 255, 255));
+		moveLeftAnimation.AddBitmap(IDB_SCORPOINMOVELEFT_3, RGB(255, 255, 255));
+		moveLeftAnimation.AddBitmap(IDB_SCORPOINMOVELEFT_4, RGB(255, 255, 255));
+		moveLeftAnimation.AddBitmap(IDB_SCORPOINMOVELEFT_5, RGB(255, 255, 255));
+		moveLeftAnimation.AddBitmap(IDB_SCORPOINMOVELEFT_6, RGB(255, 255, 255));
+		moveLeftAnimation.AddBitmap(IDB_SCORPOINMOVELEFT_7, RGB(255, 255, 255));
 
-		AttackRightAnimation.AddBitmap(IDB_GASROBOTATTACKRIGHT_0, RGB(63, 72, 204));
-		AttackRightAnimation.AddBitmap(IDB_GASROBOTATTACKRIGHT_0, RGB(63, 72, 204));
-		AttackRightAnimation.AddBitmap(IDB_GASROBOTATTACKRIGHT_0, RGB(63, 72, 204));
-		AttackRightAnimation.AddBitmap(IDB_GASROBOTATTACKRIGHT_0, RGB(63, 72, 204));
-		AttackRightAnimation.AddBitmap(IDB_GASROBOTATTACKRIGHT_0, RGB(63, 72, 204));
-		AttackRightAnimation.AddBitmap(IDB_GASROBOTATTACKRIGHT_1, RGB(63, 72, 204));
-		AttackRightAnimation.AddBitmap(IDB_GASROBOTATTACKRIGHT_2, RGB(63, 72, 204));
-		AttackRightAnimation.AddBitmap(IDB_GASROBOTATTACKRIGHT_3, RGB(63, 72, 204));
-		AttackRightAnimation.AddBitmap(IDB_GASROBOTATTACKRIGHT_4, RGB(63, 72, 204));
-		AttackRightAnimation.AddBitmap(IDB_GASROBOTATTACKRIGHT_5, RGB(63, 72, 204));
-		AttackRightAnimation.AddBitmap(IDB_GASROBOTATTACKRIGHT_6, RGB(63, 72, 204));
-		AttackRightAnimation.AddBitmap(IDB_GASROBOTATTACKRIGHT_6, RGB(63, 72, 204));
 
-		AttackLeftAnimation.AddBitmap(IDB_GASROBOTATTACKLEFT_0, RGB(63, 72, 204));
-		AttackLeftAnimation.AddBitmap(IDB_GASROBOTATTACKLEFT_0, RGB(63, 72, 204));
-		AttackLeftAnimation.AddBitmap(IDB_GASROBOTATTACKLEFT_0, RGB(63, 72, 204));
-		AttackLeftAnimation.AddBitmap(IDB_GASROBOTATTACKLEFT_0, RGB(63, 72, 204));
-		AttackLeftAnimation.AddBitmap(IDB_GASROBOTATTACKLEFT_0, RGB(63, 72, 204));
-		AttackLeftAnimation.AddBitmap(IDB_GASROBOTATTACKLEFT_1, RGB(63, 72, 204));
-		AttackLeftAnimation.AddBitmap(IDB_GASROBOTATTACKLEFT_2, RGB(63, 72, 204));
-		AttackLeftAnimation.AddBitmap(IDB_GASROBOTATTACKLEFT_3, RGB(63, 72, 204));
-		AttackLeftAnimation.AddBitmap(IDB_GASROBOTATTACKLEFT_4, RGB(63, 72, 204));
-		AttackLeftAnimation.AddBitmap(IDB_GASROBOTATTACKLEFT_5, RGB(63, 72, 204));
-		AttackLeftAnimation.AddBitmap(IDB_GASROBOTATTACKLEFT_6, RGB(63, 72, 204));
-		AttackLeftAnimation.AddBitmap(IDB_GASROBOTATTACKLEFT_6, RGB(63, 72, 204));
+		AttackRightAnimation.AddBitmap(IDB_SCORPOINATTAACKRIGHT_0, RGB(255, 255, 255));
+		AttackRightAnimation.AddBitmap(IDB_SCORPOINATTAACKRIGHT_1, RGB(255, 255, 255));
+		AttackRightAnimation.AddBitmap(IDB_SCORPOINATTAACKRIGHT_2, RGB(255, 255, 255));
+		AttackRightAnimation.AddBitmap(IDB_SCORPOINATTAACKRIGHT_3, RGB(255, 255, 255));
+		AttackRightAnimation.AddBitmap(IDB_SCORPOINATTAACKRIGHT_4, RGB(255, 255, 255));
+		AttackRightAnimation.AddBitmap(IDB_SCORPOINATTAACKRIGHT_5, RGB(255, 255, 255));
+		AttackRightAnimation.AddBitmap(IDB_SCORPOINATTAACKRIGHT_6, RGB(255, 255, 255));
+		AttackRightAnimation.AddBitmap(IDB_SCORPOINATTAACKRIGHT_7, RGB(255, 255, 255));
+		AttackRightAnimation.AddBitmap(IDB_SCORPOINATTAACKRIGHT_8, RGB(255, 255, 255));
+		AttackRightAnimation.AddBitmap(IDB_SCORPOINATTAACKRIGHT_9, RGB(255, 255, 255));
+		AttackRightAnimation.AddBitmap(IDB_SCORPOINATTAACKRIGHT_10, RGB(255, 255, 255));
+		AttackRightAnimation.AddBitmap(IDB_SCORPOINATTAACKRIGHT_11, RGB(255, 255, 255));
+		AttackRightAnimation.AddBitmap(IDB_SCORPOINATTAACKRIGHT_12, RGB(255, 255, 255));
+		AttackRightAnimation.AddBitmap(IDB_SCORPOINATTAACKRIGHT_13, RGB(255, 255, 255));
+		AttackRightAnimation.AddBitmap(IDB_SCORPOINATTAACKRIGHT_14, RGB(255, 255, 255));
+		AttackRightAnimation.AddBitmap(IDB_SCORPOINATTAACKRIGHT_15, RGB(255, 255, 255));
 
-		DeadAnimation.AddBitmap(IDB_GASROBOTDEAD_0, RGB(63, 72, 204));
-		DeadAnimation.AddBitmap(IDB_GASROBOTDEAD_1, RGB(63, 72, 204));
+		AttackLeftAnimation.AddBitmap(IDB_SCORPOINATTAACKLEFT_0, RGB(255, 255, 255));
+		AttackLeftAnimation.AddBitmap(IDB_SCORPOINATTAACKLEFT_1, RGB(255, 255, 255));
+		AttackLeftAnimation.AddBitmap(IDB_SCORPOINATTAACKLEFT_2, RGB(255, 255, 255));
+		AttackLeftAnimation.AddBitmap(IDB_SCORPOINATTAACKLEFT_3, RGB(255, 255, 255));
+		AttackLeftAnimation.AddBitmap(IDB_SCORPOINATTAACKLEFT_4, RGB(255, 255, 255));
+		AttackLeftAnimation.AddBitmap(IDB_SCORPOINATTAACKLEFT_5, RGB(255, 255, 255));
+		AttackLeftAnimation.AddBitmap(IDB_SCORPOINATTAACKLEFT_6, RGB(255, 255, 255));
+		AttackLeftAnimation.AddBitmap(IDB_SCORPOINATTAACKLEFT_7, RGB(255, 255, 255));
+		AttackLeftAnimation.AddBitmap(IDB_SCORPOINATTAACKLEFT_8, RGB(255, 255, 255));
+		AttackLeftAnimation.AddBitmap(IDB_SCORPOINATTAACKLEFT_9, RGB(255, 255, 255));
+		AttackLeftAnimation.AddBitmap(IDB_SCORPOINATTAACKLEFT_10, RGB(255, 255, 255));
+		AttackLeftAnimation.AddBitmap(IDB_SCORPOINATTAACKLEFT_11, RGB(255, 255, 255));
+		AttackLeftAnimation.AddBitmap(IDB_SCORPOINATTAACKLEFT_12, RGB(255, 255, 255));
+		AttackLeftAnimation.AddBitmap(IDB_SCORPOINATTAACKLEFT_13, RGB(255, 255, 255));
+		AttackLeftAnimation.AddBitmap(IDB_SCORPOINATTAACKLEFT_14, RGB(255, 255, 255));
+		AttackLeftAnimation.AddBitmap(IDB_SCORPOINATTAACKLEFT_15, RGB(255, 255, 255));
+
+		DeadAnimation.AddBitmap(IDB_SCORPOINDEAD_0, RGB(255, 255, 255));
+		DeadAnimation.AddBitmap(IDB_SCORPOINDEAD_1, RGB(255, 255, 255));
+		DeadAnimation.AddBitmap(IDB_SCORPOINDEAD_2, RGB(255, 255, 255));
+		DeadAnimation.AddBitmap(IDB_SCORPOINDEAD_3, RGB(255, 255, 255));
+		DeadAnimation.AddBitmap(IDB_SCORPOINDEAD_4, RGB(255, 255, 255));
 
 		HitAnimation.AddBitmap(IDB_HIT_0, RGB(63, 72, 204));
 		HitAnimation.AddBitmap(IDB_HIT_1, RGB(63, 72, 204));
 		HitAnimation.AddBitmap(IDB_HIT_2, RGB(63, 72, 204));
-
-		CountDownNumber.AddBitmap(IDB_COUNTDOWN_5, RGB(255, 255, 255));
-		CountDownNumber.AddBitmap(IDB_COUNTDOWN_4, RGB(255, 255, 255));
-		CountDownNumber.AddBitmap(IDB_COUNTDOWN_3, RGB(255, 255, 255));
-		CountDownNumber.AddBitmap(IDB_COUNTDOWN_2, RGB(255, 255, 255));
-		CountDownNumber.AddBitmap(IDB_COUNTDOWN_1, RGB(255, 255, 255));
-		CountDownNumber.AddBitmap(IDB_COUNTDOWN_0, RGB(255, 255, 255));
-		CountDownNumber.AddBitmap(IDB_COUNTDOWN_0, RGB(255, 255, 255));
-
-
 		LifeBar_0.LoadBitmap(IDB_ENEMYLIFEBAR_LONG);
 		for (vector<CMovingBitmap*>::iterator i = LifeBar_1.begin(); i != LifeBar_1.end(); i++) (*i)->LoadBitmap(IDB_ENEMYLIFEBAR_0);
 	}
@@ -2525,11 +2532,10 @@ namespace game_framework {
 			HitAnimation.OnMove();
 		}
 
-		if (enemyHP <= 0 && !CountDownNumber.IsFinalBitmap())
+		if (enemyHP <= 0 && !DeadAnimation.IsFinalBitmap())
 		{
 			state = DEAD;
 			DeadAnimation.OnMove();
-			CountDownNumber.OnMove();
 			if (!DeadAudio)
 			{
 				CAudio::Instance()->Play(15, false);
@@ -2628,12 +2634,10 @@ namespace game_framework {
 		case DEAD:
 			if (enemyHP <= 0)
 			{
-				if (!CountDownNumber.IsFinalBitmap())
+				if (!DeadAnimation.IsFinalBitmap())
 				{
 					DeadAnimation.SetTopLeft(currentMap->ScreenX(x), currentMap->ScreenY(y));
 					DeadAnimation.OnShow();
-					CountDownNumber.SetTopLeft(currentMap->ScreenX(x + 70), currentMap->ScreenY(y + 65));
-					CountDownNumber.OnShow();
 				}
 			}
 			break;
@@ -2648,7 +2652,7 @@ namespace game_framework {
 
 	bool CEnemy_Scorpoin::isDead()
 	{
-		if (enemyHP <= 0 && CountDownNumber.IsFinalBitmap()) return true;
+		if (enemyHP <= 0 && DeadAnimation.IsFinalBitmap()) return true;
 		else return false;
 	}
 

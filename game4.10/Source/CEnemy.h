@@ -392,7 +392,6 @@ namespace game_framework {
 		CAnimation jumpAnimation;		// 跳躍動畫
 		CAnimation DeadAnimation;		// 死亡動畫
 		CAnimation HitAnimation;		// 打擊效果
-		CAnimation CountDownNumber;
 		string EnemyType = "Scorpoin";
 		bool isMovingDown;			// 是否正在往下移動
 		bool isMovingLeft;			// 是否正在往左移動
