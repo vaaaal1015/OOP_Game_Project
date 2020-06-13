@@ -992,6 +992,7 @@ namespace game_framework {
 		AttackLeftAnimation.SetDelayCount(2);
 		AttackRightAnimation.SetDelayCount(2);
 		CountDownNumber.SetDelayCount(10);
+		ExplosionAnimation.SetDelayCount(3);
 		HitAnimation.SetDelayCount(2);
 		enemyHP = 150;	//敵人預設生命值
 		FullHP = enemyHP;
@@ -1047,7 +1048,6 @@ namespace game_framework {
 			CAudio::Instance()->Play(13, false);
 			GetHitDelayCount = 15;
 			enemyHP -= damage;
-			state = GET_HIT;
 			ShowLifeBarDelayCount = 150;
 		}
 	}
@@ -1057,6 +1057,10 @@ namespace game_framework {
 		if ((GetX2() + 50 >= hero["x1"]) && (hero["x2"] >= GetX1() - 50) && (GetY2() >= hero["y1"]) && (hero["y2"] >= GetY1()) && AttackFlag)
 		{
 			*Poison = true;
+		}
+		if ((GetX2() >= hero["x1"]) && (hero["x2"] >= GetX1()) && (GetY2() >= hero["y1"]) && (hero["y2"] >= GetY1()) && ExplosionAnimation.GetCurrentBitmapNumber() == 1)
+		{
+			*heroHP -= 100;
 		}
 	}
 
@@ -1177,6 +1181,15 @@ namespace game_framework {
 		HitAnimation.AddBitmap(IDB_HIT_1, RGB(63, 72, 204));
 		HitAnimation.AddBitmap(IDB_HIT_2, RGB(63, 72, 204));
 
+		ExplosionAnimation.AddBitmap(IDB_EXPLOSION_0, RGB(63, 72, 204));
+		ExplosionAnimation.AddBitmap(IDB_EXPLOSION_1, RGB(63, 72, 204));
+		ExplosionAnimation.AddBitmap(IDB_EXPLOSION_2, RGB(63, 72, 204));
+		ExplosionAnimation.AddBitmap(IDB_EXPLOSION_3, RGB(63, 72, 204));
+		ExplosionAnimation.AddBitmap(IDB_EXPLOSION_4, RGB(63, 72, 204));
+		ExplosionAnimation.AddBitmap(IDB_EXPLOSION_5, RGB(63, 72, 204));
+		ExplosionAnimation.AddBitmap(IDB_EXPLOSION_6, RGB(63, 72, 204));
+		ExplosionAnimation.AddBitmap(IDB_EXPLOSION_7, RGB(63, 72, 204));
+
 		CountDownNumber.AddBitmap(IDB_COUNTDOWN_5, RGB(255, 255, 255));
 		CountDownNumber.AddBitmap(IDB_COUNTDOWN_4, RGB(255, 255, 255));
 		CountDownNumber.AddBitmap(IDB_COUNTDOWN_3, RGB(255, 255, 255));
@@ -1199,15 +1212,16 @@ namespace game_framework {
 		GasRobotFireLeftAnimation.OnMove();
 		moveRightAnimation.OnMove();
 		moveLeftAnimation.OnMove();
-		AttackLeftAnimation.OnMove();
-		AttackRightAnimation.OnMove();
 		GasAnimation.OnMove();
 		if (ShowLifeBarDelayCount > 0) ShowLifeBarDelayCount--;
 		if (GetHitDelayCount > 0) GetHitDelayCount--;
 		else if (GetHitDelayCount == 0) HitAnimation.Reset();
 
 		if (attackDelayCount > 0) attackDelayCount--;
-		state = DetectHero(state);
+		if (AttackRightAnimation.GetCurrentBitmapNumber() == 0 && AttackLeftAnimation.GetCurrentBitmapNumber() == 0)
+		{
+			state = DetectHero(state);
+		}
 
 		if (state == MOVE_LEFT)
 		{
@@ -1227,16 +1241,61 @@ namespace game_framework {
 			HitAnimation.OnMove();
 		}
 
-		if (enemyHP <= 0 && !CountDownNumber.IsFinalBitmap())
+		if (state == ATTACK_LEFT)
+		{
+			AttackLeftAnimation.OnMove();
+			if (AttackLeftAnimation.IsFinalBitmap() && !ShowGas)
+			{
+				ShowGas = true;
+				GasAnimation.Reset();
+				AttackFlag = true;
+			}
+			if (AttackLeftAnimation.IsFinalBitmap())
+			{
+				attackDelayCount = attackDelay;
+				AttackLeftAnimation.Reset();
+			}
+		}
+
+		if (state == ATTACK_RIGHT)
+		{
+			AttackRightAnimation.OnMove();
+			if (AttackRightAnimation.IsFinalBitmap() && !ShowGas)
+			{
+				ShowGas = true;
+				GasAnimation.Reset();
+				AttackFlag = true;
+			}
+			if (AttackRightAnimation.IsFinalBitmap())
+			{
+				attackDelayCount = attackDelay;
+				AttackRightAnimation.Reset();
+			}
+		}
+
+		if (enemyHP <= 0)
 		{
 			state = DEAD;
-			DeadAnimation.OnMove();
-			CountDownNumber.OnMove();
-			if (!DeadAudio)
+			if (!CountDownNumber.IsFinalBitmap())
 			{
-				CAudio::Instance()->Play(15, false);
-				DeadAudio = true;
+				DeadAnimation.OnMove();
+				CountDownNumber.OnMove();
+				if (!DeadAudio)
+				{
+					CAudio::Instance()->Play(15, false);
+					DeadAudio = true;
+				}
 			}
+			else
+			{
+				ExplosionAnimation.OnMove();
+				if (!ExplosionAudio)
+				{
+					CAudio::Instance()->Play(19, false);
+					ExplosionAudio = true;
+				}
+			}
+			
 		}
 		if (rising) {							// 上升狀態
 			if (velocity > 0) {
@@ -1296,16 +1355,7 @@ namespace game_framework {
 			GasRobotFireLeftAnimation.OnShow();
 			break;
 		case ATTACK_LEFT:
-			if (AttackLeftAnimation.IsFinalBitmap() && !ShowGas)
-			{
-				ShowGas = true;
-				GasAnimation.Reset();
-				AttackFlag = true;
-			}
-			if (AttackLeftAnimation.IsFinalBitmap())
-			{
-				attackDelayCount = attackDelay;
-			}
+			
 			AttackLeftAnimation.SetTopLeft(currentMap->ScreenX(x), currentMap->ScreenY(y));
 			AttackLeftAnimation.OnShow();
 			GasRobotFireLeftAnimation.SetTopLeft(currentMap->ScreenX(x), currentMap->ScreenY(y + 80));
@@ -1318,32 +1368,11 @@ namespace game_framework {
 			GasRobotFireRightAnimation.OnShow();
 			break;
 		case ATTACK_RIGHT:
-			if (AttackLeftAnimation.IsFinalBitmap() && !ShowGas)
-			{
-				ShowGas = true;
-				GasAnimation.Reset();
-				AttackFlag = true;
-			}
-			if (AttackRightAnimation.IsFinalBitmap())
-			{
-				attackDelayCount = attackDelay;
-			}
+			
 			AttackRightAnimation.SetTopLeft(currentMap->ScreenX(x), currentMap->ScreenY(y));
 			AttackRightAnimation.OnShow();
 			GasRobotFireRightAnimation.SetTopLeft(currentMap->ScreenX(x), currentMap->ScreenY(y + 80));
 			GasRobotFireRightAnimation.OnShow();
-			break;
-		case GET_HIT:
-			animationLeft.SetTopLeft(currentMap->ScreenX(x), currentMap->ScreenY(y));
-			animationLeft.OnShow();
-			GasRobotFireLeftAnimation.SetTopLeft(currentMap->ScreenX(x), currentMap->ScreenY(y + 80));
-			GasRobotFireLeftAnimation.OnShow();
-			if (!HitAnimation.IsFinalBitmap())
-			{
-				HitAnimation.SetTopLeft(currentMap->ScreenX(x), currentMap->ScreenY(y));
-				HitAnimation.OnShow();
-			}
-			//if (GetHitAnimation.IsFinalBitmap()) GetHit = false;
 			break;
 		case DEAD:
 			if (enemyHP <= 0)
@@ -1354,6 +1383,14 @@ namespace game_framework {
 					DeadAnimation.OnShow();
 					CountDownNumber.SetTopLeft(currentMap->ScreenX(x + 70), currentMap->ScreenY(y + 65));
 					CountDownNumber.OnShow();
+				}
+				else
+				{
+					if (!ExplosionAnimation.IsFinalBitmap())
+					{
+						ExplosionAnimation.SetTopLeft(currentMap->ScreenX(x - 50), currentMap->ScreenY(y - 80));
+						ExplosionAnimation.OnShow();
+					}
 				}
 			}
 			break;
@@ -1378,7 +1415,7 @@ namespace game_framework {
 
 	bool CEnemy_GasRobot::isDead()
 	{
-		if (enemyHP <= 0 && CountDownNumber.IsFinalBitmap()) return true;
+		if (enemyHP <= 0 && ExplosionAnimation.IsFinalBitmap()) return true;
 		else return false;
 	}
 
@@ -1485,6 +1522,11 @@ namespace game_framework {
 		{
 			*heroHP -= enemyAttackDamage;
 		}
+		if ((GetX2() >= hero["x1"]) && (hero["x2"] >= GetX1()) && (GetY2() >= hero["y1"]) && (hero["y2"] >= GetY1()) && DeadAnimation.GetCurrentBitmapNumber() == 16)
+		{
+			*heroHP -= 100;
+		}
+
 	}
 
 	CEnemy_Action CEnemy_RobotA::DetectHero(CEnemy_Action state)
@@ -1615,6 +1657,14 @@ namespace game_framework {
 		DeadAnimation.AddBitmap(IDB_ROBOTDEAD_1, RGB(63, 72, 204));
 		DeadAnimation.AddBitmap(IDB_ROBOTDEAD_0, RGB(63, 72, 204));
 		DeadAnimation.AddBitmap(IDB_ROBOTDEAD_1, RGB(63, 72, 204));
+		DeadAnimation.AddBitmap(IDB_EXPLOSION_0, RGB(63, 72, 204));
+		DeadAnimation.AddBitmap(IDB_EXPLOSION_1, RGB(63, 72, 204));
+		DeadAnimation.AddBitmap(IDB_EXPLOSION_2, RGB(63, 72, 204));
+		DeadAnimation.AddBitmap(IDB_EXPLOSION_3, RGB(63, 72, 204));
+		DeadAnimation.AddBitmap(IDB_EXPLOSION_4, RGB(63, 72, 204));
+		DeadAnimation.AddBitmap(IDB_EXPLOSION_5, RGB(63, 72, 204));
+		DeadAnimation.AddBitmap(IDB_EXPLOSION_6, RGB(63, 72, 204));
+		DeadAnimation.AddBitmap(IDB_EXPLOSION_7, RGB(63, 72, 204));
 
 		GetHitAnimation.AddBitmap(IDB_ROBOTSTANDLEFT_0, RGB(63, 72, 204));
 		GetHitAnimation.AddBitmap(IDB_ROBOTSTANDLEFT_1, RGB(63, 72, 204));
@@ -1633,7 +1683,7 @@ namespace game_framework {
 	void CEnemy_RobotA::OnMove()
 	{
 		const int STEP_SIZE = 2;
-
+		TRACE("%d\n", DeadAnimation.GetCurrentBitmapNumber());
 		animation.OnMove();
 		animationLeft.OnMove();
 		moveRightAnimation.OnMove();
@@ -1732,6 +1782,11 @@ namespace game_framework {
 			{
 				CAudio::Instance()->Play(15, false);
 				DeadAudio = true;
+			}
+			if (DeadAnimation.GetCurrentBitmapNumber() == 16 && !ExplosionAudio)
+			{
+				CAudio::Instance()->Play(19, false);
+				ExplosionAudio = true;
 			}
 		}
 
@@ -1837,8 +1892,17 @@ namespace game_framework {
 			{
 				if (!DeadAnimation.IsFinalBitmap())
 				{
-					DeadAnimation.SetTopLeft(currentMap->ScreenX(x), currentMap->ScreenY(y));
-					DeadAnimation.OnShow();
+					if (DeadAnimation.GetCurrentBitmapNumber() >= 16)
+					{
+						DeadAnimation.SetTopLeft(currentMap->ScreenX(x - 50), currentMap->ScreenY(y - 50));
+						DeadAnimation.OnShow();
+					}
+					else
+					{
+						DeadAnimation.SetTopLeft(currentMap->ScreenX(x), currentMap->ScreenY(y));
+						DeadAnimation.OnShow();
+					}
+					
 				}
 			}
 			break;
@@ -2356,10 +2420,8 @@ namespace game_framework {
 	{
 		if ((GetX2() >= heroAttackRange["x1"]) && (heroAttackRange["x2"] >= GetX1()) && (GetY2() >= heroAttackRange["y1"]) && (heroAttackRange["y2"] >= GetY1()) && GetHitDelayCount == 0)
 		{
-			CAudio::Instance()->Play(13, false);
 			GetHitDelayCount = 15;
 			enemyHP -= damage;
-			state = GET_HIT;
 			ShowLifeBarDelayCount = 150;
 		}
 	}
@@ -2485,6 +2547,7 @@ namespace game_framework {
 		AttackRightAnimation.AddBitmap(IDB_SCORPOINATTAACKRIGHT_13, RGB(255, 255, 255));
 		AttackRightAnimation.AddBitmap(IDB_SCORPOINATTAACKRIGHT_14, RGB(255, 255, 255));
 		AttackRightAnimation.AddBitmap(IDB_SCORPOINATTAACKRIGHT_15, RGB(255, 255, 255));
+		AttackRightAnimation.AddBitmap(IDB_SCORPOINATTAACKRIGHT_15, RGB(255, 255, 255));
 
 		AttackLeftAnimation.AddBitmap(IDB_SCORPOINATTAACKLEFT_0, RGB(255, 255, 255));
 		AttackLeftAnimation.AddBitmap(IDB_SCORPOINATTAACKLEFT_1, RGB(255, 255, 255));
@@ -2501,6 +2564,7 @@ namespace game_framework {
 		AttackLeftAnimation.AddBitmap(IDB_SCORPOINATTAACKLEFT_12, RGB(255, 255, 255));
 		AttackLeftAnimation.AddBitmap(IDB_SCORPOINATTAACKLEFT_13, RGB(255, 255, 255));
 		AttackLeftAnimation.AddBitmap(IDB_SCORPOINATTAACKLEFT_14, RGB(255, 255, 255));
+		AttackLeftAnimation.AddBitmap(IDB_SCORPOINATTAACKLEFT_15, RGB(255, 255, 255));
 		AttackLeftAnimation.AddBitmap(IDB_SCORPOINATTAACKLEFT_15, RGB(255, 255, 255));
 
 		DeadAnimation.AddBitmap(IDB_SCORPOINDEAD_0, RGB(255, 255, 255));
@@ -2523,15 +2587,17 @@ namespace game_framework {
 		animationLeft.OnMove();
 		moveRightAnimation.OnMove();
 		moveLeftAnimation.OnMove();
-		AttackLeftAnimation.OnMove();
-		AttackRightAnimation.OnMove();
+		
 		if (ShowLifeBarDelayCount > 0) ShowLifeBarDelayCount--;
 		if (GetHitDelayCount > 0) GetHitDelayCount--;
 		else if (GetHitDelayCount == 0) HitAnimation.Reset();
 
 		if (attackDelayCount > 0) attackDelayCount--;
-		state = DetectHero(state);
 
+		if (AttackRightAnimation.GetCurrentBitmapNumber() == 0 && AttackLeftAnimation.GetCurrentBitmapNumber() == 0)		//攻擊中無法取消攻擊動作
+		{
+			state = DetectHero(state);
+		}
 		if (state == MOVE_LEFT)
 		{
 			if (currentMap->isSpace(GetX1(), GetY1()) && currentMap->isSpace(GetX1(), GetY2() - 10) && !currentMap->isDoor(GetX1(), GetY1()) && !currentMap->isDoor(GetX1(), GetY2() - 10)) // 當座標還沒碰到牆
@@ -2544,11 +2610,52 @@ namespace game_framework {
 				x += STEP_SIZE;
 		}
 
-		if (state == GET_HIT && !HitAnimation.IsFinalBitmap())
+		if (state == ATTACK_RIGHT)
 		{
-			state = GET_HIT;
-			HitAnimation.OnMove();
+			AttackRightAnimation.OnMove();
+			if (AttackLeftAnimation.GetCurrentBitmapNumber() == 5 || AttackLeftAnimation.GetCurrentBitmapNumber() == 6)
+			{
+				AttackFlag = true;
+			}
+			else if (AttackLeftAnimation.GetCurrentBitmapNumber() == 11 || AttackLeftAnimation.GetCurrentBitmapNumber() == 12)
+			{
+				AttackFlag_2 = true;
+			}
+			else
+			{
+				AttackFlag = false;
+				AttackFlag_2 = false;
+			}
+			if (AttackRightAnimation.IsFinalBitmap())
+			{
+				attackDelayCount = attackDelay;
+				AttackRightAnimation.Reset();
+			}
 		}
+		
+		if (state == ATTACK_LEFT)
+		{
+			AttackLeftAnimation.OnMove();
+			if (AttackLeftAnimation.GetCurrentBitmapNumber() == 5 || AttackLeftAnimation.GetCurrentBitmapNumber() == 6)
+			{
+				AttackFlag = true;
+			}
+			else if (AttackLeftAnimation.GetCurrentBitmapNumber() == 11 || AttackLeftAnimation.GetCurrentBitmapNumber() == 12)
+			{
+				AttackFlag_2 = true;
+			}
+			else
+			{
+				AttackFlag = false;
+				AttackFlag_2 = false;
+			}
+			if (AttackLeftAnimation.IsFinalBitmap())
+			{
+				attackDelayCount = attackDelay;
+				AttackLeftAnimation.Reset();
+			}
+		}
+
 
 		if (enemyHP <= 0 && !DeadAnimation.IsFinalBitmap())
 		{
@@ -2611,23 +2718,7 @@ namespace game_framework {
 			moveLeftAnimation.OnShow();
 			break;
 		case ATTACK_LEFT:
-			if (AttackLeftAnimation.GetCurrentBitmapNumber() == 5 || AttackLeftAnimation.GetCurrentBitmapNumber() == 6)
-			{
-				AttackFlag = true;
-			}
-			else if (AttackLeftAnimation.GetCurrentBitmapNumber() == 11 || AttackLeftAnimation.GetCurrentBitmapNumber() == 12)
-			{
-				AttackFlag_2 = true;
-			}
-			else
-			{
-				AttackFlag = false;
-				AttackFlag_2 = false;
-			}
-			if (AttackLeftAnimation.IsFinalBitmap())
-			{
-				attackDelayCount = attackDelay;
-			}
+			
 			AttackLeftAnimation.SetTopLeft(currentMap->ScreenX(x), currentMap->ScreenY(y));
 			AttackLeftAnimation.OnShow();
 			break;
@@ -2636,36 +2727,10 @@ namespace game_framework {
 			moveRightAnimation.OnShow();
 			break;
 		case ATTACK_RIGHT:
-			if (AttackLeftAnimation.GetCurrentBitmapNumber() == 5 || AttackLeftAnimation.GetCurrentBitmapNumber() == 6)
-			{
-				AttackFlag = true;
-			}
-			else if (AttackLeftAnimation.GetCurrentBitmapNumber() == 11 || AttackLeftAnimation.GetCurrentBitmapNumber() == 12)
-			{
-				AttackFlag_2 = true;
-			}
-			else
-			{
-				AttackFlag = false;
-				AttackFlag_2 = false;
-			}
-			if (AttackRightAnimation.IsFinalBitmap())
-			{
-				attackDelayCount = attackDelay;
-			}
+			
 			AttackRightAnimation.SetTopLeft(currentMap->ScreenX(x), currentMap->ScreenY(y));
 			AttackRightAnimation.OnShow();
-			break;
-		case GET_HIT:
-			animationLeft.SetTopLeft(currentMap->ScreenX(x), currentMap->ScreenY(y));
-			animationLeft.OnShow();
-			if (!HitAnimation.IsFinalBitmap())
-			{
-				HitAnimation.SetTopLeft(currentMap->ScreenX(x), currentMap->ScreenY(y));
-				HitAnimation.OnShow();
-			}
-			//if (GetHitAnimation.IsFinalBitmap()) GetHit = false;
-			break;
+			break;;
 		case DEAD:
 			if (enemyHP <= 0)
 			{
