@@ -134,7 +134,6 @@ namespace game_framework {
 		AttackRange = 150;
 		heroDirection = LEFT;
 		heroActoin = STAND;
-
 	}
 
 	void CHero::LoadBitmap()
@@ -1455,8 +1454,11 @@ namespace game_framework {
 
 	bool CHero::isAlive()
 	{
-		if (CurrentHP <= 0) return false;
-
+		if (CurrentHP <= 0)
+		{
+			SelectMap(0);
+			return false;
+		}
 		return true;
 	}
 

@@ -135,6 +135,9 @@
     <ClCompile Include="Source\Counter.cpp">
       <Filter>MyGame</Filter>
     </ClCompile>
+    <ClCompile Include="Source\MenuList.cpp">
+      <Filter>MyGame</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\audio.h">
@@ -177,6 +180,9 @@
       <Filter>MyGame</Filter>
     </ClInclude>
     <ClInclude Include="Source\Counter.h">
+      <Filter>MyGame</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\MenuList.h">
       <Filter>MyGame</Filter>
     </ClInclude>
   </ItemGroup>
@@ -2065,6 +2071,15 @@
       <Filter>Resource Files</Filter>
     </Image>
     <Image Include="RES\Enemy\Scorpoin\Dead\4.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\numbers\bitmap76.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\numbers\bitmap80.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\numbers\bmp00002.bmp">
       <Filter>Resource Files</Filter>
     </Image>
   </ItemGroup>

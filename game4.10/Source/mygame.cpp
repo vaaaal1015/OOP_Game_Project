@@ -61,6 +61,7 @@
 #include "CEnemy.h"
 #include "gameMap.h"
 #include "CHero.h"
+#include "MenuList.h"
 #include "mygame.h"
 
 namespace game_framework {
@@ -86,6 +87,7 @@ void CGameStateInit::OnInit()
 	// 開始載入資料
 	//
 	logo.LoadBitmap(IDB_GREATSWORDLOGO, RGB(255, 255, 255));
+	menuList.LoadBitmap();
 	//Sleep(300);				// 放慢，以便看清楚進度，實際遊戲請刪除此Sleep
 	//
 	// 此OnInit動作會接到CGameStaterRun::OnInit()，所以進度還沒到100%
@@ -102,17 +104,46 @@ void CGameStateInit::OnBeginState()
 void CGameStateInit::OnKeyUp(UINT nChar, UINT nRepCnt, UINT nFlags)
 {
 	const char KEY_ESC = 27;
+	const char KEY_ENTER = 13;
 	const char KEY_SPACE = ' ';
+	const char KEY_UP = 0x26; // keyboard上箭頭
+	const char KEY_DOWN = 0x28; // keyboard下箭頭
+
+	if (nChar == KEY_UP)
+		menuList.SetMoveingUp();
+	if (nChar == KEY_DOWN)
+		menuList.SetMoveingDown();
+
+	if (nChar == KEY_ENTER)
+	{
+		switch (menuList.GetState())
+		{
+		case 0:
+			GotoGameState(GAME_STATE_RUN);
+			break;
+		case 2:
+			PostMessage(AfxGetMainWnd()->m_hWnd, WM_CLOSE, 0, 0);
+			break;
+		default:
+			break;
+		}
+	}
+
+
+	/*
 	if (nChar == KEY_SPACE)
 		GotoGameState(GAME_STATE_RUN);						// 切換至GAME_STATE_RUN
 	else if (nChar == KEY_ESC)								// Demo 關閉遊戲的方法
 		PostMessage(AfxGetMainWnd()->m_hWnd, WM_CLOSE,0,0);	// 關閉遊戲
+	*/
+
+
 }
 
 void CGameStateInit::OnLButtonDown(UINT nFlags, CPoint point)
 {
-	CAudio::Instance()->Stop(AUDIO_LOAD);
-	GotoGameState(GAME_STATE_RUN);		// 切換至GAME_STATE_RUN
+	//CAudio::Instance()->Stop(AUDIO_LOAD);
+	//GotoGameState(GAME_STATE_RUN);		// 切換至GAME_STATE_RUN
 }
 
 void CGameStateInit::OnShow()
@@ -120,11 +151,14 @@ void CGameStateInit::OnShow()
 	//
 	// 貼上logo
 	//
-	logo.SetTopLeft((SIZE_X - logo.Width())/2, SIZE_Y/8);
+	logo.SetTopLeft((SIZE_X - logo.Width())/2, SIZE_Y/10);
 	logo.ShowBitmap();
+
+	menuList.OnShow();
 	//
 	// Demo螢幕字型的使用，不過開發時請盡量避免直接使用字型，改用CMovingBitmap比較好
 	//
+	/*
 	CDC *pDC = CDDraw::GetBackCDC();			// 取得 Back Plain 的 CDC 
 	CFont f,*fp;
 	f.CreatePointFont(160,"Times New Roman");	// 產生 font f; 160表示16 point的字
@@ -138,6 +172,7 @@ void CGameStateInit::OnShow()
 	pDC->TextOut(5,455,"Press Alt-F4 or ESC to Quit.");
 	pDC->SelectObject(fp);						// 放掉 font f (千萬不要漏了放掉)
 	CDDraw::ReleaseBackCDC();					// 放掉 Back Plain 的 CDC
+	*/
 }								
 
 /////////////////////////////////////////////////////////////////////////////
@@ -182,7 +217,7 @@ void CGameStateOver::OnShow()
 {
 	CDC *pDC = CDDraw::GetBackCDC();			// 取得 Back Plain 的 CDC 
 	CFont f,*fp;
-	f.CreatePointFont(300,"Times New Roman");	// 產生 font f; 160表示16 point的字
+	f.CreatePointFont(160,"Times New Roman");	// 產生 font f; 160表示16 point的字
 	fp=pDC->SelectObject(&f);					// 選用 font f
 	pDC->SetBkColor(RGB(0,0,0));
 	pDC->SetTextColor(RGB(255,255,0));
@@ -280,9 +315,9 @@ void CGameStateRun::OnInit()  								// 遊戲的初值及圖形設定
 	// 繼續載入其他資料
 	//
 	help.LoadBitmap(IDB_HELP,RGB(255,255,255));				// 載入說明的圖形
-	corner.LoadBitmap(IDB_CORNER);							// 載入角落圖形
+	//corner.LoadBitmap(IDB_CORNER);							// 載入角落圖形
 	//BlackMask.LoadBitmap(IDB_BLACKMASK, RGB(27, 36, 46));  //半透明效果
-	corner.ShowBitmap(background);							// 將corner貼到background								// 載入圖形
+	//corner.ShowBitmap(background);							// 將corner貼到background								// 載入圖形
 	//hits_left.LoadBitmap();	
 	//enemy_hp.LoadBitmap();
 	CAudio::Instance()->Load(AUDIO_DING,  "sounds\\ding.wav");	// 載入編號0的聲音ding.wav
@@ -431,10 +466,10 @@ void CGameStateRun::OnShow()
 	//
 	//  貼上左上及右下角落的圖
 	//
-	corner.SetTopLeft(0,0);
-	corner.ShowBitmap();
-	corner.SetTopLeft(SIZE_X-corner.Width(), SIZE_Y-corner.Height());
-	corner.ShowBitmap();
+	//corner.SetTopLeft(0,0);
+	//corner.ShowBitmap();
+	//corner.SetTopLeft(SIZE_X-corner.Width(), SIZE_Y-corner.Height());
+	//corner.ShowBitmap();
 	/*BlackMask.SetTopLeft(0, 0); 半透明
 	BlackMask.ShowBitmap();*/  
 }

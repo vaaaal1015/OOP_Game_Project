@@ -39,6 +39,7 @@
 #include "NPC.h"
 #include "gameMap.h"
 #include "CHero.h"
+#include "MenuList.h"
 #include "mygame.h"
 #include "gameView.h"
 

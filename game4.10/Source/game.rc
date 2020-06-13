@@ -1326,6 +1326,14 @@ IDB_SCORPOINDEAD_3      BITMAP                  "..\\RES\\Enemy\\Scorpoin\\Dead\
 
 IDB_SCORPOINDEAD_4      BITMAP                  "..\\RES\\Enemy\\Scorpoin\\Dead\\4.bmp"
 
+IDB_WORD_START          BITMAP                  "..\\res\\numbers\\bitmap76.bmp"
+
+IDB_WORD_MEMBER         BITMAP                  "..\\res\\numbers\\bitmap80.bmp"
+
+IDB_WORD_END            BITMAP                  "..\\res\\numbers\\bmp00001.bmp"
+
+IDB_WORD_SELECTION      BITMAP                  "..\\res\\numbers\\bmp00002.bmp"
+
 
 /////////////////////////////////////////////////////////////////////////////
 //
