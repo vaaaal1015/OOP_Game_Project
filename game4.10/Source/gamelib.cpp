@@ -127,7 +127,7 @@
 #include "CEnemy.h"
 #include "gameMap.h"
 #include "CHero.h"
-#include "MenuList.h"
+#include "Menu.h"
 #include "mygame.h"
 
 namespace game_framework {

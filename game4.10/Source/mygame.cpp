@@ -61,7 +61,7 @@
 #include "CEnemy.h"
 #include "gameMap.h"
 #include "CHero.h"
-#include "MenuList.h"
+#include "Menu.h"
 #include "mygame.h"
 
 namespace game_framework {
@@ -86,8 +86,7 @@ void CGameStateInit::OnInit()
 	//
 	// 開始載入資料
 	//
-	logo.LoadBitmap(IDB_GREATSWORDLOGO, RGB(255, 255, 255));
-	menuList.LoadBitmap();
+	menu.LoadBitmap();
 	//Sleep(300);				// 放慢，以便看清楚進度，實際遊戲請刪除此Sleep
 	//
 	// 此OnInit動作會接到CGameStaterRun::OnInit()，所以進度還沒到100%
@@ -110,13 +109,13 @@ void CGameStateInit::OnKeyUp(UINT nChar, UINT nRepCnt, UINT nFlags)
 	const char KEY_DOWN = 0x28; // keyboard下箭頭
 
 	if (nChar == KEY_UP)
-		menuList.SetMoveingUp();
+		menu.SetMoveingUp();
 	if (nChar == KEY_DOWN)
-		menuList.SetMoveingDown();
+		menu.SetMoveingDown();
 
 	if (nChar == KEY_ENTER)
 	{
-		switch (menuList.GetState())
+		switch (menu.GetState())
 		{
 		case 0:
 			GotoGameState(GAME_STATE_RUN);
@@ -151,10 +150,8 @@ void CGameStateInit::OnShow()
 	//
 	// 貼上logo
 	//
-	logo.SetTopLeft((SIZE_X - logo.Width())/2, SIZE_Y/10);
-	logo.ShowBitmap();
 
-	menuList.OnShow();
+	menu.OnShow();
 	//
 	// Demo螢幕字型的使用，不過開發時請盡量避免直接使用字型，改用CMovingBitmap比較好
 	//

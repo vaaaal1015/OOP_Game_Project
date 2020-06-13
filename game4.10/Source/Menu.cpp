@@ -3,15 +3,16 @@
 #include <mmsystem.h>
 #include <ddraw.h>
 #include "gamelib.h"
-#include "MenuList.h"
+#include "Menu.h"
 
 namespace game_framework {
-	MenuList::MenuList() : selection(0)
+	Menu::Menu() : selection(0)
 	{
 	}
 
-	void MenuList::LoadBitmap()
+	void Menu::LoadBitmap()
 	{
+		logo.LoadBitmap(IDB_GREATSWORDLOGO, RGB(255, 255, 255));
 		Word_start.LoadBitmap(IDB_WORD_START, RGB(255, 0, 0));
 		Word_member.LoadBitmap(IDB_WORD_MEMBER, RGB(255, 0, 0));
 		Word_end.LoadBitmap(IDB_WORD_END, RGB(255, 0, 0));
@@ -21,10 +22,15 @@ namespace game_framework {
 		select.push_back(Word_end);
 	}
 
-	void MenuList::OnShow()
+	void Menu::OnShow()
 	{
-		int x = 280;
-		int y = 350;
+		int x = (SIZE_X - select[0].Width()) / 2;
+		int y = SIZE_Y / 10;
+
+		logo.SetTopLeft((SIZE_X - logo.Width()) / 2, y);
+		logo.ShowBitmap();
+
+		y += logo.Height() + 20;
 
 		for (unsigned int i = 0; i < select.size(); i++)
 		{
@@ -40,7 +46,7 @@ namespace game_framework {
 		}
 	}
 	
-	void MenuList::SetMoveingUp()
+	void Menu::SetMoveingUp()
 	{
 		if (selection == 0)
 			selection = select.size() - 1;
@@ -49,7 +55,7 @@ namespace game_framework {
 
 	}
 
-	void MenuList::SetMoveingDown()
+	void Menu::SetMoveingDown()
 	{
 		if (selection == select.size() - 1)
 			selection = 0;
@@ -57,7 +63,7 @@ namespace game_framework {
 			selection++;
 	}
 
-	int MenuList::GetState()
+	int Menu::GetState()
 	{
 		return selection;
 	}

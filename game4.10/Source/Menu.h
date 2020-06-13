@@ -1,9 +1,9 @@
 namespace game_framework {
 
-	class MenuList
+	class Menu
 	{
 	public:
-		MenuList();
+		Menu();
 		void LoadBitmap();			// ¸ü¤J¹Ï§Î	
 		void OnShow();
 		void SetMoveingUp();
@@ -15,6 +15,7 @@ namespace game_framework {
 		CMovingBitmap Word_member;
 		CMovingBitmap Word_end;
 		CMovingBitmap Word_selection;
+		CMovingBitmap logo;
 
 		int selection;
 		vector<CMovingBitmap> select;

@@ -38,7 +38,7 @@
 #include "CEnemy.h"
 #include "gameMap.h"
 #include "CHero.h"
-#include "MenuList.h"
+#include "Menu.h"
 #include "mygame.h"
 #include "gameView.h"
 

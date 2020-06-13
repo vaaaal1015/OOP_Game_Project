@@ -135,7 +135,7 @@
     <ClCompile Include="Source\Counter.cpp">
       <Filter>MyGame</Filter>
     </ClCompile>
-    <ClCompile Include="Source\MenuList.cpp">
+    <ClCompile Include="Source\Menu.cpp">
       <Filter>MyGame</Filter>
     </ClCompile>
   </ItemGroup>
@@ -182,7 +182,7 @@
     <ClInclude Include="Source\Counter.h">
       <Filter>MyGame</Filter>
     </ClInclude>
-    <ClInclude Include="Source\MenuList.h">
+    <ClInclude Include="Source\Menu.h">
       <Filter>MyGame</Filter>
     </ClInclude>
   </ItemGroup>
