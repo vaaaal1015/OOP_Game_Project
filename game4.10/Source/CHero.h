@@ -95,6 +95,7 @@ namespace game_framework {
 		bool ClearedStage = false;  //通關結算
 		void OnLButtonDown(int Mx, int My);		//按下滑鼠左鍵
 		bool GetHeroIsRolling();
+		bool isAlive();					// 回傳主角是否活著
 
 	protected:
 		CAnimation animation;			// 英雄的動畫(向右)
