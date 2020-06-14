@@ -19,7 +19,7 @@ namespace game_framework {
 		currentVillage = NULL;
 		currentWild = NULL;
 		currentMap = NULL;
-
+		isInit = true;
 		for (int i = 0; i < 100; i++) LifeBarRed.push_back(new CMovingBitmap);    //100個血條圖片
 
 		FullHP = 1200;				// 主角預設血量為100
@@ -134,6 +134,12 @@ namespace game_framework {
 		AttackRange = 150;
 		heroDirection = LEFT;
 		heroActoin = STAND;
+
+		if (isInit == false)
+		{
+			SelectMap(0);
+		}
+		isInit = false;
 	}
 
 	void CHero::LoadBitmap()
@@ -343,7 +349,7 @@ namespace game_framework {
 		ShurikanUI.LoadBitmap(IDB_HEROBULLET_UI, RGB(63, 72, 204));
 		for (vector<CMovingBitmap*>::iterator i = LifeBarRed.begin(); i != LifeBarRed.end(); i++) (*i)->LoadBitmap(IDB_LIFEBAR, RGB(255, 255, 255));
 
-		SelectMap(0);
+		//SelectMap(0);
 	}
 
 	int CHero::GetHeroFullHP()
@@ -815,6 +821,8 @@ namespace game_framework {
 	}
 	void CHero::OnMove()
 	{
+		
+
 		if (isInHome)//在home時
 		{
 			CurrentHP = FullHP;
@@ -1350,6 +1358,7 @@ namespace game_framework {
 				delete currentVillage;
 			currentVillage = new gameMap_village();
 			currentVillage->LoadBitmap();
+			CAudio::Instance()->Play(8, true);
 			currentMap = currentVillage;
 			
 			break;
@@ -1359,6 +1368,7 @@ namespace game_framework {
 				delete currentWild;
 			currentWild = new gameMap_wild("level_1.txt");
 			currentWild->LoadBitmap();
+			CAudio::Instance()->Stop(8);
 			CAudio::Instance()->Play(6, false);
 			currentMap = currentWild;
 			break;
@@ -1368,6 +1378,7 @@ namespace game_framework {
 				delete currentWild;
 			currentWild = new gameMap_wild("level_2.txt");
 			currentWild->LoadBitmap();
+			CAudio::Instance()->Stop(8);
 			CAudio::Instance()->Play(6, false);
 			currentMap = currentWild;
 			break;
@@ -1377,6 +1388,7 @@ namespace game_framework {
 				delete currentWild;
 			currentWild = new gameMap_wild("level_3.txt");
 			currentWild->LoadBitmap();
+			CAudio::Instance()->Stop(8);
 			CAudio::Instance()->Play(6, false);
 			currentMap = currentWild;
 			break;

@@ -209,6 +209,7 @@ namespace game_framework {
 		int ShurikanNumber = 10;
 		bool Poison = false;
 		int PoisonDelayCount = 0;
+		bool isInit;
 	};
 
 }

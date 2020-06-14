@@ -818,6 +818,7 @@
     <Image Include="res\numbers\bitmap80.bmp" />
     <Image Include="res\numbers\bmp00001.bmp" />
     <Image Include="res\numbers\bmp00002.bmp" />
+    <Image Include="res\numbers\bmp00003.bmp" />
     <Image Include="RES\Numbers\NUM_0.bmp" />
     <Image Include="RES\Numbers\NUM_1.bmp" />
     <Image Include="RES\Numbers\NUM_2.bmp" />

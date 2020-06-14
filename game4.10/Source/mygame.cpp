@@ -74,6 +74,7 @@ namespace game_framework {
 CGameStateInit::CGameStateInit(CGame *g)
 : CGameState(g)
 {
+	isLoad = false;
 }
 
 void CGameStateInit::OnInit()
@@ -91,40 +92,37 @@ void CGameStateInit::OnInit()
 	//
 	// 此OnInit動作會接到CGameStaterRun::OnInit()，所以進度還沒到100%
 	//
-	CAudio::Instance()->Load(AUDIO_LOAD, "sounds\\load.mp3");	// 載入編號3的聲音load.mp3
-	CAudio::Instance()->Play(AUDIO_LOAD, true);			// 撥放 mp3
+	CAudio::Instance()->Load(AUDIO_MENU, "sounds\\menu.wav");	// 載入編號3的聲音load.mp3
+	isLoad = true;
+	CAudio::Instance()->Play(AUDIO_MENU, false);
 }
 
 void CGameStateInit::OnBeginState()
 {
-	//CAudio::Instance()->Play(AUDIO_LOAD, true);			// 撥放 mp3
+	if(isLoad)
+		CAudio::Instance()->Play(AUDIO_MENU, false);			// 撥放 mp3
 }
 
 void CGameStateInit::OnKeyUp(UINT nChar, UINT nRepCnt, UINT nFlags)
 {
 	const char KEY_ESC = 27;
 	const char KEY_ENTER = 13;
-	const char KEY_SPACE = ' ';
+	//const char KEY_SPACE = ' ';
 	const char KEY_UP = 0x26; // keyboard上箭頭
 	const char KEY_DOWN = 0x28; // keyboard下箭頭
 
 	if (nChar == KEY_UP)
-		menu.SetMoveingUp();
+		menu.SetKeyUp();
 	if (nChar == KEY_DOWN)
-		menu.SetMoveingDown();
+		menu.SetKeyDown();
 
 	if (nChar == KEY_ENTER)
 	{
-		switch (menu.GetState())
+		menu.SetKeyEnter();
+		if (menu.isGameStart())
 		{
-		case 0:
+			CAudio::Instance()->Stop(AUDIO_MENU);
 			GotoGameState(GAME_STATE_RUN);
-			break;
-		case 2:
-			PostMessage(AfxGetMainWnd()->m_hWnd, WM_CLOSE, 0, 0);
-			break;
-		default:
-			break;
 		}
 	}
 
@@ -141,8 +139,7 @@ void CGameStateInit::OnKeyUp(UINT nChar, UINT nRepCnt, UINT nFlags)
 
 void CGameStateInit::OnLButtonDown(UINT nFlags, CPoint point)
 {
-	//CAudio::Instance()->Stop(AUDIO_LOAD);
-	//GotoGameState(GAME_STATE_RUN);		// 切換至GAME_STATE_RUN
+
 }
 
 void CGameStateInit::OnShow()
@@ -190,6 +187,8 @@ void CGameStateOver::OnMove()
 
 void CGameStateOver::OnBeginState()
 {
+	CAudio::Instance()->Stop(AUDIO_STAGE1);			// 撥放 WAVE
+	CAudio::Instance()->Stop(AUDIO_DING);		// 撥放 WAVE
 	counter = 30 * 5; // 5 seconds
 }
 
@@ -258,7 +257,6 @@ void CGameStateRun::OnBeginState()
 	CAudio::Instance()->Play(AUDIO_DING, false);		// 撥放 WAVE
 	//CAudio::Instance()->Play(AUDIO_GETITEM, false);			// 撥放 MIDI
 	//CAudio::Instance()->Play(AUDIO_SUPERCAR, true);			// 撥放 mp3
-	CAudio::Instance()->Stop(AUDIO_LOAD);
 }
 
 void CGameStateRun::OnMove()							// 移動遊戲元素
