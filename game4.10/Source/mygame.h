@@ -59,7 +59,8 @@ enum AUDIO_ID {				// 定義各種音效的編號
 	AUDIO_CLOUD_ATTACK,		// 16
 	AUDIO_PIGEON_ATTACK_1,	// 17
 	AUDIO_PIGEON_ATTACK_2,	// 18
-	AUDIO_BOMB				// 19
+	AUDIO_BOMB,				// 19
+	AUDIO_GAMEOVER			// 20
 };
 namespace game_framework {
 	/////////////////////////////////////////////////////////////////////////////
@@ -82,6 +83,7 @@ namespace game_framework {
 		void OnLButtonDown(UINT nFlags, CPoint point);  // 處理滑鼠的動作
 	protected:
 		void OnShow();									// 顯示這個狀態的遊戲畫面
+		void OnMove();
 	private:
 		//CMovingBitmap logo;								// csie的logo
 		Menu menu;
@@ -132,8 +134,10 @@ namespace game_framework {
 	protected:
 		void OnMove();									// 移動遊戲元素
 		void OnShow();									// 顯示這個狀態的遊戲畫面
+		void OnKeyUp(UINT, UINT, UINT);
 	private:
 		int counter;	// 倒數之計數器
+		GameOver gameOver;
 	};
 	
 	

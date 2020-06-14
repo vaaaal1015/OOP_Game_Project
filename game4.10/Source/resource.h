@@ -737,23 +737,69 @@
 #define IDB_WORD_START                  784
 #define IDB_WORD_MEMBER                 785
 #define IDB_WORD_END                    786
-#define IDB_WORD_SELECTION              787
-#define IDB_BITMAP76                    788
+#define IDB_WORD_SELECTION_1            787
 #define IDB_WORD_MEMBER_LIST            788
+#define IDB_WORD_SELECTION_2            789
+#define IDB_WORD_SELECTION_3            790
+#define IDB_WORD_SELECTION_4            791
+#define IDB_WORD_SELECTION_5            792
+#define IDB_BITMAP76                    831
+#define IDB_BITMAP80                    832
+#define IDB_BITMAP86                    833
+#define IDB_BITMAP87                    834
+#define IDB_BITMAP91                    835
+#define IDB_BITMAP92                    836
+#define IDB_BITMAP93                    837
+#define IDB_BITMAP94                    838
+#define IDB_BITMAP95                    839
+#define IDB_BITMAP96                    840
+#define IDB_BITMAP97                    841
+#define IDB_BITMAP98                    842
+#define IDB_BITMAP99                    843
+#define IDB_BITMAP100                   844
+#define IDB_BITMAP101                   845
+#define IDB_BITMAP102                   846
+#define IDB_BITMAP103                   847
+#define IDB_BITMAP104                   848
+#define IDB_BITMAP106                   849
+#define IDB_BITMAP107                   850
+#define IDB_GHOST_9                     851
+#define IDB_GHOST_1                     852
+#define IDB_GHOST_8                     853
+#define IDB_GHOST_10                    854
+#define IDB_GHOST_11                    855
+#define IDB_GHOST_12                    856
+#define IDB_GHOST_13                    857
+#define IDB_GHOST_14                    858
+#define IDB_GHOST_15                    859
+#define IDB_GHOST_16                    860
+#define IDB_GHOST_17                    861
+#define IDB_GHOST_7                     862
+#define IDB_GHOST_6                     863
+#define IDB_GHOST_5                     864
+#define IDB_GHOST_4                     865
+#define IDB_GHOST_3                     866
+#define IDB_GHOST_20                    867
+#define IDB_GHOST_2                     868
+#define IDB_GHOST_19                    869
+#define IDB_GHOST_18                    870
+#define IDB_BITMAP108                   871
+#define IDB_WORD_PRESS_ENTER            871
 #define IDC_README                      1001
 #define ID_FILE_PAUSE                   32771
 #define ID_TOGGLE_FULLSCREEN            32772
 #define ID_BUTTON_FULLSCREEN            32773
 #define ID_BUTTON_PAUSE                 32774
 #define ID_BUTTON_UNITTEST              32775
+#define ID_HELP_KILL                    32776
 
 // Next default values for new objects
 // 
 #ifdef APSTUDIO_INVOKED
 #ifndef APSTUDIO_READONLY_SYMBOLS
 #define _APS_3D_CONTROLS                     1
-#define _APS_NEXT_RESOURCE_VALUE        789
-#define _APS_NEXT_COMMAND_VALUE         32776
+#define _APS_NEXT_RESOURCE_VALUE        872
+#define _APS_NEXT_COMMAND_VALUE         32777
 #define _APS_NEXT_CONTROL_VALUE         1003
 #define _APS_NEXT_SYMED_VALUE           101
 #endif

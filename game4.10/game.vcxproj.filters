@@ -138,6 +138,9 @@
     <ClCompile Include="Source\Menu.cpp">
       <Filter>MyGame</Filter>
     </ClCompile>
+    <ClCompile Include="Source\GameOver.cpp">
+      <Filter>MyGame</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\audio.h">
@@ -183,6 +186,9 @@
       <Filter>MyGame</Filter>
     </ClInclude>
     <ClInclude Include="Source\Menu.h">
+      <Filter>MyGame</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\GameOver.h">
       <Filter>MyGame</Filter>
     </ClInclude>
   </ItemGroup>
@@ -2083,6 +2089,90 @@
       <Filter>Resource Files</Filter>
     </Image>
     <Image Include="res\numbers\bmp00003.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\numbers\word_sel.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\numbers\bmp00004.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\numbers\bmp00005.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\numbers\bmp00006.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\numbers\bmp00007.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\numbers\bmp00008.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\numbers\bmp00009.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\ghost\ghost_1.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\ghost\ghost_2.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\ghost\ghost_3.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\ghost\ghost_4.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\ghost\ghost_5.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\ghost\ghost_6.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\ghost\ghost_7.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\ghost\ghost_8.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\ghost\ghost_9.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\ghost\ghost_10.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\ghost\ghost_11.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\ghost\ghost_12.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\ghost\ghost_13.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\ghost\ghost_14.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\ghost\ghost_15.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\ghost\ghost_16.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\ghost\ghost_17.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\ghost\ghost_18.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\ghost\ghost_19.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\ghost\ghost_20.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\numbers\bitmap10.bmp">
       <Filter>Resource Files</Filter>
     </Image>
   </ItemGroup>

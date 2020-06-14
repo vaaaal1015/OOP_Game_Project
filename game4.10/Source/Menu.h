@@ -12,6 +12,7 @@ namespace game_framework {
 		Menu();
 		void LoadBitmap();			// ¸ü¤J¹Ï§Î	
 		void OnShow();
+		void OnMove();
 		void SetKeyUp();
 		void SetKeyDown();
 		void SetKeyEnter();
@@ -21,7 +22,7 @@ namespace game_framework {
 		CMovingBitmap Word_start;
 		CMovingBitmap Word_member;
 		CMovingBitmap Word_end;
-		CMovingBitmap Word_selection;
+		CAnimation Word_selection;
 		CMovingBitmap logo;
 		CMovingBitmap Word_memberList;
 		MenuState state;

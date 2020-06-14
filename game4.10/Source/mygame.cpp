@@ -62,6 +62,7 @@
 #include "gameMap.h"
 #include "CHero.h"
 #include "Menu.h"
+#include "GameOver.h"
 #include "mygame.h"
 
 namespace game_framework {
@@ -107,6 +108,7 @@ void CGameStateInit::OnKeyUp(UINT nChar, UINT nRepCnt, UINT nFlags)
 {
 	const char KEY_ESC = 27;
 	const char KEY_ENTER = 13;
+	const char KEY_F1 = 0x70;	 // keyboard F1
 	//const char KEY_SPACE = ' ';
 	const char KEY_UP = 0x26; // keyboard上箭頭
 	const char KEY_DOWN = 0x28; // keyboard下箭頭
@@ -115,6 +117,11 @@ void CGameStateInit::OnKeyUp(UINT nChar, UINT nRepCnt, UINT nFlags)
 		menu.SetKeyUp();
 	if (nChar == KEY_DOWN)
 		menu.SetKeyDown();
+	if (nChar == KEY_F1)
+	{
+		CAudio::Instance()->Stop(AUDIO_MENU);
+		GotoGameState(GAME_STATE_OVER);
+	}
 
 	if (nChar == KEY_ENTER)
 	{
@@ -140,6 +147,11 @@ void CGameStateInit::OnKeyUp(UINT nChar, UINT nRepCnt, UINT nFlags)
 void CGameStateInit::OnLButtonDown(UINT nFlags, CPoint point)
 {
 
+}
+
+void CGameStateInit::OnMove()
+{
+	menu.OnMove();
 }
 
 void CGameStateInit::OnShow()
@@ -180,15 +192,20 @@ CGameStateOver::CGameStateOver(CGame *g)
 
 void CGameStateOver::OnMove()
 {
+	gameOver.OnMove();
+
+	/*
 	counter--;
 	if (counter < 0)
 		GotoGameState(GAME_STATE_INIT);
+	*/
 }
 
 void CGameStateOver::OnBeginState()
 {
 	CAudio::Instance()->Stop(AUDIO_STAGE1);			// 撥放 WAVE
 	CAudio::Instance()->Stop(AUDIO_DING);		// 撥放 WAVE
+	CAudio::Instance()->Play(AUDIO_GAMEOVER);
 	counter = 30 * 5; // 5 seconds
 }
 
@@ -202,6 +219,8 @@ void CGameStateOver::OnInit()
 	//
 	// 開始載入資料
 	//
+	gameOver.LoadBitmap();
+	CAudio::Instance()->Load(AUDIO_GAMEOVER, "sounds\\game_over.mp3");
 	//Sleep(300);				// 放慢，以便看清楚進度，實際遊戲請刪除此Sleep
 	//
 	// 最終進度為100%
@@ -211,6 +230,9 @@ void CGameStateOver::OnInit()
 
 void CGameStateOver::OnShow()
 {
+	gameOver.OnShow();
+
+	/*
 	CDC *pDC = CDDraw::GetBackCDC();			// 取得 Back Plain 的 CDC 
 	CFont f,*fp;
 	f.CreatePointFont(160,"Times New Roman");	// 產生 font f; 160表示16 point的字
@@ -222,6 +244,18 @@ void CGameStateOver::OnShow()
 	pDC->TextOut(240,210,str);
 	pDC->SelectObject(fp);						// 放掉 font f (千萬不要漏了放掉)
 	CDDraw::ReleaseBackCDC();					// 放掉 Back Plain 的 CDC
+	*/
+}
+
+void CGameStateOver::OnKeyUp(UINT nChar, UINT nRepCnt, UINT nFlags)
+{
+	const char KEY_ENTER = 13;
+
+	if (nChar == KEY_ENTER)
+	{
+		CAudio::Instance()->Stop(AUDIO_GAMEOVER);
+		GotoGameState(GAME_STATE_INIT);
+	}
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -257,6 +291,7 @@ void CGameStateRun::OnBeginState()
 	CAudio::Instance()->Play(AUDIO_DING, false);		// 撥放 WAVE
 	//CAudio::Instance()->Play(AUDIO_GETITEM, false);			// 撥放 MIDI
 	//CAudio::Instance()->Play(AUDIO_SUPERCAR, true);			// 撥放 mp3
+	CAudio::Instance()->Stop(AUDIO_MENU);
 }
 
 void CGameStateRun::OnMove()							// 移動遊戲元素

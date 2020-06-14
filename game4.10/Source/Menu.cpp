@@ -11,6 +11,7 @@ namespace game_framework {
 	{
 		state = LIST;
 		selection = 0;
+		Word_selection.SetDelayCount(2);
 	}
 
 	void Menu::LoadBitmap()
@@ -19,11 +20,25 @@ namespace game_framework {
 		Word_start.LoadBitmap(IDB_WORD_START);
 		Word_member.LoadBitmap(IDB_WORD_MEMBER);
 		Word_end.LoadBitmap(IDB_WORD_END);
-		Word_selection.LoadBitmap(IDB_WORD_SELECTION);
 		Word_memberList.LoadBitmap(IDB_WORD_MEMBER_LIST);
+
+		Word_selection.AddBitmap(IDB_WORD_SELECTION_1);
+		Word_selection.AddBitmap(IDB_WORD_SELECTION_2);
+		Word_selection.AddBitmap(IDB_WORD_SELECTION_3);
+		Word_selection.AddBitmap(IDB_WORD_SELECTION_4);
+		Word_selection.AddBitmap(IDB_WORD_SELECTION_5);
+		Word_selection.AddBitmap(IDB_WORD_SELECTION_4);
+		Word_selection.AddBitmap(IDB_WORD_SELECTION_3);
+		Word_selection.AddBitmap(IDB_WORD_SELECTION_2);
+
 		select.push_back(Word_start);
 		select.push_back(Word_member);
 		select.push_back(Word_end);
+	}
+
+	void Menu::OnMove()
+	{
+		Word_selection.OnMove();
 	}
 
 	void Menu::ListOnShow()
@@ -41,7 +56,7 @@ namespace game_framework {
 			if ((int)i == selection)
 			{
 				Word_selection.SetTopLeft(x - Word_selection.Width() - 10, y);
-				Word_selection.ShowBitmap();
+				Word_selection.OnShow();
 			}
 
 			select[i].SetTopLeft(x, y);

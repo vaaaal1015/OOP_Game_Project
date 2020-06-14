@@ -128,6 +128,7 @@
 #include "gameMap.h"
 #include "CHero.h"
 #include "Menu.h"
+#include "GameOver.h"
 #include "mygame.h"
 
 namespace game_framework {

@@ -1332,9 +1332,59 @@ IDB_WORD_MEMBER         BITMAP                  "..\\res\\numbers\\bitmap80.bmp"
 
 IDB_WORD_END            BITMAP                  "..\\res\\numbers\\bmp00001.bmp"
 
-IDB_WORD_SELECTION      BITMAP                  "..\\res\\numbers\\bmp00002.bmp"
+IDB_WORD_SELECTION_1    BITMAP                  "..\\res\\numbers\\bmp00002.bmp"
 
 IDB_WORD_MEMBER_LIST    BITMAP                  "..\\res\\numbers\\bmp00003.bmp"
+
+IDB_WORD_SELECTION_2    BITMAP                  "..\\res\\numbers\\word_sel.bmp"
+
+IDB_WORD_SELECTION_3    BITMAP                  "..\\res\\numbers\\bmp00004.bmp"
+
+IDB_WORD_SELECTION_4    BITMAP                  "..\\res\\numbers\\bmp00005.bmp"
+
+IDB_WORD_SELECTION_5    BITMAP                  "..\\res\\numbers\\bmp00006.bmp"
+
+IDB_GHOST_1             BITMAP                  "..\\RES\\ghost\\ghost_1.bmp"
+
+IDB_GHOST_2             BITMAP                  "..\\RES\\ghost\\ghost_2.bmp"
+
+IDB_GHOST_3             BITMAP                  "..\\RES\\ghost\\ghost_3.bmp"
+
+IDB_GHOST_4             BITMAP                  "..\\RES\\ghost\\ghost_4.bmp"
+
+IDB_GHOST_5             BITMAP                  "..\\RES\\ghost\\ghost_5.bmp"
+
+IDB_GHOST_6             BITMAP                  "..\\RES\\ghost\\ghost_6.bmp"
+
+IDB_GHOST_7             BITMAP                  "..\\RES\\ghost\\ghost_7.bmp"
+
+IDB_GHOST_8             BITMAP                  "..\\RES\\ghost\\ghost_8.bmp"
+
+IDB_GHOST_9             BITMAP                  "..\\RES\\ghost\\ghost_9.bmp"
+
+IDB_GHOST_10            BITMAP                  "..\\RES\\ghost\\ghost_10.bmp"
+
+IDB_GHOST_11            BITMAP                  "..\\RES\\ghost\\ghost_11.bmp"
+
+IDB_GHOST_12            BITMAP                  "..\\RES\\ghost\\ghost_12.bmp"
+
+IDB_GHOST_13            BITMAP                  "..\\RES\\ghost\\ghost_13.bmp"
+
+IDB_GHOST_14            BITMAP                  "..\\RES\\ghost\\ghost_14.bmp"
+
+IDB_GHOST_15            BITMAP                  "..\\RES\\ghost\\ghost_15.bmp"
+
+IDB_GHOST_16            BITMAP                  "..\\RES\\ghost\\ghost_16.bmp"
+
+IDB_GHOST_17            BITMAP                  "..\\RES\\ghost\\ghost_17.bmp"
+
+IDB_GHOST_18            BITMAP                  "..\\RES\\ghost\\ghost_18.bmp"
+
+IDB_GHOST_19            BITMAP                  "..\\RES\\ghost\\ghost_19.bmp"
+
+IDB_GHOST_20            BITMAP                  "..\\RES\\ghost\\ghost_20.bmp"
+
+IDB_WORD_PRESS_ENTER    BITMAP                  "..\\res\\numbers\\bitmap10.bmp"
 
 
 /////////////////////////////////////////////////////////////////////////////
