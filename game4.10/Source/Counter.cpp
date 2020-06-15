@@ -5,7 +5,6 @@ namespace game_framework {
 
 	Counter::Counter()
 	{
-		counter = counterDelay = 10;
 	}
 
 	void Counter::OnMove()

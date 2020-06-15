@@ -36,6 +36,13 @@ namespace game_framework {
 		CMovingBitmap background;
 		CAnimation moveRightAnimation;  // 向右移動動畫
 		CAnimation moveLeftAnimation;   // 向左移動動畫
+		CAnimation animation;			// 英雄的動畫(向右)
+
+		Counter jumpCounter;
+		bool rising;
+		int jump_y;
+		int velocity;
+		int floor;
 
 		MenuState state;
 		int selection;

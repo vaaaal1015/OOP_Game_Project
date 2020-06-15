@@ -1386,21 +1386,21 @@ IDB_GHOST_20            BITMAP                  "..\\RES\\ghost\\ghost_20.bmp"
 
 IDB_WORD_PRESS_ENTER    BITMAP                  "..\\res\\numbers\\bitmap10.bmp"
 
-IDB_KEY_C               BITMAP                  "..\\game4.10\\RES\\Keyboard\\c.bmp"
+IDB_KEY_C               BITMAP                  "..\\RES\\Keyboard\\c.bmp"
 
-IDB_KEY_DOWN            BITMAP                  "..\\game4.10\\RES\\Keyboard\\down.bmp"
+IDB_KEY_DOWN            BITMAP                  "..\\RES\\Keyboard\\down.bmp"
 
-IDB_KEY_E               BITMAP                  "..\\game4.10\\RES\\Keyboard\\e.bmp"
+IDB_KEY_E               BITMAP                  "..\\RES\\Keyboard\\e.bmp"
 
-IDB_KEY_LEFT            BITMAP                  "..\\game4.10\\RES\\Keyboard\\left.bmp"
+IDB_KEY_LEFT            BITMAP                  "..\\RES\\Keyboard\\left.bmp"
 
-IDB_KEY_RIGHT           BITMAP                  "..\\game4.10\\RES\\Keyboard\\right.bmp"
+IDB_KEY_RIGHT           BITMAP                  "..\\RES\\Keyboard\\right.bmp"
 
-IDB_KEY_UP              BITMAP                  "..\\game4.10\\RES\\Keyboard\\up.bmp"
+IDB_KEY_UP              BITMAP                  "..\\RES\\Keyboard\\up.bmp"
 
-IDB_KEY_X               BITMAP                  "..\\game4.10\\RES\\Keyboard\\x.bmp"
+IDB_KEY_X               BITMAP                  "..\\RES\\Keyboard\\x.bmp"
 
-IDB_KEY_Z               BITMAP                  "..\\game4.10\\RES\\Keyboard\\z.bmp"
+IDB_KEY_Z               BITMAP                  "..\\RES\\Keyboard\\z.bmp"
 
 IDB_WORD_TEACHING       BITMAP                  "..\\res\\numbers\\word_sta.bmp"
 

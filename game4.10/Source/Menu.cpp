@@ -3,17 +3,21 @@
 #include <mmsystem.h>
 #include <ddraw.h>
 #include "gamelib.h"
+#include "Counter.h"
 #include "Menu.h"
 
 namespace game_framework {
 
 	Menu::Menu()
 	{
+		jumpCounter.SetDelayCount(50);
+		rising = true;
 		state = LIST;
 		selection = 0;
 		Word_selection.SetDelayCount(2);
 		moveRightAnimation.SetDelayCount(3);
 		moveLeftAnimation.SetDelayCount(3);
+		animation.SetDelayCount(5);
 	}
 
 	void Menu::LoadBitmap()
@@ -27,7 +31,7 @@ namespace game_framework {
 		key_up.LoadBitmap(IDB_KEY_UP);
 		key_left.LoadBitmap(IDB_KEY_LEFT);
 		key_right.LoadBitmap(IDB_KEY_RIGHT);
-		background.LoadBitmap(IDB_BACKGROUND_W);
+		background.LoadBitmap(IDB_MAPBACKGROUND);
 
 		Word_selection.AddBitmap(IDB_WORD_SELECTION_1);
 		Word_selection.AddBitmap(IDB_WORD_SELECTION_2);
@@ -50,6 +54,12 @@ namespace game_framework {
 		moveLeftAnimation.AddBitmap(IDB_HEROMOVELEFT_4, RGB(255, 255, 255));
 		moveLeftAnimation.AddBitmap(IDB_HEROMOVELEFT_5, RGB(255, 255, 255));
 
+		animation.AddBitmap(IDB_HeroNoMove_1, RGB(255, 255, 255));
+		animation.AddBitmap(IDB_HeroNoMove_2, RGB(255, 255, 255));
+		animation.AddBitmap(IDB_HeroNoMove_3, RGB(255, 255, 255));
+		animation.AddBitmap(IDB_HeroNoMove_4, RGB(255, 255, 255));
+		animation.AddBitmap(IDB_HeroNoMove_5, RGB(255, 255, 255));
+
 		
 
 		select.push_back(Word_start);
@@ -60,8 +70,19 @@ namespace game_framework {
 
 	void Menu::OnMove()
 	{
-		Word_selection.OnMove();
-		TeachingOnMove();
+		switch (state)
+		{
+		case game_framework::LIST:
+			Word_selection.OnMove();
+			break;
+		case game_framework::MEMBER:
+			break;
+		case game_framework::TEACHING:
+			TeachingOnMove();
+			break;
+		default:
+			break;
+		}
 	}
 
 	void Menu::ListOnShow()
@@ -96,8 +117,8 @@ namespace game_framework {
 
 	void Menu::TeachingOnShow()
 	{
-		int x = (SIZE_X - moveLeftAnimation.Width() - moveRightAnimation.Width()) / 4;
-		int y = 100;
+		int x = (SIZE_X - moveLeftAnimation.Width()) / 4;
+		int y = SIZE_Y  / 2;
 		background.SetTopLeft(0, 0);
 		background.ShowBitmap();
 
@@ -105,12 +126,50 @@ namespace game_framework {
 		moveLeftAnimation.OnShow();
 		key_left.SetTopLeft(x, y + moveLeftAnimation.Height() + 30);
 		key_left.ShowBitmap();
+
+		animation.SetTopLeft(x * 2, jump_y);
+		animation.OnShow();
+		key_up.SetTopLeft(x * 2, y + moveRightAnimation.Height() + 30);
+		key_up.ShowBitmap();
+
+		moveRightAnimation.SetTopLeft(x * 3, y);
+		moveRightAnimation.OnShow();
+		key_right.SetTopLeft(x * 3, y + moveRightAnimation.Height() + 30);
+		key_right.ShowBitmap();
 	}
 
 	void Menu::TeachingOnMove()
 	{
+		jumpCounter.OnMove();
+		if (jumpCounter.isFinish())
+		{
+			rising = true;
+			jumpCounter.Reset();
+		}
+
 		moveLeftAnimation.OnMove();
 		moveRightAnimation.OnMove();
+
+		if (rising) {							// 上升狀態
+			if (velocity > 0) {
+				jump_y -= velocity;					// 當速度 > 0時，y軸上升(移動velocity個點，velocity的單位為 點/次)
+				velocity--;						// 受重力影響，下次的上升速度降低
+			}
+			else {
+				rising = false;					// 當速度 <= 0，上升終止，下次改為下降
+				velocity = 1;					// 下降的初速(velocity)為1
+			}
+		}
+		else {									// 下降狀態
+			if (jump_y < floor) {  // 當y座標還沒碰到地板
+				jump_y += velocity;					// y軸下降(移動velocity個點，velocity的單位為 點/次)
+				velocity++;						// 受重力影響，下次的下降速度增加
+			}
+			else {
+				floor = jump_y = SIZE_Y / 2;
+				velocity = 15;	// 重設上升初始速度
+			}
+		}
 	}
 
 	void Menu::OnShow()
@@ -178,6 +237,11 @@ namespace game_framework {
 			{
 			case 1:
 				state = TEACHING;
+				jumpCounter.Reset();
+				floor = jump_y = SIZE_Y / 2;
+				velocity = 15;
+				rising = true;
+
 				break;
 			case 2:
 				state = MEMBER;

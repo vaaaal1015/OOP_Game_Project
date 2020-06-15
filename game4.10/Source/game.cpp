@@ -35,6 +35,7 @@
 #include <direct.h>
 #include <string.h>
 #include "gamelib.h"
+#include "Counter.h"
 #include "CEnemy.h"
 #include "NPC.h"
 #include "gameMap.h"

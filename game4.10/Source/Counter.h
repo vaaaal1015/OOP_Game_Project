@@ -1,4 +1,8 @@
 #pragma once
+
+#ifndef _COUNTER_H_
+#define _COUNTER_H_
+
 namespace game_framework {
 	class Counter
 	{
@@ -15,3 +19,4 @@ namespace game_framework {
 	};
 }
 
+#endif // !_COUNTER_H_
