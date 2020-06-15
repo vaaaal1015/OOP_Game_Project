@@ -22,9 +22,9 @@ namespace game_framework {
 		isInit = true;
 		for (int i = 0; i < 100; i++) LifeBarRed.push_back(new CMovingBitmap);    //100個血條圖片
 
-		FullHP = 1200;				// 主角預設血量為100
+		FullHP = 200;				// 主角預設血量為200
 		heroAttackDamage = 20;		// 主角預設攻擊力為20
-		Gold = 1000;
+		Gold = 20;
 		Initialize();
 	}
 
@@ -853,7 +853,7 @@ namespace game_framework {
 		if (GainLifeDelayCount > 0) GainLifeDelayCount--;
 		if (PoisonDelayCount != 0)
 		{
-			if (PoisonDelayCount % 6 == 0) CurrentHP -= 1;
+			if (PoisonDelayCount % 3 == 0) CurrentHP -= 1;
 			PoisonDelayCount--;
 		}
 		else Poison = false;
@@ -1341,7 +1341,7 @@ namespace game_framework {
 		FullHP += 5;
 		heroAttackDamage += 5;
 		HeroLevel += 1;
-		Gold -= 10;
+		Gold -= 20;
 	}
 
 	void CHero::SelectMap(int MapNumber)
@@ -1409,6 +1409,7 @@ namespace game_framework {
 		HasFireStone = false;
 		SpecialEffect = 0;
 		SpecialEffectCount = 0;
+		GainHealthDelayCount = 0;
 		ShurikanNumber = 10;
 		Poison = false;
 		PoisonDelayCount = 0;
@@ -1421,7 +1422,7 @@ namespace game_framework {
 		if (heroActoin == TALK)
 		{
 			currentVillage->OnLButtonDown(Mx, My, &isTalkingToNPC);
-			if ((Mx <= 619) && (My <= 184) && (Mx >= 524) && (My >= 144) && Gold >= 10) HeroLevelUp();
+			if ((Mx <= 619) && (My <= 184) && (Mx >= 524) && (My >= 144) && Gold >= 20) HeroLevelUp();
 		}
 
 		if (isInHome)   //在村莊
@@ -1468,7 +1469,8 @@ namespace game_framework {
 	{
 		if (CurrentHP <= 0)
 		{
-			SelectMap(0);
+			ResetHeroState();
+			Gold = Gold / 2;
 			return false;
 		}
 		return true;
