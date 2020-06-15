@@ -2175,5 +2175,35 @@
     <Image Include="res\numbers\bitmap10.bmp">
       <Filter>Resource Files</Filter>
     </Image>
+    <Image Include="RES\Keyboard\c.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\Keyboard\down.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\Keyboard\e.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\Keyboard\left.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\Keyboard\right.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\Keyboard\up.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\Keyboard\x.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\Keyboard\z.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\numbers\word_sta.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\numbers\bitmap11.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
   </ItemGroup>
 </Project>

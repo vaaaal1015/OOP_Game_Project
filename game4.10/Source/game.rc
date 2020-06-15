@@ -1386,6 +1386,26 @@ IDB_GHOST_20            BITMAP                  "..\\RES\\ghost\\ghost_20.bmp"
 
 IDB_WORD_PRESS_ENTER    BITMAP                  "..\\res\\numbers\\bitmap10.bmp"
 
+IDB_KEY_C               BITMAP                  "C:\\Users\\LAB1223\\Documents\\oopcourse815\\game4.10\\RES\\Keyboard\\c.bmp"
+
+IDB_KEY_DOWN            BITMAP                  "C:\\Users\\LAB1223\\Documents\\oopcourse815\\game4.10\\RES\\Keyboard\\down.bmp"
+
+IDB_KEY_E               BITMAP                  "C:\\Users\\LAB1223\\Documents\\oopcourse815\\game4.10\\RES\\Keyboard\\e.bmp"
+
+IDB_KEY_LEFT            BITMAP                  "C:\\Users\\LAB1223\\Documents\\oopcourse815\\game4.10\\RES\\Keyboard\\left.bmp"
+
+IDB_KEY_RIGHT           BITMAP                  "C:\\Users\\LAB1223\\Documents\\oopcourse815\\game4.10\\RES\\Keyboard\\right.bmp"
+
+IDB_KEY_UP              BITMAP                  "C:\\Users\\LAB1223\\Documents\\oopcourse815\\game4.10\\RES\\Keyboard\\up.bmp"
+
+IDB_KEY_X               BITMAP                  "C:\\Users\\LAB1223\\Documents\\oopcourse815\\game4.10\\RES\\Keyboard\\x.bmp"
+
+IDB_KEY_Z               BITMAP                  "C:\\Users\\LAB1223\\Documents\\oopcourse815\\game4.10\\RES\\Keyboard\\z.bmp"
+
+IDB_WORD_TEACHING       BITMAP                  "..\\res\\numbers\\word_sta.bmp"
+
+IDB_BACKGROUND_W        BITMAP                  "..\\res\\numbers\\bitmap11.bmp"
+
 
 /////////////////////////////////////////////////////////////////////////////
 //

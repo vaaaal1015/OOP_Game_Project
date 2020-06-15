@@ -12,6 +12,8 @@ namespace game_framework {
 		state = LIST;
 		selection = 0;
 		Word_selection.SetDelayCount(2);
+		moveRightAnimation.SetDelayCount(3);
+		moveLeftAnimation.SetDelayCount(3);
 	}
 
 	void Menu::LoadBitmap()
@@ -19,8 +21,13 @@ namespace game_framework {
 		logo.LoadBitmap(IDB_GREATSWORDLOGO, RGB(255, 255, 255));
 		Word_start.LoadBitmap(IDB_WORD_START);
 		Word_member.LoadBitmap(IDB_WORD_MEMBER);
+		Word_teaching.LoadBitmap(IDB_WORD_TEACHING);
 		Word_end.LoadBitmap(IDB_WORD_END);
 		Word_memberList.LoadBitmap(IDB_WORD_MEMBER_LIST);
+		key_up.LoadBitmap(IDB_KEY_UP);
+		key_left.LoadBitmap(IDB_KEY_LEFT);
+		key_right.LoadBitmap(IDB_KEY_RIGHT);
+		background.LoadBitmap(IDB_BACKGROUND_W);
 
 		Word_selection.AddBitmap(IDB_WORD_SELECTION_1);
 		Word_selection.AddBitmap(IDB_WORD_SELECTION_2);
@@ -31,7 +38,22 @@ namespace game_framework {
 		Word_selection.AddBitmap(IDB_WORD_SELECTION_3);
 		Word_selection.AddBitmap(IDB_WORD_SELECTION_2);
 
+		moveRightAnimation.AddBitmap(IDB_HEROMOVERIGHT_1, RGB(255, 255, 255));
+		moveRightAnimation.AddBitmap(IDB_HEROMOVERIGHT_2, RGB(255, 255, 255));
+		moveRightAnimation.AddBitmap(IDB_HEROMOVERIGHT_3, RGB(255, 255, 255));
+		moveRightAnimation.AddBitmap(IDB_HEROMOVERIGHT_4, RGB(255, 255, 255));
+		moveRightAnimation.AddBitmap(IDB_HEROMOVERIGHT_5, RGB(255, 255, 255));
+
+		moveLeftAnimation.AddBitmap(IDB_HEROMOVELEFT_1, RGB(255, 255, 255));
+		moveLeftAnimation.AddBitmap(IDB_HEROMOVELEFT_2, RGB(255, 255, 255));
+		moveLeftAnimation.AddBitmap(IDB_HEROMOVELEFT_3, RGB(255, 255, 255));
+		moveLeftAnimation.AddBitmap(IDB_HEROMOVELEFT_4, RGB(255, 255, 255));
+		moveLeftAnimation.AddBitmap(IDB_HEROMOVELEFT_5, RGB(255, 255, 255));
+
+		
+
 		select.push_back(Word_start);
+		select.push_back(Word_teaching);
 		select.push_back(Word_member);
 		select.push_back(Word_end);
 	}
@@ -39,12 +61,13 @@ namespace game_framework {
 	void Menu::OnMove()
 	{
 		Word_selection.OnMove();
+		TeachingOnMove();
 	}
 
 	void Menu::ListOnShow()
 	{
 		int x = (SIZE_X - select[0].Width()) / 2;
-		int y = SIZE_Y / 10;
+		int y = 10;
 
 		logo.SetTopLeft((SIZE_X - logo.Width()) / 2, y);
 		logo.ShowBitmap();
@@ -71,6 +94,25 @@ namespace game_framework {
 		Word_memberList.ShowBitmap();
 	}
 
+	void Menu::TeachingOnShow()
+	{
+		int x = (SIZE_X - moveLeftAnimation.Width() - moveRightAnimation.Width()) / 4;
+		int y = 100;
+		background.SetTopLeft(0, 0);
+		background.ShowBitmap();
+
+		moveLeftAnimation.SetTopLeft(x , y);
+		moveLeftAnimation.OnShow();
+		key_left.SetTopLeft(x, y + moveLeftAnimation.Height() + 30);
+		key_left.ShowBitmap();
+	}
+
+	void Menu::TeachingOnMove()
+	{
+		moveLeftAnimation.OnMove();
+		moveRightAnimation.OnMove();
+	}
+
 	void Menu::OnShow()
 	{
 		switch (state)
@@ -81,10 +123,13 @@ namespace game_framework {
 		case MEMBER:
 			MemberOnShow();
 			break;
+		case TEACHING:
+			TeachingOnShow();
+			break;
 		default:
 			break;
 		}
-	}
+	} 
 	
 	void Menu::SetKeyUp()
 	{
@@ -132,9 +177,12 @@ namespace game_framework {
 			switch (selection)
 			{
 			case 1:
-				state = MEMBER;
+				state = TEACHING;
 				break;
 			case 2:
+				state = MEMBER;
+				break;
+			case 3:
 				PostMessage(AfxGetMainWnd()->m_hWnd, WM_CLOSE, 0, 0);
 				break;
 			default:

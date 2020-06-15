@@ -785,6 +785,16 @@
 #define IDB_GHOST_18                    870
 #define IDB_BITMAP108                   871
 #define IDB_WORD_PRESS_ENTER            871
+#define IDB_KEY_C                       872
+#define IDB_KEY_DOWN                    873
+#define IDB_KEY_E                       874
+#define IDB_KEY_LEFT                    875
+#define IDB_KEY_RIGHT                   876
+#define IDB_KEY_UP                      877
+#define IDB_KEY_X                       878
+#define IDB_KEY_Z                       879
+#define IDB_WORD_TEACHING               881
+#define IDB_BACKGROUND_W                882
 #define IDC_README                      1001
 #define ID_FILE_PAUSE                   32771
 #define ID_TOGGLE_FULLSCREEN            32772
@@ -798,7 +808,7 @@
 #ifdef APSTUDIO_INVOKED
 #ifndef APSTUDIO_READONLY_SYMBOLS
 #define _APS_3D_CONTROLS                     1
-#define _APS_NEXT_RESOURCE_VALUE        872
+#define _APS_NEXT_RESOURCE_VALUE        883
 #define _APS_NEXT_COMMAND_VALUE         32777
 #define _APS_NEXT_CONTROL_VALUE         1003
 #define _APS_NEXT_SYMED_VALUE           101

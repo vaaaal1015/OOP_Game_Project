@@ -794,6 +794,14 @@
     <Image Include="RES\Item\Silver Coin_2.bmp" />
     <Image Include="RES\Item\Silver Coin_3.bmp" />
     <Image Include="RES\Item_Sword_29.bmp" />
+    <Image Include="RES\Keyboard\c.bmp" />
+    <Image Include="RES\Keyboard\down.bmp" />
+    <Image Include="RES\Keyboard\e.bmp" />
+    <Image Include="RES\Keyboard\left.bmp" />
+    <Image Include="RES\Keyboard\right.bmp" />
+    <Image Include="RES\Keyboard\up.bmp" />
+    <Image Include="RES\Keyboard\x.bmp" />
+    <Image Include="RES\Keyboard\z.bmp" />
     <Image Include="RES\longGround.bmp" />
     <Image Include="RES\mapground.bmp" />
     <Image Include="RES\mapground1.bmp" />
@@ -834,6 +842,7 @@
     <Image Include="RES\Numbers\4.bmp" />
     <Image Include="RES\Numbers\5.bmp" />
     <Image Include="res\numbers\bitmap10.bmp" />
+    <Image Include="res\numbers\bitmap11.bmp" />
     <Image Include="res\numbers\bitmap3.bmp" />
     <Image Include="res\numbers\bitmap48.bmp" />
     <Image Include="res\numbers\bitmap60.bmp" />
@@ -889,6 +898,7 @@
     <Image Include="RES\Numbers\NUM_GOLD_8.bmp" />
     <Image Include="RES\Numbers\NUM_GOLD_9.bmp" />
     <Image Include="res\numbers\word_sel.bmp" />
+    <Image Include="res\numbers\word_sta.bmp" />
     <Image Include="RES\Special_Effect\FireCircle\AttributeAbilityVfx_24.bmp" />
     <Image Include="RES\Special_Effect\FireCircle\AttributeAbilityVfx_25.bmp" />
     <Image Include="RES\Special_Effect\FireCircle\AttributeAbilityVfx_26.bmp" />
