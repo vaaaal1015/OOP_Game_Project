@@ -408,6 +408,16 @@ namespace game_framework {
 			}
 			if ((*iter)->isDead() && (*iter)->GetEnemyType() != "Statue")   //雕像以外的敵人被打死
 			{
+				if ((*iter)->GetEnemyType() == "Cloud Boss")
+				{
+					for (vector<MapObject*>::iterator i = allObject.begin(); i != allObject.end(); i++)
+					{
+						if ((*i)->GetInterationCode() == -9)
+						{
+							(*i)->SetState(false);
+						}
+					}
+				}
 				DropItem(((*iter)->GetX1() + (*iter)->GetX2()) / 2, ((*iter)->GetY1() + (*iter)->GetY2()) / 2);
 				delete *iter;
 				iter = allEnemy.erase(iter);
