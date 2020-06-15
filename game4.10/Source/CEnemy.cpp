@@ -60,7 +60,7 @@ namespace game_framework {
 		GetHitAnimation.SetDelayCount(3);
 		enemyHP = 150;	//敵人預設生命值
 		FullHP = enemyHP;
-		enemyAttackDamage = 10;					//敵人預設攻擊力
+		enemyAttackDamage = 30;					//敵人預設攻擊力
 		floor = FLOOR;
 		initial_velocity = INITIAL_VELOCITY;
 		attackDelayCount = attackDelay = 70;
@@ -463,7 +463,7 @@ namespace game_framework {
 		HitAnimation.SetDelayCount(2);
 		enemyHP = 1500;	//敵人預設生命值
 		FullHP = enemyHP;
-		enemyAttackDamage = 30;					//敵人預設攻擊力
+		enemyAttackDamage = 300;					//敵人預設攻擊力
 		floor = FLOOR;
 		initial_velocity = INITIAL_VELOCITY;
 		attackDelayCount = attackDelay = 150;
@@ -531,7 +531,7 @@ namespace game_framework {
 		if ((HeroXArray[ShowLightningCloudNumber] + 100 >= hero["x1"]) && (hero["x2"] >= HeroXArray[ShowLightningCloudNumber]) && (GetY2() >= hero["y1"]) && (hero["y2"] >= GetY1() - 100) && LightningStrike)
 		{
 
-			*heroHP -= enemyAttackDamage;
+			*heroHP -= 100;
 		}
 	}
 
@@ -1459,7 +1459,7 @@ namespace game_framework {
 		AttackVrfxRight.SetDelayCount(3);
 		enemyHP = 150;	//敵人預設生命值
 		FullHP = enemyHP;
-		enemyAttackDamage = 10;					//敵人預設攻擊力
+		enemyAttackDamage = 60;					//敵人預設攻擊力
 		floor = FLOOR;
 		initial_velocity = INITIAL_VELOCITY;
 		attackDelayCount = attackDelay = 70;
@@ -1960,7 +1960,7 @@ namespace game_framework {
 		AttackVrfx.SetDelayCount(3);
 		enemyHP = 150;	//敵人預設生命值
 		FullHP = enemyHP;
-		enemyAttackDamage = 10;					//敵人預設攻擊力
+		enemyAttackDamage = 50;					//敵人預設攻擊力
 		floor = FLOOR;
 		initial_velocity = INITIAL_VELOCITY;
 		attackDelayCount = attackDelay = 70;
@@ -2371,7 +2371,7 @@ namespace game_framework {
 		HitAnimation.SetDelayCount(2);
 		enemyHP = 150;	//敵人預設生命值
 		FullHP = enemyHP;
-		enemyAttackDamage = 10;					//敵人預設攻擊力
+		enemyAttackDamage = 70;					//敵人預設攻擊力
 		floor = FLOOR;
 		initial_velocity = INITIAL_VELOCITY;
 		attackDelayCount = attackDelay = 150;

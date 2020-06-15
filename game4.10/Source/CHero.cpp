@@ -853,7 +853,7 @@ namespace game_framework {
 		if (GainLifeDelayCount > 0) GainLifeDelayCount--;
 		if (PoisonDelayCount != 0)
 		{
-			if (PoisonDelayCount % 6 == 0) CurrentHP -= 1;
+			if (PoisonDelayCount % 3 == 0) CurrentHP -= 2;
 			PoisonDelayCount--;
 		}
 		else Poison = false;
