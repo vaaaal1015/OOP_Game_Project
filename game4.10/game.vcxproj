@@ -897,6 +897,7 @@
     <Image Include="RES\Numbers\NUM_GOLD_7.bmp" />
     <Image Include="RES\Numbers\NUM_GOLD_8.bmp" />
     <Image Include="RES\Numbers\NUM_GOLD_9.bmp" />
+    <Image Include="res\numbers\ui_game_.bmp" />
     <Image Include="res\numbers\word_sel.bmp" />
     <Image Include="res\numbers\word_sta.bmp" />
     <Image Include="RES\Special_Effect\FireCircle\AttributeAbilityVfx_24.bmp" />

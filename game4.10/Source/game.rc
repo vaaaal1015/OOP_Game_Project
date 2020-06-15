@@ -378,8 +378,6 @@ IDB_GIRAFFE_4           BITMAP                  "..\\RES\\NPC\\Giraffe\\Giraffe 
 
 IDB_GIRAFFE_5           BITMAP                  "..\\RES\\NPC\\Giraffe\\Giraffe Smith_4.bmp"
 
-IDB_UI_GAME_START       BITMAP                  "..\\RES\\UI\\GAME_START_BUTTON.bmp"
-
 IDB_UI_LEVEL_UP_INTERFACE BITMAP                  "..\\RES\\UI\\Level_Up_Bar.bmp"
 
 IDB_UI_LEVEL_UP_BAR     BITMAP                  "..\\RES\\UI\\Level_Up_Button.bmp"
@@ -1405,6 +1403,8 @@ IDB_KEY_Z               BITMAP                  "..\\RES\\Keyboard\\z.bmp"
 IDB_WORD_TEACHING       BITMAP                  "..\\res\\numbers\\word_sta.bmp"
 
 IDB_BACKGROUND_W        BITMAP                  "..\\res\\numbers\\bitmap11.bmp"
+
+IDB_UI_GAME_START1      BITMAP                  "..\\res\\numbers\\ui_game_.bmp"
 
 
 /////////////////////////////////////////////////////////////////////////////

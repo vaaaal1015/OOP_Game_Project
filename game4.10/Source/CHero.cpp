@@ -337,7 +337,7 @@ namespace game_framework {
 		Infected_UI.LoadBitmap(IDB_INFECTED_UI, RGB(63, 72, 204));
 		GainLifeUI.LoadBitmapA(IDB_GAINLIFE_UI, RGB(255, 255, 255));
 		LifeBarHead.LoadBitmap(IDB_LIFEBARHEAD, RGB(255, 255, 255));
-		StartGameBar.LoadBitmap(IDB_UI_GAME_START);
+		StartGameBar.LoadBitmap(IDB_UI_GAME_START1, RGB(255, 0, 0));
 		WorldMap_UI_1.LoadBitmap(IDB_WORLDMAP_UI);
 		QuitButton.LoadBitmap(IDB_UI_QUIT, RGB(0, 0, 0));
 		Num.LoadBitmap();

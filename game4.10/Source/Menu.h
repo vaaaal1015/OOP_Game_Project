@@ -26,30 +26,13 @@ namespace game_framework {
 		CAnimation Word_selection;
 		CMovingBitmap logo;
 		CMovingBitmap Word_memberList;
-		CMovingBitmap key_up;
-		CMovingBitmap key_left;
-		CMovingBitmap key_right;
-		CMovingBitmap key_z;
-		CMovingBitmap key_x;
-		CMovingBitmap key_c;
-		CMovingBitmap key_e;
-		CMovingBitmap background;
-		CAnimation moveRightAnimation;  // 向右移動動畫
-		CAnimation moveLeftAnimation;   // 向左移動動畫
-		CAnimation animation;			// 英雄的動畫(向右)
-
-		Counter jumpCounter;
-		bool rising;
-		int jump_y;
-		int velocity;
-		int floor;
+		CMovingBitmap teaching;
 
 		MenuState state;
 		int selection;
 		void ListOnShow();
 		void MemberOnShow();
 		void TeachingOnShow();
-		void TeachingOnMove();
 		vector<CMovingBitmap> select;
 	};
 
