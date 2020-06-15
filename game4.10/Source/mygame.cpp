@@ -386,6 +386,7 @@ void CGameStateRun::OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags)
 	const char KEY_F3 = 0x72;	 // keyboard F3
 	const char KEY_Z = 0x5A;
 	const char KEY_C = 0x43;
+	const char KEY_D = 0x44;
 	if(nChar == KEY_LEFT)
 		hero.SetMovingLeft(true);
 	if (nChar == KEY_RIGHT)    //英雄不能取消翻滾動作
@@ -408,6 +409,8 @@ void CGameStateRun::OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags)
 		hero.SetTalkingToNPC(true);
 	if (nChar == KEY_C)
 		hero.SetHeroThrow(true);
+	if (nChar == KEY_D)
+		hero.AddHeroGold();
 }
 
 void CGameStateRun::OnKeyUp(UINT nChar, UINT nRepCnt, UINT nFlags)

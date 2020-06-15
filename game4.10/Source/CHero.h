@@ -77,6 +77,7 @@ namespace game_framework {
 		void SetHeroThrow(bool flag);
 		void SetXY(int nx, int ny);		// 設定英雄左上角座標
 		void SetHeroHP(int inputHP);	// 設定主角HP值
+		void AddHeroGold();
 		bool isAttacking;				// 正在攻擊
 		int GetHeroFullHP();
 		int GetHeroCurrentHP();      
