@@ -58,7 +58,7 @@ namespace game_framework {
 		AttackRightAnimation.SetDelayCount(2);
 		HitAnimation.SetDelayCount(2);
 		GetHitAnimation.SetDelayCount(3);
-		enemyHP = 150;	//敵人預設生命值
+		enemyHP = 350;	//敵人預設生命值
 		FullHP = enemyHP;
 		enemyAttackDamage = 30;					//敵人預設攻擊力
 		floor = FLOOR;
@@ -461,7 +461,7 @@ namespace game_framework {
 		LightningCloud.SetDelayCount(3);
 		TrackLightningCloud1.SetDelayCount(3);
 		HitAnimation.SetDelayCount(2);
-		enemyHP = 1500;	//敵人預設生命值
+		enemyHP = 15000;	//敵人預設生命值
 		FullHP = enemyHP;
 		enemyAttackDamage = 300;					//敵人預設攻擊力
 		floor = FLOOR;
@@ -994,7 +994,7 @@ namespace game_framework {
 		CountDownNumber.SetDelayCount(10);
 		ExplosionAnimation.SetDelayCount(3);
 		HitAnimation.SetDelayCount(2);
-		enemyHP = 150;	//敵人預設生命值
+		enemyHP = 450;	//敵人預設生命值
 		FullHP = enemyHP;
 		enemyAttackDamage = 10;					//敵人預設攻擊力
 		floor = FLOOR;
@@ -1457,7 +1457,7 @@ namespace game_framework {
 		GetHitAnimation.SetDelayCount(3);
 		AttackVrfxLeft.SetDelayCount(3);
 		AttackVrfxRight.SetDelayCount(3);
-		enemyHP = 150;	//敵人預設生命值
+		enemyHP = 550;	//敵人預設生命值
 		FullHP = enemyHP;
 		enemyAttackDamage = 60;					//敵人預設攻擊力
 		floor = FLOOR;
@@ -1958,7 +1958,7 @@ namespace game_framework {
 		AttackRightAnimation.SetDelayCount(3);
 		HitAnimation.SetDelayCount(2);
 		AttackVrfx.SetDelayCount(3);
-		enemyHP = 150;	//敵人預設生命值
+		enemyHP = 250;	//敵人預設生命值
 		FullHP = enemyHP;
 		enemyAttackDamage = 50;					//敵人預設攻擊力
 		floor = FLOOR;
@@ -2369,7 +2369,7 @@ namespace game_framework {
 		AttackLeftAnimation.SetDelayCount(4);
 		AttackRightAnimation.SetDelayCount(4);
 		HitAnimation.SetDelayCount(2);
-		enemyHP = 150;	//敵人預設生命值
+		enemyHP = 650;	//敵人預設生命值
 		FullHP = enemyHP;
 		enemyAttackDamage = 70;					//敵人預設攻擊力
 		floor = FLOOR;
