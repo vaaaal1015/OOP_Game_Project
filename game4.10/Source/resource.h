@@ -794,7 +794,9 @@
 #define IDB_KEY_Z                       879
 #define IDB_WORD_TEACHING               881
 #define IDB_BACKGROUND_W                882
+#define IDB_KEY                         882
 #define IDB_UI_GAME_START1              883
+#define IDB_ALL_ITEM                    884
 #define IDC_README                      1001
 #define ID_FILE_PAUSE                   32771
 #define ID_TOGGLE_FULLSCREEN            32772

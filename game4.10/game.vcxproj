@@ -841,6 +841,7 @@
     <Image Include="RES\Numbers\3.bmp" />
     <Image Include="RES\Numbers\4.bmp" />
     <Image Include="RES\Numbers\5.bmp" />
+    <Image Include="res\numbers\backgrou.bmp" />
     <Image Include="res\numbers\bitmap10.bmp" />
     <Image Include="res\numbers\bitmap11.bmp" />
     <Image Include="res\numbers\bitmap3.bmp" />

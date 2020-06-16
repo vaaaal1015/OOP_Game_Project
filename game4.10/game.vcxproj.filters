@@ -2208,5 +2208,8 @@
     <Image Include="res\numbers\ui_game_.bmp">
       <Filter>Resource Files</Filter>
     </Image>
+    <Image Include="res\numbers\backgrou.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
   </ItemGroup>
 </Project>

@@ -1402,9 +1402,11 @@ IDB_KEY_Z               BITMAP                  "..\\RES\\Keyboard\\z.bmp"
 
 IDB_WORD_TEACHING       BITMAP                  "..\\res\\numbers\\word_sta.bmp"
 
-IDB_BACKGROUND_W        BITMAP                  "..\\res\\numbers\\bitmap11.bmp"
+IDB_KEY                 BITMAP                  "..\\res\\numbers\\bitmap11.bmp"
 
 IDB_UI_GAME_START1      BITMAP                  "..\\res\\numbers\\ui_game_.bmp"
+
+IDB_ALL_ITEM            BITMAP                  "..\\res\\numbers\\backgrou.bmp"
 
 
 /////////////////////////////////////////////////////////////////////////////

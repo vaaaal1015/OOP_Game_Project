@@ -23,7 +23,8 @@ namespace game_framework {
 		Word_teaching.LoadBitmap(IDB_WORD_TEACHING);
 		Word_end.LoadBitmap(IDB_WORD_END);
 		Word_memberList.LoadBitmap(IDB_WORD_MEMBER_LIST);
-		teaching.LoadBitmap(IDB_BACKGROUND_W);
+		teaching.LoadBitmap(IDB_KEY);
+		item.LoadBitmap(IDB_ALL_ITEM);
 
 		Word_selection.AddBitmap(IDB_WORD_SELECTION_1);
 		Word_selection.AddBitmap(IDB_WORD_SELECTION_2);
@@ -48,7 +49,7 @@ namespace game_framework {
 	void Menu::ListOnShow()
 	{
 		int x = (SIZE_X - select[0].Width()) / 2;
-		int y = 10;
+		int y = 5;
 
 		logo.SetTopLeft((SIZE_X - logo.Width()) / 2, y);
 		logo.ShowBitmap();
@@ -81,6 +82,12 @@ namespace game_framework {
 		teaching.ShowBitmap();
 	}
 
+	void Menu::ItemOnShow()
+	{
+		item.SetTopLeft(0, 0);
+		item.ShowBitmap();
+	}
+
 	void Menu::OnShow()
 	{
 		switch (state)
@@ -94,6 +101,9 @@ namespace game_framework {
 		case TEACHING:
 			TeachingOnShow();
 			break;
+		case ITEM:
+			ItemOnShow();
+			break;
 		default:
 			break;
 		}
@@ -101,40 +111,19 @@ namespace game_framework {
 	
 	void Menu::SetKeyUp()
 	{
-		switch (state)
-		{
-		case game_framework::LIST:
-			if (selection == 0)
-				selection = select.size() - 1;
-			else
-				selection--;
-			break;
-		case game_framework::MEMBER:
-			break;
-		case game_framework::TEACHING:
-			break;
-		default:
-			break;
-		}
+		if (state == LIST && selection == 0)
+			selection = select.size() - 1;
+		else
+			selection--;
 	}
 
 	void Menu::SetKeyDown()
 	{
-		switch (state)
-		{
-		case game_framework::LIST:
-			if (selection == select.size() - 1)
-				selection = 0;
-			else
-				selection++;
-			break;
-		case game_framework::MEMBER:
-			break;
-		case game_framework::TEACHING:
-			break;
-		default:
-			break;
-		}
+
+		if (state ==LIST && selection == select.size() - 1)
+			selection = 0;
+		else
+			selection++;
 	}
 
 	void Menu::SetKeyEnter()
@@ -161,6 +150,9 @@ namespace game_framework {
 			state = LIST;
 			break;
 		case game_framework::TEACHING:
+			state = ITEM;
+			break;
+		case game_framework::ITEM:
 			state = LIST;
 			break;
 		default:

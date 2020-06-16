@@ -3,7 +3,8 @@ namespace game_framework {
 	{
 		LIST,
 		MEMBER,
-		TEACHING
+		TEACHING,
+		ITEM
 	};
 
 	class Menu
@@ -27,12 +28,14 @@ namespace game_framework {
 		CMovingBitmap logo;
 		CMovingBitmap Word_memberList;
 		CMovingBitmap teaching;
+		CMovingBitmap item;
 
 		MenuState state;
 		int selection;
 		void ListOnShow();
 		void MemberOnShow();
 		void TeachingOnShow();
+		void ItemOnShow();
 		vector<CMovingBitmap> select;
 	};
 
