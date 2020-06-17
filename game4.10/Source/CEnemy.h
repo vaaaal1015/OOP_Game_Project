@@ -39,10 +39,10 @@ namespace game_framework {
 		void SetHeroXY(int x1, int x2, int y1, int y2);				// 設定英雄位置
 		void SetHeroAttackRange(int x1, int x2, int y1, int y2);	// 設定英雄攻擊範圍
 		virtual void GetAttack(const int damage) = 0;		// 被主角攻擊
-		virtual void AttackByEnemy(int* heroHP, bool *Poison) = 0;		// 攻擊主角
-		virtual bool isDead() = 0;
-		virtual string GetEnemyType() = 0;
-		void SetEnemyXY(int SetX, int SetY);
+		virtual void AttackByEnemy(int* heroHP, bool *Poison) = 0;		// 敵人攻擊主角
+		virtual bool isDead() = 0;									// 判斷敵人死了沒
+		virtual string GetEnemyType() = 0;							// 回傳敵人種類
+		void SetEnemyXY(int SetX, int SetY);						// 設定敵人所在位置
 	protected:
 		int x, y;						// 敵人左上角座標
 		gameMap* currentMap;		// 所在地圖
@@ -124,7 +124,7 @@ namespace game_framework {
 		int velocity;				// 目前的速度(點/次)
 		int enemyAttackDamage;		//敵人攻擊力
 		CEnemy_Action DetectHero(CEnemy_Action state);
-		int attackDelay;
+		int attackDelay;			
 		int attackDelayCount;
 		CEnemy_Action state;
 		vector<bullet_sunFlower*> allBullet;

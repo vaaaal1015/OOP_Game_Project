@@ -524,11 +524,11 @@ namespace game_framework {
 
 	void CEnemy_Cloud::AttackByEnemy(int *heroHP, bool *Poison)
 	{
-		if ((GetX2() + 150 >= hero["x1"]) && (hero["x2"] >= GetX1() - 200) && (GetY2() >= hero["y1"]) && (hero["y2"] >= GetY1() - 100) && AttackFlag)
+		if ((GetX2() + 150 >= hero["x1"]) && (hero["x2"] >= GetX1() - 200) && (GetY2() >= hero["y1"]) && (hero["y2"] >= GetY1() - 100) && AttackFlag)		//主動攻擊
 		{
 			*heroHP -= enemyAttackDamage;
 		}
-		if ((HeroXArray[ShowLightningCloudNumber] + 100 >= hero["x1"]) && (hero["x2"] >= HeroXArray[ShowLightningCloudNumber]) && (GetY2() >= hero["y1"]) && (hero["y2"] >= GetY1() - 100) && LightningStrike)
+		if ((HeroXArray[ShowLightningCloudNumber] + 100 >= hero["x1"]) && (hero["x2"] >= HeroXArray[ShowLightningCloudNumber]) && (GetY2() >= hero["y1"]) && (hero["y2"] >= GetY1() - 100) && LightningStrike)		//被動雷雲
 		{
 
 			*heroHP -= 100;
@@ -728,7 +728,7 @@ namespace game_framework {
 				HeroXCounter = 0;
 			}
 		}
-		else if (LightningActivated)
+		else if (LightningActivated)		//被動閃電DelayCount
 		{
 			if (LightningStrikeDelayCount > 0) LightningStrikeDelayCount--;
 		}
@@ -931,12 +931,12 @@ namespace game_framework {
 	{
 		if (!TrackLightningCloud1.IsFinalBitmap())
 		{
-			if (TrackLightningCloud1.GetCurrentBitmapNumber() >= 7 && !AttackAudio_2)
+			if (TrackLightningCloud1.GetCurrentBitmapNumber() >= 7 && !AttackAudio_2)		//避免音效重複撥放
 			{
 				CAudio::Instance()->Play(16, false);
 				AttackAudio_2 = true;
 			}
-			if (TrackLightningCloud1.GetCurrentBitmapNumber()==7)
+			if (TrackLightningCloud1.GetCurrentBitmapNumber()==7)		//被動閃電造成攻擊
 			{
 				LightningStrike = true;
 			}
@@ -1054,11 +1054,11 @@ namespace game_framework {
 
 	void CEnemy_GasRobot::AttackByEnemy(int *heroHP, bool *Poison)
 	{
-		if ((GetX2() + 50 >= hero["x1"]) && (hero["x2"] >= GetX1() - 50) && (GetY2() >= hero["y1"]) && (hero["y2"] >= GetY1()) && AttackFlag)
+		if ((GetX2() + 50 >= hero["x1"]) && (hero["x2"] >= GetX1() - 50) && (GetY2() >= hero["y1"]) && (hero["y2"] >= GetY1()) && AttackFlag)		//施放毒氣
 		{
 			*Poison = true;
 		}
-		if ((GetX2() >= hero["x1"]) && (hero["x2"] >= GetX1()) && (GetY2() >= hero["y1"]) && (hero["y2"] >= GetY1()) && ExplosionAnimation.GetCurrentBitmapNumber() == 1)
+		if ((GetX2() >= hero["x1"]) && (hero["x2"] >= GetX1()) && (GetY2() >= hero["y1"]) && (hero["y2"] >= GetY1()) && ExplosionAnimation.GetCurrentBitmapNumber() == 1)		//死後爆炸造成傷害
 		{
 			*heroHP -= 100;
 		}
@@ -1518,11 +1518,11 @@ namespace game_framework {
 
 	void CEnemy_RobotA::AttackByEnemy(int *heroHP, bool *Poison)
 	{
-		if ((GetX2() >= hero["x1"]) && (hero["x2"] >= GetX1()) && (GetY2() >= hero["y1"]) && (hero["y2"] >= GetY1()) && AttackFlag)
+		if ((GetX2() >= hero["x1"]) && (hero["x2"] >= GetX1()) && (GetY2() >= hero["y1"]) && (hero["y2"] >= GetY1()) && AttackFlag)		//攻擊
 		{
 			*heroHP -= enemyAttackDamage;
 		}
-		if ((GetX2() >= hero["x1"]) && (hero["x2"] >= GetX1()) && (GetY2() >= hero["y1"]) && (hero["y2"] >= GetY1()) && DeadAnimation.GetCurrentBitmapNumber() == 16)
+		if ((GetX2() >= hero["x1"]) && (hero["x2"] >= GetX1()) && (GetY2() >= hero["y1"]) && (hero["y2"] >= GetY1()) && DeadAnimation.GetCurrentBitmapNumber() == 16)		//死亡後爆炸造成傷害
 		{
 			*heroHP -= 100;
 		}
@@ -1683,7 +1683,6 @@ namespace game_framework {
 	void CEnemy_RobotA::OnMove()
 	{
 		const int STEP_SIZE = 2;
-		TRACE("%d\n", DeadAnimation.GetCurrentBitmapNumber());
 		animation.OnMove();
 		animationLeft.OnMove();
 		moveRightAnimation.OnMove();
@@ -1693,7 +1692,7 @@ namespace game_framework {
 		else if (GetHitDelayCount == 0) HitAnimation.Reset();
 
 		if (attackDelayCount > 0) attackDelayCount--;
-		if (AttackLeftAnimation.GetCurrentBitmapNumber() == 0 && AttackRightAnimation.GetCurrentBitmapNumber() == 0)
+		if (AttackLeftAnimation.GetCurrentBitmapNumber() == 0 && AttackRightAnimation.GetCurrentBitmapNumber() == 0)		//無法取消攻擊動作
 		{
 			state = DetectHero(state);
 		}
@@ -1709,7 +1708,7 @@ namespace game_framework {
 			if (currentMap->isSpace(GetX2(), GetY1()) && currentMap->isSpace(GetX2(), GetY2() - 10) && !currentMap->isDoor(GetX1(), GetY1()) && !currentMap->isDoor(GetX1(), GetY2() - 10)) // 當座標還沒碰到牆
 				x += STEP_SIZE;
 		}
-		if (state == ATTACK_LEFT)
+		if (state == ATTACK_LEFT)			//向左攻擊
 		{
 			AttackLeftAnimation.OnMove();
 			if (AttackLeftAnimation.GetCurrentBitmapNumber() >= 7)
@@ -1723,7 +1722,7 @@ namespace game_framework {
 			if (AttackLeftAnimation.GetCurrentBitmapNumber() >= 9)
 			{
 				AttackFlag = true;
-				if (AttackLeftAnimation.GetCurrentBitmapNumber() == 9)
+				if (AttackLeftAnimation.GetCurrentBitmapNumber() == 9)		//開始衝刺
 				{
 					for (int i = 0; i < DASH_SIZE; i++) {
 						if (currentMap->isSpace(GetX1() - 1, GetY1()) && currentMap->isSpace(GetX1() - 1, GetY2() - 10) && !currentMap->isDoor(GetX1() - 1, GetY1()) && !currentMap->isDoor(GetX1() - 1, GetY2())) // 當x座標還沒碰到牆
@@ -1741,7 +1740,7 @@ namespace game_framework {
 			}
 		}
 		
-		if (state == ATTACK_RIGHT)
+		if (state == ATTACK_RIGHT)			//向右攻擊
 		{
 			AttackRightAnimation.OnMove();
 			if (AttackRightAnimation.GetCurrentBitmapNumber() >= 7)
@@ -1755,7 +1754,7 @@ namespace game_framework {
 			if (AttackRightAnimation.GetCurrentBitmapNumber() >= 9)
 			{
 				AttackFlag = true;
-				if (AttackRightAnimation.GetCurrentBitmapNumber() == 9)
+				if (AttackRightAnimation.GetCurrentBitmapNumber() == 9)				//開始衝刺
 				{
 					for (int i = 0; i < DASH_SIZE; i++)
 					{
@@ -2430,22 +2429,22 @@ namespace game_framework {
 	{
 		if (state == ATTACK_RIGHT)
 		{
-			if ((GetX2() + 50 >= hero["x1"]) && (hero["x2"] >= GetX2() - 30) && (GetY2() >= hero["y1"]) && (hero["y2"] >= GetY1()) && AttackFlag_2)
+			if ((GetX2() + 50 >= hero["x1"]) && (hero["x2"] >= GetX2() - 30) && (GetY2() >= hero["y1"]) && (hero["y2"] >= GetY1()) && AttackFlag_2)		//毒液攻擊
 			{
 				*Poison = true;
 			}
-			if ((GetX2() + 50 >= hero["x1"]) && (hero["x2"] >= GetX2() - 30) && (GetY2() >= hero["y1"]) && (hero["y2"] >= GetY1()) && AttackFlag)
+			if ((GetX2() + 50 >= hero["x1"]) && (hero["x2"] >= GetX2() - 30) && (GetY2() >= hero["y1"]) && (hero["y2"] >= GetY1()) && AttackFlag)		//前腳攻擊
 			{
 				*heroHP -= enemyAttackDamage;
 			}
 		}
 		if (state == ATTACK_LEFT)
 		{
-			if ((GetX1() + 30 >= hero["x1"]) && (hero["x2"] >= GetX1() - 50) && (GetY2() >= hero["y1"]) && (hero["y2"] >= GetY1()) && AttackFlag_2)
+			if ((GetX1() + 30 >= hero["x1"]) && (hero["x2"] >= GetX1() - 50) && (GetY2() >= hero["y1"]) && (hero["y2"] >= GetY1()) && AttackFlag_2)		//毒液攻擊
 			{
 				*Poison = true;
 			}
-			if ((GetX1() + 30 >= hero["x1"]) && (hero["x2"] >= GetX1() - 50) && (GetY2() >= hero["y1"]) && (hero["y2"] >= GetY1()) && AttackFlag)
+			if ((GetX1() + 30 >= hero["x1"]) && (hero["x2"] >= GetX1() - 50) && (GetY2() >= hero["y1"]) && (hero["y2"] >= GetY1()) && AttackFlag)		//前腳攻擊
 			{
 				*heroHP -= enemyAttackDamage;
 			}
