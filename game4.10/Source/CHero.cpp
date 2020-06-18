@@ -1383,10 +1383,18 @@ namespace game_framework {
 			currentMap = currentWild;
 			break;
 		case 3:
-
 			if (currentWild != NULL)
 				delete currentWild;
 			currentWild = new gameMap_wild("level_3.txt");
+			currentWild->LoadBitmap();
+			CAudio::Instance()->Stop(8);
+			CAudio::Instance()->Play(6, false);
+			currentMap = currentWild;
+			break;
+		case 4:
+			if (currentWild != NULL)
+				delete currentWild;
+			currentWild = new gameMap_wild("level_4.txt");
 			currentWild->LoadBitmap();
 			CAudio::Instance()->Stop(8);
 			CAudio::Instance()->Play(6, false);
@@ -1429,6 +1437,7 @@ namespace game_framework {
 		{
 			if (isSelectingMap)   //按GAME_START後選擇地圖畫面
 			{
+				TRACE("%d,%d\n", Mx, My);
 				if ((Mx <= 612) && (My <= 87) && (Mx >= 570) && (My >= 48)) isSelectingMap = false;   //右上角xx
 				if ((Mx <= 222) && (My <= 260) && (Mx >= 187) && (My >= 222))   //第一章地圖
 				{
@@ -1443,6 +1452,11 @@ namespace game_framework {
 				if ((Mx <= 377) && (My <= 253) && (Mx >= 321) && (My >= 204))   //第三章地圖
 				{
 					SelectMap(3);
+					isSelectingMap = false;
+				}
+				if ((Mx <= 449) && (My <= 254) && (Mx >= 395) && (My >= 205))   //第三章地圖
+				{
+					SelectMap(4);
 					isSelectingMap = false;
 				}
 			}
