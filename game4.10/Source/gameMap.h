@@ -11,10 +11,10 @@ namespace game_framework {
 		int ScreenX(int x);
 		int ScreenY(int y);
 		int GetBlockY(int y);
-		bool isSpace(int x, int y);  //判斷是否為空氣，是就回傳True
-		void SetSXSY(int x, int y);   //設定(sx, sy)為螢幕(的左上角)在地圖上的點座標
-		void LoadBitmap();    //載入地圖
-		void OnShow();		  //顯示地圖
+		bool isSpace(int x, int y);	// 判斷是否為空氣，是就回傳True
+		void SetSXSY(int x, int y);   // 設定(sx, sy)為螢幕(的左上角)在地圖上的點座標
+		void LoadBitmap();    // 載入地圖
+		void OnShow();		  // 顯示地圖
 		bool isDoor(int x, int y);
 		void SetHeroXY(int x1, int x2, int y1, int y2);				// 設定英雄位置
 	protected:

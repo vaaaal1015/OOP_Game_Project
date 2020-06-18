@@ -4,7 +4,7 @@ namespace game_framework {
 	public:
 		GameOver();
 		~GameOver();
-		void LoadBitmap();
+		void LoadBitmap();			
 		void OnMove();
 		void OnShow();
 

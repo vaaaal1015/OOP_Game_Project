@@ -9,13 +9,13 @@ namespace game_framework {
 	public:
 		Counter();
 		~Counter() = default;
-		void OnMove();
-		bool isFinish();
-		void Reset();
-		void SetDelayCount(int delay);
+		void OnMove();						// 簿笆じ
+		bool isFinish();					// 肚琌璸计Ч拨
+		void Reset();						// 砞﹚穝璸计
+		void SetDelayCount(int delay);		// 砞﹚璸计Ω计
 	private:
-		int counter;
-		int counterDelay;
+		int counter;						// ヘ玡璸计计
+		int counterDelay;					// 羆璸计计
 	};
 }
 
