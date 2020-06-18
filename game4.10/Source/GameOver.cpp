@@ -37,7 +37,6 @@ namespace game_framework {
 		Ghost.AddBitmap(IDB_GHOST_18);
 		Ghost.AddBitmap(IDB_GHOST_19);
 		Ghost.AddBitmap(IDB_GHOST_20);
-
 		pressEnter.LoadBitmap(IDB_WORD_PRESS_ENTER);
 	}
 
@@ -48,10 +47,8 @@ namespace game_framework {
 
 	void  GameOver::OnShow()
 	{
-
 		Ghost.SetTopLeft((SIZE_X - Ghost.Width()) / 2, (SIZE_Y - Ghost.Height()) / 2);
 		Ghost.OnShow();
-
 		pressEnter.SetTopLeft((SIZE_X - pressEnter.Width()) / 2, (SIZE_Y - 100));
 		pressEnter.ShowBitmap();
 	}

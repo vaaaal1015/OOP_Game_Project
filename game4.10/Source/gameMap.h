@@ -7,7 +7,6 @@ namespace game_framework {
 	public:
 		gameMap(string fileName);
 		~gameMap();
-
 		int ScreenX(int x);
 		int ScreenY(int y);
 		int GetBlockY(int y);
@@ -66,9 +65,7 @@ namespace game_framework {
 		virtual void SetHeroAttackRange(int x1, int x2, int y1, int y2);
 		virtual bool GetisStageClear();
 		virtual void HeroGetItem(int *HeroGold, int *SpecialEffect, int *SpecialEffectCount, int *HeroHP, int FullHP, int *ShurikanNumber);
-		
 	protected:
-		
 		int HeroAttackX1;
 		int HeroAttackY1;
 		int HeroAttackX2;
@@ -260,7 +257,6 @@ namespace game_framework {
 		CAnimation MonitorOn;
 		CAnimation MonitorOff;
 		int GetHitDelayCount = 0;
-
 	};
 
 	class Spike : public MapObject

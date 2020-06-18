@@ -110,7 +110,6 @@ void CGameStateInit::OnKeyUp(UINT nChar, UINT nRepCnt, UINT nFlags)
 	const char KEY_ESC = 27;
 	const char KEY_ENTER = 13;
 	const char KEY_F1 = 0x70;	 // keyboard F1
-	//const char KEY_SPACE = ' ';
 	const char KEY_UP = 0x26; // keyboard上箭頭
 	const char KEY_DOWN = 0x28; // keyboard下箭頭
 
@@ -133,16 +132,6 @@ void CGameStateInit::OnKeyUp(UINT nChar, UINT nRepCnt, UINT nFlags)
 			GotoGameState(GAME_STATE_RUN);
 		}
 	}
-
-
-	/*
-	if (nChar == KEY_SPACE)
-		GotoGameState(GAME_STATE_RUN);						// 切換至GAME_STATE_RUN
-	else if (nChar == KEY_ESC)								// Demo 關閉遊戲的方法
-		PostMessage(AfxGetMainWnd()->m_hWnd, WM_CLOSE,0,0);	// 關閉遊戲
-	*/
-
-
 }
 
 void CGameStateInit::OnLButtonDown(UINT nFlags, CPoint point)
@@ -165,21 +154,6 @@ void CGameStateInit::OnShow()
 	//
 	// Demo螢幕字型的使用，不過開發時請盡量避免直接使用字型，改用CMovingBitmap比較好
 	//
-	/*
-	CDC *pDC = CDDraw::GetBackCDC();			// 取得 Back Plain 的 CDC 
-	CFont f,*fp;
-	f.CreatePointFont(160,"Times New Roman");	// 產生 font f; 160表示16 point的字
-	fp=pDC->SelectObject(&f);					// 選用 font f
-	pDC->SetBkColor(RGB(0,0,0));
-	pDC->SetTextColor(RGB(255,255,0));
-	pDC->TextOut(0,350,"Please click mouse or press SPACE to begin.");
-	pDC->TextOut(5,395,"Press Ctrl-F to switch in between window mode and full screen mode.");
-	if (ENABLE_GAME_PAUSE)
-		pDC->TextOut(5,425,"Press Ctrl-Q to pause the Game.");
-	pDC->TextOut(5,455,"Press Alt-F4 or ESC to Quit.");
-	pDC->SelectObject(fp);						// 放掉 font f (千萬不要漏了放掉)
-	CDDraw::ReleaseBackCDC();					// 放掉 Back Plain 的 CDC
-	*/
 }								
 
 /////////////////////////////////////////////////////////////////////////////
@@ -194,12 +168,6 @@ CGameStateOver::CGameStateOver(CGame *g)
 void CGameStateOver::OnMove()
 {
 	gameOver.OnMove();
-
-	/*
-	counter--;
-	if (counter < 0)
-		GotoGameState(GAME_STATE_INIT);
-	*/
 }
 
 void CGameStateOver::OnBeginState()
@@ -232,20 +200,6 @@ void CGameStateOver::OnInit()
 void CGameStateOver::OnShow()
 {
 	gameOver.OnShow();
-
-	/*
-	CDC *pDC = CDDraw::GetBackCDC();			// 取得 Back Plain 的 CDC 
-	CFont f,*fp;
-	f.CreatePointFont(160,"Times New Roman");	// 產生 font f; 160表示16 point的字
-	fp=pDC->SelectObject(&f);					// 選用 font f
-	pDC->SetBkColor(RGB(0,0,0));
-	pDC->SetTextColor(RGB(255,255,0));
-	char str[80];								// Demo 數字對字串的轉換
-	sprintf(str, "Game Over ! (%d)", counter / 30);
-	pDC->TextOut(240,210,str);
-	pDC->SelectObject(fp);						// 放掉 font f (千萬不要漏了放掉)
-	CDDraw::ReleaseBackCDC();					// 放掉 Back Plain 的 CDC
-	*/
 }
 
 void CGameStateOver::OnKeyUp(UINT nChar, UINT nRepCnt, UINT nFlags)
@@ -285,40 +239,18 @@ void CGameStateRun::OnBeginState()
 	hero.Initialize();
 	background.SetTopLeft(BACKGROUND_X,0);				// 設定背景的起始座標
 	help.SetTopLeft(0, SIZE_Y - help.Height());			// 設定說明圖的起始座標
-	//hits_left.SetInteger(HITS_LEFT);					// 指定剩下的撞擊數
-	//hits_left.SetTopLeft(HITS_LEFT_X,HITS_LEFT_Y);		// 指定剩下撞擊數的座標
-	//enemy_hp.SetTopLeft(HITS_LEFT_X, HITS_LEFT_Y);
 	CAudio::Instance()->Play(AUDIO_STAGE1, true);			// 撥放 WAVE
 	CAudio::Instance()->Play(AUDIO_DING, false);		// 撥放 WAVE
-	//CAudio::Instance()->Play(AUDIO_GETITEM, false);			// 撥放 MIDI
-	//CAudio::Instance()->Play(AUDIO_SUPERCAR, true);			// 撥放 mp3
 	CAudio::Instance()->Stop(AUDIO_MENU);
 }
 
 void CGameStateRun::OnMove()							// 移動遊戲元素
 {
-	//
-	// 如果希望修改cursor的樣式，則將下面程式的commment取消即可
-	//
-	// SetCursor(AfxGetApp()->LoadCursor(IDC_GAMECURSOR));
-	//
-	//
-	// 移動擦子
-	//
-	//enemy_hp.SetInteger(enemy.GetHP());
-
 	hero.OnMove();
-
-
-
 	if (!hero.isAlive())
 	{
 		GotoGameState(GAME_STATE_OVER);
 	}
-
-	//
-	// 判斷擦子是否碰到球
-	//
 }
 
 void CGameStateRun::OnInit()  								// 遊戲的初值及圖形設定
@@ -339,18 +271,10 @@ void CGameStateRun::OnInit()  								// 遊戲的初值及圖形設定
 	// 完成部分Loading動作，提高進度
 	//
 	ShowInitProgress(50);
-	//enemy.SetXY(300, 300);
-	
-	//Sleep(300); // 放慢，以便看清楚進度，實際遊戲請刪除此Sleep
 	//
 	// 繼續載入其他資料
 	//
 	help.LoadBitmap(IDB_HELP,RGB(255,255,255));				// 載入說明的圖形
-	//corner.LoadBitmap(IDB_CORNER);							// 載入角落圖形
-	//BlackMask.LoadBitmap(IDB_BLACKMASK, RGB(27, 36, 46));  //半透明效果
-	//corner.ShowBitmap(background);							// 將corner貼到background								// 載入圖形
-	//hits_left.LoadBitmap();	
-	//enemy_hp.LoadBitmap();
 	CAudio::Instance()->Load(AUDIO_DING,  "sounds\\ding.wav");	// 載入編號0的聲音ding.wav
 	CAudio::Instance()->Load(AUDIO_LAKE,  "sounds\\lake.mp3");	// 載入編號1的聲音lake.mp3
 	CAudio::Instance()->Load(AUDIO_GETITEM,  "sounds\\collect_item.wav");	// 載入編號5的聲音getitem
@@ -392,12 +316,6 @@ void CGameStateRun::OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags)
 		hero.SetMovingLeft(true);
 	if (nChar == KEY_RIGHT)    //英雄不能取消翻滾動作
 		hero.SetMovingRight(true);
-	/*
-	if (nChar == KEY_LEFT && !hero.GetHeroIsRolling())     //英雄不能取消翻滾動作
-		hero.SetMovingLeft(true);
-	if (nChar == KEY_RIGHT && !hero.GetHeroIsRolling())    //英雄不能取消翻滾動作
-		hero.SetMovingRight(true);
-	*/
 	if (nChar == KEY_UP)
 		hero.SetMovingUp(true);
 	if (nChar == KEY_DOWN)
@@ -425,36 +343,14 @@ void CGameStateRun::OnKeyUp(UINT nChar, UINT nRepCnt, UINT nFlags)
 	if (nChar == KEY_LEFT)
 	{
 		hero.SetMovingLeft(false);
-		
-		/*
-		if (hero.GetPreviousMove() != 1)
-		{
-			hero.SetPreviousMove(1);
-			hero.SetMoveDelayCount(5);
-		}
-		*/
 	}
 	if (nChar == KEY_RIGHT)
 	{
 		hero.SetMovingRight(false);
-		/*
-		if (hero.GetPreviousMove() != 2)
-		{
-			hero.SetPreviousMove(2);
-			hero.SetMoveDelayCount(5);
-		}
-		*/
 	}
-	/*
-	if (nChar == KEY_UP)
-		hero.SetMovingUp(false);
-	*/
 	if (nChar == KEY_DOWN)
 		hero.SetMovingDown(false);
-	/*
-	if (nChar == KEY_X)
-		hero.SetHeroAttack(false);
-	*/
+
 }
 
 void CGameStateRun::OnLButtonDown(UINT nFlags, CPoint point)  // 處理滑鼠的動作
@@ -464,7 +360,6 @@ void CGameStateRun::OnLButtonDown(UINT nFlags, CPoint point)  // 處理滑鼠的動作
 
 void CGameStateRun::OnLButtonUp(UINT nFlags, CPoint point)	// 處理滑鼠的動作
 {
-	//hero.SetMovingLeft(false);
 }
 
 void CGameStateRun::OnMouseMove(UINT nFlags, CPoint point)	// 處理滑鼠的動作
@@ -479,24 +374,10 @@ void CGameStateRun::OnShow()
 	//  注意：Show裡面千萬不要移動任何物件的座標，移動座標的工作應由Move做才對，
 	//        否則當視窗重新繪圖時(OnDraw)，物件就會移動，看起來會很怪。換個術語
 	//        說，Move負責MVC中的Model，Show負責View，而View不應更動Model。
-	//
-	//
-	//  貼上背景圖、撞擊數、球、擦子、彈跳的球
-	//
 	background.ShowBitmap();// 貼上背景圖
 	help.ShowBitmap();					// 貼上說明圖
-	//hits_left.ShowBitmap();
-	//enemy_hp.ShowBitmap();
 	hero.OnShow();			// 貼上英雄
-	//
-	//  貼上左上及右下角落的圖
-	//
-	//corner.SetTopLeft(0,0);
-	//corner.ShowBitmap();
-	//corner.SetTopLeft(SIZE_X-corner.Width(), SIZE_Y-corner.Height());
-	//corner.ShowBitmap();
-	/*BlackMask.SetTopLeft(0, 0); 半透明
-	BlackMask.ShowBitmap();*/  
+
 }
 
 

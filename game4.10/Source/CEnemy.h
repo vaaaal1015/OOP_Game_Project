@@ -456,7 +456,6 @@ namespace game_framework {
 		void changeLifeBarLength();			// 改變生命條的長度
 	};
 
-
 	class CEnemy_Statue : public CEnemy
 	{
 	public:

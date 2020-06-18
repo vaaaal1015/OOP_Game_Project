@@ -63,7 +63,6 @@ namespace game_framework {
 				Word_selection.SetTopLeft(x - Word_selection.Width() - 10, y);
 				Word_selection.OnShow();
 			}
-
 			select[i].SetTopLeft(x, y);
 			select[i].ShowBitmap();
 			y += select[i].Height() + 10;
@@ -166,7 +165,6 @@ namespace game_framework {
 		{
 			return true;
 		}
-		
 		return false;
 	}
 

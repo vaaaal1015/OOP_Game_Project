@@ -73,7 +73,6 @@ namespace game_framework {
 	CEnemy_sunFlower::~CEnemy_sunFlower()
 	{
 		for (vector<bullet_sunFlower*>::iterator i = allBullet.begin(); i != allBullet.end(); i++) delete *i;
-		//for (vector<CMovingBitmap*>::iterator i = LifeBar_1.begin(); i != LifeBar_1.end(); i++) delete *i;
 	}
 
 	int CEnemy_sunFlower::GetX1()
@@ -478,7 +477,6 @@ namespace game_framework {
 
 	CEnemy_Cloud::~CEnemy_Cloud()
 	{
-		//for (vector<CMovingBitmap*>::iterator i = LifeBar_1.begin(); i != LifeBar_1.end(); i++) delete *i;
 	}
 
 	int CEnemy_Cloud::GetX1()
@@ -711,14 +709,11 @@ namespace game_framework {
 		if (attackDelayCount > 0) attackDelayCount--;
 		if (TrackLightningDelayCount > 0 && !LightningActivated)		//追蹤閃電計數部分
 		{
-			//ResetTrackLightningCloudAnimation();
 			TrackLightningDelayCount--;
 			
 			if (TrackLightningDelayCount % 20 == 0)			//每40個畫面寫入陣列
 			{
 				SetHeroXArray(HeroXCounter, hero["x1"]);		//Array[HeroCounter] = hero[x1]  //紀錄英雄位置
-				//TrackLightningCloud1.Reset();
-				//OnMoveTrackLightningCloud(HeroXCounter);
 				HeroXCounter++;						//changeArrayNumber
 			}
 			if (TrackLightningDelayCount == 0)
@@ -879,12 +874,6 @@ namespace game_framework {
 			}
 			break;
 		}
-		/*else if (GetHit)
-		{
-		GetHitAnimation.SetTopLeft(currentMap->ScreenX(x), currentMap->ScreenY(y));
-		GetHitAnimation.OnShow();
-		if (GetHitAnimation.IsFinalBitmap()) GetHit = false;
-		}*/
 	}
 
 	bool CEnemy_Cloud::isDead()
@@ -1008,7 +997,6 @@ namespace game_framework {
 
 	CEnemy_GasRobot::~CEnemy_GasRobot()
 	{
-		//for (vector<CMovingBitmap*>::iterator i = LifeBar_1.begin(); i != LifeBar_1.end(); i++) delete *i;
 	}
 
 	int CEnemy_GasRobot::GetX1()
@@ -1395,12 +1383,6 @@ namespace game_framework {
 			}
 			break;
 		}
-		/*else if (GetHit)
-		{
-		GetHitAnimation.SetTopLeft(currentMap->ScreenX(x), currentMap->ScreenY(y));
-		GetHitAnimation.OnShow();
-		if (GetHitAnimation.IsFinalBitmap()) GetHit = false;
-		}*/
 		if (ShowGas)
 		{
 			GasAnimation.SetTopLeft(currentMap->ScreenX(x - 80), currentMap->ScreenY(y - 50));
@@ -1883,8 +1865,6 @@ namespace game_framework {
 				HitAnimation.SetTopLeft(currentMap->ScreenX(x), currentMap->ScreenY(y));
 				HitAnimation.OnShow();
 			}
-
-			//if (GetHitAnimation.IsFinalBitmap()) GetHit = false;
 			break;
 		case DEAD:
 			if (enemyHP <= 0)
@@ -1906,12 +1886,6 @@ namespace game_framework {
 			}
 			break;
 		}
-		/*else if (GetHit)
-		{
-		GetHitAnimation.SetTopLeft(currentMap->ScreenX(x), currentMap->ScreenY(y));
-		GetHitAnimation.OnShow();
-		if (GetHitAnimation.IsFinalBitmap()) GetHit = false;
-		}*/
 	}
 
 	bool CEnemy_RobotA::isDead()
@@ -1973,7 +1947,6 @@ namespace game_framework {
 
 	CEnemy_Pigeon::~CEnemy_Pigeon()
 	{
-		//for (vector<CMovingBitmap*>::iterator i = LifeBar_1.begin(); i != LifeBar_1.end(); i++) delete *i;
 	}
 
 	int CEnemy_Pigeon::GetX1()
@@ -2304,9 +2277,6 @@ namespace game_framework {
 			AttackVrfx.SetTopLeft(currentMap->ScreenX(RecordedX1 - 60), currentMap->ScreenY(RecordedY1 - 50));
 			AttackVrfx.OnShow();
 			break;
-
-			//if (GetHitAnimation.IsFinalBitmap()) GetHit = false;
-			break;
 		case DEAD:
 			if (enemyHP <= 0)
 			{
@@ -2318,12 +2288,6 @@ namespace game_framework {
 			}
 			break;
 		}
-		/*else if (GetHit)
-		{
-		GetHitAnimation.SetTopLeft(currentMap->ScreenX(x), currentMap->ScreenY(y));
-		GetHitAnimation.OnShow();
-		if (GetHitAnimation.IsFinalBitmap()) GetHit = false;
-		}*/
 	}
 
 	bool CEnemy_Pigeon::isDead()
@@ -2382,7 +2346,6 @@ namespace game_framework {
 
 	CEnemy_Scorpoin::~CEnemy_Scorpoin()
 	{
-		//for (vector<CMovingBitmap*>::iterator i = LifeBar_1.begin(); i != LifeBar_1.end(); i++) delete *i;
 	}
 
 	int CEnemy_Scorpoin::GetX1()
@@ -2741,12 +2704,6 @@ namespace game_framework {
 			}
 			break;
 		}
-		/*else if (GetHit)
-		{
-		GetHitAnimation.SetTopLeft(currentMap->ScreenX(x), currentMap->ScreenY(y));
-		GetHitAnimation.OnShow();
-		if (GetHitAnimation.IsFinalBitmap()) GetHit = false;
-		}*/
 	}
 
 	bool CEnemy_Scorpoin::isDead()
@@ -2902,7 +2859,6 @@ namespace game_framework {
 			AttackAnimation.Reset();
 			AttackDelayCount = 150;
 		}
-		//if(GetHit) GetHitAnimation.Reset();
 		if (enemyHP <= 0 && !DeadAnimation.IsFinalBitmap()) DeadAnimation.OnMove();
 
 	}
@@ -3090,11 +3046,6 @@ namespace game_framework {
 		{
 			Statue_Broken.SetTopLeft(currentMap->ScreenX(x), currentMap->ScreenY(y));
 			Statue_Broken.ShowBitmap();
-			/*if (!DeadAnimation.IsFinalBitmap())
-			{
-				DeadAnimation.SetTopLeft(currentMap->ScreenX(x), currentMap->ScreenY(y));
-				DeadAnimation.OnShow();
-			}*/
 		}
 		else
 		{

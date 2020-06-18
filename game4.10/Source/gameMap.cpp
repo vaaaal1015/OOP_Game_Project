@@ -53,7 +53,6 @@ namespace game_framework {
 				{
 					map[i][count] = map[i][count] * 10;
 					map[i][count] += (int)(buffer[j] - '0');
-					//count++;
 					j++;
 				}
 			}
@@ -145,10 +144,6 @@ namespace game_framework {
 		{
 			if ((*i)->GetObjectType() == 2)
 			{
-				/*if (((*i)->GetX2() >= HeroX1) && (HeroX2 >= (*i)->GetX1()) && ((*i)->GetY2() >= HeroY1) && (HeroY2 >= (*i)->GetY1()))
-				{
-					return true;
-				}*/
 				if ((x <= (*i)->GetX2()) && (x>=(*i)->GetX1()) && (y>=(*i)->GetY1() && y<=(*i)->GetY2()))
 				{
 					return true;
@@ -222,12 +217,6 @@ namespace game_framework {
 		for (vector<NPC*>::iterator i = allNPC.begin(); i != allNPC.end(); i++) (*i)->SetHeroState(x1, x2, y1, y2, HP, Gold, AttackDamage, Level);
 	}
 
-	/*
-	bool gameMap_village::GetHeroIsTalkingToNPC()
-	{
-		return HeroIsTalkingToNPC;
-	}
-	*/
 
 	/////////////////////////////////////////////////////////////////////////////
 	// gameMap_wild : gameMap_wild class
@@ -331,46 +320,6 @@ namespace game_framework {
 				}
 			}
 		}
-
-		/*
-		allEnemy.push_back(new CEnemy_sunFlower(this, 300, 350));
-		allEnemy.push_back(new CEnemy_Cactus(this, 500, 280));
-		allEnemy.push_back(new CEnemy_Cactus(this, 1000, 210));
-		allEnemy.push_back(new CEnemy_sunFlower(this, 1500, 350));
-		allEnemy.push_back(new CEnemy_Cactus(this, 1650, 20));
-		allEnemy.push_back(new CEnemy_sunFlower(this, 1650, 20));
-		allEnemy.push_back(new CEnemy_sunFlower(this, 400, 350));
-		allEnemy.push_back(new CEnemy_sunFlower(this, 1550, 350));
-		allEnemy.push_back(new CEnemy_Statue(this, 2950, 325));
-		allEnemy.push_back(new CEnemy_sunFlower(this, 2150, 20));
-		allEnemy.push_back(new CEnemy_sunFlower(this, 1950, 20));
-		allEnemy.push_back(new CEnemy_Cactus(this, 2400, 405));
-		allEnemy.push_back(new CEnemy_Cactus(this, 2550, 405));
-		allObject.push_back(new Switch(this, 600, 350, true, 1));
-		allObject.push_back(new Spike(this, 800, 350, true, -1));
-		allObject.push_back(new Spike(this, 820, 350, true, -1));
-		allObject.push_back(new Spike(this, 840, 350, true, -1));
-		allObject.push_back(new Spike(this, 860, 350, true, -1));
-		allObject.push_back(new Switch(this, 1000, 350, true, 2));
-		allObject.push_back(new Spike(this, 1100, 350, true, -2));
-		allObject.push_back(new Spike(this, 1120, 350, true, -2));
-		allObject.push_back(new Spike(this, 1140, 350, true, -2));
-		allObject.push_back(new Spike(this, 1160, 350, true, -2));
-		*/
-		/*
-		allItem.push_back(new Item_Fire_Stone(this, 300, 350, ItemExistTime));
-		allItem.back()->LoadBitmap();
-		allItem.push_back(new Item_RedPot_Small(this, 500, 350, ItemExistTime));
-		allItem.back()->LoadBitmap();
-		allItem.push_back(new Item_RedPot_Medium(this, 600, 350, ItemExistTime));
-		allItem.back()->LoadBitmap();
-		allItem.push_back(new Item_RedPot_Full(this, 700, 350, ItemExistTime));
-		allItem.back()->LoadBitmap();
-		allItem.push_back(new Item_RedPot_Stone(this, 750, 450, ItemExistTime));
-		allItem.back()->LoadBitmap();
-		allItem.push_back(new Item_Shurikan(this, 650, 450, ItemExistTime));
-		allItem.back()->LoadBitmap();
-		*/
 	}
 
 	gameMap_wild::~gameMap_wild()
@@ -403,7 +352,6 @@ namespace game_framework {
 		{
 			if ((*iter)->isDead() && (*iter)->GetEnemyType() == "Statue")
 			{
-				//CAudio::Instance()->Play(7, false);
 				isStageClear = true;   //通關完成
 			}
 			if ((*iter)->isDead() && (*iter)->GetEnemyType() != "Statue")   //雕像以外的敵人被打死
@@ -421,7 +369,6 @@ namespace game_framework {
 				DropItem(((*iter)->GetX1() + (*iter)->GetX2()) / 2, ((*iter)->GetY1() + (*iter)->GetY2()) / 2);
 				delete *iter;
 				iter = allEnemy.erase(iter);
-				//isStageClear = true;   //通關完成
 			}
 			else
 				iter++;
@@ -592,8 +539,6 @@ namespace game_framework {
 		currentMap = point;
 		animation.SetDelayCount(3);
 	}
-
-	//Item::~Item() {}
 
 	int Item::GetX1()
 	{

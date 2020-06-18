@@ -37,7 +37,6 @@
  *      2. Replace the demonstration of animation as a new bouncing ball.
  *      3. Use ShowInitProgress(percent) to display loading progress.
 */
-
 //#include "CHero.h"
 enum AUDIO_ID {				// ﹚竡贺絪腹
 	AUDIO_DING,				// 0
@@ -66,14 +65,10 @@ namespace game_framework {
 	/////////////////////////////////////////////////////////////////////////////
 	// Constants
 	/////////////////////////////////////////////////////////////////////////////
-
-	
-	
 	/////////////////////////////////////////////////////////////////////////////
 	// 硂class笴栏笴栏秨繷礶ン
 	// –Member functionImplementation常璶来
 	/////////////////////////////////////////////////////////////////////////////
-
 	class CGameStateInit : public CGameState {
 	public:
 		CGameStateInit(CGame *g);
@@ -89,12 +84,10 @@ namespace game_framework {
 		Menu menu;
 		bool isLoad;
 	};
-
 	/////////////////////////////////////////////////////////////////////////////
 	// 硂class笴栏笴栏磅︽ン璶笴栏祘Α常硂柑
 	// –Member functionImplementation常璶来
 	/////////////////////////////////////////////////////////////////////////////
-
 	class CGameStateRun : public CGameState {
 	public:
 		CGameStateRun(CGame *g);
@@ -116,14 +109,11 @@ namespace game_framework {
 		CMovingBitmap	lifebar;	// 璣动﹀秖
 		CMovingBitmap	BlackMask;	// 硓狦
 		CHero			hero;		// 璣动
-
 	};
-
 	/////////////////////////////////////////////////////////////////////////////
 	// 硂class笴栏挡篈(Game Over)
 	// –Member functionImplementation常璶来
 	/////////////////////////////////////////////////////////////////////////////
-
 	class CGameStateOver : public CGameState {
 	public:
 		CGameStateOver(CGame *g);
@@ -137,6 +127,4 @@ namespace game_framework {
 		int counter;	// 计ぇ璸计竟
 		GameOver gameOver;
 	};
-	
-	
 }

@@ -97,7 +97,6 @@ namespace game_framework {
 		void OnLButtonDown(int Mx, int My);		//按下滑鼠左鍵
 		bool GetHeroIsRolling();
 		bool isAlive();					// 回傳主角是否活著
-
 	protected:
 		CAnimation animation;			// 英雄的動畫(向右)
 		CAnimation animation1;			// 英雄的動畫(向左)
@@ -172,10 +171,7 @@ namespace game_framework {
 		int GetGold = 0;				// 得到的金幣
 		int SpecialEffect = 0;			// 0:無效果;1:火焰;2:持續回血
 		int SpecialEffectCount = 0;		// 偵測特殊效果
-		
 	private:
-		//Counter AttackDelayCounter;		// 攻擊延遲時間
-
 		gameMap_village* currentVillage;	// 紀錄目前的村莊
 		gameMap_wild* currentWild;			// 紀錄目前的野外
 		gameMap* currentMap;				// 紀錄目前的地圖
@@ -201,10 +197,6 @@ namespace game_framework {
 		void AttackOnShow();
 		void ThrowOnMove();
 		void ThrowOnShow();
-		void RunOnMove();
-		void RunOnShow();
-		void TalkOnMove();
-		//void TalkOnShow();
 		CAnimation currentAnimation;	// 目前的英雄動畫
 		bool HasFireStone = false;
 		int ShurikanNumber = 10;

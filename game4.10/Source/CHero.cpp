@@ -76,8 +76,6 @@ namespace game_framework {
 		return y + animation.Height() / 2;
 	}
 
-
-
 	void CHero::Initialize()
 	{
 		const int X_POS = 35;
@@ -948,17 +946,6 @@ namespace game_framework {
 			}
 		}
 
-		/*
-		if (isTalkingToNPC && isInHome)
-		{
-			currentVillage->HeroTalkToNPC(true);
-		}
-		else
-		{
-			currentVillage->HeroTalkToNPC(false);
-		}
-		*/
-
 		if (!isRolling && !isInvincible && !isInHome)
 		{
 			bleed = AttackByEnemy();
@@ -1030,19 +1017,6 @@ namespace game_framework {
 		{
 			isAttacking = flag;
 		}
-		/*
-		if (AttackDelayCount == 0 && flag == true) {
-			swordAttack1.Reset();
-			swordAttack.Reset();
-			HeroAttackMovement.Reset();
-			HeroAttackMovement1.Reset();
-			FireSwordRightAnimation.Reset();
-			FireSwordLeftAnimation.Reset();
-			isAttacking = true;
-			AttackDelayCount = SetAttackDelayCount;
-			isMovingLeft = isMovingRight = isMovingUp = isMovingDown = isRolling = false;   //角色不能邊走邊攻擊
-		}
-		*/
 	}
 	void CHero::SetHeroRoll (bool flag)
 	{
@@ -1050,17 +1024,6 @@ namespace game_framework {
 		{
 			isRolling = flag;
 		}
-
-		/*
-		if (RollDelayCount == 0 && flag == true && !rising) {
-			HeroRollLeft.Reset();
-			HeroRollRight.Reset();
-			isRolling = true;
-			RollDelayCount = 15;
-			
-			isMovingLeft = isMovingRight = isMovingUp = isMovingDown = isAttacking = false;   //角色不能邊走邊攻擊
-		}
-		*/
 	}
 
 	void CHero::SetHeroThrow(bool flag)
@@ -1085,13 +1048,6 @@ namespace game_framework {
 	{
 		MoveDelayCount = delay;
 	}
-
-	/*
-	void CHero::setHeroDirection(string direction)
-	{
-		faceDirection = direction;
-	}
-	*/
 
 	void CHero::changeLifeBarLength()
 	{
@@ -1148,12 +1104,6 @@ namespace game_framework {
 			Word_G.SetTopLeft(currentMap->ScreenX(x + 2), currentMap->ScreenY(y - 30));
 			Word_G.ShowBitmap();
 		}
-		/*if (AttackByEnemy() != 0)
-		{
-			DamageTaken.SetInteger(AttackByEnemy());
-			DamageTaken.ShowBitmap();
-		}*/
-
 		//處理劍的顯示
 
 		if (HasFireStone)
@@ -1240,27 +1190,6 @@ namespace game_framework {
 	{
 		FullHP = inputHP;
 	}
-
-	/*
-	void CHero::SetMap(int index)
-	{
-		GAME_ASSERT((int)maps.size() > index, "CHero: SetMap input index over range");
-		currentMap = maps[index];
-
-		const int X_POS = 0;
-		const int Y_POS = 0;
-		x = X_POS;
-		y = Y_POS;
-		isMovingLeft = isMovingRight = isMovingUp = isMovingDown = isAttacking = false;
-
-		const int INITIAL_VELOCITY = 15;	// 初始上升速度
-		const int FLOOR = 100;				// 地板座標
-		floor = FLOOR;
-		rising = false;
-		initial_velocity = INITIAL_VELOCITY;
-		velocity = initial_velocity;
-	}
-	*/
 
 	int CHero::AttackByEnemy()
 	{
@@ -1408,7 +1337,6 @@ namespace game_framework {
 
 	void CHero::ResetHeroState()
 	{
-		//currentMap->isStageClear = false;
 		ClearedStage = false;
 		CurrentHP = FullHP;
 		isInHome = true;
@@ -1437,7 +1365,6 @@ namespace game_framework {
 		{
 			if (isSelectingMap)   //按GAME_START後選擇地圖畫面
 			{
-				TRACE("%d,%d\n", Mx, My);
 				if ((Mx <= 612) && (My <= 87) && (Mx >= 570) && (My >= 48)) isSelectingMap = false;   //右上角xx
 				if ((Mx <= 222) && (My <= 260) && (Mx >= 187) && (My >= 222))   //第一章地圖
 				{
