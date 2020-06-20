@@ -122,19 +122,5 @@ namespace game_framework {
 			isTalkingToHero = false;  //cancel
 			*isTalkingToNPC = false;
 		}
-		TRACE("%d\n", isTalkingToHero);
-		//if ((Mx <= 619) && (My <= 184) && (Mx >= 524) && (My >= 144) && hero["Gold"] >= 10) HeroLevelUp();
 	}
-
-	/*
-	bool NPC_oldMan::TouchedByHero(int x1, int x2, int y1, int y2)
-	{
-		// TRACE("%d,%d,%d,%d\n", x1, x2, y1, y2);
-		if ((GetX1() >= hero["x1"]) && (hero["x2"] >= GetX1()) && (GetY2() >= hero["y1"]) && (hero["y2"] >= GetY1()))
-		{
-			return true;
-		}
-		return false;
-	}
-	*/
 }
