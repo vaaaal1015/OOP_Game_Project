@@ -1408,6 +1408,8 @@ IDB_UI_GAME_START1      BITMAP                  "..\\res\\numbers\\ui_game_.bmp"
 
 IDB_ALL_ITEM            BITMAP                  "..\\res\\numbers\\backgrou.bmp"
 
+IDB_B                   BITMAP                  "..\\RES\\UI\\B.bmp"
+
 
 /////////////////////////////////////////////////////////////////////////////
 //

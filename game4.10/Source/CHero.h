@@ -177,6 +177,7 @@ namespace game_framework {
 		gameMap* currentMap;				// 紀錄目前的地圖
 		CMovingBitmap BlackMask;			// 黑色遮罩
 		CMovingBitmap QuitButton;			// 離開按鈕
+		CMovingBitmap B;
 		vector<Shurikan*> allShurikan;
 		int FullHP;							// 主角總血量
 		int CurrentHP;						// 主角目前的血量

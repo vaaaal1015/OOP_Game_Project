@@ -331,7 +331,7 @@ namespace game_framework {
 		ThrowingRight.AddBitmap(IDB_HEROTHROWRIGHT_1, RGB(255, 255, 255));
 		ThrowingRight.AddBitmap(IDB_HEROTHROWRIGHT_2, RGB(255, 255, 255));
 		ThrowingRight.AddBitmap(IDB_HEROTHROWRIGHT_3, RGB(255, 255, 255));
-
+		B.LoadBitmap(IDB_B, RGB(255, 255, 255));
 		Infected_UI.LoadBitmap(IDB_INFECTED_UI, RGB(63, 72, 204));
 		GainLifeUI.LoadBitmapA(IDB_GAINLIFE_UI, RGB(255, 255, 255));
 		LifeBarHead.LoadBitmap(IDB_LIFEBARHEAD, RGB(255, 255, 255));
@@ -1180,10 +1180,11 @@ namespace game_framework {
 		{
 			BlackMask.SetTopLeft(0, 0);
 			BlackMask.ShowBitmap();
+			B.SetTopLeft(50, 30);
+			B.ShowBitmap();
 			QuitButton.SetTopLeft(currentMap->ScreenX(x + 100), currentMap->ScreenY(y + 170));
 			QuitButton.ShowBitmap();
 		}
-
 	}
 
 	void CHero::SetHeroHP(int inputHP)
@@ -1360,7 +1361,6 @@ namespace game_framework {
 			currentVillage->OnLButtonDown(Mx, My, &isTalkingToNPC);
 			if ((Mx <= 619) && (My <= 184) && (Mx >= 524) && (My >= 144) && Gold >= 20) HeroLevelUp();
 		}
-
 		if (isInHome)   //在村莊
 		{
 			if (isSelectingMap)   //按GAME_START後選擇地圖畫面
