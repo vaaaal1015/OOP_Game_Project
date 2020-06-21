@@ -847,7 +847,6 @@ namespace game_framework {
 		if (InvincibleDelayCount != 0) InvincibleDelayCount--;  //無敵時間
 		if (DashColdDown != 0) DashColdDown--;      //衝刺
 		if (MoveDelayCount != 0) MoveDelayCount--;   //紀錄上個動作的保持時間
-		if (MoveDelayCount == 0) SetPreviousMove(0);  //抹除上個動作紀錄
 		if (GainLifeDelayCount > 0) GainLifeDelayCount--;
 		if (PoisonDelayCount != 0)
 		{
@@ -1037,11 +1036,6 @@ namespace game_framework {
 	void CHero::SetXY(int nx, int ny)
 	{
 		x = nx; y = ny;
-	}
-	
-	void CHero::SetPreviousMove(int move)
-	{
-		PreviousMovement = move;
 	}
 
 	void CHero::SetMoveDelayCount(int delay)
