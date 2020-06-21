@@ -797,6 +797,8 @@
 #define IDB_KEY                         882
 #define IDB_UI_GAME_START1              883
 #define IDB_ALL_ITEM                    884
+#define IDB_BITMAP109                   885
+#define IDB_B                           885
 #define IDC_README                      1001
 #define ID_FILE_PAUSE                   32771
 #define ID_TOGGLE_FULLSCREEN            32772
@@ -810,7 +812,7 @@
 #ifdef APSTUDIO_INVOKED
 #ifndef APSTUDIO_READONLY_SYMBOLS
 #define _APS_3D_CONTROLS                     1
-#define _APS_NEXT_RESOURCE_VALUE        883
+#define _APS_NEXT_RESOURCE_VALUE        886
 #define _APS_NEXT_COMMAND_VALUE         32777
 #define _APS_NEXT_CONTROL_VALUE         1003
 #define _APS_NEXT_SYMED_VALUE           101

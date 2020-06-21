@@ -18,8 +18,6 @@ namespace game_framework {
 		map<string, int> hero;
 		gameMap* currentMap;
 	};
-
-
 	class NPC_oldMan : public NPC
 	{
 	public:
@@ -37,9 +35,7 @@ namespace game_framework {
 	private:
 		CAnimation animation;			 // NPC的動畫
 		CAnimation InteractionBar;      //互動圖
-		
 		bool SetIsTalkingToHero();
-		//void TouchedByHero(int x1, int x2, int y1, int y2);
 		CMovingBitmap LevelUpBar;
 		CMovingBitmap LevelUpInterface;
 		CMovingBitmap PauseBar;
