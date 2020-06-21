@@ -138,6 +138,7 @@ namespace game_framework {
 		CMovingBitmap Word_Gold;
 		CMovingBitmap Shield;
 		CMovingBitmap GainLifeUI;
+		CMovingBitmap B;
 		//CInteger DamageTaken;			// 顯示承受傷害
 		vector<CMovingBitmap*> LifeBarRed;		// 血條
 		int x, y;												// 英雄左上角座標
